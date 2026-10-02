@@ -1,0 +1,4 @@
+# Offline analysis only; these dependencies are not part of bot/.
+numpy>=1.24
+# Install a CUDA build supporting the RTX 5070 Ti (Blackwell), e.g. cu130.
+torch>=2.7
