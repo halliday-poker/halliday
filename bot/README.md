@@ -1,6 +1,6 @@
-# MAC poker bot scaffold
+# MAC poker bot: fixed baseline
 
-Everything you need to start building.
+A non-adaptive strategy built on the Person A equity engine.
 
 ## Setup
 
@@ -40,9 +40,9 @@ probabilities, win/tie/loss, sample counts and Monte Carlo error.
 See [EQUITY_ENGINE.md](EQUITY_ENGINE.md) for the complete B/C handoff,
 range format, deadlines, failure handling, integration example and testing.
 
-`main.py` is small smoke-test glue retaining the original scaffold policy
-until Person B's strategy is merged. Person A supplies no strategy, sizing
-or opponent-profiling modules.
+`main.py` connects the engine to the fixed policy in `strategy.py` and
+`preflop.py`. Settings live in `params.py`. See [BASELINE.md](BASELINE.md)
+for the policy, modelling assumptions, clock behaviour and validation commands.
 
 ## Submit
 

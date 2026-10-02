@@ -173,12 +173,10 @@ pot-odds/checkdown-EV/side-pot calculations and forced exact passes were
 removed from `main.py`. The reusable evaluator and hand distributions now
 live in `engine.py` and support opponent ranges.
 
-`main.py` is a small SDK smoke integration, storing `last_equity` and
-retaining the **original scaffold policy** until B's `decide` is merged.
-It requests 256 deals / 25 ms, reduces this to 64 / 10 ms below 5 seconds
-remaining and skips below 250 ms. It catches unavailable-estimate failures
-and clears the diagnostic value every decision/hand. These limits are
-caller choices; B can move them into its own configuration.
+`main.py` now calls the fixed baseline's `decide` with equity from
+`estimate_equity`. The engine and agreed five-argument `equity` API are
+unchanged. Caller-specific budgets, minimum samples, diagnostic clearing
+and fallback rules are documented in [BASELINE.md](BASELINE.md).
 
 ## Verification
 
@@ -195,10 +193,9 @@ python -B -m macpoker play bot/main.py house:call house:random --deals 100 --sub
 Tests use the checked-in SDK as an independent evaluator/enumeration oracle.
 They cover weighted products, blockers, shared boards, collision rejection,
 ties, range-dependent runouts, impossible inputs, seeded repeatability,
-deadline/attempt exhaustion and SDK loading. `harness/eval.py` and B/C's
-modules are absent from this checkout, so their integrated smoke/A/B gates
-must run when those branches are merged. These checks establish engine
-correctness and protocol survival; the scaffold is not a completed strategy.
+deadline/attempt exhaustion and SDK loading. The merged harness and the
+fixed baseline also have strategy, real-game legality and subprocess tests.
+See [the baseline validation report](../docs/baseline-strategy-validation.md).
 
 Verified locally on Python 3.12.13 (the tournament's minor version) and
 3.13.3: all 24 tests passed. Subprocess validation completed 1,100 hands

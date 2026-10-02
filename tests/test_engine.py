@@ -5,6 +5,7 @@ from itertools import combinations, product
 from math import comb
 from pathlib import Path
 from random import Random
+from types import SimpleNamespace
 import inspect
 import random
 import sys
@@ -63,7 +64,9 @@ def reference_equity(hole, board, ranges):
 def state(**updates):
     msg = dict(hole=["As", "Ks"], board=[], players=[2, 0, 1], seat=0,
                folded=[False, False, False], stacks=[198, 0, 200], pot=202,
-               to_call=0, hand=1, clock_ms=30000, button=0)
+               to_call=0, hand=1, clock_ms=30000, button=0,
+               street="flop", street_bets=[0, 0, 0], history=[],
+               min_raise_to=2, max_raise_to=198, can_raise=False)
     msg.update(updates)
     return GameState(msg)
 
@@ -294,17 +297,18 @@ class EquityTests(unittest.TestCase):
 class IntegrationTests(unittest.TestCase):
     def test_glue_excludes_folds_includes_all_ins_and_resets_each_call(self):
         bot = MyBot()
-        s = state(folded=[False, False, True])
-        with patch("bot.main.equity", return_value=0.7) as calculate:
+        s = state(folded=[False, False, True], board=["2d", "7h", "Qc"])
+        estimate = SimpleNamespace(equity=0.7, method="monte_carlo", samples=768)
+        with patch("bot.main.estimate_equity", return_value=estimate) as calculate:
             self.assertEqual(bot.act(s).kind, "check")
-            self.assertEqual(calculate.call_args.args, (s.hole, s.board, [None], 256, 25))
+            self.assertEqual(calculate.call_args.args, (s.hole, s.board, [None], 768, 35))
         self.assertEqual(bot.last_equity, 0.7)
         s._m["clock_ms"] = 20
-        with patch("bot.main.equity", side_effect=AssertionError("Low clock")):
+        with patch("bot.main.estimate_equity", side_effect=AssertionError("Low clock")):
             bot.act(s)
         self.assertIsNone(bot.last_equity)
         s._m["clock_ms"] = 1000
-        with patch("bot.main.equity", side_effect=EquityTimeout):
+        with patch("bot.main.estimate_equity", side_effect=EquityTimeout):
             self.assertEqual(bot.act(s).kind, "check")
         self.assertIsNone(bot.last_equity)
         bot.on_hand_start({})
