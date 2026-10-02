@@ -1,0 +1,14 @@
+{
+  "versions": [
+    {
+      "name": "v0",
+      "hash": "5e70a912",
+      "commit": "64f3759",
+      "time": "2026-10-02T23:23:57",
+      "note": "bootstrap: the scaffold's template bot",
+      "evidence": null,
+      "gate": null,
+      "forced": true
+    }
+  ]
+}
