@@ -1,0 +1,2 @@
+[console_scripts]
+macpoker = macpoker.cli:main
