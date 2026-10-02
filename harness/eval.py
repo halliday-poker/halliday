@@ -1,6 +1,8 @@
 """Evaluation harness: score bot versions against a pool of opponents.
 
-    python harness/eval.py run bot/ snapshots/v1/ --tables 100 --seed s1
+    python harness/eval.py run bot                     # gate: must beat each league version
+    python harness/eval.py promote v3 --note "..."     # accept a gated version into the league
+    python harness/eval.py run bot/ snapshots/v1/      # plain A/B, first = baseline
     python harness/eval.py smoke bot/
     python harness/eval.py snapshot v2
     python harness/eval.py package
@@ -9,9 +11,15 @@
 duplicate set at each one (one game per seat, same decks, seats shifted).
 When several candidates are given, each plays the identical tables and seeds
 from the same slot, so the difference between them is decisions, not cards
-or opponents. The first candidate is the baseline for paired comparisons.
+or opponents.
 
-A bot spec is a .py file, a directory containing main.py, or house:<name>.
+With a single candidate, `run` is a gate: the last K promoted league versions
+become baselines (and opponents), and the candidate must be significantly
+better than each of them. Inconclusive gates extend automatically.
+
+A bot spec is a .py file, a directory containing main.py, house:<name>, or
+param:<archetype>[@seed] (see sparring/param.py). In a pool file,
+param:random draws a jittered random archetype for every seat it fills.
 """
 
 from __future__ import annotations
@@ -34,11 +42,14 @@ import traceback
 import zipfile
 from collections import defaultdict
 from pathlib import Path
+from statistics import NormalDist
 
 ROOT = Path(__file__).resolve().parents[1]
 HARNESS = ROOT / "harness"
 RESULTS = HARNESS / "results"
+LEAGUE = HARNESS / "league.json"
 DEFAULT_POOL = HARNESS / "pools" / "default.txt"
+PARAM_BOT = ROOT / "sparring" / "param.py"
 
 from macpoker.bots import BUILTINS  # noqa: E402
 from macpoker.match import VERDICT_OK, MatchConfig, MatchRunner  # noqa: E402
@@ -104,6 +115,17 @@ def _load_module(path: Path):
     return module, classes[0]
 
 
+def _cached_module(path: Path):
+    key = str(path)
+    if key not in _loaded:
+        _loaded[key] = _load_module(path)
+    return _loaded[key]
+
+
+def param_module():
+    return _cached_module(PARAM_BOT)[0]
+
+
 def make_bot(spec: str, seed: str) -> Bot:
     """A fresh bot instance for one game. Our bots' modules are imported once
     per worker; each game gets a new instance, as the tournament's fresh
@@ -114,21 +136,22 @@ def make_bot(spec: str, seed: str) -> Bot:
             return cls(seed=seed)
         except TypeError:
             return cls()
-    path = str(resolve_path(spec))
-    if path not in _loaded:
-        _loaded[path] = _load_module(Path(path))
-    module, cls = _loaded[path]
+    if spec.startswith("param:"):
+        module, cls = _cached_module(PARAM_BOT)
+        return cls(style=module.style_for(spec.split(":", 1)[1]), seed=seed)
+    path = resolve_path(spec)
+    module, cls = _cached_module(path)
     try:
         return cls()
     except TypeError:
-        _loaded[path] = _load_module(Path(path))
-        return _loaded[path][0].bot
+        _loaded[str(path)] = _load_module(path)
+        return _loaded[str(path)][0].bot
 
 
 def bot_hash(spec: str) -> str:
     """Short content hash of a bot's directory, to identify uncommitted versions."""
-    if spec.startswith("house:"):
-        return "house"
+    if spec.startswith(("house:", "param:")):
+        return spec.split(":", 1)[0]
     h = hashlib.sha1()
     d = resolve_path(spec).parent
     for f in sorted(d.rglob("*")):
@@ -136,6 +159,33 @@ def bot_hash(spec: str) -> str:
             h.update(str(f.relative_to(d)).encode())
             h.update(f.read_bytes())
     return h.hexdigest()[:8]
+
+
+# --------------------------------------------------------------------------
+# League: promoted versions of our bot
+# --------------------------------------------------------------------------
+
+def load_league() -> list[dict]:
+    if not LEAGUE.exists():
+        return []
+    return json.loads(LEAGUE.read_text())["versions"]
+
+
+def league_specs(k: int) -> list[str]:
+    """The last k promoted versions, newest first."""
+    return [f"snapshots/{v['name']}" for v in reversed(load_league()[-k:])] if k > 0 else []
+
+
+def copy_snapshot(source: str, name: str) -> Path:
+    path = resolve_path(source)
+    if path.name != "main.py":
+        raise SystemExit(f"{source}: snapshots copy a bot directory with main.py, not a single file")
+    src = path.parent
+    dst = ROOT / "snapshots" / name
+    if dst.exists():
+        raise SystemExit(f"{dst.relative_to(ROOT)} already exists; pick a new name")
+    shutil.copytree(src, dst, ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "README.md"))
+    return dst
 
 
 # --------------------------------------------------------------------------
@@ -175,12 +225,25 @@ class TimedTransport(InProcessTransport):
 
 
 def _worker_init() -> None:
-    # Bots print freely; keep worker output off the console.
+    # Bots print freely; keep worker output off the console. Workers import
+    # the same bots at once, so leave bytecode caching to the main process.
     sys.stdout = open(os.devnull, "w")
     sys.stderr = open(os.devnull, "w")
+    sys.dont_write_bytecode = True
 
 
 def play_game(job: dict) -> dict:
+    """Play one game; harness or engine failures name the exact game."""
+    try:
+        return _play_game(job)
+    except (Exception, SystemExit) as exc:  # SystemExit would kill the worker and hang the pool
+        raise RuntimeError(
+            f"game failed: candidate={job['candidate']} opponents={job['opponents']} "
+            f"table={job['table']} game={job['game']} seed={job['seed']}\n{traceback.format_exc()}"
+        ) from exc
+
+
+def _play_game(job: dict) -> dict:
     """Play game k of one table's duplicate set with one candidate seated."""
     specs = [job["candidate"]] + job["opponents"]
     game_seed = f"{job['seed']}:{job['table']}:{job['game']}"
@@ -229,7 +292,10 @@ def read_pool(path: Path, extra: list[str]) -> list[tuple[str, float]]:
 
 def draw_tables(pool, n_tables: int, sizes: list[int], seed: str) -> list[list[str]]:
     """Each table: a seat count drawn from `sizes`, then opponents drawn by
-    weight without replacement (with replacement once the pool runs out)."""
+    weight without replacement (with replacement once the pool runs out).
+    param:random can fill any number of seats; each becomes a concrete
+    param:<archetype>@<seed>, so every candidate meets the same opponent."""
+    archetypes = sorted(param_module().ARCHETYPES) if any(s == "param:random" for s, _ in pool) else []
     tables = []
     for t in range(n_tables):
         rng = random.Random(f"{seed}:table:{t}")
@@ -241,10 +307,18 @@ def draw_tables(pool, n_tables: int, sizes: list[int], seed: str) -> list[list[s
                 remaining = list(pool)
             specs, weights = zip(*remaining)
             pick = rng.choices(range(len(remaining)), weights=weights)[0]
-            opps.append(specs[pick])
-            remaining.pop(pick)
+            if specs[pick] == "param:random":
+                opps.append(f"param:{rng.choice(archetypes)}@{seed}:{t}:{len(opps)}")
+            else:
+                opps.append(specs[pick])
+                remaining.pop(pick)
         tables.append(opps)
     return tables
+
+
+def group_key(spec: str) -> str:
+    """Breakdown row for an opponent: jittered param bots group by archetype."""
+    return spec.split("@", 1)[0] if spec.startswith("param:") else spec
 
 
 def placement_points(values: list[float]) -> list[float]:
@@ -264,8 +338,8 @@ def placement_points(values: list[float]) -> list[float]:
     return pts
 
 
-def mean_ci(xs: list[float]) -> tuple[float, float]:
-    """Mean and 95% confidence half-width."""
+def mean_ci(xs: list[float], z: float = 1.96) -> tuple[float, float]:
+    """Mean and confidence half-width (z = 1.96 for 95%)."""
     n = len(xs)
     if n == 0:
         return float("nan"), float("nan")
@@ -273,7 +347,14 @@ def mean_ci(xs: list[float]) -> tuple[float, float]:
     if n < 2:
         return m, float("inf")
     var = sum((x - m) ** 2 for x in xs) / (n - 1)
-    return m, 1.96 * math.sqrt(var / n)
+    return m, z * math.sqrt(var / n)
+
+
+def compare(diffs: list[float], z: float) -> tuple[float, float, str]:
+    m, ci = mean_ci(diffs, z)
+    if all(d == 0 for d in diffs):
+        return m, ci, "identical"
+    return m, ci, "BETTER" if m - ci > 0 else "WORSE" if m + ci < 0 else "inconclusive"
 
 
 def score_set(games: list[dict], deals: int, bb: int, budget_ms: float) -> dict:
@@ -317,7 +398,7 @@ def git_commit() -> str:
 
 def short_name(spec: str) -> str:
     """bot/ -> bot, snapshots/v1 -> v1, sparring/tag.py -> tag, house:call -> call."""
-    if spec.startswith("house:"):
+    if spec.startswith(("house:", "param:")):
         return spec.split(":", 1)[1]
     p = Path(spec.rstrip("/\\"))
     return p.parent.name if p.name == "main.py" else p.stem
@@ -327,25 +408,23 @@ def fmt(m: float, ci: float, digits=1) -> str:
     return f"{m:+.{digits}f} +-{ci:.{digits}f}"
 
 
-def cmd_run(args) -> int:
-    candidates = args.bots
-    for c in candidates:
-        make_bot(c, "check")  # fail fast on import errors, before forking workers
-    pool = read_pool(Path(args.pool), args.add)
+def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate: int = 0) -> dict:
+    """Play every candidate over the same tables, print the report and save it.
+    With n_gate > 0, the last candidate is gated against the first n_gate."""
     sizes = [int(s) for s in args.sizes.split(",")]
-    tables = draw_tables(pool, args.tables, sizes, args.seed)
+    tables = draw_tables(pool, n_tables, sizes, seed)
     budget_ms = args.time_ms + args.increment_ms * args.deals
 
     jobs = [
         {"cand_idx": ci, "candidate": cand, "opponents": opps, "table": t, "game": k,
-         "seed": args.seed, "deals": args.deals, "time_ms": args.time_ms,
+         "seed": seed, "deals": args.deals, "time_ms": args.time_ms,
          "increment_ms": args.increment_ms}
         for t, opps in enumerate(tables)
         for k in range(len(opps) + 1)
         for ci, cand in enumerate(candidates)
     ]
     print(f"{len(candidates)} candidate(s) x {len(tables)} tables -> {len(jobs)} games "
-          f"of {args.deals} hands on {args.workers} workers")
+          f"of {args.deals} hands on {args.workers} workers, seed {seed}")
 
     t0 = time.perf_counter()
     rows = []
@@ -372,13 +451,14 @@ def cmd_run(args) -> int:
         sets[(r["cand_idx"], r["table"])].append(r)
     scored = {key: score_set(sorted(g, key=lambda r: r["game"]), args.deals, 2, budget_ms)
               for key, g in sets.items()}
+    ts = range(len(tables))
 
     names = [c if len(c) <= 28 else "..." + c[-25:] for c in candidates]
     per_cand = []
     print(f"\n{'candidate':<29}{'mbb/hand':>16}{'game pts':>14}{'round pts':>14}"
           f"{'1st %':>7}{'max ms':>8}{'bank':>6}  verdicts")
     for ci, cand in enumerate(candidates):
-        s = [scored[(ci, t)] for t in range(len(tables))]
+        s = [scored[(ci, t)] for t in ts]
         mbb = mean_ci([x["mbb"] for x in s])
         gp = mean_ci([x["game_pts"] for x in s])
         rp = mean_ci([x["round_pts"] for x in s])
@@ -393,17 +473,48 @@ def cmd_run(args) -> int:
                          "round_pts": rp, "won_pct": won, "bad_games": len(bad),
                          "max_ms": max_ms, "bank_pct": bank})
 
-    if len(candidates) > 1:
+    gate = None
+    if n_gate:
+        # The candidate must beat every baseline at once, so each interval is
+        # widened (Bonferroni) to keep a 5% overall chance of a false pass.
+        x = len(candidates) - 1
+        z = NormalDist().inv_cdf(1 - 0.05 / (2 * n_gate))
+        level = 100 * (1 - 0.05 / n_gate)
+        print(f"\ngate: {names[x]} must beat each of "
+              f"{', '.join(short_name(c) for c in candidates[:n_gate])} ({level:.1f}% intervals)")
+        gate_rows = []
+        for b in range(n_gate):
+            d_mbb = compare([scored[(x, t)]["mbb"] - scored[(b, t)]["mbb"] for t in ts], z)
+            d_rp = mean_ci([scored[(x, t)]["round_pts"] - scored[(b, t)]["round_pts"] for t in ts], z)
+            print(f"  vs {short_name(candidates[b]):<12} d_mbb {fmt(*d_mbb[:2]):>16}   "
+                  f"d_round_pts {fmt(*d_rp, 2):>12}   {d_mbb[2]}")
+            gate_rows.append({"baseline": candidates[b], "d_mbb": d_mbb[:2], "d_round_pts": d_rp,
+                              "call": d_mbb[2]})
+        calls = [r["call"] for r in gate_rows]
+        me = per_cand[x]
+        if me["bad_games"]:
+            verdict, why = "FAIL", f"{me['bad_games']} games ended TLE/RTE/PV"
+        elif me["bank_pct"] > args.max_bank:
+            verdict, why = "FAIL", f"used {me['bank_pct']:.0f}% of the clock (limit {args.max_bank}%)"
+        elif "identical" in calls:
+            verdict, why = "FAIL", "identical to a league version"
+        elif "WORSE" in calls:
+            verdict, why = "FAIL", "significantly worse than a league version"
+        elif all(c == "BETTER" for c in calls):
+            verdict, why = "PASS", "significantly better than every league version"
+        else:
+            verdict, why = "INCONCLUSIVE", "not yet separated from every league version"
+        print(f"  GATE {verdict}: {why}")
+        gate = {"candidate": candidates[x], "hash": me["hash"], "baselines": candidates[:n_gate],
+                "verdict": verdict, "reason": why, "rows": gate_rows, "tables": n_tables, "seed": seed}
+    elif len(candidates) > 1:
         print(f"\npaired vs baseline {names[0]} (same tables, same cards):")
         for ci in range(1, len(candidates)):
-            d_mbb = mean_ci([scored[(ci, t)]["mbb"] - scored[(0, t)]["mbb"] for t in range(len(tables))])
-            d_rp = mean_ci([scored[(ci, t)]["round_pts"] - scored[(0, t)]["round_pts"]
-                            for t in range(len(tables))])
-            lo, hi = d_mbb[0] - d_mbb[1], d_mbb[0] + d_mbb[1]
-            call = ("identical" if lo == hi == 0 else "BETTER" if lo > 0
-                    else "WORSE" if hi < 0 else "inconclusive")
-            print(f"  {names[ci]:<29} d_mbb {fmt(*d_mbb):>16}   d_round_pts {fmt(*d_rp, 2):>12}   {call}")
-            per_cand[ci]["vs_baseline"] = {"d_mbb": d_mbb, "d_round_pts": d_rp, "call": call}
+            d_mbb = compare([scored[(ci, t)]["mbb"] - scored[(0, t)]["mbb"] for t in ts], 1.96)
+            d_rp = mean_ci([scored[(ci, t)]["round_pts"] - scored[(0, t)]["round_pts"] for t in ts])
+            print(f"  {names[ci]:<29} d_mbb {fmt(*d_mbb[:2]):>16}   d_round_pts {fmt(*d_rp, 2):>12}   "
+                  f"{d_mbb[2]}")
+            per_cand[ci]["vs_baseline"] = {"d_mbb": d_mbb[:2], "d_round_pts": d_rp, "call": d_mbb[2]}
 
     # breakdowns: by table size and by opponent present (mbb/hand)
     col = 12
@@ -413,23 +524,23 @@ def cmd_run(args) -> int:
     groups = defaultdict(list)
     for t, opps in enumerate(tables):
         groups[f"{len(opps) + 1} seats"].append(t)
-    for spec in sorted({s for opps in tables for s in opps}):
-        groups[spec] = [t for t, opps in enumerate(tables) if spec in opps]
-    for label, ts in groups.items():
-        vals = "".join(f"{mean_ci([scored[(ci, t)]['mbb'] for t in ts])[0]:>+{col}.0f}"
+    for key in sorted({group_key(s) for opps in tables for s in opps}):
+        groups[key] = [t for t, opps in enumerate(tables) if any(group_key(s) == key for s in opps)]
+    for label, group in groups.items():
+        vals = "".join(f"{mean_ci([scored[(ci, t)]['mbb'] for t in group])[0]:>+{col}.0f}"
                        for ci in range(len(candidates)))
-        print(f"  {label[-26:]:<26}{len(ts):>7}{vals}")
+        print(f"  {label[-26:]:<26}{len(group):>7}{vals}")
 
     opp_bad = defaultdict(int)
     for x in scored.values():
         for spec, v in x["opp_bad"]:
-            opp_bad[(spec, v)] += 1
+            opp_bad[(group_key(spec), v)] += 1
     if opp_bad:
         print("\nopponent failures (their results are distorted): " +
               ", ".join(f"{s} {v} x{n}" for (s, v), n in opp_bad.items()))
 
     for ci, cand in enumerate(candidates):
-        errs = [e for t in range(len(tables)) for e in scored[(ci, t)]["errors"]]
+        errs = [e for t in ts for e in scored[(ci, t)]["errors"]]
         if errs:
             print(f"\n--- {cand}: {len(errs)} crash(es), first traceback ---\n{errs[0]}")
 
@@ -437,10 +548,13 @@ def cmd_run(args) -> int:
     RESULTS.mkdir(parents=True, exist_ok=True)
     stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
     commit = git_commit()
+    params = sorted({s for opps in tables for s in opps if s.startswith("param:")})
     out = RESULTS / f"{stamp}.json"
     out.write_text(json.dumps({
         "args": {k: v for k, v in vars(args).items() if k != "func"},
-        "commit": commit, "tables": tables, "summary": per_cand, "games": rows,
+        "seed": seed, "commit": commit, "tables": tables, "summary": per_cand, "gate": gate,
+        "param_styles": {s: param_module().style_for(s.split(":", 1)[1]) for s in params},
+        "games": rows,
     }))
     log = RESULTS / "log.csv"
     new = not log.exists()
@@ -449,18 +563,95 @@ def cmd_run(args) -> int:
         if new:
             w.writerow(["time", "commit", "label", "bot", "hash", "tables", "seed", "deals",
                         "mbb", "mbb_ci", "round_pts", "round_pts_ci", "game_pts", "won_pct",
-                        "bad_games", "max_ms", "bank_pct", "d_mbb_vs_baseline", "d_mbb_ci", "call"])
-        for p in per_cand:
+                        "bad_games", "max_ms", "bank_pct", "d_mbb_vs_baseline", "d_mbb_ci", "call",
+                        "gate"])
+        for ci, p in enumerate(per_cand):
             vb = p.get("vs_baseline", {})
-            w.writerow([stamp, commit, args.label, p["bot"], p["hash"], args.tables, args.seed,
+            w.writerow([stamp, commit, args.label, p["bot"], p["hash"], n_tables, seed,
                         args.deals, round(p["mbb"][0], 1), round(p["mbb"][1], 1),
                         round(p["round_pts"][0], 3), round(p["round_pts"][1], 3),
                         round(p["game_pts"][0], 3), round(p["won_pct"], 1), p["bad_games"],
                         round(p["max_ms"]), round(p["bank_pct"], 1),
                         round(vb["d_mbb"][0], 1) if vb else "", round(vb["d_mbb"][1], 1) if vb else "",
-                        vb.get("call", "")])
-    print(f"\n{time.perf_counter() - t0:.0f}s total. Results: {out.relative_to(ROOT)}, "
+                        vb.get("call", ""),
+                        gate["verdict"] if gate and ci == len(candidates) - 1 else ""])
+    print(f"\n{time.perf_counter() - t0:.0f}s. Results: {out.relative_to(ROOT)}, "
           f"appended to {log.relative_to(ROOT)}")
+    return {"gate": gate, "file": out}
+
+
+def cmd_run(args) -> int:
+    league = [] if args.no_league else league_specs(args.league)
+    for spec in league:
+        resolve_path(spec)  # a promoted snapshot must exist
+    gating = bool(league) and len(args.bots) == 1
+    candidates = league + args.bots if gating else list(args.bots)
+    for c in candidates:
+        make_bot(c, "check")  # fail fast on import errors, before forking workers
+    pool = read_pool(Path(args.pool), args.add + league)
+    for spec, _ in pool:
+        if spec != "param:random":
+            make_bot(spec, "check")  # a typo in the pool should fail here, not in a worker
+    n_tables = args.tables or (400 if gating else 200)
+    base_seed = args.seed or (f"gate-{dt.datetime.now():%m%d%H%M%S}" if gating else "eval")
+    seed = base_seed
+
+    while True:
+        report = evaluate(candidates, pool, n_tables, seed, args, n_gate=len(league) if gating else 0)
+        gate = report["gate"]
+        if not gate or gate["verdict"] != "INCONCLUSIVE" or args.no_extend \
+                or n_tables * 2 > args.max_tables:
+            break
+        n_tables *= 2
+        seed = f"{base_seed}+{n_tables}"
+        print(f"\n=== gate inconclusive: extending to {n_tables} tables on fresh seed {seed} ===\n")
+
+    if gate:
+        print(f"\nFINAL GATE {gate['verdict']} for {gate['candidate']} (hash {gate['hash']}) "
+              f"at {gate['tables']} tables: {gate['reason']}")
+        if gate["verdict"] == "PASS":
+            print("promote it with: python harness/eval.py promote <name> --note \"...\"")
+        return 0 if gate["verdict"] == "PASS" else 1
+    return 0
+
+
+def cmd_promote(args) -> int:
+    """Freeze a gated version into snapshots/<name>/ and add it to the league."""
+    h = bot_hash(args.source)
+    league = load_league()
+    current = league_specs(args.league)
+    evidence = None
+    for f in sorted(RESULTS.glob("*.json"), reverse=True) if RESULTS.exists() else []:
+        gate = json.loads(f.read_text()).get("gate")
+        if gate and gate["hash"] == h:
+            evidence = (f, gate)
+            break
+    if evidence is None:
+        problem = f"no gate run found for {args.source} as it is now (hash {h}); run `eval.py run {args.source}`"
+    elif evidence[1]["verdict"] != "PASS":
+        problem = f"latest gate for hash {h} was {evidence[1]['verdict']} ({evidence[0].name})"
+    elif evidence[1]["baselines"] != current:
+        problem = "the league changed since that gate run; run it again"
+    else:
+        problem = None
+    if problem and not args.force:
+        raise SystemExit(f"not promoting: {problem}")
+
+    dst = copy_snapshot(args.source, args.name)
+    league.append({
+        "name": args.name,
+        "hash": h,
+        "commit": git_commit(),
+        "time": dt.datetime.now().isoformat(timespec="seconds"),
+        "note": args.note,
+        "evidence": evidence[0].name if evidence else None,
+        "gate": {k: evidence[1][k] for k in ("verdict", "baselines", "tables", "seed")} if evidence else None,
+        "forced": bool(problem),
+    })
+    LEAGUE.write_text(json.dumps({"versions": league}, indent=2) + "\n")
+    print(f"promoted {args.source} as {dst.relative_to(ROOT)} (hash {h})"
+          + (f"  [FORCED: {problem}]" if problem else ""))
+    print(f"league is now: {', '.join(v['name'] for v in league)}. Commit snapshots/ and harness/league.json.")
     return 0
 
 
@@ -487,12 +678,8 @@ def cmd_smoke(args) -> int:
 
 
 def cmd_snapshot(args) -> int:
-    src = resolve_path(args.source).parent
-    dst = ROOT / "snapshots" / args.name
-    if dst.exists():
-        raise SystemExit(f"{dst.relative_to(ROOT)} already exists; pick a new name")
-    shutil.copytree(src, dst, ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "README.md"))
-    print(f"copied {src.relative_to(ROOT)} -> {dst.relative_to(ROOT)}  (hash {bot_hash(str(dst))})")
+    dst = copy_snapshot(args.source, args.name)
+    print(f"copied {args.source} -> {dst.relative_to(ROOT)}  (hash {bot_hash(str(dst))})")
     return 0
 
 
@@ -518,10 +705,11 @@ def main(argv=None) -> int:
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
 
-    r = sub.add_parser("run", help="score candidates over random tables (first = baseline)")
-    r.add_argument("bots", nargs="+", help="candidates: bot dir, .py file or house:<name>")
-    r.add_argument("--tables", type=int, default=200, help="tables (duplicate sets) per candidate")
-    r.add_argument("--seed", default="eval", help="seed for table draws and decks")
+    r = sub.add_parser("run", help="one candidate: gate vs the league; several: A/B, first = baseline")
+    r.add_argument("bots", nargs="+", help="candidates: bot dir, .py file, house:<name> or param:<archetype>")
+    r.add_argument("--tables", type=int, default=None,
+                   help="tables (duplicate sets) per candidate (default 400 gate, 200 A/B)")
+    r.add_argument("--seed", default=None, help="seed for table draws and decks (default: fresh for gates)")
     r.add_argument("--pool", default=str(DEFAULT_POOL), help="opponent pool file")
     r.add_argument("--add", nargs="*", default=[], help="extra opponents added to the pool")
     r.add_argument("--sizes", default="4,5,5,6", help="seat counts to draw from (repeat to weight)")
@@ -529,8 +717,21 @@ def main(argv=None) -> int:
     r.add_argument("--time-ms", type=int, default=30_000, dest="time_ms")
     r.add_argument("--increment-ms", type=int, default=100, dest="increment_ms")
     r.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 1))
+    r.add_argument("--league", type=int, default=3, help="league versions used as gate baselines and opponents")
+    r.add_argument("--no-league", action="store_true", help="no league baselines or opponents")
+    r.add_argument("--max-tables", type=int, default=1600, help="largest run an inconclusive gate extends to")
+    r.add_argument("--no-extend", action="store_true", help="never extend an inconclusive gate")
+    r.add_argument("--max-bank", type=float, default=50, help="gate fails above this %% of clock used")
     r.add_argument("--label", default="", help="note stored in the results log")
     r.set_defaults(func=cmd_run)
+
+    pr = sub.add_parser("promote", help="add a version that passed the gate to the league")
+    pr.add_argument("name", help="snapshot name, e.g. v3")
+    pr.add_argument("--source", default="bot")
+    pr.add_argument("--note", default="", help="what changed")
+    pr.add_argument("--league", type=int, default=3, help="league size the gate was run with")
+    pr.add_argument("--force", action="store_true", help="promote without a passing gate (recorded)")
+    pr.set_defaults(func=cmd_promote)
 
     s = sub.add_parser("smoke", help="two subprocess games vs house and sparring bots, like the tournament")
     s.add_argument("bot", nargs="?", default="bot")
@@ -538,7 +739,7 @@ def main(argv=None) -> int:
     s.add_argument("--seed", default="smoke")
     s.set_defaults(func=cmd_smoke)
 
-    sn = sub.add_parser("snapshot", help="freeze a bot version into snapshots/<name>/")
+    sn = sub.add_parser("snapshot", help="freeze a bot version into snapshots/<name>/ (not the league)")
     sn.add_argument("name")
     sn.add_argument("--source", default="bot")
     sn.set_defaults(func=cmd_snapshot)

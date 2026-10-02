@@ -12,3 +12,8 @@ sparring/nit.py
 sparring/station.py
 sparring/maniac.py
 sparring/tag.py
+
+# Randomised opponents: each seat this fills is a fresh jittered archetype
+# (sparring/param.py). Weighted so about half of every table is randomised,
+# counting the 3 league versions run adds automatically.
+param:random      10
