@@ -1,0 +1,19 @@
+# Opponent pool for harness/eval.py: one bot spec per line, optional weight
+# (default 1). Tables draw opponents by weight. Paths are relative to the repo
+# root. Add frozen versions of our own bot (snapshots/v1/) and new sparring
+# bots here as they appear, so the field keeps getting harder.
+
+house:call        1
+house:random      1
+house:allin       0.5
+house:checkfold   0.5
+sparring/template.py
+sparring/nit.py
+sparring/station.py
+sparring/maniac.py
+sparring/tag.py
+
+# Randomised opponents: each seat this fills is a fresh jittered archetype
+# (sparring/param.py). Weighted so about half of every table is randomised,
+# counting the 3 league versions run adds automatically.
+param:random      10
