@@ -112,19 +112,23 @@ class PreflopTests(unittest.TestCase):
         self.assertEqual(decide(s, None).kind, "call")
 
 
-    def test_wider_fourbets_and_threebet_flats_in_position_only(self):
+    def test_value_fourbets_and_threebet_flats_ignore_position(self):
+        # Ladder 3-bets are mostly value (corrected replays), so no wider ranges.
         s = state(seat=3, pot=23, to_call=10, min_raise_to=25,
                   street_bets=[15, 1, 2, 5, 0, 0],
                   history=[["preflop", 3, "raise", 5], ["preflop", 0, "raise", 15]])
-        for hole in (["Qs", "Qh"], ["As", "Kd"]):
+        for hole in (["Ks", "Kh"], ["As", "Ks"]):
             s._m["hole"] = hole
             self.assertEqual(decide(s, None).to_wire(), {"action": "raise", "amount": 34})
+        for hole in (["Qs", "Qh"], ["As", "Kd"]):
+            s._m["hole"] = hole
+            self.assertEqual(decide(s, None).kind, "call")
         s._m["hole"] = ["8s", "8d"]
         self.assertEqual(decide(s, None).kind, "fold")  # out of position
         s = state(seat=0, hole=["8s", "8d"], pot=23, to_call=10, min_raise_to=25,
                   street_bets=[5, 1, 15, 0, 0, 0],
                   history=[["preflop", 0, "raise", 5], ["preflop", 2, "raise", 15]])
-        self.assertEqual(decide(s, None).kind, "call")  # in position vs the big blind
+        self.assertEqual(decide(s, None).kind, "fold")  # in position too
 
     def test_proven_shover_is_called_with_any_hand_beating_the_price(self):
         folds = [["preflop", seat, "fold", 0] for seat in (4, 5, 0, 1)]

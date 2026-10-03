@@ -61,12 +61,8 @@ THREE_BET_LATE = expand_range("TT+,AJs+,KQs,AQo+")
 CALL_OPEN = expand_range("22+,ATs+,KJs+,QJs,JTs,T9s,AQo+")
 CALL_OPEN_LATE = expand_range("22+,A2s+,KTs+,QTs+,JTs,T9s,98s,87s,ATo+,KQo")
 BB_DEFEND = expand_range("22+,A2s+,K5s+,Q8s+,J8s+,T8s+,97s+,86s+,75s+,65s,54s,A8o+,KTo+,QTo+,JTo")
-# Ladder 3-bets are light (about half are outside the top 30%) but the field
-# folds only ~19% to 4-bets: value 4-bet wider, flat wider in position, and
-# never 4-bet bluff.
-FOUR_BET = expand_range("QQ+,AKs,AKo")
+FOUR_BET = expand_range("KK+,AKs")
 CALL_THREE_BET = expand_range("TT+,AQs+,AKo")
-CALL_THREE_BET_IP = expand_range("77+,AJs+,KQs,AQo+")
 LARGE_CALL = expand_range("QQ+,AKs,AKo")
 
 
@@ -154,7 +150,6 @@ def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
     else:
         if hand in FOUR_BET:
             return "raise", round(current * params["fourbet_multiplier"])
-        calling = CALL_THREE_BET_IP if in_position(state, raiser) else CALL_THREE_BET
-        if hand in calling and current <= bb * params["max_threebet_call_bb"]:
+        if hand in CALL_THREE_BET and current <= bb * params["max_threebet_call_bb"]:
             return "call", 0
     return passive

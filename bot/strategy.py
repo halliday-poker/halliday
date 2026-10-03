@@ -149,9 +149,9 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
     price = pot_odds(state)
     street_raises = sum(a[0] == street and a[2] == "raise" for a in state.history)
     if villain is not None and street == "flop" and aggressor == villain and street_raises == 1:
-        # Facing their heads-up flop c-bet: ~56% of ladder c-bets are air
-        # and their ranges are wide, so uniform-card equity is roughly
-        # right. Drop the big-bet and street margins.
+        # Facing their heads-up flop c-bet: ~44% of ladder c-bets are air,
+        # so uniform-card equity is roughly right. Drop the big-bet and
+        # street margins.
         margin = params["cbet_defence_margin"]
     else:
         margin = pick(params, "call_margin_" + street, ranged) + extra * params["multiway_call_margin"]

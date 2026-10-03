@@ -31,7 +31,7 @@ DEFAULT_PARAMS = MappingProxyType({
     "raise_pot_fraction": 0.75,
     "cbet_equity": 0.50,
     # Field exploits (bot/FIELD_EXPLOITS.md). Ladder bots fold ~74% to a
-    # pot-sized heads-up flop c-bet and c-bet ~56% air themselves.
+    # pot-sized heads-up flop c-bet and c-bet ~44% air themselves.
     "cbet_pot_fraction": 1.0,
     "cbet_defence_margin": 0.02,
     "shover_min_hands": 8,
@@ -100,7 +100,7 @@ DEFAULT_PARAMS = MappingProxyType({
     "range_draw_bonus": 0.20,
     # Prior: hands below the betting cutoff bet range_bluff_floor times as
     # often as hands above it (0.6 makes ~half of bets come from below the
-    # cutoff, matching the field's ~56% air c-bets). Showdowns update it.
+    # cutoff, close to the field's ~44% air c-bets). Showdowns update it.
     "range_bluff_floor": 0.60,
     # Showdown learning: the priors above are worth range_showdown_prior
     # shown samples. A shown bet whose call ended the hand counts fully;
