@@ -9,12 +9,12 @@ if __package__:
     from .engine import evaluate_hand
     from .opponents import fold_to_us, is_station, profile_of
     from .params import DEFAULT_PARAMS
-    from .preflop import pot_odds, preflop_plan
+    from .preflop import RANKS, pot_odds, preflop_plan
 else:
     from engine import evaluate_hand
     from opponents import fold_to_us, is_station, profile_of
     from params import DEFAULT_PARAMS
-    from preflop import pot_odds, preflop_plan
+    from preflop import RANKS, pot_odds, preflop_plan
 
 
 def mixed(state, frequency):
@@ -73,6 +73,14 @@ def has_draw(hole, board):
         if len(run - ranks) == 1 and run & own:
             missing.update(14 if r == 1 else r for r in run - ranks)
     return len(missing) >= 2
+
+
+def weak_pair(hole, board):
+    """One pair, made with a hole card, below the board's top card."""
+    category, pair = evaluate_hand(hole + board)[:2]
+    top = max(RANKS.index(c[0]) + 2 for c in board)
+    own = {RANKS.index(c[0]) + 2 for c in hole}
+    return category == 1 and pair in own and pair < top
 
 
 def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS):
@@ -147,9 +155,9 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS):
     price = pot_odds(state)
     street_raises = sum(a[0] == street and a[2] == "raise" for a in state.history)
     if villain is not None and street == "flop" and aggressor == villain and street_raises == 1:
-        # Facing their heads-up flop c-bet: ~56% of ladder c-bets are air
-        # and their ranges are wide, so uniform-card equity is roughly
-        # right. Drop the big-bet and street margins.
+        # Facing their heads-up flop c-bet: ~44% of ladder c-bets are air,
+        # so uniform-card equity is roughly right. Drop the big-bet and
+        # street margins.
         margin = params["cbet_defence_margin"]
     else:
         margin = params["call_margin_" + street] + extra * params["multiway_call_margin"]
@@ -157,6 +165,12 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS):
         margin += params["large_bet_margin"] * min(1.0, state.to_call / max(1, state.pot - state.to_call))
         if street_raises > 1:
             margin += params["reraise_margin"]
+    # A big first bet into a checked river is mostly two pair or better on
+    # the ladder: a weak pair wins ~13% there, far below the price.
+    if (street == "river" and street_raises == 1
+            and state.to_call >= params["river_weak_pair_fold"] * (state.pot - state.to_call)
+            and weak_pair(state.hole, state.board)):
+        return state.fold()
     if can_bet and equity >= raise_value:
         if equity >= params["shove_equity"] and state.my_stack <= params["shove_spr"] * (state.pot + state.to_call):
             return legal_raise(state, state.max_raise_to)

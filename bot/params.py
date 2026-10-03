@@ -30,7 +30,7 @@ DEFAULT_PARAMS = MappingProxyType({
     "raise_pot_fraction": 0.75,
     "cbet_equity": 0.50,
     # Field exploits (bot/FIELD_EXPLOITS.md). Ladder bots fold ~74% to a
-    # pot-sized heads-up flop c-bet and c-bet ~56% air themselves.
+    # pot-sized heads-up flop c-bet and c-bet ~44% air themselves.
     "cbet_pot_fraction": 1.0,
     "cbet_defence_margin": 0.02,
     "shover_min_hands": 8,
@@ -48,10 +48,14 @@ DEFAULT_PARAMS = MappingProxyType({
     "bluff_min_fold": 0.50,
     "bluff_frequency": 1.0,
     # Turn barrel after a called heads-up flop c-bet (FIELD_EXPLOITS.md).
-    "turn_barrel": True,
+    # Off: break-even on the corrected pools, and it loses to sticky callers.
+    "turn_barrel": False,
     "barrel_pot_fraction": 1.0,
     "barrel_bluffs": True,
     "barrel_weak_pairs": False,
+    # River: big bets from this field are mostly two pair or better, so one
+    # pair below the board's top card folds to a bet of at least this x pot.
+    "river_weak_pair_fold": 0.8,
     "shove_equity": 0.90,
     "shove_spr": 1.0,
     "equity_iters": 768,

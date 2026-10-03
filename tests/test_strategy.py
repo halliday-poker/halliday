@@ -112,19 +112,23 @@ class PreflopTests(unittest.TestCase):
         self.assertEqual(decide(s, None).kind, "call")
 
 
-    def test_wider_fourbets_and_threebet_flats_in_position_only(self):
+    def test_value_fourbets_and_threebet_flats_ignore_position(self):
+        # Ladder 3-bets are mostly value (corrected replays), so no wider ranges.
         s = state(seat=3, pot=23, to_call=10, min_raise_to=25,
                   street_bets=[15, 1, 2, 5, 0, 0],
                   history=[["preflop", 3, "raise", 5], ["preflop", 0, "raise", 15]])
-        for hole in (["Qs", "Qh"], ["As", "Kd"]):
+        for hole in (["Ks", "Kh"], ["As", "Ks"]):
             s._m["hole"] = hole
             self.assertEqual(decide(s, None).to_wire(), {"action": "raise", "amount": 34})
+        for hole in (["Qs", "Qh"], ["As", "Kd"]):
+            s._m["hole"] = hole
+            self.assertEqual(decide(s, None).kind, "call")
         s._m["hole"] = ["8s", "8d"]
         self.assertEqual(decide(s, None).kind, "fold")  # out of position
         s = state(seat=0, hole=["8s", "8d"], pot=23, to_call=10, min_raise_to=25,
                   street_bets=[5, 1, 15, 0, 0, 0],
                   history=[["preflop", 0, "raise", 5], ["preflop", 2, "raise", 15]])
-        self.assertEqual(decide(s, None).kind, "call")  # in position vs the big blind
+        self.assertEqual(decide(s, None).kind, "fold")  # in position too
 
     def test_proven_shover_is_called_with_any_hand_beating_the_price(self):
         folds = [["preflop", seat, "fold", 0] for seat in (4, 5, 0, 1)]
@@ -247,22 +251,23 @@ class PostflopTests(unittest.TestCase):
         self.assertEqual(decide(s, 0.10, profiles).amount, 40)
 
     def test_turn_barrel_after_a_called_cbet(self):
+        on = dict(DEFAULT_PARAMS, turn_barrel=True)  # off by default: break-even in A/Bs
         line = [["preflop", 0, "raise", 5], ["flop", 0, "raise", 20], ["flop", 1, "call", 20]]
         s = postflop(board=["Ac", "7h", "2d", "9s"], hole=["Ks", "Qh"], pot=50, history=line)
-        self.assertEqual(decide(s, 0.10).to_wire(), {"action": "raise", "amount": 50})  # air
-        self.assertEqual(decide(s, 0.80).amount, 50)  # value uses the same size
+        self.assertEqual(decide(s, 0.10, params=on).to_wire(), {"action": "raise", "amount": 50})  # air
+        self.assertEqual(decide(s, 0.80, params=on).amount, 50)  # value uses the same size
         s._m["hole"] = ["Ks", "7c"]  # weak pair checks
-        self.assertEqual(decide(s, 0.45).kind, "check")
-        self.assertEqual(decide(s, 0.45, params=dict(DEFAULT_PARAMS, barrel_weak_pairs=True)).amount, 50)
+        self.assertEqual(decide(s, 0.45, params=on).kind, "check")
+        self.assertEqual(decide(s, 0.45, params=dict(on, barrel_weak_pairs=True)).amount, 50)
         s._m["hole"] = ["Ks", "Qh"]
-        self.assertEqual(decide(s, 0.10, {1: Counter(hands=20, faced=10, call=10)}).kind, "check")  # station
-        self.assertEqual(decide(s, 0.10, {1: Counter(hands=10, faced_us=2, call_us=2)}).kind, "check")  # dial
-        self.assertEqual(decide(s, 0.10, params=dict(DEFAULT_PARAMS, turn_barrel=False)).kind, "check")
-        self.assertEqual(decide(s, 0.10, params=dict(DEFAULT_PARAMS, barrel_bluffs=False)).kind, "check")
+        self.assertEqual(decide(s, 0.10, {1: Counter(hands=20, faced=10, call=10)}, on).kind, "check")  # station
+        self.assertEqual(decide(s, 0.10, {1: Counter(hands=10, faced_us=2, call_us=2)}, on).kind, "check")  # dial
+        self.assertEqual(decide(s, 0.10).kind, "check")  # default: off
+        self.assertEqual(decide(s, 0.10, params=dict(on, barrel_bluffs=False)).kind, "check")
         s._m["history"] = line[:1]  # flop checked through: no barrel
-        self.assertEqual(decide(s, 0.10).kind, "check")
+        self.assertEqual(decide(s, 0.10, params=on).kind, "check")
         s._m["history"] = line[:1] + [["flop", 1, "raise", 10], ["flop", 0, "call", 10]]  # their bet
-        self.assertEqual(decide(s, 0.10).kind, "check")
+        self.assertEqual(decide(s, 0.10, params=on).kind, "check")
 
     def test_bluff_frequency_mixes_air_repeatably(self):
         params = dict(DEFAULT_PARAMS, bluff_frequency=0.5)
@@ -283,6 +288,25 @@ class PostflopTests(unittest.TestCase):
         self.assertEqual(decide(s, 0.36).kind, "call")
         s._m["history"] = [["preflop", 0, "raise", 5], ["flop", 1, "raise", 40]]  # a donk bet
         self.assertEqual(decide(s, 0.36).kind, "fold")
+
+    def test_weak_pair_folds_to_a_big_river_bet(self):
+        river = ["Ac", "7h", "2d", "Td", "3c"]
+        s = postflop(board=river, hole=["8s", "7c"], to_call=40, pot=90, street_bets=[0, 40],
+                     min_raise_to=80, history=[["preflop", 1, "raise", 5], ["river", 1, "raise", 40]])
+        self.assertEqual(decide(s, 0.60).kind, "fold")  # 0.8 pot, second pair
+        s._m["hole"] = ["5s", "5c"]  # an underpair is weak too
+        self.assertEqual(decide(s, 0.60).kind, "fold")
+        for hole in (["As", "8c"], ["8s", "9c"]):  # top pair, air
+            s._m["hole"] = hole
+            self.assertEqual(decide(s, 0.60).kind, "call", hole)
+        s._m["hole"] = ["8s", "7c"]
+        s._m.update(to_call=30, pot=80, street_bets=[0, 30])  # 0.6 pot: price decides
+        self.assertEqual(decide(s, 0.60).kind, "call")
+        s._m.update(to_call=40, pot=90, street_bets=[0, 40])
+        self.assertEqual(decide(s, 0.60, params=dict(DEFAULT_PARAMS, river_weak_pair_fold=float("inf"))).kind, "call")
+        s._m["board"] = river[:4]  # turn bets keep the old rule
+        s._m["history"] = [["preflop", 1, "raise", 5], ["turn", 1, "raise", 40]]
+        self.assertEqual(decide(s, 0.60).kind, "call")
 
     def test_low_spr_value_shoves_and_all_in_opponents_cannot_be_bluffed(self):
         s = postflop(pot=300)
