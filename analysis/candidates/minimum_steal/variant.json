@@ -1,0 +1,26 @@
+{
+  "name": "minimum_steal",
+  "baseline": "snapshots/analysis_main_20261004",
+  "baseline_sha256": {
+    "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "a565ff304b1babbdeb5f8768212edd46391adf5850f9ba8751ade3517ee69746",
+    "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+    "params.py": "917b039c9c1f37292536e417b914de6c04d7fcee9ffe7bbf74a27d1279464713",
+    "preflop.py": "ae88ef4c17a6bce2fa0eeae4535abf5060ddca10f5164f30927ae7eda9b67fbb",
+    "ranges.py": "d54983af267e67dc164f5cad550726c0c272920ae526e830e96ede5e99a7e18e",
+    "strategy.py": "d02ded248b8de50d31dd8e134c884c491298debba50a5f9d6a14d87ee38ad418"
+  },
+  "parameter_overrides": {
+    "steal_min_faced": 6,
+    "steal_prior_weight": 8,
+    "steal_fold_prior": 0.65,
+    "steal_min_ev": 0.15,
+    "steal_frequency": 1.0,
+    "steal_max_opponents": 2,
+    "steal_open_bb": 2.0
+  },
+  "status": "unselected experiment",
+  "change": "Widen only unopened late-position raises after sufficient in-game small-open fold evidence; original opening hands retain their actions.",
+  "caveat": "Product of marginal defense probabilities is approximate; the screening EV omits later betting."
+}

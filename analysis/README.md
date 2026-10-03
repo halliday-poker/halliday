@@ -26,6 +26,18 @@ completed local runs. Large raw inputs and game logs are intentionally excluded.
 In JSON, `mean_ci95` is `[mean, half_width]`; bootstrap intervals are endpoints.
 All simulation intervals exclude error in the opponent models.
 
+The completed strategy study contains 103,027 full 100-hand simulations and
+18 restricted CPU games, plus smoke tests. None of the eighteen isolated
+strategy variants established an improvement; the merged main bot remains the
+selected source. See the strategy report for failed and inconclusive results.
+
+The later steal experiments are reproducible with `build_steal_variants.py`;
+their frozen seeds, table counts and candidate hashes are in the evidence
+bundle. `trace_steals.py` records the additional-open hand diagnostic,
+`verify_steal_trace.py` checks its accounting and bootstrap summary, and
+`verify_scalar_features.py` checks the optimized inference features against
+the unchanged batch calculation on every replay decision.
+
 ## Reproduce the replay audit
 
 Use Python 3.12 with NumPy and the vendored/installed macpoker SDK. CUDA work

@@ -1,5 +1,7 @@
 # Halliday strategy benchmarks — 4 October 2026
 
+Eighteen isolated strategy variants were evaluated across the original and merged-main baselines. None established a reliable improvement. The completed study contains **103,027 full 100-hand simulation games (10,302,700 hands)**, plus 18 restricted CPU games and separate smoke tests. The production bot retains the merged main strategy. The results do not establish that Halliday beats the real field, and simulation intervals exclude opponent-model error.
+
 ## Tuning results
 
 The research baseline is the Python bot at the start of the study, hash `8015e4b3`, preserved in `snapshots/analysis_baseline_20261004`. Eleven initial alternatives were tested. These are tuning results, not confirmation of an improvement. Each comparison uses identical opponent lineups and duplicate decks, paired by complete table. None of these experiments has been promoted. Later changes from main are evaluated separately below.
@@ -89,3 +91,25 @@ Including this run, the study completed **85,132 full 100-hand simulation games 
 The merged source (`bb2090c7`) passed three 100-hand restricted CPU protocol games with every verdict OK. Maximum resident memory was 39,472 KiB (38.55 MiB), and maximum cumulative action wait was 3.550 seconds of the 40-second allowance. Its archive contains 12 files, 109,778 bytes unpacked and 42,043 bytes compressed, with a root `main.py`, safe paths, matching source bytes and valid ZIP integrity. `main-package-check.json` retains content hashes. These resource checks validate this source; historical baseline and rejected candidate checks remain separate.
 
 After merging main, all 132 repository tests passed with CUDA enabled (49.3 seconds, no skips). The Halliday replay verifier also passed again against the unchanged input snapshot, including exact reproduction of public-range estimates after hidden fields were removed. The production bot equals the newly merged upstream source; no experimental candidate replaces it.
+
+
+## Follow-up: public-evidence preflop steals
+
+The initial study did not establish an improved strategy. A further fixed 256-table screen tests three extensions of merged main: an adaptive late-position steal, the same policy with 65% participation, and a variant allowing three remaining opponents in the cutoff. Existing opening hands keep their baseline actions. Extra opens require six observed responses to small opens for every remaining opponent, a fold prior of 0.65 with weight eight, and a positive fold-only break-even proxy of at least 0.15 chips. Counters reset with the game and use public actions only; they exclude previous limpers and responses to reraises or large opens.
+
+The product of marginal fold rates is approximate and the screening proxy omits subsequent betting. This is a hypothesis tested against opponents, not a claim of guaranteed profitable steals. The latest-interval descriptive rates are recorded in `steal-hypothesis-exact.json`; candidates and selection rules were frozen before outcomes in `steals-plan.json`. The paired screen completed all 5,172 games without failures. None of the three variants qualifies under its predeclared rule; no candidate is selected or promoted.
+
+| Variant | Paired bb/100, 95% interval | Paired round points, 95% interval | Family-adjusted round-point interval |
+|---|---:|---:|---:|
+| adaptive_steal | +0.360 ± 2.691 | +0.01953 ± 0.08024 | [-0.07847, +0.11754] |
+| mixed_steal_65 | -0.028 ± 2.430 | +0.00781 ± 0.07297 | [-0.08132, +0.09694] |
+| adaptive_steal_cutoff | +0.343 ± 2.633 | +0.02344 ± 0.07893 | [-0.07297, +0.11984] |
+
+
+A separate diagnostic used 128 fresh tables (645 games) with the full adaptive policy. It identified 594 additional opens—decisions where merged main would fold—and compared the realized result of each such hand with folding at that decision, including sunk blinds. Their combined margin was +852 chips, or +1.434 per additional open; a whole-table bootstrap interval was [+0.053, +2.859]. Of these hands, 385 won preflop (+1,155 chips relative to folding), 43 lost preflop (−178), 96 won postflop (+1,169), and 70 lost postflop (−1,294). This conditional hand comparison excludes effects on subsequent opponent adaptation and game/tournament placement. It does not override the failed whole-policy selection gate.
+
+A new sizing hypothesis was frozen separately in `minimum-steal-plan.json`: original opening hands keep their size; only added steals use the 2-BB minimum. This reduces their immediate cost when challenged and lowers the fold-only break-even threshold, while potentially changing defenses. The frozen candidate (`03e75b3e`) completed its fixed 1,200-table paired evaluation against merged main: **12,078 games**, all verdicts OK. Paired changes were **+0.985 ± 1.348 bb/100** and **+0.02417 ± 0.04310 round points**. The primary round-point interval is **[−0.01894, +0.06727]**, so it failed the predeclared requirement for a positive lower bound. The conditional replication stage was not triggered; the candidate remains unselected. This is an inconclusive result, not evidence that the policy has exactly zero benefit.
+
+The minimum-size candidate separately passed three restricted CPU games, using at most 42,524 KiB (41.53 MiB) RSS and 4.931 seconds of cumulative action wait. Resource compliance does not establish strategic superiority. It was not packaged as a recommended replacement.
+
+The 5,172-game steal screen, 645-game action diagnostic and 12,078-game minimum-size evaluation add 17,895 games to the earlier study. All completed without player failures. They used sixteen parallel workers across all four V100s after sufficient VRAM became available. The compact evidence includes frozen plans, paired summaries, the action-trace accounting check and CPU measurements. Full games and diagnostic events remain local, with their SHA-256 digests recorded.

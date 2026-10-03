@@ -26,6 +26,10 @@ def export():
         'baseline-resource-check.json', 'mixed65-resource-check.json',
         'main-resource-check.json', 'feature-batching-check.json', 'package-checks.json',
         'main-package-check.json',
+        'steals-plan.json', 'steals-summary.json', 'steal-hypothesis-exact.json',
+        'steals-action-summary.json', 'minimum-steal-plan.json',
+        'minimum-steal-summary.json', 'minimum-steal-resource.json',
+        'scalar-features-check.json',
     ]
     index = {}
     for name, source in [(name, RUN/name) for name in files] + [
@@ -46,7 +50,7 @@ def export():
         index[name] = dict(source=str(source.relative_to(ROOT)),
                            source_sha256=sha256(raw).hexdigest(), omitted_keys=removed,
                            exported_sha256=sha256(target.read_bytes()).hexdigest())
-    for name in ('final-tests.log', 'gpu-concurrency.txt'):
+    for name in ('final-tests.log', 'gpu-concurrency.txt', 'followup-tests-cuda.log'):
         source = RUN/name
         raw = source.read_bytes()
         (OUT/name).write_bytes(raw)

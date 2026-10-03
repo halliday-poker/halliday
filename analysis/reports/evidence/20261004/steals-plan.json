@@ -1,0 +1,19 @@
+{
+  "frozen_at": "2026-10-03T18:17:19.938370+00:00",
+  "stage": "Exploratory adaptive preflop steal screen",
+  "seed": "adaptive-steals-screen-20261004",
+  "tables": 256,
+  "deals": 100,
+  "sizes": "4,5,5,6",
+  "pool": "sparring/competitors/from_data/pool.txt",
+  "candidates": {
+    "snapshots/analysis_main_20261004": "bb2090c7",
+    "analysis/candidates/adaptive_steal": "14e0eadc",
+    "analysis/candidates/mixed_steal_65": "cc0e047d",
+    "analysis/candidates/adaptive_steal_cutoff": "d7aec7db"
+  },
+  "primary": "Paired round placement points per complete duplicate table",
+  "selection": "A positive lower family-adjusted 95% bound qualifies for a fresh independent test. Otherwise do not promote any of these candidates. Report all tested candidates, chip returns and errors.",
+  "hypothesis": "Some opponents repeatedly fold to small opens. Add weak late-position opens only after six observed small-open responses per remaining opponent, with a shrunk .65 prior of weight8 and a positive fold-only break-even proxy of at least .15 chips. Maximum two opponents or three in cutoff variant. Test full participation and .65 weighted participation. Existing opening hands retain baseline actions.",
+  "limitations": "Marginal fold-rate products and the fold-only calculation omit correlated defenses and later betting. Replay descriptive rates are evidence for a hypothesis, not counterfactual proof."
+}

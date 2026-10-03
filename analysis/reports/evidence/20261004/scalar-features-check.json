@@ -1,0 +1,19 @@
+{
+  "source_sha256": "10331deef87e5cacb4e09ac79c5ebe2d4aeb4ff477b153d20cdb7de8fbd01d9a",
+  "policy_sha256": "540b484fd6e4fb14cd785e64ed6c98fe67cd28329059c570a0203940b618153d",
+  "checks": [
+    {
+      "dtype": "float32",
+      "rows": 1147147,
+      "bitwise_equal": true,
+      "seconds": 31.155451969010755
+    },
+    {
+      "dtype": "float64",
+      "rows": 1147147,
+      "bitwise_equal": true,
+      "seconds": 33.04309053195175
+    }
+  ],
+  "scope": "All replay decision rows; single-action features equal the unchanged multi-row feature path exactly. This checks values, not end-to-end game speed."
+}

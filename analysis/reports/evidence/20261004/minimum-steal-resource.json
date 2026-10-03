@@ -1,0 +1,172 @@
+{
+  "bot": "analysis/candidates/minimum_steal",
+  "hash": "03e75b3e",
+  "sources": {
+    "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "303c5ce789b1cebb3165549815233208944051f57518ee4db9eaafb6ae636af0",
+    "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+    "params.py": "4671bc0f5dc849e99440157f5bf146b6a35fc6b88e003a3c5170f92db121f959",
+    "preflop.py": "0bcb7b2cd327e6b0114131229169ec90f67492c0438686963d593e6e71970675",
+    "ranges.py": "d54983af267e67dc164f5cad550726c0c272920ae526e830e96ede5e99a7e18e",
+    "steals.py": "8cf5abeecd656038a0280201b7f21a4d936dbdd40f84f6e4c8588d655ad06e05",
+    "strategy.py": "d02ded248b8de50d31dd8e134c884c491298debba50a5f9d6a14d87ee38ad418"
+  },
+  "passed": true,
+  "games": [
+    {
+      "seed": "cpu-resource-0-0",
+      "opponents": [
+        "house:call",
+        "house:random",
+        "sparring/station.py",
+        "sparring/tag.py"
+      ],
+      "verdicts": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ],
+      "chips": [
+        2567,
+        -1156,
+        -879,
+        -517,
+        -15
+      ],
+      "think_ms": 4931.405293173157,
+      "max_ms": 549.8351970454678,
+      "resources": {
+        "RESOURCE_SETUP": {
+          "cpu_affinity": [
+            0
+          ],
+          "address_space_limit": 536870912,
+          "tmp_bytes": 67108864,
+          "tmp_initially_empty": true,
+          "readonly": {
+            "/": true,
+            "/mnt/ssd/halliday2/analysis/candidates/minimum_steal": true,
+            "/home": true,
+            "/mnt": true
+          },
+          "network": "private network namespace; no configured external interfaces"
+        },
+        "RESOURCE_USAGE": {
+          "max_rss_kib": 40940,
+          "user_s": 3.624899,
+          "system_s": 0.028562999999999998
+        }
+      },
+      "stderr": "RESOURCE_SETUP {\"cpu_affinity\": [0], \"address_space_limit\": 536870912, \"tmp_bytes\": 67108864, \"tmp_initially_empty\": true, \"readonly\": {\"/\": true, \"/mnt/ssd/halliday2/analysis/candidates/minimum_steal\": true, \"/home\": true, \"/mnt\": true}, \"network\": \"private network namespace; no configured external interfaces\"}\nRESOURCE_USAGE {\"max_rss_kib\": 40940, \"user_s\": 3.624899, \"system_s\": 0.028562999999999998}"
+    },
+    {
+      "seed": "cpu-resource-0-1",
+      "opponents": [
+        "house:allin",
+        "house:checkfold",
+        "sparring/maniac.py",
+        "sparring/nit.py"
+      ],
+      "verdicts": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ],
+      "chips": [
+        -1637,
+        1609,
+        -60,
+        206,
+        -118
+      ],
+      "think_ms": 1243.3454568963498,
+      "max_ms": 567.2507570125163,
+      "resources": {
+        "RESOURCE_SETUP": {
+          "cpu_affinity": [
+            0
+          ],
+          "address_space_limit": 536870912,
+          "tmp_bytes": 67108864,
+          "tmp_initially_empty": true,
+          "readonly": {
+            "/": true,
+            "/mnt/ssd/halliday2/analysis/candidates/minimum_steal": true,
+            "/home": true,
+            "/mnt": true
+          },
+          "network": "private network namespace; no configured external interfaces"
+        },
+        "RESOURCE_USAGE": {
+          "max_rss_kib": 42524,
+          "user_s": 0.813179,
+          "system_s": 0.037339
+        }
+      },
+      "stderr": "RESOURCE_SETUP {\"cpu_affinity\": [0], \"address_space_limit\": 536870912, \"tmp_bytes\": 67108864, \"tmp_initially_empty\": true, \"readonly\": {\"/\": true, \"/mnt/ssd/halliday2/analysis/candidates/minimum_steal\": true, \"/home\": true, \"/mnt\": true}, \"network\": \"private network namespace; no configured external interfaces\"}\nRESOURCE_USAGE {\"max_rss_kib\": 42524, \"user_s\": 0.813179, \"system_s\": 0.037339}"
+    },
+    {
+      "seed": "cpu-resource-0-2",
+      "opponents": [
+        "sparring/competitors/from_data/catherine.py",
+        "sparring/competitors/from_data/jongwon.py",
+        "sparring/competitors/from_data/tungbot.py",
+        "sparring/competitors/from_data/pocket_nuts.py",
+        "sparring/competitors/from_data/alo.py",
+        "sparring/competitors/from_data/lil_fruit.py",
+        "sparring/competitors/from_data/guaguanco_5.py"
+      ],
+      "verdicts": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ],
+      "chips": [
+        -417,
+        360,
+        62,
+        1180,
+        1999,
+        -3352,
+        380,
+        -212
+      ],
+      "think_ms": 2240.999683504924,
+      "max_ms": 652.6843010215089,
+      "resources": {
+        "RESOURCE_SETUP": {
+          "cpu_affinity": [
+            0
+          ],
+          "address_space_limit": 536870912,
+          "tmp_bytes": 67108864,
+          "tmp_initially_empty": true,
+          "readonly": {
+            "/": true,
+            "/mnt/ssd/halliday2/analysis/candidates/minimum_steal": true,
+            "/home": true,
+            "/mnt": true
+          },
+          "network": "private network namespace; no configured external interfaces"
+        },
+        "RESOURCE_USAGE": {
+          "max_rss_kib": 41256,
+          "user_s": 1.449871,
+          "system_s": 0.051079
+        }
+      },
+      "stderr": "RESOURCE_SETUP {\"cpu_affinity\": [0], \"address_space_limit\": 536870912, \"tmp_bytes\": 67108864, \"tmp_initially_empty\": true, \"readonly\": {\"/\": true, \"/mnt/ssd/halliday2/analysis/candidates/minimum_steal\": true, \"/home\": true, \"/mnt\": true}, \"network\": \"private network namespace; no configured external interfaces\"}\nRESOURCE_USAGE {\"max_rss_kib\": 41256, \"user_s\": 1.449871, \"system_s\": 0.051079}"
+    }
+  ],
+  "scope": "Actual SDK protocol and clocks; one CPU affinity, 512MiB virtual-memory ceiling, read-only chroot, fresh 64MiB tmpfs, private network namespace. Cooperative-code resource validation, not a hardened judge replica."
+}

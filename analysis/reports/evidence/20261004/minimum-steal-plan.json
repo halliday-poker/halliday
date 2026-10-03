@@ -1,0 +1,19 @@
+{
+  "frozen_at": "2026-10-03T18:43:50.602577+00:00",
+  "stage": "New single-hypothesis fixed independent evaluation",
+  "baseline": "snapshots/analysis_main_20261004",
+  "candidate": "analysis/candidates/minimum_steal",
+  "baseline_hash": "bb2090c7",
+  "candidate_hash": "03e75b3e",
+  "seed": "minimum-steal-confirm-20261004",
+  "tables": 1200,
+  "deals": 100,
+  "sizes": "4,5,5,6",
+  "pool": "sparring/competitors/from_data/pool.txt",
+  "primary": "Paired round placement-point difference; two-sided 95% lower bound above zero required for superiority. Do not stop early or change weights.",
+  "secondary": "Chip returns, game points, no failures, followed by independent default/reference/eight-seat stress and actual CPU restrictions if primary succeeds.",
+  "hypothesis": "Keep original value opening sizes. Use the minimum 2BB open only for additional evidence-gated steals. Relative to folding, the pure-fold break-even threshold on the button falls from 5/8 to 4/7, reducing the cost of a failed attempt. The defense response may change with sizing; this requires fresh simulation.",
+  "motivation": "Original 2.5BB adaptive steals did not pass their 256-table primary screen. Separate fresh-deal action diagnostics found +1.434 chips per additional open, table-bootstrap interval [.053,2.859], but that is conditional hand evidence, not whole-policy superiority. This is a new, untested sizing hypothesis with one frozen candidate, not a retest of the rejected primary.",
+  "performance_contract": "The scalar feature path is bitwise equal on all1147147replay decisions for float32/64; corrected loader prevents SDK sibling module contamination. No strategy changes in bot/.",
+  "replication": "If the primary succeeds, require another frozen 1000-table same-field seed with a positive lower95% point bound, then default/reference/eight-seat stress and CPU/package checks before considering promotion. The prior failed experiments remain in the report."
+}

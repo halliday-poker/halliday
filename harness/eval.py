@@ -116,6 +116,11 @@ def _load_module(path: Path):
     d = path.parent
     _bot_dirs.add(d)
     _evict_bot_modules()
+    # The SDK may have loaded a bot before the harness saw its directory.
+    # Its top-level sibling imports must not silently replace this bot's
+    # params/strategy modules. Restore unrelated callers' aliases afterward.
+    sibling_names = {p.stem for p in d.glob('*.py')}
+    shadowed = {name:sys.modules.pop(name) for name in sibling_names if name in sys.modules}
     sys.path.insert(0, str(d))
     try:
         spec = importlib.util.spec_from_file_location(f"_harness_bot_{_load_count}", path)
@@ -128,6 +133,7 @@ def _load_module(path: Path):
     finally:
         sys.path.remove(str(d))
         _evict_bot_modules()
+        sys.modules.update(shadowed)
     candidate = getattr(module, "bot", None)
     if isinstance(candidate, Bot):
         return module, type(candidate)

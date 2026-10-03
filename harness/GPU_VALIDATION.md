@@ -128,3 +128,29 @@ CUDA worker contexts, four per V100, each using 308 MiB. Total device use was
 1,236 MiB per device with 14,909 MiB free. Low instantaneous GPU utilization is
 consistent with CPU-bound simulation and does not mean CUDA work is absent;
 per-game batch/ranking counters record the actual work.
+
+## October 4 follow-up checks
+
+Single-action replica inference now constructs features with NumPy scalars,
+avoiding dozens of one-element arrays. A compatibility predicate retains the
+vector path when the installed NumPy scalar-promotion rules differ. Against the
+unchanged batch path, all **1,147,147 replay decisions matched bit-for-bit in
+both float32 and float64**, including the final compatibility predicate. The
+verification records the source fingerprint in `scalar-features-check.json`.
+A 1,148-row microbenchmark took about 0.177 seconds before and 0.054 seconds
+after this additional change; this measures feature construction only. No
+end-to-end speedup factor is established.
+
+The bot loader also isolates top-level sibling module names already loaded by
+the SDK outside the harness. Without this, a candidate could reuse a different
+bot's `params` or `strategy` module. A regression test loads two conflicting
+bots and checks both candidate isolation and restoration of the original SDK
+alias. The benchmarks used fresh worker processes and did not encounter that
+preloaded-SDK condition.
+
+After these changes, **140 repository tests passed with CUDA enabled**, without
+skips, in 56.6 seconds. The follow-up log and feature verification are included
+in [the compact evidence bundle](../analysis/reports/evidence/20261004/index.json).
+The additional strategy studies completed 17,895 full games with no player
+failures. No candidate passed its performance selection rule; harness fixes
+and equivalent feature acceleration do not imply a stronger poker strategy.

@@ -2,6 +2,21 @@
 
 ## October 4 refresh
 
+The V100 analysis was validated with Python 3.12.14, NumPy 2.3.5 and PyTorch
+2.10.0+cu128. An isolated Linux environment can be prepared with:
+
+```sh
+uv venv .venv-estimators --python 3.12
+uv pip install --python .venv-estimators/bin/python numpy==2.3.5
+uv pip install --python .venv-estimators/bin/python torch==2.10.0 --index-url https://download.pytorch.org/whl/cu128
+uv pip install --python .venv-estimators/bin/python vendor/macpoker-*.whl
+```
+
+Use that interpreter for the commands below. The simulation harness uses a
+separate native CUDA kernel compiled for `sm_70` with CUDA toolkit 12.8; its
+workers do not import PyTorch. See [GPU validation](../harness/GPU_VALIDATION.md).
+The historical RTX configuration later in this document is a different setup.
+
 The current field uses successful-upload intervals and a compact public-context
 action/raise-size model. The original ten-parameter estimates below remain the
 interpretable scaffold and sparse-data fallback. See the [predictive comparison

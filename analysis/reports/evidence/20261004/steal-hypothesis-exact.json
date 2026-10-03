@@ -1,0 +1,529 @@
+{
+  "source_sha256": "10331deef87e5cacb4e09ac79c5ebe2d4aeb4ff477b153d20cdb7de8fbd01d9a",
+  "context": "First preflop response to exactly one raise, to more than 2 and at most 6 chips; latest selected ladder interval per identity.",
+  "qualified_identities": 74,
+  "minimum_opportunities": 30,
+  "median": 0.7827425684702739,
+  "mean": 0.7024569197809374,
+  "rows": [
+    {
+      "bot": "Allen Iverson",
+      "opportunities": 618,
+      "matches": 14,
+      "folds": 548,
+      "fold_rate": 0.8867313915857605
+    },
+    {
+      "bot": "Allen Iverson 2.0",
+      "opportunities": 857,
+      "matches": 24,
+      "folds": 774,
+      "fold_rate": 0.9031505250875146
+    },
+    {
+      "bot": "Artificial Incompetence",
+      "opportunities": 784,
+      "matches": 22,
+      "folds": 259,
+      "fold_rate": 0.33035714285714285
+    },
+    {
+      "bot": "BigBaller",
+      "opportunities": 836,
+      "matches": 20,
+      "folds": 641,
+      "fold_rate": 0.7667464114832536
+    },
+    {
+      "bot": "Gladiator_v3",
+      "opportunities": 738,
+      "matches": 15,
+      "folds": 626,
+      "fold_rate": 0.8482384823848238
+    },
+    {
+      "bot": "Invoker",
+      "opportunities": 368,
+      "matches": 11,
+      "folds": 185,
+      "fold_rate": 0.5027173913043478
+    },
+    {
+      "bot": "Invokerv2",
+      "opportunities": 341,
+      "matches": 13,
+      "folds": 233,
+      "fold_rate": 0.6832844574780058
+    },
+    {
+      "bot": "Jason_idea",
+      "opportunities": 41,
+      "matches": 1,
+      "folds": 36,
+      "fold_rate": 0.8780487804878049
+    },
+    {
+      "bot": "LF5",
+      "opportunities": 634,
+      "matches": 16,
+      "folds": 581,
+      "fold_rate": 0.916403785488959
+    },
+    {
+      "bot": "MAC Projects Team",
+      "opportunities": 1571,
+      "matches": 75,
+      "folds": 1301,
+      "fold_rate": 0.8281349458943348
+    },
+    {
+      "bot": "MAC Projects Team Testing Bot",
+      "opportunities": 2135,
+      "matches": 51,
+      "folds": 1714,
+      "fold_rate": 0.8028103044496487
+    },
+    {
+      "bot": "MAC Projects Team Testing Bot 2",
+      "opportunities": 2808,
+      "matches": 63,
+      "folds": 2178,
+      "fold_rate": 0.7756410256410257
+    },
+    {
+      "bot": "MAC Projects Team Testing Bot 3",
+      "opportunities": 92,
+      "matches": 2,
+      "folds": 78,
+      "fold_rate": 0.8478260869565217
+    },
+    {
+      "bot": "Messi",
+      "opportunities": 3111,
+      "matches": 69,
+      "folds": 2501,
+      "fold_rate": 0.803921568627451
+    },
+    {
+      "bot": "Nice Hand, Sir",
+      "opportunities": 2545,
+      "matches": 79,
+      "folds": 1399,
+      "fold_rate": 0.5497053045186641
+    },
+    {
+      "bot": "Phil_Ivey_GOAT",
+      "opportunities": 2770,
+      "matches": 61,
+      "folds": 2548,
+      "fold_rate": 0.91985559566787
+    },
+    {
+      "bot": "RaiseYourEdge",
+      "opportunities": 1484,
+      "matches": 36,
+      "folds": 1279,
+      "fold_rate": 0.8618598382749326
+    },
+    {
+      "bot": "RiverForge",
+      "opportunities": 848,
+      "matches": 18,
+      "folds": 730,
+      "fold_rate": 0.8608490566037735
+    },
+    {
+      "bot": "Thanos",
+      "opportunities": 703,
+      "matches": 18,
+      "folds": 540,
+      "fold_rate": 0.7681365576102418
+    },
+    {
+      "bot": "Tilted_Towers_2",
+      "opportunities": 2991,
+      "matches": 70,
+      "folds": 2686,
+      "fold_rate": 0.8980274155800736
+    },
+    {
+      "bot": "Tilted_towers_1",
+      "opportunities": 661,
+      "matches": 19,
+      "folds": 587,
+      "fold_rate": 0.8880484114977307
+    },
+    {
+      "bot": "Who me?",
+      "opportunities": 341,
+      "matches": 7,
+      "folds": 166,
+      "fold_rate": 0.4868035190615836
+    },
+    {
+      "bot": "alo",
+      "opportunities": 2438,
+      "matches": 114,
+      "folds": 19,
+      "fold_rate": 0.007793273174733388
+    },
+    {
+      "bot": "axiom",
+      "opportunities": 1632,
+      "matches": 36,
+      "folds": 1237,
+      "fold_rate": 0.7579656862745098
+    },
+    {
+      "bot": "best-bot",
+      "opportunities": 2448,
+      "matches": 51,
+      "folds": 2053,
+      "fold_rate": 0.8386437908496732
+    },
+    {
+      "bot": "big dog",
+      "opportunities": 1981,
+      "matches": 61,
+      "folds": 1555,
+      "fold_rate": 0.784957092377587
+    },
+    {
+      "bot": "biji satu",
+      "opportunities": 236,
+      "matches": 9,
+      "folds": 67,
+      "fold_rate": 0.2838983050847458
+    },
+    {
+      "bot": "catherine",
+      "opportunities": 2249,
+      "matches": 58,
+      "folds": 1513,
+      "fold_rate": 0.6727434415295687
+    },
+    {
+      "bot": "dan_negreanu_on_ket",
+      "opportunities": 1610,
+      "matches": 37,
+      "folds": 1235,
+      "fold_rate": 0.7670807453416149
+    },
+    {
+      "bot": "diddy blud",
+      "opportunities": 524,
+      "matches": 15,
+      "folds": 468,
+      "fold_rate": 0.8931297709923665
+    },
+    {
+      "bot": "dudududu",
+      "opportunities": 600,
+      "matches": 18,
+      "folds": 512,
+      "fold_rate": 0.8533333333333334
+    },
+    {
+      "bot": "elaine",
+      "opportunities": 2119,
+      "matches": 54,
+      "folds": 1800,
+      "fold_rate": 0.8494572911750826
+    },
+    {
+      "bot": "finian sucks",
+      "opportunities": 3957,
+      "matches": 88,
+      "folds": 3478,
+      "fold_rate": 0.8789486985089714
+    },
+    {
+      "bot": "fold-a2",
+      "opportunities": 824,
+      "matches": 20,
+      "folds": 597,
+      "fold_rate": 0.7245145631067961
+    },
+    {
+      "bot": "fufufafa",
+      "opportunities": 361,
+      "matches": 16,
+      "folds": 225,
+      "fold_rate": 0.6232686980609419
+    },
+    {
+      "bot": "fullhouse",
+      "opportunities": 963,
+      "matches": 21,
+      "folds": 800,
+      "fold_rate": 0.8307372793354102
+    },
+    {
+      "bot": "goatbot",
+      "opportunities": 3556,
+      "matches": 112,
+      "folds": 2684,
+      "fold_rate": 0.7547806524184477
+    },
+    {
+      "bot": "guaguanco",
+      "opportunities": 2152,
+      "matches": 89,
+      "folds": 1808,
+      "fold_rate": 0.8401486988847584
+    },
+    {
+      "bot": "guaguanco 3",
+      "opportunities": 3870,
+      "matches": 106,
+      "folds": 2942,
+      "fold_rate": 0.7602067183462532
+    },
+    {
+      "bot": "guaguanco 4",
+      "opportunities": 779,
+      "matches": 23,
+      "folds": 665,
+      "fold_rate": 0.8536585365853658
+    },
+    {
+      "bot": "guaguanco 5",
+      "opportunities": 1454,
+      "matches": 34,
+      "folds": 1275,
+      "fold_rate": 0.8768913342503438
+    },
+    {
+      "bot": "idc",
+      "opportunities": 96,
+      "matches": 2,
+      "folds": 75,
+      "fold_rate": 0.78125
+    },
+    {
+      "bot": "jongwon",
+      "opportunities": 826,
+      "matches": 18,
+      "folds": 749,
+      "fold_rate": 0.9067796610169492
+    },
+    {
+      "bot": "kingfisher",
+      "opportunities": 216,
+      "matches": 6,
+      "folds": 81,
+      "fold_rate": 0.375
+    },
+    {
+      "bot": "larp larp sahur",
+      "opportunities": 613,
+      "matches": 15,
+      "folds": 486,
+      "fold_rate": 0.7928221859706363
+    },
+    {
+      "bot": "let it go",
+      "opportunities": 1497,
+      "matches": 32,
+      "folds": 1174,
+      "fold_rate": 0.7842351369405478
+    },
+    {
+      "bot": "lil-fruit",
+      "opportunities": 4024,
+      "matches": 140,
+      "folds": 1658,
+      "fold_rate": 0.4120278330019881
+    },
+    {
+      "bot": "lil-fruit 2.2",
+      "opportunities": 1521,
+      "matches": 68,
+      "folds": 352,
+      "fold_rate": 0.2314266929651545
+    },
+    {
+      "bot": "lil-fruit x",
+      "opportunities": 392,
+      "matches": 20,
+      "folds": 30,
+      "fold_rate": 0.07653061224489796
+    },
+    {
+      "bot": "love-of-da-game",
+      "opportunities": 975,
+      "matches": 22,
+      "folds": 817,
+      "fold_rate": 0.837948717948718
+    },
+    {
+      "bot": "luck is all u need",
+      "opportunities": 1673,
+      "matches": 43,
+      "folds": 1097,
+      "fold_rate": 0.6557083084279737
+    },
+    {
+      "bot": "merch where",
+      "opportunities": 266,
+      "matches": 6,
+      "folds": 0,
+      "fold_rate": 0.0
+    },
+    {
+      "bot": "netanyahu",
+      "opportunities": 511,
+      "matches": 11,
+      "folds": 384,
+      "fold_rate": 0.7514677103718199
+    },
+    {
+      "bot": "pocket-nuts",
+      "opportunities": 3923,
+      "matches": 90,
+      "folds": 3240,
+      "fold_rate": 0.8258985470303339
+    },
+    {
+      "bot": "poke-bowl",
+      "opportunities": 4021,
+      "matches": 101,
+      "folds": 2615,
+      "fold_rate": 0.6503357373787615
+    },
+    {
+      "bot": "poke-bowl-one",
+      "opportunities": 6382,
+      "matches": 241,
+      "folds": 3338,
+      "fold_rate": 0.5230335318082106
+    },
+    {
+      "bot": "polygamous lavender marriage",
+      "opportunities": 912,
+      "matches": 21,
+      "folds": 751,
+      "fold_rate": 0.8234649122807017
+    },
+    {
+      "bot": "preflop-warrior",
+      "opportunities": 484,
+      "matches": 11,
+      "folds": 143,
+      "fold_rate": 0.29545454545454547
+    },
+    {
+      "bot": "pressure",
+      "opportunities": 1801,
+      "matches": 40,
+      "folds": 1577,
+      "fold_rate": 0.8756246529705719
+    },
+    {
+      "bot": "radishv0",
+      "opportunities": 1779,
+      "matches": 67,
+      "folds": 469,
+      "fold_rate": 0.26363125351320965
+    },
+    {
+      "bot": "radishv1",
+      "opportunities": 3574,
+      "matches": 95,
+      "folds": 1918,
+      "fold_rate": 0.5366536094012311
+    },
+    {
+      "bot": "radishv2",
+      "opportunities": 3202,
+      "matches": 75,
+      "folds": 2118,
+      "fold_rate": 0.6614615865084322
+    },
+    {
+      "bot": "renbot",
+      "opportunities": 445,
+      "matches": 10,
+      "folds": 334,
+      "fold_rate": 0.750561797752809
+    },
+    {
+      "bot": "samith pai is lowkey leng",
+      "opportunities": 168,
+      "matches": 4,
+      "folds": 143,
+      "fold_rate": 0.8511904761904762
+    },
+    {
+      "bot": "scaffold",
+      "opportunities": 1318,
+      "matches": 36,
+      "folds": 1020,
+      "fold_rate": 0.7738998482549317
+    },
+    {
+      "bot": "test1",
+      "opportunities": 138,
+      "matches": 4,
+      "folds": 79,
+      "fold_rate": 0.572463768115942
+    },
+    {
+      "bot": "testQ",
+      "opportunities": 299,
+      "matches": 7,
+      "folds": 243,
+      "fold_rate": 0.8127090301003345
+    },
+    {
+      "bot": "the GOON",
+      "opportunities": 437,
+      "matches": 11,
+      "folds": 334,
+      "fold_rate": 0.7643020594965675
+    },
+    {
+      "bot": "the big dog",
+      "opportunities": 1559,
+      "matches": 42,
+      "folds": 1290,
+      "fold_rate": 0.8274534958306606
+    },
+    {
+      "bot": "tripi tropi",
+      "opportunities": 1218,
+      "matches": 30,
+      "folds": 1025,
+      "fold_rate": 0.8415435139573071
+    },
+    {
+      "bot": "tungbot",
+      "opportunities": 3147,
+      "matches": 73,
+      "folds": 2243,
+      "fold_rate": 0.7127422942484907
+    },
+    {
+      "bot": "tutududu",
+      "opportunities": 1411,
+      "matches": 32,
+      "folds": 1218,
+      "fold_rate": 0.8632175761871014
+    },
+    {
+      "bot": "yep",
+      "opportunities": 313,
+      "matches": 8,
+      "folds": 261,
+      "fold_rate": 0.8338658146964856
+    },
+    {
+      "bot": "zinger box",
+      "opportunities": 1405,
+      "matches": 33,
+      "folds": 643,
+      "fold_rate": 0.4576512455516014
+    }
+  ],
+  "caveat": "Descriptive observed-context rates. Not a causal estimate of new steals; defender position, open position, cards, and later betting can change returns."
+}

@@ -16,6 +16,9 @@ EXTRA_FIELDS = ("live", "street_raises", "limpers", "allin", "own_raises",
 FIELDS = BASE_FIELDS + EXTRA_FIELDS
 COL = {name: i for i, name in enumerate(FIELDS)}
 RANKS = '23456789TJQKA'
+# Use the scalar fast path only when scalar operations retain float32 just
+# like array operations. Older NumPy promotion rules retain the vector path.
+_SCALAR_FLOAT32 = np.asarray(np.float32(1) / 2).dtype == np.dtype('float32')
 
 
 def extras(hole, board, seat, folded, stacks, street_raises, limpers, own_raises, category):
@@ -33,7 +36,10 @@ def features(rows):
     # Clean the small matrix once, rather than allocating and scanning each
     # column on every access (43 calls per single-action inference).
     rows = np.nan_to_num(np.atleast_2d(rows), nan=0.0)
-    c = lambda name: rows[:,COL[name]]
+    # Runtime inference has one row. NumPy scalars preserve the input dtype
+    # while avoiding dozens of temporary one-element feature arrays.
+    single = len(rows) == 1 and _SCALAR_FLOAT32
+    c = (lambda name: rows[0,COL[name]]) if single else (lambda name: rows[:,COL[name]])
     street = c('street')
     values = [*(street==i for i in range(4)), c('pct'),c('strength'),c('draw'),c('facing'),c('can_raise'),
               np.minimum(c('pre_raises'),5)/5,c('cbet'), np.log1p(c('pot'))/math.log(1601),
@@ -45,7 +51,7 @@ def features(rows):
               c('rank_high')/12,c('rank_low')/12,c('suited'),c('pair'),c('board_paired')/3,
               c('board_suited')/5,c('board_high')/12,c('hand_category')/8,
               np.log1p(c('stack')/np.maximum(1,c('pot')))/math.log(201)]
-    return np.column_stack(values).astype(np.float32)
+    return np.asarray(values,dtype=np.float32).reshape(1,-1) if single else np.column_stack(values).astype(np.float32)
 
 
 def legal_actions(rows):

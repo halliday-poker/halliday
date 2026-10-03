@@ -179,6 +179,58 @@
     "omitted_keys": [],
     "exported_sha256": "46d00499c1bf338d85983e20885e6518f55b5f7d9dcd94b05c68a94d848fd00b"
   },
+  "steals-plan.json": {
+    "source": "analysis/results/refresh-20261004/steals-plan.json",
+    "source_sha256": "f697447eff41e67671ae0b32884f12b0f3de22a069fb7f353ea1f941a16f942e",
+    "omitted_keys": [],
+    "exported_sha256": "f697447eff41e67671ae0b32884f12b0f3de22a069fb7f353ea1f941a16f942e"
+  },
+  "steals-summary.json": {
+    "source": "analysis/results/refresh-20261004/steals-summary.json",
+    "source_sha256": "8db5dc3d110567d294ffdc00671fc34145fc748f198dc8445804c239ef2f3999",
+    "omitted_keys": [
+      "table_metrics"
+    ],
+    "exported_sha256": "53e22f319e8faad8d1820fdc063060b119b3863339907fbd72b52fc1d5c4955f"
+  },
+  "steal-hypothesis-exact.json": {
+    "source": "analysis/results/refresh-20261004/steal-hypothesis-exact.json",
+    "source_sha256": "2c17c69b76ff3f825da2f218f275ef71ec1d0fddb23f35628eb977f676caac10",
+    "omitted_keys": [],
+    "exported_sha256": "2c17c69b76ff3f825da2f218f275ef71ec1d0fddb23f35628eb977f676caac10"
+  },
+  "steals-action-summary.json": {
+    "source": "analysis/results/refresh-20261004/steals-action-summary.json",
+    "source_sha256": "7e8210de0c2f8c6ab2e14f2c853ab61e64a1e5632894d310d77bc23cd861458e",
+    "omitted_keys": [],
+    "exported_sha256": "7e8210de0c2f8c6ab2e14f2c853ab61e64a1e5632894d310d77bc23cd861458e"
+  },
+  "minimum-steal-plan.json": {
+    "source": "analysis/results/refresh-20261004/minimum-steal-plan.json",
+    "source_sha256": "65b33b4927082b4502d1293d185b9f45c3773ebf21c642a3a2cb2a247ba87b43",
+    "omitted_keys": [],
+    "exported_sha256": "65b33b4927082b4502d1293d185b9f45c3773ebf21c642a3a2cb2a247ba87b43"
+  },
+  "minimum-steal-summary.json": {
+    "source": "analysis/results/refresh-20261004/minimum-steal-summary.json",
+    "source_sha256": "3bca4cdc55ae1bccf22b19d1e687b1f3aba7cbb465477c701536ba5fb432bdd3",
+    "omitted_keys": [
+      "table_metrics"
+    ],
+    "exported_sha256": "873a90a4a5ce17c743d6e641e319c01079794824388d3fe7d34b0eff0d35edbf"
+  },
+  "minimum-steal-resource.json": {
+    "source": "analysis/results/refresh-20261004/minimum-steal-resource.json",
+    "source_sha256": "0d4041d4a2c7a57f3210093e46de70039a12bb56b1096035e537f3aedead8d19",
+    "omitted_keys": [],
+    "exported_sha256": "0d4041d4a2c7a57f3210093e46de70039a12bb56b1096035e537f3aedead8d19"
+  },
+  "scalar-features-check.json": {
+    "source": "analysis/results/refresh-20261004/scalar-features-check.json",
+    "source_sha256": "03cc7e66ad210a44d06a05da7f18d6874bb6fdbd2d0925f5deeaffb1e84b8dcb",
+    "omitted_keys": [],
+    "exported_sha256": "03cc7e66ad210a44d06a05da7f18d6874bb6fdbd2d0925f5deeaffb1e84b8dcb"
+  },
   "halliday-summary.json": {
     "source": "analysis/results/halliday-performance-20261004/summary.json",
     "source_sha256": "f48e6615f7664e4deb93d7af62d68ce02e056dbef1181c3b023f1b0f5a0d209f",
@@ -198,6 +250,10 @@
   "gpu-concurrency.txt": {
     "source": "analysis/results/refresh-20261004/gpu-concurrency.txt",
     "sha256": "cb2c6db8c6686d21b88fc7319bf79a51aab00bae85743777dd8a18deac2ee9b8"
+  },
+  "followup-tests-cuda.log": {
+    "source": "analysis/results/refresh-20261004/followup-tests-cuda.log",
+    "sha256": "8bb69592030f3cfe7f4ce6ea85c84967bb2e2cb803c9e2cf794faa363d04f966"
   },
   "initial-tournament-summary.json": {
     "source": "analysis/results/refresh-20261004/four-round-confirm.json",

@@ -20,6 +20,18 @@ from macpoker import GameState
 
 
 class BehaviorTests(unittest.TestCase):
+    def test_single_action_and_batch_features_are_bitwise_equal(self):
+        rng=np.random.default_rng(6701)
+        rows=rng.uniform(0,200,(200,len(FIELDS)))
+        rows[:,COL['street']]=np.arange(len(rows))%4
+        rows[:,COL['players']]=2+np.arange(len(rows))%7
+        rows[::3,COL['strength']]=np.nan
+        rows[::4,COL['stack']]=0
+        rows[::5,COL['pot']]=0
+        for dtype in (np.float32,np.float64):
+            batch=rows.astype(dtype)
+            np.testing.assert_array_equal(features(batch),np.concatenate([features(row) for row in batch]))
+
     def test_replay_and_runtime_context_agree_through_actual_rotating_games(self):
         from sparring import param
         from macpoker.match import MatchRunner,MatchConfig
