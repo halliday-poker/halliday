@@ -33,6 +33,8 @@ DEFAULT_PARAMS = MappingProxyType({
     # Field exploits (bot/FIELD_EXPLOITS.md). Ladder bots fold ~74% to a
     # pot-sized heads-up flop c-bet and c-bet ~44% air themselves.
     "cbet_pot_fraction": 1.0,
+    # Air c-bets out of position too at tables of up to this many seats.
+    "oop_cbet_max_seats": 6,
     "shover_min_hands": 8,
     "shover_min_shoves": 3,
     "shover_min_rate": 0.25,

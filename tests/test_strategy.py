@@ -289,13 +289,23 @@ class PostflopTests(unittest.TestCase):
         self.assertEqual(decide(s, 0.36).kind, "fold")
         self.assertEqual(decide(s, 0.50).kind, "call")
 
-    def test_out_of_position_air_checks(self):
-        # Heads-up, the button acts last: with button=1 we act first (OOP).
-        s = postflop(hole=["Ks", "Qh"], history=[["preflop", 0, "raise", 5]], button=1)
+    def test_out_of_position_air_cbets_only_at_short_tables(self):
+        # Heads-up pot at an 8-seat table; button=1 puts seat 0 first to act (OOP).
+        # The field folds 65% to an OOP pot c-bet at 4-6 seats but 58% at 8.
+        eight = dict(players=list(range(8)), folded=[False, False] + [True] * 6,
+                     stacks=[190, 170] + [200] * 6, street_bets=[0] * 8)
+        s = postflop(hole=["Ks", "Qh"], history=[["preflop", 0, "raise", 5]], button=1, **eight)
         self.assertEqual(decide(s, 0.10).kind, "check")  # air
         s._m["hole"] = ["As", "8h"]  # a pair still bets pot
         self.assertEqual(decide(s, 0.45).amount, 40)
         s._m.update(hole=["Ks", "Qh"], button=0)  # in position, air bets pot
+        self.assertEqual(decide(s, 0.10).amount, 40)
+        s = postflop(hole=["Ks", "Qh"], history=[["preflop", 0, "raise", 5]], button=1)
+        self.assertEqual(decide(s, 0.10).amount, 40)  # 2-6 seats: OOP air c-bets too
+        self.assertEqual(decide(s, 0.10, params=dict(DEFAULT_PARAMS, oop_cbet_max_seats=0)).kind, "check")
+        s = postflop(hole=["Ks", "Qh"], history=[["preflop", 0, "raise", 5]], button=1,
+                     **dict(eight, players=list(range(6)), folded=eight["folded"][:6],
+                            stacks=eight["stacks"][:6], street_bets=[0] * 6))
         self.assertEqual(decide(s, 0.10).amount, 40)
         line = [["preflop", 0, "raise", 5], ["flop", 0, "raise", 20], ["flop", 1, "call", 20]]
         s = postflop(board=["Ac", "7h", "2d", "9s"], hole=["Ks", "Qh"], pot=50, history=line, button=1)
