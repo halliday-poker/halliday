@@ -99,6 +99,20 @@ default pool (no league), 200 tables per seed, 4-6 seats:
 | rt-b | **+288 ± 101** | +0.24 ± 0.11 |
 | rt-c | **+256 ± 92** | +0.18 ± 0.11 |
 
+- **Drifting field** ([harness/pools/drifting.txt](../harness/pools/drifting.txt): every
+  seat is [sparring/drifter.py](../sparring/drifter.py), which starts as a random style
+  including a shover, and each hand has a 5% chance of switching style or rescaling 1-3 of
+  its settings). 200 tables per seed:
+
+  | Seed | Range tracking vs `main` | vs fixed baseline `d2557d0` | `main` vs fixed baseline |
+  |---|---|---|---|
+  | drift-1 | **+107 ± 51** | **+165 ± 77** | +57 ± 66 (inconclusive) |
+  | drift-2 | **+78 ± 50** | **+177 ± 74** | +99 ± 65 |
+
+  Reads that go stale don't erase the gain, but it shrinks: about +90 here against about
+  +270 on the default pool, while every bot wins far less against this field. The
+  counters and showdown statistics never forget, so a player who changes style is still
+  read by its old habits. Decaying old evidence is the obvious next experiment.
 - On rt-b, the same bot with showdown learning off scored +256 ± 104. So learning adds
   roughly +30 on top, which isn't yet distinguishable from noise.
 - Gains are spread across every opponent type. The early-game loss against `house:allin`

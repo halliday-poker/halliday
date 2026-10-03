@@ -1,0 +1,3 @@
+# Every seat is a drifting opponent (sparring/drifter.py): random starting
+# archetype, 5% chance per hand to switch archetype or rescale settings.
+sparring/drifter.py
