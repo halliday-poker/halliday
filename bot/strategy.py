@@ -9,12 +9,12 @@ if __package__:
     from .engine import evaluate_hand
     from .opponents import fold_to_us, is_station, profile_of
     from .params import DEFAULT_PARAMS, margin as pick
-    from .preflop import pot_odds, preflop_plan
+    from .preflop import in_position, pot_odds, preflop_plan
 else:
     from engine import evaluate_hand
     from opponents import fold_to_us, is_station, profile_of
     from params import DEFAULT_PARAMS, margin as pick
-    from preflop import pot_odds, preflop_plan
+    from preflop import in_position, pot_odds, preflop_plan
 
 
 def mixed(state, frequency):
@@ -134,11 +134,14 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
         # the time so a watching opponent cannot assume every bet is a bluff.
         bluff = (fold_to_us(profile, params) >= params["bluff_min_fold"]
                  and mixed(state, params["bluff_frequency"]))
-        if can_bet and cbet_spot and not station and (made_or_draw or bluff):
+        # Air only bets in position: the field folds 83% to an in-position
+        # pot bet but 55% when we act first (45% to an OOP turn barrel).
+        air_ok = villain is not None and in_position(state, villain)
+        if can_bet and cbet_spot and not station and (made_or_draw or (bluff and air_ok)):
             return bet(state, params["cbet_pot_fraction"])
         # Barrel air and draws at the value size; weak pairs keep their
         # showdown value and check.
-        if can_bet and barrel_spot and not station and bluff and (
+        if can_bet and barrel_spot and not station and bluff and (air_ok or made_or_draw) and (
                 params["barrel_weak_pairs"] if own_pair else params["barrel_bluffs"]):
             return bet(state, params["barrel_pot_fraction"])
         # Against a station, only the modest c-bet with a pair or draw.
@@ -148,17 +151,11 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
 
     price = pot_odds(state)
     street_raises = sum(a[0] == street and a[2] == "raise" for a in state.history)
-    if villain is not None and street == "flop" and aggressor == villain and street_raises == 1:
-        # Facing their heads-up flop c-bet: ~44% of ladder c-bets are air,
-        # so uniform-card equity is roughly right. Drop the big-bet and
-        # street margins.
-        margin = params["cbet_defence_margin"]
-    else:
-        margin = pick(params, "call_margin_" + street, ranged) + extra * params["multiway_call_margin"]
-        # Uniform-card equity overstates strength against a selective bettor.
-        margin += pick(params, "large_bet_margin", ranged) * min(1.0, state.to_call / max(1, state.pot - state.to_call))
-        if street_raises > 1:
-            margin += pick(params, "reraise_margin", ranged)
+    margin = pick(params, "call_margin_" + street, ranged) + extra * params["multiway_call_margin"]
+    # Uniform-card equity overstates strength against a selective bettor.
+    margin += pick(params, "large_bet_margin", ranged) * min(1.0, state.to_call / max(1, state.pot - state.to_call))
+    if street_raises > 1:
+        margin += pick(params, "reraise_margin", ranged)
     if can_bet and equity >= raise_value:
         if equity >= params["shove_equity"] and state.my_stack <= params["shove_spr"] * (state.pot + state.to_call):
             return legal_raise(state, state.max_raise_to)
