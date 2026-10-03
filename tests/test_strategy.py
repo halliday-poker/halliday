@@ -280,13 +280,27 @@ class PostflopTests(unittest.TestCase):
             self.assertEqual(decide(s, 0.10, params=params).kind, kinds[-1])
         self.assertEqual(set(kinds), {"raise", "check"})
 
-    def test_cbet_defence_drops_big_bet_margins(self):
-        # Their pot-sized heads-up flop c-bet prices us at 1/3.
+    def test_their_cbet_gets_the_normal_margins(self):
+        # Their pot-sized heads-up flop c-bet prices us at 1/3; calling it with
+        # a weak pair or air loses ~0.86 pot per call on the ladder.
         s = postflop(to_call=40, pot=80, street_bets=[0, 40], min_raise_to=80,
                      history=[["preflop", 1, "raise", 5], ["flop", 1, "raise", 40]])
-        self.assertEqual(decide(s, 0.36).kind, "call")
-        s._m["history"] = [["preflop", 0, "raise", 5], ["flop", 1, "raise", 40]]  # a donk bet
         self.assertEqual(decide(s, 0.36).kind, "fold")
+        self.assertEqual(decide(s, 0.50).kind, "call")
+
+    def test_out_of_position_air_checks(self):
+        # Heads-up, the button acts last: with button=1 we act first (OOP).
+        s = postflop(hole=["Ks", "Qh"], history=[["preflop", 0, "raise", 5]], button=1)
+        self.assertEqual(decide(s, 0.10).kind, "check")  # air
+        s._m["hole"] = ["As", "8h"]  # a pair still bets pot
+        self.assertEqual(decide(s, 0.45).amount, 40)
+        s._m.update(hole=["Ks", "Qh"], button=0)  # in position, air bets pot
+        self.assertEqual(decide(s, 0.10).amount, 40)
+        line = [["preflop", 0, "raise", 5], ["flop", 0, "raise", 20], ["flop", 1, "call", 20]]
+        s = postflop(board=["Ac", "7h", "2d", "9s"], hole=["Ks", "Qh"], pot=50, history=line, button=1)
+        self.assertEqual(decide(s, 0.10).kind, "check")  # no OOP air barrel
+        s._m["hole"] = ["8s", "6s"]  # an open-ender still barrels
+        self.assertEqual(decide(s, 0.30).amount, 50)
 
     def test_low_spr_value_shoves_and_all_in_opponents_cannot_be_bluffed(self):
         s = postflop(pot=300)

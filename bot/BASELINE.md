@@ -1,6 +1,6 @@
 # Non-adaptive baseline
 
-> The field exploits change the c-bet, c-bet defence, turn and all-in rules
+> The field exploits change the c-bet, turn and all-in rules
 > below and add per-game opponent counters; see
 > [FIELD_EXPLOITS.md](FIELD_EXPLOITS.md). This file still describes the base.
 
