@@ -141,6 +141,14 @@ def make_bot(spec: str, seed: str) -> Bot:
         return cls(style=module.style_for(spec.split(":", 1)[1]), seed=seed)
     path = resolve_path(spec)
     module, cls = _cached_module(path)
+    # Optional factory for stochastic file bots: keep their private RNG tied
+    # to the seat seed, independent of other bots' constructor side effects.
+    factory = getattr(module, "make_seeded_bot", None)
+    if factory is not None:
+        bot = factory(seed)
+        if not isinstance(bot, Bot):
+            raise TypeError(f"{path}: make_seeded_bot must return a Bot")
+        return bot
     try:
         return cls()
     except TypeError:
