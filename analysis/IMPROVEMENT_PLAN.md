@@ -1,5 +1,20 @@
 # Opponent refresh and Halliday research — 4 October 2026
 
+## New-data rerun completed
+
+The [latest-segment report](reports/latest-analysis-20261004-r2.md) supersedes
+the replay and field counts below for the current upload. It uses exact main
+`6cfdf0f` (harness hash `26121bc2`), 65 reliably dated latest opponent intervals,
+and 44 observed games where every seat belongs to its newest interval. The
+rerun completed 5,118 simulation games, nine restricted CPU games and 144 tests.
+Four V100s performed model fitting and replay scoring; the unmodified main
+engine used 12 CPU simulation workers. No strategy was changed or promoted.
+[Commands and frozen-input requirements](reports/reproduce-latest-20261004-r2.md)
+reproduce this rerun. The earlier experimental study remains below as history;
+its merged-main snapshot included the analysis branch's GPU engine hook.
+
+## Earlier completed research
+
 The requested analysis, replica refresh, strategy experiments, tournament
 simulations and resource checks are complete. The objective of establishing a
 stronger strategy remains unmet: none of eighteen isolated experimental variants

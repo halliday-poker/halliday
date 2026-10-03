@@ -1,5 +1,12 @@
 # CUDA harness validation
 
+The second October 4 upload was checked with **144 passing CUDA-enabled tests**.
+Its exact main snapshot `26121bc2` has no batching hook, so its field and
+tournament simulations correctly select CPU. The tournament driver now uses
+the same compatibility preflight as `eval.py`; GPU contexts alone do not count
+as acceleration. Four V100s fit the models and execute the separate replay
+audit. See [current evidence](../analysis/reports/evidence/20261004-r2/index.json).
+
 Validated on 3 October 2026 with Python 3.12.14, NumPy 2.3.5, CUDA toolkit
 12.8 and four Tesla V100-SXM2-16GB devices. Each device initially had about
 1,089 MiB free alongside existing workloads. The harness uses a native `sm_70`

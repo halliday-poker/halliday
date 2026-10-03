@@ -1,0 +1,14 @@
+{
+  "devices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "workers": 4,
+  "wall_seconds": 9.958436573040672,
+  "matches": 44,
+  "decisions": 5687,
+  "hands": 4400,
+  "ranked_hands": 79972754
+}

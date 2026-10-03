@@ -77,32 +77,35 @@ def render(directory=DIR, out=OUT):
     def card_text(cards): return ' '.join(cards) or '(preflop)'
     date_part = directory.name.removeprefix('halliday-performance-')
     try:
-        date_label = datetime.strptime(date_part, '%Y%m%d').strftime('%d %B %Y')
+        day, _, suffix = date_part.partition('-')
+        date_label = datetime.strptime(day, '%Y%m%d').strftime('%d %B %Y') + (f' ({suffix})' if suffix else '')
     except ValueError:
         date_label = directory.name
     blocks.append(('h1', f'Halliday performance and decision audit — {date_label}'))
     p(f"Source: `{extraction['source']}`, SHA-256 `{extraction['sha256']}`. The recorded name is `Halliday`. "
       f"Main results cover {s['matches']} ladder matches, {s['hands']:,} hands, and {s['actions']:,} decisions. "
-      f"These are eight-seat, 200-chip-per-hand games with a two-chip big blind. Recorded match times span "
+      f"Table sizes observed: {', '.join(map(str, sorted({h['n'] for h in hands})))} seats; stacks reset to 200 chips per hand with a two-chip big blind. Recorded match times span "
       f"{stamp(matches[0]['at'])}–{stamp(matches[-1]['at'])}, Australia/Melbourne. Hand numbers are zero-based.")
     head('Main findings')
-    p(f"Halliday lost {abs(s['chips']):,} chips overall ({s['chips']/2/s['hands']*100:+.2f} big blinds per 100 hands). "
+    if extraction.get('selected_match_ids') is not None:
+        p(f"This report uses an explicit selection of {len(extraction['selected_match_ids'])} matches. Earlier Halliday intervals are excluded; the selected IDs are recorded in extraction.json. Replay identity and upload timing do not prove which Git source was deployed.")
+    p(f"Halliday's net result was {s['chips']:+,} chips ({s['chips']/2/s['hands']*100:+.2f} big blinds per 100 hands). "
       f"It folded {s['folds']:,} times ({pct(s['folds'],s['hands'])} of hands). "
-      f"The strongest decision-review finding is expensive calling: {len(calls)} terminal calls were negative under both public-information range models, including {len(rivers)} on the river. "
-      f"Folding instead at those selected decisions would have improved the recorded outcomes by {gain:,} chips. This is a retrospective comparison within the same hands, not a predicted gain on new games.")
+      f"Both public-information range models flag {len(calls)} terminal calls, including {len(rivers)} on the river. "
+      f"Folding at those flagged decisions changes recorded outcomes by {gain:+,} chips. This is a retrospective comparison within the same hands, not a predicted gain on new games.")
     p(f"There were {len(missed)} model-supported missed-call flags ({pct(len(missed),len(folds))} of folds), of which {len(both_folds)} also had positive call expectation against the actual hidden hands. "
       f"The audit found {len(certain)} provably avoidable folds. Most folds leave future betting unresolved, so these figures do not establish the true unnecessary-fold rate. They do not support indiscriminately widening the bot's range.")
-    p(f"Losses also reflect unlucky runouts: {len(runouts)} auditable all-in hands returned {sum(x['realized_chips'] for x in runouts):+,.0f} chips against "
+    p(f"Runout diagnostic: {len(runouts)} auditable all-in hands returned {sum(x['realized_chips'] for x in runouts):+,.0f} chips against "
       f"{sum(x['expected_chips'] for x in runouts):+,.1f} expected with the recorded hands, a {sum(x['luck'] for x in runouts):+,.1f}-chip difference. "
       "This isolates cards dealt after betting ended. It does not certify the earlier decisions or provide a complete skill-adjusted win rate.")
     p(f"Recency matters: the latest {last['matches']} ladder games returned {last['chips']:+,} chips over {last['hands']:,} hands and contain {last_flags} terminal call/fold flags under this method. "
-      "The strongest calling-leak examples therefore describe earlier observed play. Changes in opponents, cards and possible same-name bot replacements prevent attributing that difference to a specific code update.")
+      "Changes in opponents, cards and possible same-name bot replacements prevent attributing differences to a specific code update.")
     table(['Metric', 'Ladder result'], [
         ['Matches / hands / actions', f"{s['matches']} / {s['hands']:,} / {s['actions']:,}"],
         ['Net chips / bb per 100 hands', f"{s['chips']:+,} / {s['chips']/2/s['hands']*100:+.2f}"],
         ['Positive / negative games', f"{s['winning_matches']} / {s['losing_matches']}"],
         ['Mean chips/game, approximate 95% interval', f"{s['match_mean_ci'][0]:+.2f} ± {s['match_mean_ci'][1]:.2f}"],
-        ['Latest 20 games: net chips / bb per 100 hands', f"{last['chips']:+,} / {last['chips']/2/last['hands']*100:+.2f}"],
+        [f"Latest {last['matches']} games: net chips / bb per 100 hands", f"{last['chips']:+,} / {last['chips']/2/last['hands']*100:+.2f}"],
     ])
     p('The interval treats matches as independent observations. Shared opponents, related deals and bot changes weaken that assumption. No version hash or decision-time equity/range/clock trace is recorded, so these findings cannot be attributed to the current source branch.')
 
@@ -161,16 +164,16 @@ def render(directory=DIR, out=OUT):
     river_calls = sum(r['action']=='call' and r['street']=='river' for r in actions)
     p(f"Both models flag {len(rivers)}/{river_calls} river calls ({pct(len(rivers),river_calls)}). Folding at those decisions changes the recorded results by {river_gain:+,} chips, excluding earlier sunk investments. "
       f"The {len(calls)} total bad-terminal-call flags span {len({r['match'] for r in calls})} games; {sum(r['hand_chips']>0 for r in calls)} occurred in hands that won chips. "
-      'Thus the label is based on decision expectation, not simply losing the hand. Weak pairs and ace-high after sustained aggression are the clearest review targets.')
+      'These labels depend on the tested opponent ranges. Review the listed contexts before inferring a recurring calling weakness or changing the strategy.')
     table(['Match / hand', 'Hole cards', 'Board', 'Call / pot', 'Public EV: tight / loose', 'Hand chips'], [
         [f"`{r['match']}` / h{r['hand']}", card_text(r['hole']), card_text(r['board']), f"{r['call']} / {r['pot']}",
          f"{r['public']['tight']['call_ev']:+.1f} / {r['public']['loose']['call_ev']:+.1f}", r['hand_chips']]
         for r in sorted(rivers, key=lambda r:r['public_ev_upper'])[:8]
     ])
-    sub('2. Turn calls that lead into costly river decisions')
+    sub('2. Nonterminal calls and later decisions')
     reviews = [r for r in actions if r['classification']=='possible_nonterminal_bad_call']
-    p(f"There are {len(reviews)} additional call-review flags, {sum(r['street']=='turn' for r in reviews)} on the turn. Both models give negative checkdown expectation, "
-      'but implied odds, future folds and future bets prevent a firm blunder diagnosis. Turn and river costs from the same hand must not be added as independent savings.')
+    p(f"There are {len(reviews)} additional call-review flags, {sum(r['street']=='turn' for r in reviews)} on the turn. "
+      'Such flags require negative checkdown expectation under both models, but implied odds, future folds and future bets prevent a firm blunder diagnosis. Turn and river costs from the same hand must not be added as independent savings.')
     sequences = []
     for r in rivers:
         earlier = [x for x in by_hand[(r['match'],r['hand'])] if x['action_index']<r['action_index'] and x['classification']=='possible_nonterminal_bad_call']
@@ -190,7 +193,7 @@ def render(directory=DIR, out=OUT):
         ])
         p('For raises, amount is the total street bet target; for calls, it is the additional chips paid. This trace reproduces observed actions, not a simulation of an alternative strategy.')
     sub('3. Adaptation and range calibration')
-    p('A very high preflop fold rate can coexist with overly optimistic river calls: the two decisions face different opponent selection. Prioritize stronger responses to repeated postflop aggression and selective widening against demonstrated shove-heavy players. Do not assign a shove caller the same loose range as the shover. One-pair stack commitments need review, but a cooler is not automatically a mistake.')
+    p('The fold rate alone does not establish that a wider range would improve returns. The flagged calls and folds identify contexts for checking range calibration, rather than a validated change in aggressiveness. A publicly demonstrated frequent shover and a selective caller of that shove need separate ranges. Record decision-time ranges and equity to distinguish estimation errors from deliberate strategy choices.')
     sub('4. Bluff outcomes are review labels, not automatic blunders')
     p(f"The audit labels {s['classifications'].get('failed_air_bet',0)} failed high-card/no-draw bets and {s['classifications'].get('failed_semibluff',0)} failed semibluff actions. "
       'A profitable bluff strategy loses some called bets. The replay does not reveal how opponents would react to different bet sizes, so this audit cannot establish optimal bluff frequency or missed value bets.')
@@ -286,11 +289,11 @@ def render(directory=DIR, out=OUT):
 
     head('Prioritized improvements to test')
     table(['Priority','Change to investigate','Validation'],[
-        [1,'Calibrate large river calls after repeated aggression, particularly ace-high and weak pairs.','Replay flagged contexts and test on untouched matches; preserve profitable calls.'],
-        [2,'Review marginal turn calls and the planned response to a blank river.','Measure complete hand outcomes; avoid double-counting alternative fold points.'],
-        [3,'Distinguish known frequent shovers from selective callers of their shoves.','Use earlier public actions only; test different field compositions.'],
-        [4,'Audit range updates and one-pair stack commitments after reraises.','Log equity/ranges/timing and compare predictions with held-out evidence.'],
-        [5,'Record version hashes, verdicts and decision diagnostics.','Separate historical leaks, current behavior, range errors and clock fallback.'],
+        [1,'Record version hashes, verdicts and decision-time ranges/equity.','Identify the deployed source and compare its estimates with held-out outcomes.'],
+        [2,'Replay the terminal call/fold flags under opponent-specific ranges.','Test sensitivity to range assumptions; a flagged hand alone does not validate a fix.'],
+        [3,'Review the largest losing hands and earlier betting choices.','Measure complete hand outcomes; avoid double-counting alternative fold points.'],
+        [4,'Distinguish frequent shovers from selective callers of their shoves.','Use earlier public actions only; test any changes on untouched matches.'],
+        [5,'Assess additional opens, bluff sizing and future-street choices separately.','Use fresh duplicate-deck simulations; this terminal audit does not optimize them.'],
     ])
     head('Files and reproduction')
     base='../results/'+directory.name
@@ -302,7 +305,11 @@ def render(directory=DIR, out=OUT):
     path=shlex.quote(str(directory))
     source=shlex.quote(str(Path(extraction['source']).parent))
     prefix='OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv-estimators/bin/python -B '
-    commands=[prefix+f'analysis/halliday_performance.py extract --snapshot {source} --directory {path}',
+    selection = ''
+    if extraction.get('selected_match_ids') is not None:
+        (directory/'selected-match-ids.json').write_text(json.dumps(extraction['selected_match_ids'], indent=2)+'\n')
+        selection = ' --match-ids '+shlex.quote(str(directory/'selected-match-ids.json'))
+    commands=[prefix+f'analysis/halliday_performance.py extract --snapshot {source} --directory {path}'+selection,
               prefix+f'analysis/halliday_performance.py prepare --directory {path}',
               prefix+f'analysis/halliday_performance.py compute --devices 0,1,2,3 --directory {path}',
               prefix+f'analysis/halliday_report.py --directory {path}',

@@ -2,9 +2,12 @@
 # Current bot replaces: Halliday
 sparring/competitors/from_data/allen_iverson.py 1
 sparring/competitors/from_data/allen_iverson_2_0.py 1
+sparring/competitors/from_data/althaf_productions_v1.py 1
 sparring/competitors/from_data/artificial_incompetence.py 1
 sparring/competitors/from_data/bigballer.py 1
+sparring/competitors/from_data/gladiator.py 1
 sparring/competitors/from_data/gladiator_v3.py 1
+sparring/competitors/from_data/gladiators.py 1
 sparring/competitors/from_data/invoker.py 1
 sparring/competitors/from_data/invokerv2.py 1
 sparring/competitors/from_data/jason_idea.py 1
@@ -13,11 +16,14 @@ sparring/competitors/from_data/mac_projects_team.py 1
 sparring/competitors/from_data/mac_projects_team_testing_bot.py 1
 sparring/competitors/from_data/mac_projects_team_testing_bot_2.py 1
 sparring/competitors/from_data/mac_projects_team_testing_bot_3.py 1
+sparring/competitors/from_data/mcsmart_meal.py 1
 sparring/competitors/from_data/messi.py 1
 sparring/competitors/from_data/nice_hand_sir.py 1
 sparring/competitors/from_data/phil_ivey_goat.py 1
 sparring/competitors/from_data/raiseyouredge.py 1
 sparring/competitors/from_data/riverforge.py 1
+sparring/competitors/from_data/sus_bot.py 1
+sparring/competitors/from_data/tester67.py 1
 sparring/competitors/from_data/thanos.py 1
 sparring/competitors/from_data/tilted_towers_2.py 1
 sparring/competitors/from_data/tilted_towers_1.py 1
@@ -29,6 +35,7 @@ sparring/competitors/from_data/big_dog.py 1
 sparring/competitors/from_data/biji_satu.py 1
 sparring/competitors/from_data/catherine.py 1
 sparring/competitors/from_data/dan_negreanu_on_ket.py 1
+sparring/competitors/from_data/data.py 1
 sparring/competitors/from_data/diddy_blud.py 1
 sparring/competitors/from_data/dudududu.py 1
 sparring/competitors/from_data/elaine.py 1
@@ -46,6 +53,7 @@ sparring/competitors/from_data/house_call.py 1
 sparring/competitors/from_data/idc.py 1
 sparring/competitors/from_data/jongwon.py 1
 sparring/competitors/from_data/kingfisher.py 1
+sparring/competitors/from_data/kurimanju.py 1
 sparring/competitors/from_data/larp_larp_sahur.py 1
 sparring/competitors/from_data/let_it_go.py 1
 sparring/competitors/from_data/lil_fruit.py 1
@@ -55,6 +63,8 @@ sparring/competitors/from_data/love_of_da_game.py 1
 sparring/competitors/from_data/luck_is_all_u_need.py 1
 sparring/competitors/from_data/merch_where.py 1
 sparring/competitors/from_data/netanyahu.py 1
+sparring/competitors/from_data/orcabot.py 1
+sparring/competitors/from_data/percy_perc_filet.py 1
 sparring/competitors/from_data/pocket_nuts.py 1
 sparring/competitors/from_data/poke_bowl.py 1
 sparring/competitors/from_data/poke_bowl_one.py 1
@@ -71,8 +81,10 @@ sparring/competitors/from_data/test1.py 1
 sparring/competitors/from_data/testq.py 1
 sparring/competitors/from_data/the_goon.py 1
 sparring/competitors/from_data/the_big_dog.py 1
+sparring/competitors/from_data/the_notorious.py 1
 sparring/competitors/from_data/tripi_tropi.py 1
 sparring/competitors/from_data/tungbot.py 1
 sparring/competitors/from_data/tutududu.py 1
+sparring/competitors/from_data/wicked_wings_combo.py 1
 sparring/competitors/from_data/yep.py 1
 sparring/competitors/from_data/zinger_box.py 1

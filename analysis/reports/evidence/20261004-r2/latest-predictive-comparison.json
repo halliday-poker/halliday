@@ -1,0 +1,92 @@
+{
+  "scope": "Held-out actions in the newest trusted ladder intervals of Halliday and included external identities; whole-match split unchanged. Other seats need not be in their newest interval for this conditional action-prediction test.",
+  "actions": 88097,
+  "matches": 196,
+  "selection": "Model choice remains validation-only; these test metrics are descriptive and are not used to switch models.",
+  "paired_comparisons": [
+    {
+      "reference": "original_scaffold",
+      "candidate": "upload",
+      "matches": 196,
+      "mean_match_nll_gain": 0.45566771449427634,
+      "ci95": [
+        0.43136897365382687,
+        0.4815361736876184
+      ],
+      "three_comparison_adjusted_ci": [
+        0.4257191722783083,
+        0.4857752868184868
+      ]
+    },
+    {
+      "reference": "none",
+      "candidate": "upload",
+      "matches": 196,
+      "mean_match_nll_gain": 0.029440525051726656,
+      "ci95": [
+        0.022763422261904247,
+        0.03684225945118149
+      ],
+      "three_comparison_adjusted_ci": [
+        0.021341758731392897,
+        0.03821420229663209
+      ]
+    },
+    {
+      "reference": "placebo",
+      "candidate": "upload",
+      "matches": 196,
+      "mean_match_nll_gain": 0.00991324560437552,
+      "ci95": [
+        0.005162457240922378,
+        0.01518180565327124
+      ],
+      "three_comparison_adjusted_ci": [
+        0.004164910086172476,
+        0.016754377187038903
+      ]
+    }
+  ],
+  "models": {
+    "original_scaffold": {
+      "actions": 88097,
+      "nll": 0.6930988430976868,
+      "brier": 0.3263661563396454,
+      "accuracy": 0.8138529121309466,
+      "sizing_mae": 6.944661617279053,
+      "ece": 0.10709042532360889
+    },
+    "none": {
+      "actions": 88097,
+      "nll": 0.2794906497001648,
+      "brier": 0.16744324564933777,
+      "accuracy": 0.8809948125361817,
+      "sizing_mae": 7.059479236602783,
+      "ece": 0.0043382422011227755
+    },
+    "upload": {
+      "actions": 88097,
+      "nll": 0.24364018440246582,
+      "brier": 0.1458062082529068,
+      "accuracy": 0.8967274708559883,
+      "sizing_mae": 5.846457481384277,
+      "ece": 0.0016908790478837772
+    },
+    "placebo": {
+      "actions": 88097,
+      "nll": 0.2568560838699341,
+      "brier": 0.15345853567123413,
+      "accuracy": 0.8911427176861868,
+      "sizing_mae": 6.370778560638428,
+      "ece": 0.005537518216463333
+    },
+    "change": {
+      "actions": 88097,
+      "nll": 0.2917652726173401,
+      "brier": 0.1593136340379715,
+      "accuracy": 0.8872265797927285,
+      "sizing_mae": 6.456350803375244,
+      "ece": 0.0034888823418002587
+    }
+  }
+}

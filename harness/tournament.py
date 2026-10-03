@@ -57,6 +57,14 @@ def standings(placement):
     return [len(points) + 1 - p for p in points]
 
 
+def field_compute_plan(args, specs):
+    """Do not label an unmodified CPU-only field as CUDA-accelerated."""
+    for spec in specs:
+        harness.make_bot(spec, 'tournament-preflight')
+    compatible = any(harness.supports_gpu(module) for module, _ in harness._loaded.values())
+    return harness.compute_plan(args, compatible=compatible)
+
+
 def run(args):
     field = [spec for spec, _ in harness.read_pool(Path(args.pool), [])]
     # The validation house bot is not a team entrant.
@@ -73,7 +81,7 @@ def run(args):
             events.append(dict(repeat=repeat, candidate=ci, specs=[candidate]+field,
                                order=order[:], tie_order=tie_order,
                                placement=[0.]*count, game_points=[0.]*count, rounds=[]))
-    plan = harness.compute_plan(args)
+    plan = field_compute_plan(args, list(args.bots) + field)
     pool, plan = harness.worker_pool(plan, args)
     output_games = []
     started = time.perf_counter()

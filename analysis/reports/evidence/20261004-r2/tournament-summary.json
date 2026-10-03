@@ -1,0 +1,53 @@
+{
+  "args": {
+    "bots": [
+      "snapshots/main_6cfdf0f_r2"
+    ],
+    "pool": "analysis/results/refresh-20261004-r2/latest-field-pool.txt",
+    "repeats": 10,
+    "repeat_start": 0,
+    "rounds": 4,
+    "deals": 100,
+    "seed": "latest-main-r2-20261004-tournament",
+    "device": "auto",
+    "workers": 12,
+    "gpu_workers": 12,
+    "gpu_devices": "0,1,2,3",
+    "gpu_batch_size": 128,
+    "output": "analysis/results/refresh-20261004-r2/tournament.json"
+  },
+  "compute": {
+    "requested": "auto",
+    "device": "cpu",
+    "workers": 12,
+    "devices": [],
+    "fallback_reason": "no bot in this field exposes a compatible batched equity engine"
+  },
+  "elapsed_s": 69.42509350704495,
+  "commit": "611330e+dirty",
+  "summary": [
+    {
+      "bot": "snapshots/main_6cfdf0f_r2",
+      "hash": "26121bc2",
+      "mean_rank": [
+        10.3,
+        4.9931937675199425
+      ],
+      "placement": [
+        16.0,
+        1.4898292221295402
+      ],
+      "strictly_top_three": 2,
+      "repeats": 10
+    }
+  ],
+  "bad_games": [],
+  "assumptions": [
+    "All observed external display identities are entrants, excluding house:call.",
+    "Balanced tables nearest five; initial seeded order breaks exact regrouping ties.",
+    "Final ranks use cumulative placement only. Prize ties need playoffs and remain unresolved.",
+    "Pairing by event seed persists; regrouping can produce different opponents after round one."
+  ],
+  "games": 2640,
+  "events": 10
+}

@@ -1,0 +1,257 @@
+{
+  "purpose": "Descriptive fidelity on newest-interval observed compositions, with fresh duplicate decks; not original-deck replay, held-out model validation or proof of a source version.",
+  "units": {
+    "mbb": "bb/100 after multiplying harness mbb/hand by 0.1",
+    "game_pts": "per game",
+    "round_pts": "per duplicate set"
+  },
+  "inference": "Paired complete duplicate tables; seed blocks retained. Intervals exclude opponent model error. Tuning results cannot confirm selected performance.",
+  "comparisons": 1,
+  "summary": [
+    {
+      "bot": "snapshots/main_6cfdf0f_r2",
+      "hash": "26121bc2",
+      "tables": 44,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            9.754586038961039,
+            13.90390765030728
+          ],
+          "family_adjusted_mean_ci": [
+            9.754586038961039,
+            13.903652162741425
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.349215367965368,
+            0.22271558622734877
+          ],
+          "family_adjusted_mean_ci": [
+            3.349215367965368,
+            0.22271149377618796
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.3068181818181817,
+            0.4417485905136927
+          ],
+          "family_adjusted_mean_ci": [
+            3.3068181818181817,
+            0.4417404732796784
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "behavior": {
+        "hands": 24200,
+        "fold_rate": 0.8499586776859505,
+        "vpip": 0.19979338842975206,
+        "pfr": 0.13818181818181818
+      }
+    },
+    {
+      "bot": "sparring/competitors/from_data/halliday.py",
+      "hash": "ec38a94a",
+      "tables": 44,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            -4.099323593073593,
+            15.815829673298358
+          ],
+          "family_adjusted_mean_ci": [
+            -4.099323593073593,
+            15.815539053716664
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            -13.85390963203463,
+            17.617017351328645
+          ],
+          "family_adjusted_mean_ci": [
+            -13.85390963203463,
+            17.616693634500688
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.1971049783549783,
+            0.29129620981413956
+          ],
+          "family_adjusted_mean_ci": [
+            3.1971049783549783,
+            0.29129085717792674
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            -0.15211038961038958,
+            0.22129915947486695
+          ],
+          "family_adjusted_mean_ci": [
+            -0.15211038961038958,
+            0.22129509305088008
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.375,
+            0.5927847082705558
+          ],
+          "family_adjusted_mean_ci": [
+            3.375,
+            0.5927738157124346
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            0.06818181818181818,
+            0.6408974853881543
+          ],
+          "family_adjusted_mean_ci": [
+            0.06818181818181818,
+            0.6408857087464631
+          ]
+        }
+      },
+      "behavior": {
+        "hands": 24200,
+        "fold_rate": 0.8380165289256198,
+        "vpip": 0.21057851239669423,
+        "pfr": 0.14640495867768594
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "file": "/mnt/ssd/halliday2/harness/results/20261004-070311.json",
+      "sha256": "c841f528102541e3f35acbbcc2cc7adc08047b34689e41cda4b4c672a408ec30",
+      "seed": "latest-main-r2-20261004-matched",
+      "args": {
+        "cmd": "run",
+        "bots": [
+          "snapshots/main_6cfdf0f_r2",
+          "sparring/competitors/from_data/halliday.py"
+        ],
+        "tables": null,
+        "seed": "latest-main-r2-20261004-matched",
+        "pool": "analysis/results/refresh-20261004-r2/latest-field-pool.txt",
+        "add": [],
+        "sizes": "4,5,5,6",
+        "tables_json": "analysis/results/refresh-20261004-r2/latest-matched-tables.json",
+        "deals": 100,
+        "time_ms": 30000,
+        "increment_ms": 100,
+        "workers": 12,
+        "device": "auto",
+        "gpu_devices": "0,1,2,3",
+        "gpu_workers": 12,
+        "gpu_batch_size": 128,
+        "league": 3,
+        "no_league": true,
+        "max_tables": 1600,
+        "no_extend": true,
+        "max_bank": 50,
+        "label": "Exact main and newest Halliday replica on all-seats-latest observed lineups"
+      },
+      "tables": 44,
+      "games": 484,
+      "summary": [
+        {
+          "bot": "snapshots/main_6cfdf0f_r2",
+          "hash": "26121bc2",
+          "mbb": [
+            97.54586038961038,
+            139.0390765030728
+          ],
+          "game_pts": [
+            3.349215367965368,
+            0.22271558622734877
+          ],
+          "round_pts": [
+            3.3068181818181817,
+            0.4417485905136927
+          ],
+          "won_pct": 18.181818181818183,
+          "bad_games": 0,
+          "max_ms": 52.49,
+          "bank_pct": 3.703
+        },
+        {
+          "bot": "sparring/competitors/from_data/halliday.py",
+          "hash": "ec38a94a",
+          "mbb": [
+            -40.99323593073593,
+            158.15829673298362
+          ],
+          "game_pts": [
+            3.1971049783549783,
+            0.29129620981413956
+          ],
+          "round_pts": [
+            3.375,
+            0.5927847082705558
+          ],
+          "won_pct": 22.727272727272727,
+          "bad_games": 0,
+          "max_ms": 8.48,
+          "bank_pct": 0.10675000000000001,
+          "vs_baseline": {
+            "d_mbb": [
+              -138.53909632034632,
+              176.17017351328647
+            ],
+            "d_round_pts": [
+              0.06818181818181818,
+              0.6408974853881543
+            ],
+            "call": "inconclusive"
+          }
+        }
+      ],
+      "compute": {
+        "requested": "auto",
+        "device": "cpu",
+        "workers": 12,
+        "devices": [],
+        "fallback_reason": "no bot in this field exposes a compatible batched equity engine",
+        "gpu_usage": {}
+      },
+      "failures": 0,
+      "player_verdicts": 2784
+    }
+  ]
+}

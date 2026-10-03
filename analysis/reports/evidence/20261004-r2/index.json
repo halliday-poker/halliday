@@ -1,0 +1,121 @@
+{
+  "snapshot-manifest.json": {
+    "source": "analysis/results/refresh-20261004-r2/snapshot-manifest.json",
+    "source_sha256": "0828692f3505a9344b45a3910f19f868bd9206775da76b916681f0c04d8c2c64",
+    "omitted": [],
+    "exported_sha256": "0828692f3505a9344b45a3910f19f868bd9206775da76b916681f0c04d8c2c64"
+  },
+  "baseline-manifest.json": {
+    "source": "analysis/results/refresh-20261004-r2/baseline-manifest.json",
+    "source_sha256": "a7dc8469f16a852ffe3a368f28043085b5fbbcdd0890580b69eaa88ebd868d9a",
+    "omitted": [],
+    "exported_sha256": "a7dc8469f16a852ffe3a368f28043085b5fbbcdd0890580b69eaa88ebd868d9a"
+  },
+  "latest-selection.json": {
+    "source": "analysis/results/refresh-20261004-r2/latest-selection.json",
+    "source_sha256": "86066271a5f7b83e77247aa6a83a3b9b13c427728c21fa0edb19909b76b702f6",
+    "omitted": [],
+    "exported_sha256": "86066271a5f7b83e77247aa6a83a3b9b13c427728c21fa0edb19909b76b702f6"
+  },
+  "latest-predictive-comparison.json": {
+    "source": "analysis/results/refresh-20261004-r2/latest-predictive-comparison.json",
+    "source_sha256": "1028b2057a6c1b971c285194f6850dd0341ebc7db698ba490b1251a6c7f360b1",
+    "omitted": [
+      "per-match/bot predictive metrics and calibration bins"
+    ],
+    "exported_sha256": "665fb7aa2be93f7ec95096af8fab64eefd9cc869c85612a9081a7cd4742ec83e"
+  },
+  "behavior-comparison.json": {
+    "source": "analysis/results/refresh-20261004-r2/behavior-comparison.json",
+    "source_sha256": "f0403c720f5aec82d1ed0d68b6267978f2f3ee31e2587ff16705b09444cda81e",
+    "omitted": [],
+    "exported_sha256": "cc36f5387c61381e65fb1cf8a85699d3b53066fa6d31366b2199fb19291bb691"
+  },
+  "benchmark-plan.json": {
+    "source": "analysis/results/refresh-20261004-r2/benchmark-plan.json",
+    "source_sha256": "e8fa36302bd7b8c8da030addaa3a075175f37eb61f7a1a12de05bede5c3b6ec1",
+    "omitted": [],
+    "exported_sha256": "e8fa36302bd7b8c8da030addaa3a075175f37eb61f7a1a12de05bede5c3b6ec1"
+  },
+  "field-summary.json": {
+    "source": "analysis/results/refresh-20261004-r2/field-summary.json",
+    "source_sha256": "f173b67720d5ad1c22c3bf0c60f99d9d7714fdbdf4f8faf63b6ecd51f83a34f8",
+    "omitted": [
+      "table_metrics"
+    ],
+    "exported_sha256": "445267504c9953e2a19a579a8ca6197f39c5ffd4d0fb2b55245edfd7fcd5c06e"
+  },
+  "fidelity-plan.json": {
+    "source": "analysis/results/refresh-20261004-r2/fidelity-plan.json",
+    "source_sha256": "97f25b256f7f58ee1f76d4ea4dfe51370c2ed55fef13db8664b655a9b620d40f",
+    "omitted": [],
+    "exported_sha256": "97f25b256f7f58ee1f76d4ea4dfe51370c2ed55fef13db8664b655a9b620d40f"
+  },
+  "fidelity-summary.json": {
+    "source": "analysis/results/refresh-20261004-r2/fidelity-summary.json",
+    "source_sha256": "2d3aa65d5a916f8eb02a5ea00f519973d360df838ee7c822f185aa57f79659f9",
+    "omitted": [
+      "table_metrics"
+    ],
+    "exported_sha256": "234b874f39c9c8ba950156baf5be72bc2bda163683c590a4856312d7d7df302a"
+  },
+  "tournament-verification.json": {
+    "source": "analysis/results/refresh-20261004-r2/tournament-verification.json",
+    "source_sha256": "00442426b707fa5c7730b4e1e548083799f62531685e2743bfdd3f6ad3075dbe",
+    "omitted": [],
+    "exported_sha256": "00442426b707fa5c7730b4e1e548083799f62531685e2743bfdd3f6ad3075dbe"
+  },
+  "main-resource-check.json": {
+    "source": "analysis/results/refresh-20261004-r2/main-resource-check.json",
+    "source_sha256": "86d19462c1e3f5a79835c97df1c7cf5b96c358c5993458c79cf887063a450677",
+    "omitted": [],
+    "exported_sha256": "86d19462c1e3f5a79835c97df1c7cf5b96c358c5993458c79cf887063a450677"
+  },
+  "halliday-summary.json": {
+    "source": "analysis/results/halliday-performance-20261004-r2/summary.json",
+    "source_sha256": "5432b795866c7db510133c01d03c3a1b97b8f735937323bf190b6ce2b6561b64",
+    "omitted": [],
+    "exported_sha256": "f5dc65a6c459bc1a8fd491dc9c2f1b03063b3dfeda553cabf11dbc1fc36f6bb0"
+  },
+  "halliday-verification.json": {
+    "source": "analysis/results/halliday-performance-20261004-r2/verification.json",
+    "source_sha256": "83393a319fe2c3dc7862aae1a86af632f12cd539f0cf04c3b036753713b17685",
+    "omitted": [],
+    "exported_sha256": "1de74006c121326a8c4b401015c9adc3dc21175c10f593caf604c9170bfb53f5"
+  },
+  "halliday-gpu-run.json": {
+    "source": "analysis/results/halliday-performance-20261004-r2/compute-run.json",
+    "source_sha256": "3cddc867656b95780e7d22d77996e11e4ed61ece775ecbc0f26b09c652df5f64",
+    "omitted": [],
+    "exported_sha256": "88f601e650fbeab188bb87e929f18db7f7ef98733e42dabd0ddd8f67e9f58e50"
+  },
+  "tournament-summary.json": {
+    "source": "analysis/results/refresh-20261004-r2/tournament.json",
+    "source_sha256": "cb2aa157c049f9b6611bada0bef9410d8e179388727bb66c29e26136575d3823",
+    "exported_sha256": "d1e67acec4d064cc2c92aea841b1cddb2887c9c541085c2cdaddbe9edd91e6d1",
+    "omitted": [
+      "games",
+      "events"
+    ]
+  },
+  "tests-cuda.log": {
+    "source": "analysis/results/refresh-20261004-r2/tests-cuda.log",
+    "exported_sha256": "40c5a13a3be30622c196639471803ee7693e270814e621873ec3335342312260"
+  },
+  "latest-field-pool.txt": {
+    "source": "analysis/results/refresh-20261004-r2/latest-field-pool.txt",
+    "exported_sha256": "3f264d93227d327c0088517349bbf76cc4c9efb0efbfec7384cfdaca8b4cda38"
+  },
+  "latest-halliday-matches.json": {
+    "source": "analysis/results/refresh-20261004-r2/latest-halliday-matches.json",
+    "exported_sha256": "16971f68dab54e765827743834c30ee4341ad523b303d6ff00084b8d36873d95"
+  },
+  "strict-latest-halliday-matches.json": {
+    "source": "analysis/results/refresh-20261004-r2/strict-latest-halliday-matches.json",
+    "exported_sha256": "635f6711a5cd9601012fb72266a289a29d87b720988667cd4635e530f80607aa"
+  },
+  "latest-matched-tables.json": {
+    "source": "analysis/results/refresh-20261004-r2/latest-matched-tables.json",
+    "exported_sha256": "a484dbf4417b2ed66d6bb6fae379403ceae0ed193f5a37cd6942eef69a95a788"
+  }
+}

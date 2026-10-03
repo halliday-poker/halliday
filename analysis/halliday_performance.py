@@ -216,11 +216,18 @@ def reconstruct(events, meta):
     return rows, hand
 
 
-def extract(snapshot, directory):
+def extract(snapshot, directory, match_ids=None):
     directory.mkdir(parents=True, exist_ok=True)
     metadata_bytes = (snapshot / 'matches.json').read_bytes()
     state_bytes = (snapshot / 'state.json').read_bytes()
     metadata = json.loads(metadata_bytes)
+    input_metadata_sha256 = sha256(metadata_bytes).hexdigest()
+    selected = None if match_ids is None else set(match_ids)
+    if selected is not None:
+        eligible = {m['id'] for m in metadata if TARGET in m['names']}
+        if not selected or not selected <= eligible:
+            raise ValueError('Match selection must contain known Halliday matches')
+        metadata = [m for m in metadata if m['id'] in selected]
     target = {m['id'] for m in metadata if TARGET in m['names']}
     metadata_ids = {m['id'] for m in metadata}
     source = snapshot / 'actions.jsonl'
@@ -236,7 +243,7 @@ def extract(snapshot, directory):
             rows += 1
             mid = event['match']
             all_ids.add(mid)
-            if TARGET in event.get('holes', {}):
+            if selected is None and TARGET in event.get('holes', {}):
                 target.add(mid)
             if mid in target:
                 output.write(json.dumps(event, separators=(',', ':')) + '\n')
@@ -247,13 +254,17 @@ def extract(snapshot, directory):
     assert (before.st_size, before.st_mtime_ns) == (after.st_size, after.st_mtime_ns), 'source changed during extraction'
     assert metadata_bytes == (snapshot / 'matches.json').read_bytes(), 'metadata changed during extraction'
     assert state_bytes == (snapshot / 'state.json').read_bytes(), 'state changed during extraction'
+    copied_metadata = metadata_bytes if selected is None else (json.dumps(metadata, indent=2)+'\n').encode()
     audit = dict(source=str(source), sha256=digest.hexdigest(), size=before.st_size, mtime_ns=before.st_mtime_ns,
                  rows=rows, all_matches=len(all_ids), metadata_target_matches=sum(TARGET in m['names'] for m in metadata),
                  target_matches=len(target & all_ids), missing_target_metadata=sorted((target & all_ids)-metadata_ids),
-                 events=dict(kinds), examples=examples, matches_sha256=sha256(metadata_bytes).hexdigest(),
-                 state_sha256=sha256(state_bytes).hexdigest())
+                 events=dict(kinds), examples=examples, matches_sha256=sha256(copied_metadata).hexdigest(),
+                 input_matches_sha256=input_metadata_sha256,
+                 state_sha256=sha256(state_bytes).hexdigest(),
+                 selection='all observed Halliday matches' if selected is None else 'explicit match IDs',
+                 selected_match_ids=None if selected is None else sorted(selected))
     (directory / 'extraction.json').write_text(json.dumps(audit, indent=2))
-    (directory / 'matches-snapshot.json').write_bytes(metadata_bytes)
+    (directory / 'matches-snapshot.json').write_bytes(copied_metadata)
     (directory / 'state-snapshot.json').write_bytes(state_bytes)
 
 
@@ -575,9 +586,11 @@ if __name__ == '__main__':
     parser.add_argument('--directory', type=Path, default=ROOT / 'analysis/results/halliday-performance-20261004')
     parser.add_argument('--devices', default='0,1,2,3')
     parser.add_argument('--snapshot', type=Path, default=ROOT / 'analysis/results/input-snapshot')
+    parser.add_argument('--match-ids', type=Path, help='JSON list of Halliday matches, e.g. its newest observed segment')
     args = parser.parse_args()
     if args.step == 'extract':
-        extract(args.snapshot, args.directory)
+        extract(args.snapshot, args.directory,
+                json.loads(args.match_ids.read_text()) if args.match_ids else None)
     elif args.step == 'prepare':
         prepare(args.directory)
     else:

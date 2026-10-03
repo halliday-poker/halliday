@@ -1,5 +1,31 @@
 # Offline analysis
 
+## Current rerun: newest intervals and exact main
+
+[Newest-segment analysis](reports/latest-analysis-20261004-r2.md) uses the
+completed new upload (actions SHA-256
+`5e375a6e55ccec731fbb047758cf47192aeb2c3d89821a14290aa771029a91c1`).
+The baseline is the exact `bot/` tree from main `6cfdf0f`, preserved as
+`snapshots/main_6cfdf0f_r2`, hash `26121bc2`. It contains no analysis-branch
+engine hook. The strict field has 65 external identities with trusted latest
+ladder intervals; its pool is `sparring/competitors/from_data/latest-pool.txt`.
+
+The primary [replay audit](reports/halliday-performance-20261004-r2.md) selects
+44 games where Halliday and every opponent are in their newest observed
+intervals. It reports +275 chips, 82.30% hands folded, one probable bad terminal
+call and three probable missed calls. These are model-dependent review flags.
+Neither upload timing nor display names identify the deployed Git source.
+
+[Complete reproduction commands](reports/reproduce-latest-20261004-r2.md)
+cover freezing input, fitting, explicit match selection, four-GPU auditing,
+exact-main field/tournament/fidelity runs and verification. The exact main
+engine currently needs CPU simulation; model fitting and replay auditing use
+four parallel V100s. [Evidence](reports/evidence/20261004-r2/index.json) records
+the actual devices, source fingerprints and selection. The general `pool.txt`
+also includes unknown-time and validation identities and is not this strict pool.
+
+## Earlier study
+
 - [Halliday performance and decision audit](reports/halliday-performance-20261004.md)
   ([HTML](reports/halliday-performance-20261004.html)): fold rates, model-supported
   blunders, every losing game, runout effects and concrete hand histories.
@@ -38,7 +64,7 @@ bundle. `trace_steals.py` records the additional-open hand diagnostic,
 `verify_scalar_features.py` checks the optimized inference features against
 the unchanged batch calculation on every replay decision.
 
-## Reproduce the replay audit
+## Reproduce the earlier replay audit
 
 Use Python 3.12 with NumPy and the vendored/installed macpoker SDK. CUDA work
 requires an NVIDIA driver and nvcc as described in the harness documentation.
@@ -46,7 +72,7 @@ Freeze `actions.jsonl`, `matches.json` and `state.json` together before starting
 
 ```sh
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
-python -B analysis/halliday_performance.py extract --snapshot analysis/results/input-snapshot
+python -B analysis/halliday_performance.py extract --snapshot analysis/results/refresh-20261004/source
 python -B analysis/halliday_performance.py prepare
 python -B analysis/halliday_performance.py compute --devices 0,1,2,3
 python -B analysis/halliday_report.py

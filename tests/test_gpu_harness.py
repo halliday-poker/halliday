@@ -33,6 +33,15 @@ def options(**changes):
 
 
 class WorkerSelectionTests(unittest.TestCase):
+    def test_tournament_without_batch_hook_uses_cpu_without_probing_cuda(self):
+        from harness import tournament
+        legacy = Namespace(estimate_equity=lambda hole, board, ranges: None)
+        with patch.object(harness, 'make_bot'), patch.object(harness, '_loaded', {'legacy': (legacy, object)}), \
+                patch.object(harness, 'gpu_module', side_effect=AssertionError('CUDA touched')):
+            plan = tournament.field_compute_plan(options(), ['legacy'])
+        self.assertEqual(plan['device'], 'cpu')
+        self.assertIn('compatible', plan['fallback_reason'])
+
     def test_cpu_never_imports_or_probes_cuda(self):
         with patch.object(harness, "gpu_module", side_effect=AssertionError("CUDA touched")):
             self.assertEqual(harness.compute_plan(options(device="cpu"))["device"], "cpu")

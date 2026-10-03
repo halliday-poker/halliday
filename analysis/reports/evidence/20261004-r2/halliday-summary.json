@@ -1,0 +1,425 @@
+{
+  "matches": 44,
+  "hands": 4400,
+  "actions": 5687,
+  "chips": 275,
+  "losing_matches": 22,
+  "winning_matches": 22,
+  "match_mean_ci": [
+    6.25,
+    62.925592693722294
+  ],
+  "folds": 3621,
+  "facing_decisions": 4876,
+  "streets": {
+    "preflop": {
+      "actions": 4420,
+      "faced_bet": 4410,
+      "fold": 3430,
+      "raise": 673,
+      "call": 308,
+      "check": 9
+    },
+    "flop": {
+      "actions": 685,
+      "faced_bet": 268,
+      "call": 149,
+      "fold": 114,
+      "check": 207,
+      "raise": 215
+    },
+    "turn": {
+      "actions": 370,
+      "faced_bet": 125,
+      "raise": 150,
+      "check": 105,
+      "fold": 46,
+      "call": 69
+    },
+    "river": {
+      "actions": 212,
+      "faced_bet": 73,
+      "check": 74,
+      "call": 40,
+      "raise": 67,
+      "fold": 31
+    }
+  },
+  "classifications": {
+    "fold_not_flagged": 3613,
+    "raise_not_flagged": 1076,
+    "call_not_flagged": 539,
+    "check_not_flagged": 395,
+    "hindsight_losing_call_only": 26,
+    "probable_missed_terminal_call": 3,
+    "hindsight_missed_call_only": 5,
+    "failed_air_bet": 15,
+    "failed_semibluff": 14,
+    "probable_bad_terminal_call": 1
+  },
+  "fold_tags": {
+    "positive_hidden_card_checkdown_ev": 1275,
+    "would_share_recorded_final_board_against_then_live_hands": 104,
+    "hindsight_profitable_terminal_call": 6
+  },
+  "terminal_folds": 33,
+  "terminal_calls": 45,
+  "terminal_folds_by_street": {
+    "river": 25,
+    "turn": 4,
+    "preflop": 4
+  },
+  "public_scored": 388,
+  "losses_in_negative_matches": {
+    "non_losing_hand": {
+      "hands": 1430,
+      "chips": 3301
+    },
+    "blind_only_fold": {
+      "hands": 589,
+      "chips": -867
+    },
+    "postflop_invest_then_fold": {
+      "hands": 93,
+      "chips": -1152
+    },
+    "preflop_invest_then_fold": {
+      "hands": 32,
+      "chips": -174
+    },
+    "other_losing_allin": {
+      "hands": 6,
+      "chips": -1200
+    },
+    "other_showdown_loss": {
+      "hands": 30,
+      "chips": -2528
+    },
+    "failed_semibluff_hand": {
+      "hands": 11,
+      "chips": -392
+    },
+    "failed_air_bet_hand": {
+      "hands": 9,
+      "chips": -444
+    }
+  },
+  "negative_match_net": -3456,
+  "allin_runouts": [
+    {
+      "expected_chips": -149.25,
+      "realized_chips": -200,
+      "luck": -50.75,
+      "equity": 0.125,
+      "board": [
+        "8d",
+        "Td",
+        "Kd"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -34.724609375,
+      "realized_chips": 202,
+      "luck": 236.724609375,
+      "equity": 0.4111328125,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 3.0871001456352687
+    },
+    {
+      "expected_chips": 203.0,
+      "realized_chips": 203,
+      "luck": 0.0,
+      "equity": 1.0,
+      "board": [
+        "8h",
+        "Ks",
+        "Ad",
+        "3d"
+      ],
+      "samples": 34,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 184.0,
+      "realized_chips": 208,
+      "luck": 24.0,
+      "equity": 0.9411764705882353,
+      "board": [
+        "Kd",
+        "7c",
+        "2s",
+        "7s"
+      ],
+      "samples": 34,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -164.23529411764707,
+      "realized_chips": -200,
+      "luck": -35.76470588235293,
+      "equity": 0.058823529411764705,
+      "board": [
+        "5s",
+        "4s",
+        "2s",
+        "Tc"
+      ],
+      "samples": 34,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 157.3529411764706,
+      "realized_chips": 205,
+      "luck": 47.64705882352939,
+      "equity": 0.8823529411764706,
+      "board": [
+        "Jd",
+        "Qc",
+        "8s",
+        "Js"
+      ],
+      "samples": 34,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -152.35294117647058,
+      "realized_chips": -200,
+      "luck": -47.64705882352942,
+      "equity": 0.11764705882352941,
+      "board": [
+        "Qh",
+        "Ts",
+        "7d",
+        "Jc"
+      ],
+      "samples": 34,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 149.2479248046875,
+      "realized_chips": 237,
+      "luck": 87.7520751953125,
+      "equity": 0.7991943359375,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.7237097733437996
+    },
+    {
+      "expected_chips": 203.0,
+      "realized_chips": 203,
+      "luck": 0.0,
+      "equity": 1.0,
+      "board": [
+        "Tc",
+        "6c",
+        "Jc",
+        "9h"
+      ],
+      "samples": 36,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -157.25075075075074,
+      "realized_chips": -200,
+      "luck": -42.74924924924926,
+      "equity": 0.1066066066066066,
+      "board": [
+        "3s",
+        "5h",
+        "Th"
+      ],
+      "samples": 666,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -111.64697265625,
+      "realized_chips": -200,
+      "luck": -88.35302734375,
+      "equity": 0.21923828125,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.592487415137725
+    },
+    {
+      "expected_chips": -177.66666666666666,
+      "realized_chips": -200,
+      "luck": -22.333333333333343,
+      "equity": 0.05555555555555555,
+      "board": [
+        "9d",
+        "8s",
+        "7h",
+        "7s"
+      ],
+      "samples": 36,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 133.33333333333331,
+      "realized_chips": 200,
+      "luck": 66.66666666666669,
+      "equity": 0.8333333333333334,
+      "board": [
+        "5c",
+        "9d",
+        "2s",
+        "Th"
+      ],
+      "samples": 36,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 156.72972972972974,
+      "realized_chips": 202,
+      "luck": 45.27027027027026,
+      "equity": 0.8873873873873874,
+      "board": [
+        "Js",
+        "3d",
+        "Qc"
+      ],
+      "samples": 666,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 10.1431884765625,
+      "realized_chips": 0,
+      "luck": -10.1431884765625,
+      "equity": 0.5240478515625,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 1.1703752300063945
+    },
+    {
+      "expected_chips": 180.0,
+      "realized_chips": 200,
+      "luck": 20.0,
+      "equity": 0.95,
+      "board": [
+        "2s",
+        "Ah",
+        "Td",
+        "Qd"
+      ],
+      "samples": 40,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -61.10526315789474,
+      "realized_chips": -200,
+      "luck": -138.89473684210526,
+      "equity": 0.34210526315789475,
+      "board": [
+        "Tc",
+        "7h",
+        "6c",
+        "3c"
+      ],
+      "samples": 38,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 1.5,
+      "realized_chips": 1,
+      "luck": -0.5,
+      "equity": 0.5,
+      "board": [
+        "3h",
+        "5s",
+        "4s",
+        "7c"
+      ],
+      "samples": 38,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 180.84210526315792,
+      "realized_chips": 202,
+      "luck": 21.15789473684208,
+      "equity": 0.9473684210526315,
+      "board": [
+        "Jc",
+        "2d",
+        "Ah",
+        "9c"
+      ],
+      "samples": 38,
+      "exact": true,
+      "ev_se": 0.0
+    }
+  ],
+  "periods": [
+    {
+      "matches": 11,
+      "hands": 1100,
+      "chips": 442,
+      "from_at": 1791046858818.0,
+      "to_at": 1791052121336.0,
+      "folds": 964,
+      "blunders": 1
+    },
+    {
+      "matches": 11,
+      "hands": 1100,
+      "chips": 389,
+      "from_at": 1791052240701.0,
+      "to_at": 1791053556760.0,
+      "folds": 934,
+      "blunders": 3
+    },
+    {
+      "matches": 11,
+      "hands": 1100,
+      "chips": -259,
+      "from_at": 1791053739681.0,
+      "to_at": 1791055041726.0,
+      "folds": 883,
+      "blunders": 0
+    },
+    {
+      "matches": 11,
+      "hands": 1100,
+      "chips": -297,
+      "from_at": 1791055165059.0,
+      "to_at": 1791056381011.0,
+      "folds": 840,
+      "blunders": 0
+    }
+  ],
+  "latest_20": {
+    "matches": 20,
+    "hands": 2000,
+    "chips": -460,
+    "folds": 1549,
+    "classifications": {
+      "fold_not_flagged": 1549,
+      "raise_not_flagged": 559,
+      "call_not_flagged": 251,
+      "check_not_flagged": 189,
+      "failed_semibluff": 9,
+      "failed_air_bet": 6,
+      "hindsight_losing_call_only": 15
+    }
+  }
+}

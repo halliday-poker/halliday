@@ -1,5 +1,33 @@
 # Fitted competitors
 
+## Current data refresh (October 4, second upload)
+
+`from_data/` now contains 89 observed identities fitted to the new frozen upload.
+The strict newest-field pool is **`from_data/latest-pool.txt`**, with 65 external
+identities having reliably dated ladder observations. It excludes Halliday,
+the house bot, one validation-only identity and 21 identities without trusted
+play timestamps. No included identity has a later successful upload without
+observed ladder evidence. These are newest observed intervals, not verified
+deployment hashes; old aliases cannot always be resolved to teams.
+
+The general `pool.txt` still includes every observed identity except Halliday;
+use `latest-pool.txt` for the requested latest-only comparison. All 89 generated
+profiles remain available for inspection. Historical intervals inform shared
+model training, while only each selected latest interval is instantiated.
+
+The new baseline is an exact copy of main `6cfdf0f`, hash `26121bc2`:
+
+```sh
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv-estimators/bin/python -B harness/eval.py run snapshots/main_6cfdf0f_r2 --no-league --no-extend --pool sparring/competitors/from_data/latest-pool.txt --tables 400 --deals 100 --device auto --workers 12 --seed latest-main-r2-20261004
+```
+
+Auto mode selects CPU for this unmodified engine because it lacks the GPU hook.
+Four V100s run the model fitting and replay-equity audit. See [the current
+report](../../analysis/reports/latest-analysis-20261004-r2.md) and [complete
+reproduction commands](../../analysis/reports/reproduce-latest-20261004-r2.md).
+
+## First October 4 upload (historical)
+
 The October 4 field has **77 observed identities** in `from_data/`, with a
 76-opponent pool excluding Halliday. The latest Halliday replica is available
 separately. Display names are identities in this dataset; possible renames are

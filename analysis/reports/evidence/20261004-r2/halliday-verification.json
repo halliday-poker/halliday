@@ -1,0 +1,36 @@
+{
+  "source_sha256": "5e375a6e55ccec731fbb047758cf47192aeb2c3d89821a14290aa771029a91c1",
+  "actions": 5687,
+  "hands": 4400,
+  "matches": 44,
+  "input_unchanged": true,
+  "accounting_reconciled": true,
+  "public_contexts_rechecked": [
+    "j976hw528r43rx0cq11zwnsgw18fk3c9:2:11",
+    "j976hw528r43rx0cq11zwnsgw18fk3c9:86:14",
+    "j97d5qnmmgqkrg6qvyj5w4whnn8fksc2:70:14",
+    "j970pja4p47jyb2s9tq8gwyt0x8fj3b7:13:9",
+    "j97fhpndam4yyhtea3xr7rmfvn8fk9qs:12:13",
+    "j97fhpndam4yyhtea3xr7rmfvn8fk9qs:45:11",
+    "j975f9x85654fdcpntys7h2d3d8fjfpc:82:11"
+  ],
+  "audit_tests_passed": 7,
+  "devices": [
+    "cuda:0",
+    "cuda:1",
+    "cuda:2",
+    "cuda:3"
+  ],
+  "code_sha256": {
+    "analysis/halliday_performance.py": "088a10b71d5704eb9095b5bffe3de74816a1224a774d7591d0e278194d8935fe",
+    "analysis/halliday_report.py": "6453281001e644ecf6ee1eec8ddcbd9e36ad155ca2b9deecd36700f259561baa",
+    "analysis/render_halliday_report.py": "3e0e5797d1a7a80071072cb2c9340c8b17ebeb65b3870193d5349aa3580855e2",
+    "analysis/verify_halliday_report.py": "caa28e34dde4dc6a1f09abdc698def9bcfbfe0675b90542d12eed87d4727d791",
+    "bot/ranges.py": "d54983af267e67dc164f5cad550726c0c272920ae526e830e96ede5e99a7e18e",
+    "bot/engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "bot/params.py": "917b039c9c1f37292536e417b914de6c04d7fcee9ffe7bbf74a27d1279464713",
+    "harness/gpu_rank.cu": "b88f31baf667f7c2285cd0e845da2249b3a16a4d1cde3ecea5701590288a42c6",
+    "tests/test_halliday_performance.py": "f252322b38930955591f01cf645321c73e27e8e68378bfcbfd6e4367643d17b9"
+  },
+  "description": "7 audit tests passed. All 5,687 action IDs and 4,400 hand IDs are unique, all 44 match totals and exclusive loss buckets reconcile, and prior histories contain no future actions. Both public-range models were reproduced exactly in 7 representative contexts after removing every field outside the explicit public-information allowlist. The source SHA-256 was unchanged after computation. Source-code fingerprints, tested context IDs and test output are retained alongside this report."
+}

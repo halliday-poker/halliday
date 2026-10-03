@@ -1,5 +1,12 @@
 # Offline opponent estimates and behavior replicas
 
+The newest upload is documented in the [latest-segment rerun](../analysis/reports/latest-analysis-20261004-r2.md),
+with [complete reproduction commands](../analysis/reports/reproduce-latest-20261004-r2.md).
+Its 65-opponent pool is `sparring/competitors/from_data/latest-pool.txt`.
+Shared model training uses historical intervals with separate epoch features;
+the simulation field instantiates only newest reliably dated ladder intervals.
+Earlier commands and results below refer to the first October 4 snapshot.
+
 ## October 4 refresh
 
 The V100 analysis was validated with Python 3.12.14, NumPy 2.3.5 and PyTorch
