@@ -80,6 +80,15 @@ stickiness, size`, plus an `adaptive` flag that adjusts to opponents' aggression
   uses a fast made-hand plus draw heuristic, a few ms per decision.
 - Each run's JSON records the drawn styles under `param_styles`.
 
+### Fitted competitors
+
+`sparring/competitors/from_data/pool.txt` contains the latest fitted segments for 66
+external identities; the historical Halliday fit is also available separately.
+See [the competitor documentation](../sparring/competitors/README.md) for
+provenance, uncertainties, regeneration and the field evaluation command.
+File bots may expose `make_seeded_bot(seed)` to receive the harness's per-seat
+seed; otherwise the existing no-argument constructor behavior is unchanged.
+
 ## Reading the output
 
 | Column | Meaning |

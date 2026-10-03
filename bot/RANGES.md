@@ -59,8 +59,8 @@ All live in `DEFAULT_PARAMS`. **Bold** marks the ones most worth tuning first.
 | `range_raise_shift` | 0.15 | Read raises over a bet as stronger than bets |
 | `range_size_slope` | 0.15 | Make bet size matter more (overbets beyond 2x pot read as 2x) |
 | `range_draw_bonus` | 0.20 | Treat draws as stronger hands when betting or calling |
-| **`range_bluff_floor`** | 0.60 | **Assume more bluffs** (prior: weak hands bet this often relative to strong ones; 0.6 makes about half of bets come from below the cutoff, as in the field's c-bets) |
-| `range_bluff_turn_factor` / `_river_factor` | 1.0 / 1.0 | Assume more bluffs on later streets (the ladder suggests ~0.7 / 0.35, but that lost to the sparring pools; see [EV.md](EV.md)) |
+| **`range_bluff_floor`** | 0.30 | **Assume more bluffs** (prior: weak hands bet this often relative to strong ones; was 0.6 from the bugged "56% air" figure; big ladder turn/river bets are 12-15% air) |
+| `range_bluff_turn_factor` / `_river_factor` | 1.0 / 1.0 | Scale the floor further on later streets (lower = read big late bets as stronger; ~0.7 / 0.35 lost to the sparring pools, see [EV.md](EV.md)) |
 | `range_frequency_cuts` / `range_frequency_weight` | off / 10 | Set each player's betting and calling cutoffs from how often it bets and continues (off: tested worse together with the river factors) |
 | `range_showdown_prior` | 6 | Learn from showdowns more slowly (the priors are worth this many shown samples) |
 | `range_showdown_weight_indirect` | 0.5 | Trust shown bets from earlier streets more |
