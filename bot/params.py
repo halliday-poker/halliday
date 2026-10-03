@@ -49,14 +49,10 @@ DEFAULT_PARAMS = MappingProxyType({
     "bluff_min_fold": 0.50,
     "bluff_frequency": 1.0,
     # Turn barrel after a called heads-up flop c-bet (FIELD_EXPLOITS.md).
-    # Off: break-even on the corrected pools, and it loses to sticky callers.
-    "turn_barrel": False,
+    "turn_barrel": True,
     "barrel_pot_fraction": 1.0,
     "barrel_bluffs": True,
     "barrel_weak_pairs": False,
-    # River: big bets from this field are mostly two pair or better, so one
-    # pair below the board's top card folds to a bet of at least this x pot.
-    "river_weak_pair_fold": 0.8,
     "shove_equity": 0.90,
     "shove_spr": 1.0,
     "equity_iters": 768,
@@ -104,7 +100,7 @@ DEFAULT_PARAMS = MappingProxyType({
     "range_draw_bonus": 0.20,
     # Prior: hands below the betting cutoff bet range_bluff_floor times as
     # often as hands above it (0.6 makes ~half of bets come from below the
-    # cutoff, matching the field's ~56% air c-bets). Showdowns update it.
+    # cutoff, close to the field's ~44% air c-bets). Showdowns update it.
     "range_bluff_floor": 0.60,
     # Showdown learning: the priors above are worth range_showdown_prior
     # shown samples. A shown bet whose call ended the hand counts fully;

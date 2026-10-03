@@ -1,7 +1,7 @@
 # Non-adaptive baseline
 
-> The field exploits change the c-bet, c-bet defence, turn, river and
-> all-in rules below and add per-game opponent counters; see
+> The field exploits change the c-bet, c-bet defence, turn and all-in rules
+> below and add per-game opponent counters; see
 > [FIELD_EXPLOITS.md](FIELD_EXPLOITS.md). This file still describes the base.
 
 This branch starts from `feat/odds-calc` at `d8c1a2c`, including the merged
