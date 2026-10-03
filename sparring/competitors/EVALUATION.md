@@ -44,8 +44,10 @@ A fresh four-table, 21-game check after the move completed without failures,
 and the full suite again passed 94 tests with two GPU-only checks skipped.
 
 The earlier profile analysis used all four V100s in parallel. This simulation
-used eight CPU workers: `harness/eval.py`, the equity engine, and the SDK have no
-CUDA execution path. No GPU acceleration was claimed for the tournament run.
+used eight CPU workers; at the time the harness had no CUDA execution path.
+The subsequently added [GPU workers](../../harness/README.md#gpu-workers) have
+separate [validation results](../../harness/GPU_VALIDATION.md). The results above
+remain the original CPU evaluation.
 
 ```sh
 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv-estimators/bin/python -B -u harness/eval.py run bot --no-league --pool sparring/competitors/from_data/pool.txt --tables 400 --deals 100 --sizes 4,5,5,6 --workers 8 --seed competitors-latest-20261003 --label latest-competitor-segments

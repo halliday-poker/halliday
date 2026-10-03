@@ -29,6 +29,7 @@ import csv
 import datetime as dt
 import hashlib
 import importlib.util
+import inspect
 import json
 import math
 import multiprocessing as mp
@@ -41,6 +42,7 @@ import time
 import traceback
 import zipfile
 from collections import defaultdict
+from functools import partial
 from pathlib import Path
 from statistics import NormalDist
 
@@ -70,6 +72,24 @@ from macpoker.transport import BotDied, InProcessTransport, ProtocolError  # noq
 _bot_dirs: set[Path] = set()
 _loaded: dict[str, tuple] = {}
 _load_count = 0
+_gpu_evaluator = None
+_worker_init_error = None
+
+
+def gpu_module():
+    if __package__:
+        from . import gpu_equity
+    else:
+        import gpu_equity
+    return gpu_equity
+
+
+def supports_gpu(module):
+    function = getattr(module, "estimate_equity", None)
+    try:
+        return callable(function) and "_evaluate_batch" in inspect.signature(function).parameters
+    except (TypeError, ValueError):
+        return False
 
 
 def resolve_path(spec: str) -> Path:
@@ -101,6 +121,10 @@ def _load_module(path: Path):
         spec = importlib.util.spec_from_file_location(f"_harness_bot_{_load_count}", path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
+        if _gpu_evaluator is not None and supports_gpu(module):
+            module.estimate_equity = partial(module.estimate_equity,
+                                            _evaluate_batch=_gpu_evaluator.evaluate,
+                                            _batch_size=_gpu_evaluator.batch_size)
     finally:
         sys.path.remove(str(d))
         _evict_bot_modules()
@@ -232,12 +256,102 @@ class TimedTransport(InProcessTransport):
         return action, ms
 
 
-def _worker_init() -> None:
+def _worker_init(device_queue=None, ready_queue=None, batch_size=128) -> None:
     # Bots print freely; keep worker output off the console. Workers import
     # the same bots at once, so leave bytecode caching to the main process.
     sys.stdout = open(os.devnull, "w")
     sys.stderr = open(os.devnull, "w")
     sys.dont_write_bytecode = True
+    if device_queue is not None:
+        global _gpu_evaluator, _worker_init_error
+        try:
+            device = device_queue.get(timeout=5)
+            _gpu_evaluator = gpu_module().CudaEvaluator(device, batch_size)
+            ready_queue.put(_gpu_evaluator.metadata())
+        except Exception as exc:
+            # Report once rather than letting Pool endlessly respawn failures.
+            _worker_init_error = f"{type(exc).__name__}: {exc}"
+            ready_queue.put(dict(error=_worker_init_error))
+
+
+def compute_plan(args, *, gating=False, compatible=True):
+    """Detect optional CUDA support without creating a context in the parent."""
+    mode = args.device
+    if args.workers < 1 or args.gpu_workers is not None and args.gpu_workers < 1:
+        raise ValueError("Worker counts must be positive")
+    if not 1 <= args.gpu_batch_size <= 4096:
+        raise ValueError("GPU batch size must be between 1 and 4096")
+    cpu = dict(requested=mode, device="cpu", workers=args.workers, devices=[])
+    if mode == "cpu":
+        return cpu
+    if gating:
+        if mode == "cuda":
+            raise ValueError("GPU runs cannot validate tournament clocks; use --no-league for GPU exploration or --device cpu for a promotion gate")
+        return dict(cpu, fallback_reason="promotion gates use CPU tournament timings")
+    if not compatible:
+        reason = "no bot in this field exposes a compatible batched equity engine"
+        if mode == "cuda":
+            raise ValueError(reason)
+        return dict(cpu, fallback_reason=reason)
+    try:
+        backend = gpu_module()
+        backend.find_nvcc()
+        devices = backend.Driver().devices()
+        if not devices:
+            raise RuntimeError("no CUDA devices available")
+    except (OSError, RuntimeError, AttributeError) as exc:
+        if mode == "cuda":
+            raise RuntimeError(f"CUDA requested but unavailable: {exc}") from exc
+        return dict(cpu, fallback_reason=str(exc))
+    if args.gpu_devices:
+        selected = [int(d) for d in args.gpu_devices.split(",")]
+        available = {d["index"]: d for d in devices}
+        if len(selected) != len(set(selected)) or any(d not in available for d in selected):
+            raise ValueError("--gpu-devices must list distinct available CUDA indices")
+        devices = [available[d] for d in selected]
+    if args.gpu_workers is not None:
+        if args.gpu_workers > len(devices):
+            raise ValueError("Use at most one GPU worker per selected device")
+        devices = devices[:args.gpu_workers]
+    return dict(requested=mode, device="cuda", workers=len(devices), devices=devices,
+                batch_size=args.gpu_batch_size)
+
+
+def worker_pool(plan, args):
+    """Warm every GPU before play; auto mode can fall back before games start."""
+    if plan["device"] == "cuda":
+        context = mp.get_context("spawn")
+        devices, ready = context.Queue(), context.Queue()
+        for device in plan["devices"]:
+            devices.put(device["index"])
+        pool = None
+        try:
+            pool = context.Pool(plan["workers"], initializer=_worker_init,
+                                initargs=(devices, ready, plan["batch_size"]))
+            started = time.monotonic()
+            info = [ready.get(timeout=max(1, 120 - (time.monotonic() - started)))
+                    for _ in plan["devices"]]
+            errors = [item["error"] for item in info if "error" in item]
+            if errors:
+                raise RuntimeError("; ".join(errors))
+            plan["worker_startup"] = sorted(info, key=lambda d: d["device"])
+            return pool, plan
+        except BaseException as exc:
+            if pool is not None:
+                pool.terminate()
+                pool.join()
+            if not isinstance(exc, Exception):
+                raise
+            if plan["requested"] == "cuda":
+                raise RuntimeError(f"GPU worker initialization failed: {exc}") from exc
+            plan = dict(requested="auto", device="cpu", workers=args.workers,
+                        devices=[], fallback_reason=f"GPU worker initialization failed: {exc}")
+        finally:
+            devices.close()
+            ready.close()
+    if plan["workers"] <= 1:
+        return None, plan
+    return mp.Pool(plan["workers"], initializer=_worker_init), plan
 
 
 def play_game(job: dict) -> dict:
@@ -253,6 +367,9 @@ def play_game(job: dict) -> dict:
 
 def _play_game(job: dict) -> dict:
     """Play game k of one table's duplicate set with one candidate seated."""
+    if _worker_init_error:
+        raise RuntimeError(_worker_init_error)
+    before = _gpu_evaluator.metadata() if _gpu_evaluator else None
     specs = [job["candidate"]] + job["opponents"]
     game_seed = f"{job['seed']}:{job['table']}:{job['game']}"
     random.seed(game_seed)
@@ -272,6 +389,11 @@ def _play_game(job: dict) -> dict:
     )
     t0 = time.perf_counter()
     result = MatchRunner(cfg, transports).run()
+    compute = dict(device="cpu")
+    if before is not None:
+        compute = _gpu_evaluator.metadata()
+        for key in ("batches", "ranked_hands", "gpu_seconds"):
+            compute[key] -= before[key]
     return {
         **{k: job[k] for k in ("cand_idx", "table", "game")},
         "chips": result.chips,
@@ -280,6 +402,7 @@ def _play_game(job: dict) -> dict:
         "think_ms": [round(t.total_ms, 1) for t in transports],
         "errors": [t.error for t in transports],
         "wall_s": round(time.perf_counter() - t0, 3),
+        "compute": compute,
     }
 
 
@@ -416,7 +539,8 @@ def fmt(m: float, ci: float, digits=1) -> str:
     return f"{m:+.{digits}f} +-{ci:.{digits}f}"
 
 
-def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate: int = 0) -> dict:
+def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate: int = 0,
+             plan=None) -> dict:
     """Play every candidate over the same tables, print the report and save it.
     With n_gate > 0, the last candidate is gated against the first n_gate."""
     sizes = [int(s) for s in args.sizes.split(",")]
@@ -431,26 +555,51 @@ def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate
         for k in range(len(opps) + 1)
         for ci, cand in enumerate(candidates)
     ]
+    if plan is None:
+        plan = dict(requested="cpu", device="cpu", workers=args.workers, devices=[])
+    procs, plan = worker_pool(dict(plan), args)
     print(f"{len(candidates)} candidate(s) x {len(tables)} tables -> {len(jobs)} games "
-          f"of {args.deals} hands on {args.workers} workers, seed {seed}")
+          f"of {args.deals} hands on {plan['workers']} {plan['device']} workers, seed {seed}")
+    if plan.get("fallback_reason"):
+        print(f"CPU selection: {plan['fallback_reason']}")
+    if plan["device"] == "cuda":
+        print("CUDA workers: " + ", ".join(d["device"] for d in plan["worker_startup"]))
 
     t0 = time.perf_counter()
     rows = []
-    if args.workers <= 1:
+    if procs is None:
         it = map(play_game, jobs)
     else:
-        procs = mp.Pool(args.workers, initializer=_worker_init)
         it = procs.imap_unordered(play_game, jobs, chunksize=1)
     step = max(1, len(jobs) // 20)
-    for i, row in enumerate(it, 1):
-        rows.append(row)
-        if i % step == 0 or i == len(jobs):
-            el = time.perf_counter() - t0
-            print(f"\r  {i}/{len(jobs)} games  {el:.0f}s elapsed, ~{el / i * (len(jobs) - i):.0f}s left ",
-                  end="", flush=True)
+    try:
+        for i, row in enumerate(it, 1):
+            rows.append(row)
+            if i % step == 0 or i == len(jobs):
+                el = time.perf_counter() - t0
+                print(f"\r  {i}/{len(jobs)} games  {el:.0f}s elapsed, ~{el / i * (len(jobs) - i):.0f}s left ",
+                      end="", flush=True)
+    except BaseException:
+        if procs:
+            procs.terminate()
+        raise
+    finally:
+        if procs:
+            procs.close()
+            procs.join()
     print()
-    if args.workers > 1:
-        procs.close()
+    usage = {}
+    for row in rows:
+        compute = row["compute"]
+        if compute["device"] != "cpu":
+            total = usage.setdefault(compute["device"], dict(games=0, batches=0, ranked_hands=0, gpu_seconds=0.0))
+            total["games"] += 1
+            for key in ("batches", "ranked_hands", "gpu_seconds"):
+                total[key] += compute[key]
+    plan["gpu_usage"] = usage
+    if usage:
+        print("CUDA work: " + ", ".join(f"{device}: {v['ranked_hands']:,} ranked hands / {v['batches']:,} batches"
+                                       for device, v in sorted(usage.items())))
 
     # group into duplicate sets per (candidate, table)
     sets = defaultdict(list)
@@ -514,7 +663,8 @@ def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate
             verdict, why = "INCONCLUSIVE", "not yet separated from every league version"
         print(f"  GATE {verdict}: {why}")
         gate = {"candidate": candidates[x], "hash": me["hash"], "baselines": candidates[:n_gate],
-                "verdict": verdict, "reason": why, "rows": gate_rows, "tables": n_tables, "seed": seed}
+                "verdict": verdict, "reason": why, "rows": gate_rows, "tables": n_tables, "seed": seed,
+                "promotion_eligible": plan["device"] == "cpu"}
     elif len(candidates) > 1:
         print(f"\npaired vs baseline {names[0]} (same tables, same cards):")
         for ci in range(1, len(candidates)):
@@ -562,7 +712,7 @@ def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate
         "args": {k: v for k, v in vars(args).items() if k != "func"},
         "seed": seed, "commit": commit, "tables": tables, "summary": per_cand, "gate": gate,
         "param_styles": {s: param_module().style_for(s.split(":", 1)[1]) for s in params},
-        "games": rows,
+        "games": rows, "compute": plan,
     }))
     log = RESULTS / "log.csv"
     new = not log.exists()
@@ -600,12 +750,15 @@ def cmd_run(args) -> int:
     for spec, _ in pool:
         if spec != "param:random":
             make_bot(spec, "check")  # a typo in the pool should fail here, not in a worker
+    plan = compute_plan(args, gating=gating,
+                        compatible=any(supports_gpu(module) for module, _ in _loaded.values()))
     n_tables = args.tables or (400 if gating else 200)
     base_seed = args.seed or (f"gate-{dt.datetime.now():%m%d%H%M%S}" if gating else "eval")
     seed = base_seed
 
     while True:
-        report = evaluate(candidates, pool, n_tables, seed, args, n_gate=len(league) if gating else 0)
+        report = evaluate(candidates, pool, n_tables, seed, args,
+                          n_gate=len(league) if gating else 0, plan=plan)
         gate = report["gate"]
         if not gate or gate["verdict"] != "INCONCLUSIVE" or args.no_extend \
                 or n_tables * 2 > args.max_tables:
@@ -638,6 +791,8 @@ def cmd_promote(args) -> int:
         problem = f"no gate run found for {args.source} as it is now (hash {h}); run `eval.py run {args.source}`"
     elif evidence[1]["verdict"] != "PASS":
         problem = f"latest gate for hash {h} was {evidence[1]['verdict']} ({evidence[0].name})"
+    elif not evidence[1].get("promotion_eligible", True):
+        problem = "GPU timings cannot qualify a promotion; rerun the gate with --device cpu"
     elif evidence[1]["baselines"] != current:
         problem = "the league changed since that gate run; run it again"
     else:
@@ -725,6 +880,12 @@ def main(argv=None) -> int:
     r.add_argument("--time-ms", type=int, default=30_000, dest="time_ms")
     r.add_argument("--increment-ms", type=int, default=100, dest="increment_ms")
     r.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 1))
+    r.add_argument("--device", choices=("auto", "cpu", "cuda"), default="auto",
+                   help="auto uses available CUDA workers for field/A-B runs; promotion gates stay on CPU")
+    r.add_argument("--gpu-devices", help="comma-separated CUDA indices, e.g. 0,1,2,3; default all available")
+    r.add_argument("--gpu-workers", type=int, help="limit GPU workers; at most one per selected GPU")
+    r.add_argument("--gpu-batch-size", type=int, default=128,
+                   help="equity deals per CUDA batch (1-4096); default 128")
     r.add_argument("--league", type=int, default=3, help="league versions used as gate baselines and opponents")
     r.add_argument("--no-league", action="store_true", help="no league baselines or opponents")
     r.add_argument("--max-tables", type=int, default=1600, help="largest run an inconclusive gate extends to")

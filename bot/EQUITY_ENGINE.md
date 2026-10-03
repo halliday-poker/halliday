@@ -166,6 +166,21 @@ product weights. Larger cases use sampling. An unfinished enumeration is
 never returned as an estimate. With no deadline, the same inputs and seed
 give the same result and sample count. `seed` has no connection to game decks.
 
+### Offline batch hook
+
+The evaluation harness may provide private keyword arguments `_evaluate_batch`
+and `_batch_size` to `estimate_equity`. The callback receives complete seven-card
+hands encoded as integers 0–51 and returns comparison tuples in the same order.
+Sampling, rejection, weights and aggregation remain in this engine, preserving
+fixed-sample seeded results. The default evaluator and public five-argument
+`equity` API remain standard-library-only.
+
+With this hook, the deadline is still checked before every sampling attempt.
+A pending batch is evaluated and aggregated before returning, including when
+the deadline or attempt limit is reached. Thus a timed call may overrun by one
+batch rather than one deal. The harness defaults to 128 deals per batch and uses
+CPU execution for tournament promotion gates. See [GPU workers](../harness/README.md#gpu-workers).
+
 ## Changes from the first odds-calc implementation
 
 The large `MyBot.calculate_odds`, `last_odds` cache, contribution tracking,
