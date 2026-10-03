@@ -1,5 +1,5 @@
-"""SDK glue for the strategy, the equity engine, this game's opponent counters
-and tracked opponent ranges (ranges.py)."""
+"""SDK glue for the strategy, the equity engine, this game's opponent counters,
+tracked opponent ranges (ranges.py) and chip totals (standings.py)."""
 
 from hashlib import blake2b
 import json
@@ -11,12 +11,14 @@ if __package__:
     from .opponents import OpponentTracker, is_shover, profile_of
     from .params import DEFAULT_PARAMS
     from .ranges import RangeTracker
+    from .standings import Standings
     from .strategy import decide
 else:  # SDK loads main.py as a standalone module from the submission folder.
     from engine import EquitySamplingError, EquityTimeout, estimate_equity
     from opponents import OpponentTracker, is_shover, profile_of
     from params import DEFAULT_PARAMS
     from ranges import RangeTracker
+    from standings import Standings
     from strategy import decide
 
 
@@ -27,12 +29,17 @@ class MyBot(Bot):
         self.opponents = OpponentTracker()
         self.ranges = RangeTracker(self.opponents.profiles, DEFAULT_PARAMS)
         self.last_ranged = False
+        self.standings = Standings(DEFAULT_PARAMS)
+
+    def on_match_start(self, info):
+        self.standings.on_match_start(info)
 
     def on_hand_start(self, info):
         self.last_equity = None
         self.last_estimate = None
         self.opponents.on_hand_start(info)
         self.ranges.on_hand_start(info)
+        self.standings.on_hand_start(info)
 
     def on_action(self, event):
         self.opponents.on_action(event)
@@ -44,6 +51,7 @@ class MyBot(Bot):
 
     def on_hand_end(self, info):
         self.ranges.on_hand_end(info)
+        self.standings.on_hand_end(info)
 
     def opponent_ranges(self, state, opponents):
         """Tracked ranges per live opponent (None = random cards), or all None
@@ -104,4 +112,5 @@ class MyBot(Bot):
             except (EquityTimeout, EquitySamplingError):
                 pass
         return decide(state, self.last_equity, self.opponents.profiles, params=p,
-                      ranged=self.last_ranged)
+                      ranged=self.last_ranged,
+                      standings=self.standings if p["endgame_enabled"] else None)

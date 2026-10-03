@@ -201,6 +201,25 @@ DEFAULT_PARAMS = MappingProxyType({
     "range_large_bet_margin": 0.02,
     "range_reraise_margin": 0.03,
     "range_preflop_call_margin": 0.03,
+
+    # --- Finishing-position play (standings.py) ---
+    # A game is scored by finishing position, not chips. In the last
+    # endgame_window hands, calls are priced in expected game points and the
+    # chip-EV action is swapped for check/call, a pot bet or all-in when that
+    # is worth clearly more points (by_points in strategy.py). Totals come
+    # from the public hand_end chip changes. sigma is the per-hand chip swing
+    # (27 measured on the fitted pool), worth sigma_weight hands of this
+    # game's own swings per player.
+    "endgame_enabled": False,
+    "endgame_window": 30,
+    "endgame_sigma": 27.0,
+    "endgame_sigma_weight": 20,
+    # A switch must gain this many expected points, both outright and over
+    # the chip-EV (linear) view of the same outcomes.
+    "endgame_hysteresis": 0.02,
+    # Equity lost when a bet is called, per pot-sized bet (callers are stronger).
+    "endgame_called_haircut": 0.10,
+    "endgame_stack": 200,
 })
 
 

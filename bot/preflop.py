@@ -1,18 +1,21 @@
 """Fixed 169-class preflop tables for the 1/2 blind, 100 bb game.
 
 These are simple starting ranges, not solver-derived charts. No opponent
-identity or game score is used; this game's shove counts (opponents.py)
-only widen calls against a proven shover.
+identity is used; this game's shove counts (opponents.py) only widen calls
+against a proven shover. Near the end of a game, large calls are priced in
+game points from this game's public chip totals (standings.py).
 """
 
 if __package__:
     from .hand_ranks import EQUITY
     from .opponents import is_shover, profile_of, shrunk_rate
     from .params import margin
+    from .standings import points_price
 else:
     from hand_ranks import EQUITY
     from opponents import is_shover, profile_of, shrunk_rate
     from params import margin
+    from standings import points_price
 
 RANKS = "23456789TJQKA"
 
@@ -119,7 +122,7 @@ def pot_odds(state):
     return state.to_call / max(1, state.pot + state.to_call - excess)
 
 
-def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
+def preflop_plan(state, equity, params, opp_profiles=None, ranged=False, standings=None):
     """Return (kind, desired raise-to) for the legal-action wrapper."""
     hand, pos = hand_class(state.hole), position(state)
     raises = [a for a in state.history if a[0] == "preflop" and a[2] == "raise"]
@@ -166,7 +169,8 @@ def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
     if current >= bb * params["large_bet_bb"] or len(raises) >= 3:
         if hand == "AA":
             return "raise", state.max_raise_to
-        price = pot_odds(state)
+        price = points_price(state, standings)
+        price = pot_odds(state) if price is None else price
         if hand in LARGE_CALL and equity is not None and equity >= price + margin(params, "preflop_call_margin", ranged):
             return "call", 0
         # A proven shover's all-in is close to random cards, which is what

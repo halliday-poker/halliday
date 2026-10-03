@@ -32,7 +32,9 @@ The scaffold's pot-odds-only action rule is replaced with a fixed strategy.
   cannot win. A royal-flush board is always checked/called.
 
 The bot targets chips in the documented 200-chip-reset, 1/2-blind game.
-It does not use tournament survival/ICM calculations or cumulative scores.
+It does not use tournament survival/ICM calculations. The optional
+finishing-position play (below) is the only part that uses this game's
+running chip totals.
 Charts and thresholds are heuristics, not an equilibrium solution.
 
 ## What non-adaptive means here
@@ -92,3 +94,40 @@ to 400 tables for a broader gate. They do not establish strength against
 unseen tournament entrants. Before tuning thresholds, reserve new seeds and
 opponent configurations and compare paired table-level intervals. Range-aware
 bet responses and proper side-pot EV are useful future comparisons to this baseline.
+
+
+## Finishing-position play (`standings.py`, off by default)
+
+A game is scored by finishing position at the table, not by chips: final
+chips rank the bots and 1st gets n points down to 1 for last. Game points
+are 1 plus the number of opponents we finish above, so with each total
+drifting by about sigma chips a hand (27 on the fitted pool),
+
+    E[points] = 1 + sum over opponents j of Phi((ours - theirs_j) / sqrt((s_us^2 + s_j^2) * hands_left))
+
+Early in a game this is nearly linear in chips and nothing changes. In the
+last `endgame_window` hands (30):
+
+- **Calls** are priced in points instead of chips:
+  `(U(fold) - U(call, lose)) / (U(call, win) - U(call, lose))`. If points
+  were linear in chips this is exactly pot odds; a safe lead raises the
+  price, being just behind a neighbour lowers it.
+- **Bets, raises and shoves** (`by_points` in `strategy.py`): the chip-EV
+  action is compared with check/call, a pot-sized bet and all-in, using
+  our fold estimate for the opponent and equity cut by
+  `endgame_called_haircut` when called. A different action is chosen only
+  if it gains `endgame_hysteresis` (0.02) points both outright and over a
+  linear (chip-EV) valuation of the same outcomes, so only the bend in the
+  points curve can overturn the chip strategy. Bolder actions than the
+  proposal are considered heads-up only; preflop, only calls and all-ins
+  are affected.
+
+**Information used:** only the per-seat chip changes that the engine sends
+every bot in `hand_end`, mapped to this game's player ids, plus `num_hands`
+from `hello`. No names, identities, earlier games, hidden cards or deck
+information are used, and totals never enter any random seed. Any error
+falls back to the chip-EV action.
+
+Evaluate with the round-points gate: `python harness/eval.py run bot --metric round_pts`
+passes when round points are significantly better and mbb is not
+significantly worse than each league version.

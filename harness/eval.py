@@ -1,6 +1,7 @@
 """Evaluation harness: score bot versions against a pool of opponents.
 
     python harness/eval.py run bot                     # gate: must beat each league version
+    python harness/eval.py run bot --metric round_pts  # gate on round points (mbb not worse)
     python harness/eval.py promote v3 --note "..."     # accept a gated version into the league
     python harness/eval.py run bot/ snapshots/v1/      # plain A/B, first = baseline
     python harness/eval.py smoke bot/
@@ -511,11 +512,16 @@ def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate
         gate_rows = []
         for b in range(n_gate):
             d_mbb = compare([scored[(x, t)]["mbb"] - scored[(b, t)]["mbb"] for t in ts], z)
-            d_rp = mean_ci([scored[(x, t)]["round_pts"] - scored[(b, t)]["round_pts"] for t in ts], z)
+            d_rp = compare([scored[(x, t)]["round_pts"] - scored[(b, t)]["round_pts"] for t in ts], z)
+            # round_pts metric: ship on finishing position, as long as chips
+            # are not significantly worse.
+            call = d_mbb[2]
+            if args.metric == "round_pts" and call != "identical":
+                call = "WORSE" if "WORSE" in (d_mbb[2], d_rp[2]) else d_rp[2]
             print(f"  vs {short_name(candidates[b]):<12} d_mbb {fmt(*d_mbb[:2]):>16}   "
-                  f"d_round_pts {fmt(*d_rp, 2):>12}   {d_mbb[2]}")
-            gate_rows.append({"baseline": candidates[b], "d_mbb": d_mbb[:2], "d_round_pts": d_rp,
-                              "call": d_mbb[2]})
+                  f"d_round_pts {fmt(*d_rp[:2], 2):>12}   {call}")
+            gate_rows.append({"baseline": candidates[b], "d_mbb": d_mbb[:2], "d_round_pts": d_rp[:2],
+                              "call": call})
         calls = [r["call"] for r in gate_rows]
         me = per_cand[x]
         if me["bad_games"]:
@@ -747,6 +753,8 @@ def main(argv=None) -> int:
     r.add_argument("--no-league", action="store_true", help="no league baselines or opponents")
     r.add_argument("--max-tables", type=int, default=1600, help="largest run an inconclusive gate extends to")
     r.add_argument("--no-extend", action="store_true", help="never extend an inconclusive gate")
+    r.add_argument("--metric", choices=("mbb", "round_pts"), default="mbb",
+                   help="gate on chips (mbb), or on round points with mbb not significantly worse")
     r.add_argument("--max-bank", type=float, default=50, help="gate fails above this %% of clock used")
     r.add_argument("--label", default="", help="note stored in the results log")
     r.set_defaults(func=cmd_run)

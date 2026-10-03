@@ -38,6 +38,13 @@ game's showdowns; equity is computed against those ranges. See
 [RANGES.md](RANGES.md) for how it works, the tunable `range_*` parameters, and
 validation results.
 
+## Finishing-position play
+
+Games are scored by finishing position, not chips. Near the end of a game,
+`standings.py` turns this game's public chip totals (from `hand_end`) into
+expected game points and reprices calls, bets and shoves in points. Off by
+default (`endgame_enabled`); see [BASELINE.md](BASELINE.md#finishing-position-play-standingspy-off-by-default).
+
 ## Person A: equity engine
 
 The agreed API is available in `engine.py`:

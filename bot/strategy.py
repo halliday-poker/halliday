@@ -10,11 +10,13 @@ if __package__:
     from .opponents import fold_to_any, fold_to_us, is_station, profile_of, shrunk_rate
     from .params import DEFAULT_PARAMS, margin as pick
     from .preflop import in_position, pot_odds, preflop_plan
+    from .standings import points_price
 else:
     from engine import evaluate_hand
     from opponents import fold_to_any, fold_to_us, is_station, profile_of, shrunk_rate
     from params import DEFAULT_PARAMS, margin as pick
     from preflop import in_position, pot_odds, preflop_plan
+    from standings import points_price
 
 
 def mixed(state, frequency):
@@ -75,7 +77,37 @@ def has_draw(hole, board):
     return len(missing) >= 2
 
 
-def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False):
+def call_margin(state, params, ranged, profile=None):
+    """Equity a postflop call needs above the price, for model error."""
+    opponents = [s for s, folded in enumerate(state.folded) if s != state.seat and not folded]
+    street = {3: "flop", 4: "turn", 5: "river"}[len(state.board)]
+    margin = pick(params, "call_margin_" + street, ranged)
+    margin += max(0, len(opponents) - 1) * params["multiway_call_margin"]
+    # Uniform-card equity overstates strength against a selective bettor.
+    margin += pick(params, "large_bet_margin", ranged) * min(1.0, state.to_call / max(1, state.pot - state.to_call))
+    if sum(a[0] == street and a[2] == "raise" for a in state.history) > 1:
+        margin += pick(params, "reraise_margin", ranged)
+    if params["bluffcatch"] and len(opponents) == 1 and profile:
+        # A heads-up bettor who bets most of the time is bluffing often: call lighter.
+        rate = shrunk_rate(profile.get("bets", 0), profile.get("bet_chances", 0),
+                           params["bluffcatch_prior"], params["bluffcatch_prior_weight"])
+        if rate >= params["bluffcatch_min_rate"]:
+            margin -= params["bluffcatch_margin"]
+    return margin
+
+
+def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False, standings=None):
+    """Chip-EV decision, then reweighed in game points near the end of a game."""
+    action = _decide(state, equity, opp_profiles, params, ranged, standings)
+    if standings is None or equity is None or not isfinite(equity):
+        return action
+    try:
+        return by_points(state, action, equity, opp_profiles, params, ranged, standings)
+    except Exception:  # finishing-position play is an enhancement; never cost the action
+        return action
+
+
+def _decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False, standings=None):
     """Shared B interface. opp_profiles maps player id -> this game's counters.
 
     Equity is fractional showdown share against all live opponents,
@@ -84,7 +116,7 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
     cards, so the range-mode margins apply.
     """
     if not state.board:
-        kind, target = preflop_plan(state, equity, params, opp_profiles, ranged)
+        kind, target = preflop_plan(state, equity, params, opp_profiles, ranged, standings)
         if kind == "raise":
             return legal_raise(state, target)
         if kind == "call":
@@ -167,21 +199,71 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
             return bet(state, params["size_dry"])
         return state.check()
 
-    price = pot_odds(state)
-    street_raises = sum(a[0] == street and a[2] == "raise" for a in state.history)
-    margin = pick(params, "call_margin_" + street, ranged) + extra * params["multiway_call_margin"]
-    # Uniform-card equity overstates strength against a selective bettor.
-    margin += pick(params, "large_bet_margin", ranged) * min(1.0, state.to_call / max(1, state.pot - state.to_call))
-    if street_raises > 1:
-        margin += pick(params, "reraise_margin", ranged)
-    if params["bluffcatch"] and villain is not None and profile:
-        # A heads-up bettor who bets most of the time is bluffing often: call lighter.
-        rate = shrunk_rate(profile.get("bets", 0), profile.get("bet_chances", 0),
-                           params["bluffcatch_prior"], params["bluffcatch_prior_weight"])
-        if rate >= params["bluffcatch_min_rate"]:
-            margin -= params["bluffcatch_margin"]
+    price = points_price(state, standings)
+    price = pot_odds(state) if price is None else price
+    margin = call_margin(state, params, ranged, profile)
     if can_bet and equity >= raise_value:
         if equity >= params["shove_equity"] and state.my_stack <= params["shove_spr"] * (state.pot + state.to_call):
             return legal_raise(state, state.max_raise_to)
         return bet(state, params["raise_pot_fraction"])
     return state.call() if equity >= price + margin else state.fold()
+
+
+def by_points(state, action, equity, opp_profiles, params, ranged, standings):
+    """Near the end of a game, swap the chip-EV action for a safer or bolder
+    one when that is worth clearly more expected game points (standings.py).
+    Call/fold is already priced in points; this weighs check or call against
+    the proposed bet, a pot-sized bet and all-in. Bolder actions than the
+    proposal are only considered heads-up, where the fold estimate is ours."""
+    if not standings.active(state) or action.kind == "fold" or not state.can_raise:
+        return action
+    villain = standings.favourite(state)
+    if villain is None or state.stacks[villain] == 0:
+        return action
+    opponents = [s for s, folded in enumerate(state.folded) if s != state.seat and not folded]
+    heads_up = len(opponents) == 1
+    if state.board:
+        profile = profile_of(state, villain, opp_profiles) if heads_up else None
+        margin = call_margin(state, params, ranged, profile) if state.to_call else 0.0
+    else:
+        margin = pick(params, "preflop_call_margin", ranged) if state.to_call else 0.0
+    shown = max(0.0, equity - margin)
+    fold = standings.fold_chance(state, opp_profiles)
+    passive = state.call() if state.to_call else state.check()
+
+    def target(a):
+        return min(state.max_raise_to, max(state.min_raise_to, a.amount))
+
+    def score(a):
+        if a.kind == "raise":
+            return standings.raise_points(state, target(a), equity, fold)
+        return standings.passive_points(state, shown)
+
+    options = [passive, state.raise_to(state.max_raise_to)]
+    if action.kind == "raise":
+        options.append(state.raise_to(target(action)))
+    elif heads_up and state.board:
+        pot_bet = state.street_bets[state.seat] + state.to_call + (state.pot + state.to_call)
+        options.append(state.raise_to(min(state.max_raise_to, max(state.min_raise_to, pot_bet))))
+    if not heads_up or not state.board:
+        # Multiway or preflop: only ever step down from the proposal.
+        size = target(action) if action.kind == "raise" else 0
+        options = [a for a in options if a.kind != "raise" or target(a) <= size]
+    points = {a: score(a) for a in [action] + options}
+    # The same outcomes valued linearly: what chip EV alone would say. Only
+    # the bend in the points curve, which the chip strategy cannot see, may
+    # overturn it, so a switch needs both a clear points gain and a clear
+    # gain over the linear view.
+    standings.linearise(state)
+    try:
+        linear = {a: score(a) for a in points}
+    finally:
+        standings.linearise(None)
+    hysteresis = params["endgame_hysteresis"]
+    best, best_gain = action, 0.0
+    for a in options:
+        gain = points[a] - points[action]
+        bend = gain - (linear[a] - linear[action])
+        if gain > hysteresis and bend > hysteresis and gain > best_gain:
+            best, best_gain = a, gain
+    return best
