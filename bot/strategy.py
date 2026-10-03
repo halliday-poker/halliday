@@ -161,6 +161,11 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
             return bet(state, params["late_pot_fraction"])
         if can_bet and stab_spot and not own_pair and not station and bluff:
             return bet(state, params["late_pot_fraction"])
+        # Heads-up limped flop: the field folds 87-89% to a pot bet when
+        # checked to and 67-69% when we act first.
+        limp_spot = params["limp_stab"] and villain is not None and street == "flop" and aggressor is None
+        if can_bet and limp_spot and not station and bluff:
+            return bet(state, params["cbet_pot_fraction"])
         # Against a station, only the modest c-bet with a pair or draw.
         if can_bet and cbet_spot and equity >= params["cbet_equity"] and made_or_draw:
             return bet(state, params["size_dry"])

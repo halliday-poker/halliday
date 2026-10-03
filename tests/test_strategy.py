@@ -94,6 +94,19 @@ class PreflopTests(unittest.TestCase):
         s._m["hole"] = ["7s", "2d"]
         self.assertEqual(decide(s, 0.99).kind, "fold")
 
+    def test_small_blind_steals_wide_when_folded_to(self):
+        # Field first-in SB opens outside our old range beat folding by
+        # ~1.1 bb at 4-6 seats (0.55 at 8).
+        folds = [["preflop", s, "fold", 0] for s in (3, 4, 5, 0)]
+        s = state(hole=["Kd", "3c"], seat=1, to_call=1, history=folds)
+        self.assertEqual(decide(s, None).amount, 5)
+        self.assertEqual(decide(s, None, params=dict(DEFAULT_PARAMS, sb_steal_wide=False)).kind, "fold")
+        s._m["hole"] = ["7d", "2c"]
+        self.assertEqual(decide(s, None).kind, "fold")
+        s._m.update(hole=["Kd", "3c"], to_call=1, street_bets=[0, 1, 2, 2, 0, 0],
+                    history=[["preflop", 3, "call", 2]] + folds[1:])
+        self.assertEqual(decide(s, None).kind, "fold")  # a limper: not a steal
+
     def test_blind_defence_and_expensive_calls(self):
         s = state(hole=["9s", "8s"], seat=2, to_call=3, pot=8,
                   street_bets=[5, 1, 2, 0, 0, 0], history=[["preflop", 0, "raise", 5]])
@@ -184,7 +197,7 @@ class OpponentTrackerTests(unittest.TestCase):
 
 class PostflopTests(unittest.TestCase):
     def test_value_check_call_raise_and_fold(self):
-        s = postflop()
+        s = postflop(history=[["preflop", 1, "raise", 5]])  # they raised: no c-bet, no limped pot
         self.assertEqual(decide(s, 0.80).to_wire(), {"action": "raise", "amount": 16})
         self.assertEqual(decide(s, 0.35).kind, "check")
         s._m.update(to_call=10, street_bets=[0, 10], min_raise_to=20)
@@ -332,6 +345,21 @@ class PostflopTests(unittest.TestCase):
         self.assertEqual(decide(s, 0.10).kind, "check")  # they called our last bet
         s._m["history"] = checked
         self.assertEqual(decide(s, 0.10, params=dict(DEFAULT_PARAMS, stab=False)).kind, "check")
+        s._m.update(players=[0, 1, 2], stacks=[190, 170, 170], folded=[False] * 3, street_bets=[0] * 3)
+        self.assertEqual(decide(s, 0.10).kind, "check")  # never multiway
+
+    def test_limped_heads_up_flop_bets_pot(self):
+        # No preflop raise, two players: the field folds 87-89% to a pot bet
+        # when checked to and 67-69% when we act first.
+        limped = [["preflop", 1, "call", 2], ["preflop", 0, "check", 0]]
+        s = postflop(hole=["Ks", "Qh"], pot=4, history=limped + [["flop", 1, "check", 0]])
+        self.assertEqual(decide(s, 0.10).to_wire(), {"action": "raise", "amount": 4})  # air
+        s._m["hole"] = ["Ks", "7c"]  # a weak pair bets too
+        self.assertEqual(decide(s, 0.40).amount, 4)
+        s._m["history"] = limped  # first to act
+        self.assertEqual(decide(s, 0.10).amount, 4)
+        self.assertEqual(decide(s, 0.10, params=dict(DEFAULT_PARAMS, limp_stab=False)).kind, "check")
+        self.assertEqual(decide(s, 0.10, {1: Counter(hands=10, faced=6, call=5, fold=1)}).kind, "check")
         s._m.update(players=[0, 1, 2], stacks=[190, 170, 170], folded=[False] * 3, street_bets=[0] * 3)
         self.assertEqual(decide(s, 0.10).kind, "check")  # never multiway
 
