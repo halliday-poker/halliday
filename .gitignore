@@ -1,5 +1,7 @@
 __pycache__/
 *.pyc
 .venv/
+.venv-estimators/
+analysis/results/
 dist/
 harness/results/
