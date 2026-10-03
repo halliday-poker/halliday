@@ -1,0 +1,16 @@
+{
+  "model": "history",
+  "repeats": 5,
+  "device": "cuda:0",
+  "scope": "Shuffle each feature group jointly within bot, street and 20-hand phase (progress uses bot/street only). Other recorded context stays fixed. Correlated predictors and implausible combinations limit causal interpretation.",
+  "mean_nll_increase": {
+    "public_score": 0.002174242728023524,
+    "recent_results": 0.0002471969707991323,
+    "observed_frequencies": 0.0043796080240058885
+  },
+  "mean_raise_mse_increase": {
+    "public_score": 32.66068967218537,
+    "recent_results": -0.666029707127529,
+    "observed_frequencies": 7.5522915649663815
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "frozen_at": "2026-10-03T20:50:53.570171+00:00",
+  "source": "analysis/results/input-snapshot",
+  "files": {
+    "actions.jsonl": {
+      "bytes": 667681800,
+      "sha256": "7c86b5ce5ff8636f4a3ebdbacdc51d24c35c12fa571842092016c935f7daa2a2",
+      "source_mtime_ns": 1791060243000000000
+    },
+    "matches.json": {
+      "bytes": 827045,
+      "sha256": "4649fc5e2e6208f213937bc23b88778208337dd5ea72066ac339d525f6833287",
+      "source_mtime_ns": 1791060379000000000
+    },
+    "state.json": {
+      "bytes": 316735,
+      "sha256": "c2be745dbb9f874ebdd15331d4cad417511c5a812cc41f344d1e093ccddf1741",
+      "source_mtime_ns": 1791060243000000000
+    },
+    "match-meta.json": {
+      "bytes": 400852,
+      "sha256": "6f3aed0ffea0f76c524508846f8e5bae084fb030fab429d2ea106d6121882806",
+      "source_mtime_ns": 1791060370000000000
+    },
+    "names-cache.json": {
+      "bytes": 244034,
+      "sha256": "ca4317df103dfa00f1b3f1daccb49763fdee134449deda956373a5272b6bfaa0",
+      "source_mtime_ns": 1791060373000000000
+    }
+  },
+  "rows": 2180812,
+  "matches_with_actions": 2230,
+  "metadata_matches": 2232,
+  "metadata_without_actions": [
+    "j97a89rmet5dqw261jvgts3kch8fj97w",
+    "j97c2da8pcx6ww3sj1y5dgpsm18fjj26"
+  ],
+  "missing_metadata": [],
+  "missing_state": []
+}

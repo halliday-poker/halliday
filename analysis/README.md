@@ -7,7 +7,23 @@ per-opponent Python files without changing fitted settings or seeded behavior.
 Archived result files remain unchanged; their old generated-file specs are
 accepted by the harness through matching catalogue IDs.
 
-## Current rerun: newest intervals and exact main
+## Current rerun: within-game changes in newest intervals
+
+The [within-game study](reports/within-game-patterns-20261004-r3.md) refits the
+updated upload of 2,230 replay matches. It follows 66 reliably dated newest
+bot intervals across 3,143 bot-games, retaining every ten-hand window and all
+ten scaffold settings. The [parameter CSV](reports/latest-parameters-20261004-r3.csv)
+also retains estimates for the other 23 identities with their limitations marked.
+The executable JSON catalogue now uses this r3 refit.
+
+RaiseYourEdge participates less late in games; orcabot replaces some early
+limping with more selective raising. No reliable Halliday parameter change is
+established. Public history reduces held-out squared bet-sizing error by 10.93%,
+but does not reliably improve action log loss. The report includes per-bot
+findings, uncertainty, four-GPU verification and complete reproduction commands.
+These are observational model diagnostics, not a new strategy or tournament result.
+
+## Previous rerun: newest intervals and exact main
 
 [Newest-segment analysis](reports/latest-analysis-20261004-r2.md) uses the
 completed new upload (actions SHA-256

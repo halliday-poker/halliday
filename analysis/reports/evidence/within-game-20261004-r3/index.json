@@ -1,0 +1,71 @@
+{
+  "snapshot-manifest.json": {
+    "source": "analysis/results/refresh-20261004-r3/snapshot-manifest.json",
+    "source_sha256": "c83b0d10b5287a09d9a8f850ab069aa5a2ed83cbac96da56b31d7de2bceacd0e",
+    "exported_sha256": "c83b0d10b5287a09d9a8f850ab069aa5a2ed83cbac96da56b31d7de2bceacd0e"
+  },
+  "dynamics-plan.json": {
+    "source": "analysis/results/refresh-20261004-r3/dynamics-plan.json",
+    "source_sha256": "f11310294541db7aa758a57a93cb346d18bdab057b474f0caeaffc171fe2ac18",
+    "exported_sha256": "f11310294541db7aa758a57a93cb346d18bdab057b474f0caeaffc171fe2ac18"
+  },
+  "dynamics-explanation.json": {
+    "source": "analysis/results/refresh-20261004-r3/dynamics-explanation.json",
+    "source_sha256": "26a0088576657a7a95ef52022728a7d7e1a823f46867a0e36daa02c4eec35981",
+    "exported_sha256": "26a0088576657a7a95ef52022728a7d7e1a823f46867a0e36daa02c4eec35981"
+  },
+  "dynamics-comparison.json": {
+    "source": "analysis/results/refresh-20261004-r3/dynamics-comparison.json",
+    "source_sha256": "95819476574aacc898da83faf9e401c7ddd52d7f43cc3d7842a396b4320c15c8",
+    "exported_sha256": "4083424ec967013520bbf9882c08e88e5964dabe3fabdef0c6c40e3cb6a1270d"
+  },
+  "latest-selection.json": {
+    "source": "analysis/results/refresh-20261004-r3/latest-selection.json",
+    "source_sha256": "212e5ee88c65bec5e2613d7cd3eb9a0d60be44b8700fb496d04ad7d5f74b02b8",
+    "exported_sha256": "212e5ee88c65bec5e2613d7cd3eb9a0d60be44b8700fb496d04ad7d5f74b02b8"
+  },
+  "behavior-comparison.json": {
+    "source": "analysis/results/refresh-20261004-r3/behavior-comparison.json",
+    "source_sha256": "374cd6549190671595afbbde4717007f5d8b002b8eaaaf2296602b6325b1a52c",
+    "exported_sha256": "374cd6549190671595afbbde4717007f5d8b002b8eaaaf2296602b6325b1a52c"
+  },
+  "dynamics-verification.json": {
+    "source": "analysis/results/refresh-20261004-r3/dynamics-verification.json",
+    "source_sha256": "03ac9fa7e699203bc7c3fcbb558daa0690bd2c1802d4e2ddf144356877b4ffa5",
+    "exported_sha256": "03ac9fa7e699203bc7c3fcbb558daa0690bd2c1802d4e2ddf144356877b4ffa5"
+  },
+  "tests-dynamics.log": {
+    "source": "analysis/results/refresh-20261004-r3/tests-dynamics.log",
+    "source_sha256": "4ec9f7f791a5bf11d4892a7a9e85139abcea95b94744d5f1d91b5fdc25db281b",
+    "exported_sha256": "4ec9f7f791a5bf11d4892a7a9e85139abcea95b94744d5f1d91b5fdc25db281b"
+  },
+  "code": {
+    "opponent_model/within_game.py": "06218888289aabd62df73019a07784f759426ca8b96ca54b8c3335bc8e677576",
+    "opponent_model/within_game_windows.py": "25b740562cbc85a86c942dbb965c2d3509c7b947638fd4f327cd961f26372893",
+    "analysis/report_within_game.py": "c35804c9b2d3c5a2919931410f01a2e0ba5e8e33c0a7d43153bf2e8ee2beb869",
+    "analysis/verify_within_game.py": "16036ee46ff241f1a460c1b629711b42d7a4e69d97cb7bf1525d8f38595a3563",
+    "tests/test_within_game.py": "0a584d78d91cec9ac2b74fa8d50fc77996d91ac6daed6118f389ed3b1f40577e"
+  },
+  "local_artifacts": {
+    "validation-meta.json": "41d34d36f8d61634f4146b28cd1bbc90cec7b5a48a4a3b9b711c954f84f6f3f7",
+    "dynamics-data.npz": "a7a1c6a9cb9cb4517593bae14201547779e5fe4d5907936b6a701dc893fb4409",
+    "dynamics-windows.json": "2c7dcfbf2114b819a762d7e863abd2751692732c36c3a1e9f0b672419ba6fee1",
+    "dynamics-policy-static.npz": "d5078a7db6977b215e24dc73bcbcb324b39c68754f7acf7bbb52ede6af9f3d32",
+    "dynamics-policy-progress.npz": "aeef0e5e2003d46d09d493350e719cb7f3e28b85462508dc36f56c3c02222e7d",
+    "dynamics-policy-history.npz": "6e006d074903d75f2a48a0afdfdc859dd2e6bd960b9543aa37fc344b615464e0",
+    "dynamics-policy-combined.npz": "b9a0e3bdd8fe0f83a71547c0f691c3058a7a174f4eb69f0d4f03a23e1cebb985",
+    "dynamics-predictions-static.npz": "3d96827bf8cde1e69c2338384f0cdc2cfd0ecbf2bc2dab06ad228c55527c1794",
+    "dynamics-predictions-progress.npz": "ebfd64cb66c83dfb35a3fd2b2e0c8ac283b7246afa507f0a3eafdf0379a73e5a",
+    "dynamics-predictions-history.npz": "1c50ceff5eceb81f966169d8e13ba0d1946ed03dae4b70affdea3102959cd076",
+    "dynamics-predictions-combined.npz": "ab25351ad1390581157bb5dae65beb6c395f3f416ee06b290a7d545b247401c4"
+  },
+  "exports": {
+    "latest-parameters-20261004-r3.csv": "5225449a3bf66db8babeb8370880106da029c9bf6d6150a5a0d565ad4f59d487",
+    "within-game-parameters-20261004-r3.csv": "c75f925e1355404aa5a4dbcf814fed7f07346b4cd79818e369282441fedcdff1",
+    "within-game-patterns-20261004-r3.csv": "061f2d59ee51ea416d4ba48bdb6a01826937167ec65533ede36a2c0b134c8ffa",
+    "within-game-patterns-20261004-r3.md": "07d0d82b9058e2784d81200bb03a181e669e02a87cfbdb84ba9816685ad49664",
+    "within-game-patterns-20261004-r3.png": "f3a2a26919c4ff80809c3ffb3c4264773e235f5d1a96e5907ae2d9337b588ed5",
+    "within-game-patterns-20261004-r3.svg": "cb6ccdf550984023bc98db1de07e886ad1ee2edcf0c080cead8186a239b23724",
+    "within-game-windows-20261004-r3.csv.gz": "ba50790df05ad79c7194eee6d6f924b2595768f4a54e7a4052623fc7f8c0e41b"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "source_sha256": "7c86b5ce5ff8636f4a3ebdbacdc51d24c35c12fa571842092016c935f7daa2a2",
+  "input_unchanged": true,
+  "latest_interval_and_timestamp_checks": true,
+  "match_atomic_splits": true,
+  "action_rows": 436281,
+  "hand_rows": 314300,
+  "bot_games": 3143,
+  "window_rows": 31430,
+  "hands_include_no_action_walks": true,
+  "public_chip_totals_reconcile": true,
+  "all_four_training_gpus_verified": true,
+  "peak_allocated_bytes": {
+    "static": 157949952,
+    "progress": 157949952,
+    "history": 157949952,
+    "combined": 157949952
+  },
+  "limitation": "Source and accounting checks do not establish causal mechanisms or identify deployed source versions."
+}

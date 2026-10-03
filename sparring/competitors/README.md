@@ -26,7 +26,7 @@ the SDK's standalone Python-file loader does not load catalogue specs.
 Regenerate the catalogue and pools from the current fitted report:
 
 ```sh
-.venv-estimators/bin/python -B sparring/competitors/build.py analysis/results/refresh-20261004-r2/opponent-estimates.json --policy analysis/results/refresh-20261004-r2/policy-refit-upload.npz
+.venv-estimators/bin/python -B sparring/competitors/build.py analysis/results/refresh-20261004-r3/opponent-estimates.json --policy analysis/results/refresh-20261004-r3/policy-refit-upload.npz
 .venv-estimators/bin/python -B harness/eval.py run bot --no-league --no-extend --pool sparring/competitors/from_data/latest-pool.txt --tables 400 --device auto --workers 12
 ```
 
@@ -38,7 +38,7 @@ unrelated Python helpers. `--destination` selects another directory inside the
 repository. `param_reference/bots.json` stores the historical scaffold-only
 field using the same format and loader.
 
-## Current data refresh (October 4, second upload)
+## Current data refresh (October 4, r3)
 
 `from_data/` now contains 89 observed identities fitted to the new frozen upload.
 The strict newest-field pool is **`from_data/latest-pool.txt`**, with 65 external
@@ -53,14 +53,24 @@ use `latest-pool.txt` for the requested latest-only comparison. All 89 generated
 profiles remain available for inspection. Historical intervals inform shared
 model training, while only each selected latest interval is instantiated.
 
-The new baseline is an exact copy of main `6cfdf0f`, hash `26121bc2`:
+The catalogue now uses the r3 upload of 2,230 replay matches. The
+[within-game report](../../analysis/reports/within-game-patterns-20261004-r3.md)
+includes refreshed parameters, per-game trajectories and explanations for the
+66 reliably dated identities including Halliday. No temporal policy is promoted
+from this diagnostic study.
+
+## Previous exact-main performance study (r2)
+
+The previous study used an exact copy of main `6cfdf0f`, hash `26121bc2`.
+This command now evaluates it against the refreshed r3 field; the linked r2
+results retain their original opponent weights and input hashes:
 
 ```sh
 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv-estimators/bin/python -B harness/eval.py run snapshots/main_6cfdf0f_r2 --no-league --no-extend --pool sparring/competitors/from_data/latest-pool.txt --tables 400 --deals 100 --device auto --workers 12 --seed latest-main-r2-20261004
 ```
 
 Auto mode selects CPU for this unmodified engine because it lacks the GPU hook.
-Four V100s run the model fitting and replay-equity audit. See [the current
+Four V100s run the model fitting and replay-equity audit. See [the previous
 report](../../analysis/reports/latest-analysis-20261004-r2.md) and [complete
 reproduction commands](../../analysis/reports/reproduce-latest-20261004-r2.md).
 

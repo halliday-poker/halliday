@@ -57,7 +57,7 @@
         "threebet": 0.03,
         "limp": 0.1,
         "aggression": 0.8500000000000001,
-        "cbet": 0.9,
+        "cbet": 0.8500000000000001,
         "bluff": 1.0,
         "stickiness": 0.17,
         "size": 0.9,
@@ -196,12 +196,12 @@
     "halliday": {
       "name": "Halliday",
       "style": {
-        "vpip": 0.16,
-        "pfr": 0.16,
-        "threebet": 0.03,
-        "limp": 0.1,
+        "vpip": 0.18,
+        "pfr": 0.18,
+        "threebet": 0.04,
+        "limp": 0.15000000000000002,
         "aggression": 0.2,
-        "cbet": 0.65,
+        "cbet": 0.7000000000000001,
         "bluff": 0.65,
         "stickiness": 0.68,
         "size": 0.895,
@@ -412,14 +412,14 @@
     "mcsmart_meal": {
       "name": "McSmart Meal",
       "style": {
-        "vpip": 0.47000000000000003,
-        "pfr": 0.47000000000000003,
+        "vpip": 0.6,
+        "pfr": 0.6,
         "threebet": 0.03,
-        "limp": 0.15000000000000002,
-        "aggression": 0.7000000000000001,
+        "limp": 0.2,
+        "aggression": 0.5,
         "cbet": 0.5,
         "bluff": 0.1,
-        "stickiness": 0.27,
+        "stickiness": 0.26,
         "size": 0.64,
         "adaptive": 0
       },
@@ -441,8 +441,8 @@
         "threebet": 0.0,
         "limp": 0.9500000000000001,
         "aggression": 0.0,
-        "cbet": 0.1,
-        "bluff": 0.2,
+        "cbet": 0.15000000000000002,
+        "bluff": 0.15000000000000002,
         "stickiness": 0.0,
         "size": 0.435,
         "adaptive": 0
@@ -513,8 +513,8 @@
         "threebet": 0.05,
         "limp": 0.15000000000000002,
         "aggression": 0.35000000000000003,
-        "cbet": 0.2,
-        "bluff": 0.55,
+        "cbet": 0.15000000000000002,
+        "bluff": 0.6000000000000001,
         "stickiness": 0.19,
         "size": 0.365,
         "adaptive": 0
@@ -536,12 +536,12 @@
         "pfr": 0.22,
         "threebet": 0.03,
         "limp": 0.1,
-        "aggression": 0.1,
+        "aggression": 0.2,
         "cbet": 0.1,
         "bluff": 0.25,
-        "stickiness": 0.45,
-        "size": 0.46499999999999997,
-        "adaptive": 0
+        "stickiness": 0.32,
+        "size": 0.47,
+        "adaptive": 1
       },
       "policy": {
         "file": "behavior-policy.npz",
@@ -564,7 +564,7 @@
         "cbet": 0.45,
         "bluff": 0.65,
         "stickiness": 0.33,
-        "size": 0.75,
+        "size": 0.32,
         "adaptive": 0
       },
       "policy": {
@@ -585,9 +585,9 @@
         "threebet": 0.05,
         "limp": 0.1,
         "aggression": 0.7000000000000001,
-        "cbet": 0.45,
-        "bluff": 0.35000000000000003,
-        "stickiness": 0.89,
+        "cbet": 0.4,
+        "bluff": 0.30000000000000004,
+        "stickiness": 0.93,
         "size": 0.65,
         "adaptive": 1
       },
@@ -753,8 +753,8 @@
         "threebet": 0.06,
         "limp": 0.15000000000000002,
         "aggression": 0.5,
-        "cbet": 0.55,
-        "bluff": 0.9500000000000001,
+        "cbet": 0.6000000000000001,
+        "bluff": 0.9,
         "stickiness": 0.9,
         "size": 0.905,
         "adaptive": 0
@@ -820,8 +820,8 @@
     "catherine": {
       "name": "catherine",
       "style": {
-        "vpip": 0.23,
-        "pfr": 0.23,
+        "vpip": 0.24,
+        "pfr": 0.24,
         "threebet": 0.03,
         "limp": 0.15000000000000002,
         "aggression": 0.7000000000000001,
@@ -1252,21 +1252,21 @@
     "jongwon": {
       "name": "jongwon",
       "style": {
-        "vpip": 0.16,
-        "pfr": 0.16,
-        "threebet": 0.03,
-        "limp": 0.05,
-        "aggression": 0.5,
-        "cbet": 0.15000000000000002,
-        "bluff": 0.55,
-        "stickiness": 0.33,
-        "size": 0.89,
+        "vpip": 0.32999999999999996,
+        "pfr": 0.32999999999999996,
+        "threebet": 0.06999999999999999,
+        "limp": 0.13333333333333336,
+        "aggression": 0.7833333333333333,
+        "cbet": 0.5833333333333334,
+        "bluff": 0.8333333333333334,
+        "stickiness": 0.36666666666666664,
+        "size": 0.8966666666666667,
         "adaptive": 0
       },
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 52,
-        "epoch": 84,
+        "epoch": 85,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1314,7 +1314,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 54,
-        "epoch": 86,
+        "epoch": 87,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1324,8 +1324,8 @@
     "larp_larp_sahur": {
       "name": "larp larp sahur",
       "style": {
-        "vpip": 0.15,
-        "pfr": 0.15,
+        "vpip": 0.17,
+        "pfr": 0.17,
         "threebet": 0.03,
         "limp": 0.1,
         "aggression": 0.5,
@@ -1338,7 +1338,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 55,
-        "epoch": 90,
+        "epoch": 91,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1362,7 +1362,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 56,
-        "epoch": 91,
+        "epoch": 92,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1449,7 +1449,7 @@
         "threebet": 0.03,
         "limp": 0.05,
         "aggression": 0.05,
-        "cbet": 0.2,
+        "cbet": 0.25,
         "bluff": 0.75,
         "stickiness": 0.19,
         "size": 0.89,
@@ -1458,7 +1458,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 60,
-        "epoch": 99,
+        "epoch": 100,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1482,7 +1482,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 61,
-        "epoch": 109,
+        "epoch": 110,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1492,25 +1492,25 @@
     "merch_where": {
       "name": "merch where",
       "style": {
-        "vpip": 1.0,
-        "pfr": 1.0,
-        "threebet": 0.07,
-        "limp": 0.2,
-        "aggression": 0.15000000000000002,
+        "vpip": 0.9866666666666667,
+        "pfr": 0.9866666666666667,
+        "threebet": 0.08,
+        "limp": 0.17500000000000002,
+        "aggression": 0.7166666666666667,
         "cbet": 0.6000000000000001,
-        "bluff": 1.0,
-        "stickiness": 0.27,
-        "size": 1.48,
+        "bluff": 0.8833333333333334,
+        "stickiness": 0.35833333333333334,
+        "size": 0.5125,
         "adaptive": 0
       },
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 62,
-        "epoch": 118,
-        "weight": 1,
+        "epoch": 120,
+        "weight": 0,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
-        "status": "fitted_public_context_policy"
+        "status": "sparse_scaffold_fallback"
       }
     },
     "netanyahu": {
@@ -1530,7 +1530,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 63,
-        "epoch": 122,
+        "epoch": 124,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1544,17 +1544,17 @@
         "pfr": 0.16,
         "threebet": 0.03,
         "limp": 0.7000000000000001,
-        "aggression": 0.5,
+        "aggression": 0.30000000000000004,
         "cbet": 0.5,
-        "bluff": 0.65,
-        "stickiness": 0.39,
+        "bluff": 0.8500000000000001,
+        "stickiness": 0.1,
         "size": 1.165,
         "adaptive": 0
       },
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 64,
-        "epoch": 123,
+        "epoch": 125,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1564,21 +1564,21 @@
     "percy_perc_filet": {
       "name": "percy-perc-filet",
       "style": {
-        "vpip": 0.42,
-        "pfr": 0.42,
+        "vpip": 0.49,
+        "pfr": 0.49,
         "threebet": 0.11,
-        "limp": 0.15000000000000002,
+        "limp": 0.1,
         "aggression": 0.25,
         "cbet": 0.05,
-        "bluff": 0.45,
-        "stickiness": 0.77,
-        "size": 0.61,
+        "bluff": 0.5,
+        "stickiness": 0.9400000000000001,
+        "size": 0.605,
         "adaptive": 0
       },
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 65,
-        "epoch": 128,
+        "epoch": 130,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1602,7 +1602,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 66,
-        "epoch": 129,
+        "epoch": 131,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1617,10 +1617,10 @@
         "threebet": 0.03,
         "limp": 0.05,
         "aggression": 0.5,
-        "cbet": 0.1,
-        "bluff": 0.55,
+        "cbet": 0.15000000000000002,
+        "bluff": 0.5,
         "stickiness": 0.33,
-        "size": 0.645,
+        "size": 0.64,
         "adaptive": 1
       },
       "policy": {
@@ -1665,7 +1665,7 @@
         "threebet": 0.03,
         "limp": 0.1,
         "aggression": 0.2,
-        "cbet": 0.75,
+        "cbet": 0.8,
         "bluff": 0.8500000000000001,
         "stickiness": 0.0,
         "size": 0.5449999999999999,
@@ -1674,7 +1674,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 69,
-        "epoch": 134,
+        "epoch": 136,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1684,21 +1684,21 @@
     "preflop_warrior": {
       "name": "preflop-warrior",
       "style": {
-        "vpip": 0.22,
-        "pfr": 0.21,
+        "vpip": 0.26,
+        "pfr": 0.26,
         "threebet": 0.03,
-        "limp": 0.1,
-        "aggression": 0.75,
+        "limp": 0.15000000000000002,
+        "aggression": 0.8500000000000001,
         "cbet": 0.5,
         "bluff": 0.35000000000000003,
-        "stickiness": 0.31,
+        "stickiness": 0.24,
         "size": 0.6000000000000001,
         "adaptive": 0
       },
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 70,
-        "epoch": 143,
+        "epoch": 145,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1794,7 +1794,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 74,
-        "epoch": 144,
+        "epoch": 146,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1818,7 +1818,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 75,
-        "epoch": 145,
+        "epoch": 147,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1842,7 +1842,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 76,
-        "epoch": 147,
+        "epoch": 149,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1914,7 +1914,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 79,
-        "epoch": 153,
+        "epoch": 155,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1938,7 +1938,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 80,
-        "epoch": 163,
+        "epoch": 165,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1962,7 +1962,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 81,
-        "epoch": 165,
+        "epoch": 167,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -1986,7 +1986,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 82,
-        "epoch": 166,
+        "epoch": 168,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -2010,7 +2010,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 83,
-        "epoch": 167,
+        "epoch": 169,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -2034,7 +2034,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 84,
-        "epoch": 169,
+        "epoch": 171,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -2058,7 +2058,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 85,
-        "epoch": 171,
+        "epoch": 173,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -2068,21 +2068,21 @@
     "wicked_wings_combo": {
       "name": "wicked wings combo",
       "style": {
-        "vpip": 0.38,
-        "pfr": 0.38,
+        "vpip": 0.85,
+        "pfr": 0.85,
         "threebet": 0.03,
-        "limp": 0.15000000000000002,
-        "aggression": 0.2,
+        "limp": 0.1,
+        "aggression": 0.7000000000000001,
         "cbet": 0.6000000000000001,
-        "bluff": 0.2,
-        "stickiness": 0.19,
-        "size": 0.645,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.26,
+        "size": 0.655,
         "adaptive": 0
       },
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 86,
-        "epoch": 172,
+        "epoch": 175,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -2106,7 +2106,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 87,
-        "epoch": 175,
+        "epoch": 178,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",
@@ -2130,7 +2130,7 @@
       "policy": {
         "file": "behavior-policy.npz",
         "bot": 88,
-        "epoch": 176,
+        "epoch": 179,
         "weight": 1,
         "model": "upload",
         "heldout_comparison": "behavior-comparison.json",

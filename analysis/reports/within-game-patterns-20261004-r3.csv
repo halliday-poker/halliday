@@ -1,0 +1,67 @@
+bot,matches,test_matches,nll_gain,nll_gain_ci,q,vpip_early,vpip_late,explanation
+Allen Iverson,14,3,-0.0019721991072098413,"[-0.017180291935801506, 0.027888182550668716]",1.0,0.14642857142857144,0.14642857142857144,too few test games for a bot-specific conditional conclusion
+Allen Iverson 2.0,72,11,0.011272204849361018,"[0.0014589909998573027, 0.023333881959446103]",0.497475,0.11736111111111111,0.10069444444444445,conditional improvement not established after multiple-testing correction
+Althaf Productions v1,79,18,-0.005739908212692373,"[-0.017591598402618223, 0.0051469412684026624]",1.0,0.21772151898734177,0.23164556962025318,conditional improvement not established after multiple-testing correction
+BigBaller,20,3,-0.007146505018075307,"[-0.03465919941663742, 0.034322287887334824]",1.0,0.21,0.2675,too few test games for a bot-specific conditional conclusion
+Gladiator,8,1,0.22041428089141846,null,1.0,0.36875,0.3375,too few test games for a bot-specific conditional conclusion
+Gladiator_v3,15,4,-0.027374005410820246,"[-0.042807983700186014, -0.0171634117141366]",1.0,0.34,0.32,too few test games for a bot-specific conditional conclusion
+Gladiators,77,11,-0.03657523064281453,"[-0.047315516538748686, -0.025696320289915264]",0.1518,0.33376623376623377,0.312987012987013,conditional improvement not established after multiple-testing correction
+Halliday,81,13,-0.023512102484416503,"[-0.038721090820259776, -0.00812470139666962]",0.38676,0.19876543209876543,0.19444444444444445,conditional improvement not established after multiple-testing correction
+Invoker,1,0,,null,1.0,0.65,0.4,too few test games for a bot-specific conditional conclusion
+Invokerv2,15,2,0.0811617448925972,"[0.08068421483039856, 0.08163927495479584]",1.0,0.4533333333333333,0.4066666666666667,too few test games for a bot-specific conditional conclusion
+Jason_idea,1,0,,null,1.0,0.1,0.1,too few test games for a bot-specific conditional conclusion
+LF5,10,3,0.012079131479064623,"[-0.019756115972995758, 0.02869713492691517]",1.0,0.05,0.05,too few test games for a bot-specific conditional conclusion
+MAC Projects Team,10,2,0.005556108051678166,"[-0.0005017740768380463, 0.011613990180194378]",1.0,0.08,0.065,too few test games for a bot-specific conditional conclusion
+MAC Projects Team Testing Bot,51,8,-0.007017935320618562,"[-0.02575963562558172, 0.013213603349868208]",1.0,0.246078431372549,0.2823529411764706,conditional improvement not established after multiple-testing correction
+MAC Projects Team Testing Bot 2,63,10,0.046119180298410355,"[-0.0018744215578772128, 0.1269812428462319]",0.9627749999999999,0.2650793650793651,0.2642857142857143,conditional improvement not established after multiple-testing correction
+MAC Projects Team Testing Bot 3,72,11,0.04302707894451239,"[0.006884388424540785, 0.08830681013641878]",0.497475,0.275,0.26875,conditional improvement not established after multiple-testing correction
+McSmart Meal,79,19,0.008880272936566095,"[-0.0009101470112861867, 0.019363204713475787]",0.7141200000000001,0.4107594936708861,0.4177215189873418,conditional improvement not established after multiple-testing correction
+Messi,87,11,-0.0003737700052707541,"[-0.007951095481224581, 0.006587000870918429]",1.0,0.15919540229885057,0.17413793103448275,conditional improvement not established after multiple-testing correction
+Phil_Ivey_GOAT,35,7,0.0005980013603610652,"[-0.012407931755296886, 0.010853029321879148]",1.0,0.09142857142857143,0.11571428571428571,too few test games for a bot-specific conditional conclusion
+RaiseYourEdge,72,13,-0.0011747520631895615,"[-0.01952882298680309, 0.016896339144575608]",1.0,0.2263888888888889,0.1625,vpip -6.4 percentage points late versus early (raw behavior); pfr -5.4 percentage points late versus early (raw behavior); fold +5.3 percentage points late versus early (raw behavior); conditional improvement not established after multiple-testing correction
+RiverForge,73,17,-0.00908373251064297,"[-0.02254704181173378, 0.00441250133067917]",0.9627749999999999,0.16027397260273973,0.14863013698630137,conditional improvement not established after multiple-testing correction
+Sus bot,76,12,1.9171973690390587e-05,"[-0.012635679364514847, 0.012419869876854738]",1.0,0.21710526315789475,0.21447368421052632,conditional improvement not established after multiple-testing correction
+Tester67,84,14,0.016094224793570384,"[-0.0015159647554225688, 0.03276483682649475]",0.6416666666666666,0.22083333333333333,0.20714285714285716,conditional improvement not established after multiple-testing correction
+Thanos,18,3,-0.033191582188010216,"[-0.06994409114122391, 0.00827220268547535]",1.0,0.21666666666666667,0.2361111111111111,too few test games for a bot-specific conditional conclusion
+Tilted_Towers_2,70,17,-0.0013941733563757118,"[-0.010660984338199555, 0.007993952671634306]",1.0,0.11285714285714285,0.12071428571428572,conditional improvement not established after multiple-testing correction
+Tilted_towers_1,12,2,-0.00872837658971548,"[-0.026328762993216515, 0.008872009813785553]",1.0,0.075,0.1375,too few test games for a bot-specific conditional conclusion
+axiom,37,6,-0.0064247062158149975,"[-0.019160405887911718, 0.003730999364051968]",1.0,0.25135135135135134,0.23108108108108108,too few test games for a bot-specific conditional conclusion
+best-bot,77,14,-0.0012156758579554402,"[-0.01604202414283853, 0.013226411169879207]",1.0,0.2,0.18441558441558442,conditional improvement not established after multiple-testing correction
+big dog,2,0,,null,1.0,0.225,0.225,too few test games for a bot-specific conditional conclusion
+catherine,78,13,-0.0030199306470771823,"[-0.013140593375562904, 0.0064451346954089]",1.0,0.35,0.31858974358974357,conditional improvement not established after multiple-testing correction
+dan_negreanu_on_ket,16,3,-0.047392078985770546,"[-0.07138816267251968, -0.02926373854279518]",1.0,0.2625,0.265625,too few test games for a bot-specific conditional conclusion
+data,3,2,0.026672190986573696,"[0.015871265903115273, 0.03747311607003212]",1.0,0.45,0.6333333333333333,too few test games for a bot-specific conditional conclusion
+finian sucks,109,30,-0.012839804113415692,"[-0.030014194825052982, -0.0012970956087034833]",0.497475,0.06834862385321101,0.07522935779816514,conditional improvement not established after multiple-testing correction
+fold-a2,20,3,0.01124729091922442,"[-0.027116848155856133, 0.05056164786219597]",1.0,0.17,0.2075,too few test games for a bot-specific conditional conclusion
+fullhouse,21,4,0.015270012430846691,"[0.0128315812908113, 0.018497427692636847]",1.0,0.2119047619047619,0.20714285714285716,too few test games for a bot-specific conditional conclusion
+guaguanco 5,70,13,-0.0016984170159468283,"[-0.018910600995430005, 0.015368374204263091]",1.0,0.19142857142857142,0.17785714285714285,conditional improvement not established after multiple-testing correction
+idc,72,10,0.0034934846218675373,"[-0.0062492183863651005, 0.014870654650731006]",1.0,0.17569444444444443,0.17152777777777778,conditional improvement not established after multiple-testing correction
+jongwon,4,1,-0.06041588634252548,null,1.0,0.475,0.3625,too few test games for a bot-specific conditional conclusion
+kurimanju,77,16,-0.012316093838308007,"[-0.02214198742149165, -0.0027890158642549135]",0.38676,0.33311688311688314,0.33636363636363636,conditional improvement not established after multiple-testing correction
+larp larp sahur,71,18,0.00993015262712207,"[0.0019026745734865673, 0.017748205942593305]",0.38676,0.18380281690140846,0.16971830985915493,conditional improvement not established after multiple-testing correction
+let it go,32,7,0.0012557001152474964,"[-0.006938018170850617, 0.0101675312928689]",1.0,0.1859375,0.1515625,too few test games for a bot-specific conditional conclusion
+love-of-da-game,70,13,0.0002459098087946096,"[-0.012917896877031754, 0.013579453624026004]",1.0,0.17857142857142858,0.17857142857142858,conditional improvement not established after multiple-testing correction
+luck is all u need,75,16,-0.0076736446062568575,"[-0.013789006787192193, -0.001407132013264345]",0.38676,0.25466666666666665,0.25533333333333336,conditional improvement not established after multiple-testing correction
+merch where,1,1,-0.3549777567386627,null,1.0,0.9,0.9,too few test games for a bot-specific conditional conclusion
+netanyahu,76,12,-0.0013675472776715953,"[-0.015170419241379325, 0.015174383635167002]",1.0,0.24407894736842106,0.2546052631578947,conditional improvement not established after multiple-testing correction
+orcabot,79,13,-0.008611434103491215,"[-0.021686365156291198, 0.005107345783080046]",0.9627749999999999,0.2930379746835443,0.22468354430379747,vpip -6.8 percentage points late versus early (raw behavior); pfr +3.5 percentage points late versus early (raw behavior); conditional improvement not established after multiple-testing correction
+percy-perc-filet,56,13,-0.002799050160459816,"[-0.010611579809791202, 0.0056993481044068615]",1.0,0.3830357142857143,0.4089285714285714,conditional improvement not established after multiple-testing correction
+pocket-nuts,110,29,-0.003725206391115127,"[-0.013131447588214008, 0.005081284806786634]",1.0,0.20954545454545453,0.20272727272727273,conditional improvement not established after multiple-testing correction
+poke-bowl,93,24,1.1167014235979877e-05,"[-0.010365966153858609, 0.009222022166083357]",1.0,0.2709677419354839,0.306989247311828,conditional improvement not established after multiple-testing correction
+polygamous lavender marriage,68,17,0.008969136373386444,"[-0.010118754094326183, 0.03290666041763924]",1.0,0.2073529411764706,0.20073529411764707,conditional improvement not established after multiple-testing correction
+preflop-warrior,55,12,0.006876021274365485,"[-0.006560121236058573, 0.021644194975184886]",1.0,0.37454545454545457,0.3845454545454545,conditional improvement not established after multiple-testing correction
+pressure,40,7,-0.0034883246158382724,"[-0.019447672293920602, 0.01065750930242106]",1.0,0.20875,0.17875,too few test games for a bot-specific conditional conclusion
+radishv1,11,2,-0.027503160876221955,"[-0.05283953249454498, -0.0021667892578989267]",1.0,0.43636363636363634,0.4090909090909091,too few test games for a bot-specific conditional conclusion
+radishv2,76,11,-0.004877745110372251,"[-0.01585828182869591, 0.005167925417613742]",1.0,0.31973684210526315,0.3348684210526316,conditional improvement not established after multiple-testing correction
+renbot,10,0,,null,1.0,0.27,0.255,too few test games for a bot-specific conditional conclusion
+samith pai is lowkey leng,4,0,,null,1.0,0.275,0.1625,too few test games for a bot-specific conditional conclusion
+testQ,4,0,,null,1.0,0.25,0.2625,too few test games for a bot-specific conditional conclusion
+the GOON,76,13,-0.005169207570501245,"[-0.016764945310737505, 0.006331696787338631]",1.0,0.23684210526315788,0.2493421052631579,conditional improvement not established after multiple-testing correction
+the big dog,44,7,-0.00010705606213637761,"[-0.030203072979514085, 0.026897355115839412]",1.0,0.18409090909090908,0.18409090909090908,too few test games for a bot-specific conditional conclusion
+the notorious,70,16,0.0055949907555259415,"[-0.002807161439613992, 0.014870288601537125]",1.0,0.17142857142857143,0.17,conditional improvement not established after multiple-testing correction
+tripi tropi,30,8,0.008936602673202287,"[-0.003414969194818695, 0.019977821820975787]",0.9627749999999999,0.21333333333333335,0.17,conditional improvement not established after multiple-testing correction
+tungbot,91,12,0.010827868676642538,"[-0.004612812269351707, 0.02728409049573201]",0.9627749999999999,0.27692307692307694,0.2752747252747253,conditional improvement not established after multiple-testing correction
+tutududu,51,13,0.009751507895998657,"[-0.004057453441111228, 0.023842340871655883]",0.9627749999999999,0.19509803921568628,0.1696078431372549,conditional improvement not established after multiple-testing correction
+wicked wings combo,7,3,0.020730850131561358,"[0.005827168468385935, 0.03232957050204277]",1.0,0.7071428571428572,0.6642857142857143,too few test games for a bot-specific conditional conclusion
+yep,8,0,,null,1.0,0.14375,0.175,too few test games for a bot-specific conditional conclusion
+zinger box,54,7,-0.003195305887077536,"[-0.019393256928638688, 0.014354090339371097]",1.0,0.4287037037037037,0.46574074074074073,too few test games for a bot-specific conditional conclusion

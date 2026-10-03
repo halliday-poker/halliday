@@ -1,0 +1,90 @@
+bot,segment,epoch,matches,trusted_matches,temporal_status,vpip,pfr,threebet,limp,aggression,cbet,bluff,stickiness,size,adaptive
+Allen Iverson,1,1,14,14,newest trusted interval,0.11,0.11,0.03,0.05,0.5,0.1,0.2,0.9500000000000001,0.775,0
+Allen Iverson 2.0,1,2,72,72,newest trusted interval,0.1,0.1,0.03,0.0,0.5,0.05,0.30000000000000004,1.0,0.77,0
+Althaf Productions v1,1,3,79,79,newest trusted interval,0.13,0.13,0.03,0.1,0.8500000000000001,0.8500000000000001,1.0,0.17,0.9,0
+Artificial Incompetence,1,0,23,0,No trusted play time; newest submission cannot be assigned,1.0,1.0,0.24,0.05,0.8,0.75,1.0,0.08,0.9400000000000001,0
+BigBaller,3,6,20,20,newest trusted interval,0.22,0.22,0.07,0.1,0.2,0.0,0.55,0.8,0.605,0
+Gladiator,3,9,8,8,newest trusted interval,0.28,0.21,0.06,0.30000000000000004,0.5,0.8,0.30000000000000004,0.99,0.615,0
+Gladiator_v3,3,14,15,15,newest trusted interval,0.52,0.49,0.02,0.5,0.5,0.45,1.0,0.41000000000000003,1.2149999999999999,0
+Gladiators,3,16,77,77,newest trusted interval,0.52,0.52,0.02,0.5,0.8500000000000001,0.7000000000000001,1.0,0.47000000000000003,1.165,0
+Halliday,4,20,81,81,newest trusted interval,0.18,0.18,0.04,0.15000000000000002,0.2,0.7000000000000001,0.65,0.68,0.895,0
+Invoker,1,0,13,1,Shared base epoch includes undated observations; temporal fits exclude them,0.97,0.97,0.01,0.25,0.7000000000000001,0.75,1.0,0.18,0.335,0
+Invokerv2,1,21,15,15,newest trusted interval,0.93,0.93,0.02,0.2,1.0,0.9500000000000001,1.0,0.07,0.33999999999999997,0
+Jason_idea,3,23,1,1,newest trusted interval,0.8533333333333334,0.8533333333333334,0.8450000000000001,0.08333333333333334,0.5,0.07500000000000001,0.12500000000000003,0.38333333333333336,0.39083333333333337,0
+LF5,1,0,16,10,Shared base epoch includes undated observations; temporal fits exclude them,0.03,0.03,0.03,0.30000000000000004,0.9500000000000001,0.0,0.0,0.25,0.585,0
+MAC Projects Team,1,0,89,10,Shared base epoch includes undated observations; temporal fits exclude them,0.0,0.0,0.0,0.05,0.0,0.65,0.0,1.0,0.66,0
+MAC Projects Team Testing Bot,1,24,51,51,newest trusted interval,0.23,0.23,0.04,0.15000000000000002,0.15000000000000002,0.6000000000000001,1.0,0.09,0.365,1
+MAC Projects Team Testing Bot 2,2,26,63,63,newest trusted interval,0.23,0.23,0.06,0.15000000000000002,0.30000000000000004,0.7000000000000001,1.0,0.0,0.36,0
+MAC Projects Team Testing Bot 3,1,27,72,72,newest trusted interval,0.23,0.23,0.06,0.2,0.30000000000000004,0.9,1.0,0.18,0.365,0
+McSmart Meal,2,28,79,79,newest trusted interval,0.6,0.6,0.03,0.2,0.5,0.5,0.1,0.26,0.64,0
+Messi,3,30,87,87,newest trusted interval,0.1,0.01,0.0,0.9500000000000001,0.0,0.15000000000000002,0.15000000000000002,0.0,0.435,0
+"Nice Hand, Sir",1,0,81,0,No trusted play time; newest submission cannot be assigned,0.97,0.97,0.06,0.2,0.9500000000000001,0.75,1.0,0.0,0.335,0
+Phil_Ivey_GOAT,3,33,35,35,newest trusted interval,0.07,0.07,0.01,0.05,0.5,0.0,0.8,0.29,0.7,0
+RaiseYourEdge,2,34,72,72,newest trusted interval,0.15,0.15,0.05,0.15000000000000002,0.35000000000000003,0.15000000000000002,0.6000000000000001,0.19,0.365,0
+RiverForge,3,37,73,73,newest trusted interval,0.22,0.22,0.03,0.1,0.2,0.1,0.25,0.32,0.47,1
+Sus bot,3,40,76,76,newest trusted interval,0.22,0.22,0.03,0.05,0.5,0.45,0.65,0.33,0.32,0
+Tester67,1,41,84,84,newest trusted interval,0.18,0.18,0.05,0.1,0.7000000000000001,0.4,0.30000000000000004,0.93,0.65,1
+Thanos,1,42,18,18,newest trusted interval,0.19,0.19,0.07,0.05,0.5,0.2,0.35000000000000003,0.87,0.64,0
+Tilted_Towers_2,2,43,70,70,newest trusted interval,0.13,0.13,0.03,0.1,0.5,0.0,0.25,1.0,0.375,0
+Tilted_towers_1,1,0,20,12,Shared base epoch includes undated observations; temporal fits exclude them,0.1,0.1,0.01,0.0,0.5,0.1,0.55,0.79,0.7,0
+Who me?,1,0,7,0,No trusted play time; newest submission cannot be assigned,0.48,0.06,0.06,0.2,0.2,0.05,0.2,0.03,0.535,0
+alo,1,0,114,0,No trusted play time; newest submission cannot be assigned,1.0,1.0,1.0,0.0,0.6000000000000001,0.65,0.15000000000000002,0.45,0.66,0
+axiom,2,44,37,37,newest trusted interval,0.22,0.22,0.06,0.2,0.7000000000000001,0.1,0.15000000000000002,0.31,0.925,0
+best-bot,3,47,77,77,newest trusted interval,0.23,0.23,0.06,0.15000000000000002,0.5,0.6000000000000001,0.9,0.9,0.905,0
+big dog,1,0,66,2,Shared base epoch includes undated observations; temporal fits exclude them,0.22,0.22,0.03,0.2,0.7000000000000001,0.65,0.2,0.84,0.745,0
+biji satu,1,0,9,0,No trusted play time; newest submission cannot be assigned,1.0,1.0,0.08,0.25,0.7000000000000001,0.7000000000000001,1.0,0.37,0.335,0
+catherine,7,54,78,78,newest trusted interval,0.24,0.24,0.03,0.15000000000000002,0.7000000000000001,0.65,0.15000000000000002,0.4,1.185,0
+dan_negreanu_on_ket,3,57,16,16,newest trusted interval,0.26,0.26,0.07,0.1,0.30000000000000004,0.35000000000000003,0.45,0.44,0.605,0
+data,2,59,3,3,newest trusted interval,0.5700000000000001,0.5700000000000001,0.08,0.45,0.725,0.6500000000000001,0.625,0.36,0.9924999999999999,0
+diddy blud,1,0,18,0,No trusted play time; newest submission cannot be assigned,0.03,0.03,0.03,0.15000000000000002,1.0,0.0,0.2,0.24,0.585,0
+dudududu,1,0,18,0,No trusted play time; newest submission cannot be assigned,0.18,0.18,0.04,0.05,0.8500000000000001,0.65,0.25,0.99,0.45,0
+elaine,1,0,54,0,No trusted play time; newest submission cannot be assigned,0.16,0.16,0.03,0.1,0.5,0.0,0.2,1.0,0.5,0
+finian sucks,1,60,109,109,newest trusted interval,0.03,0.01,0.01,0.8500000000000001,0.65,0.0,0.30000000000000004,0.18,0.5449999999999999,0
+fold-a2,1,61,20,20,newest trusted interval,0.0,0.0,0.0,0.05,0.0,0.65,0.0,1.0,0.66,0
+fufufafa,1,0,20,0,No trusted play time; newest submission cannot be assigned,0.9,0.9,0.0,0.5,1.0,0.8500000000000001,1.0,0.07,0.335,0
+fullhouse,2,62,21,21,newest trusted interval,0.11,0.11,0.03,0.65,0.2,0.7000000000000001,1.0,0.39,1.375,0
+goatbot,1,0,112,0,No trusted play time; newest submission cannot be assigned,0.38,0.38,0.06,0.15000000000000002,0.7000000000000001,0.2,0.45,0.43,0.365,1
+guaguanco,1,0,93,0,No trusted play time; newest submission cannot be assigned,0.0,0.0,0.0,0.05,0.0,0.65,0.0,1.0,0.66,0
+guaguanco 2,1,0,1,0,House or validation-only identity,0.29,0.18,0.07,0.05,0.0,0.6500000000000001,0.0,0.45,0.66,0
+guaguanco 3,1,0,108,0,No trusted play time; newest submission cannot be assigned,1.0,0.0,0.0,0.05,0.0,0.65,0.0,0.27,0.66,0
+guaguanco 4,1,0,26,0,No trusted play time; newest submission cannot be assigned,0.16,0.16,0.05,0.1,0.7000000000000001,0.5,1.0,0.73,0.87,0
+guaguanco 5,5,66,70,70,newest trusted interval,0.16,0.16,0.05,0.05,0.7000000000000001,0.4,1.0,0.4,0.875,0
+house:call,1,0,273,180,House or validation-only identity,1.0,0.01,0.01,0.05,0.0,0.65,0.0,1.0,0.66,0
+idc,11,76,72,72,newest trusted interval,0.15,0.15,0.05,0.15000000000000002,0.5,0.4,0.30000000000000004,0.85,0.6799999999999999,1
+jongwon,10,85,4,4,newest trusted interval,0.32999999999999996,0.32999999999999996,0.06999999999999999,0.13333333333333336,0.7833333333333333,0.5833333333333334,0.8333333333333334,0.36666666666666664,0.8966666666666667,0
+kingfisher,1,0,6,0,No trusted play time; newest submission cannot be assigned,0.98,0.98,0.97,0.35000000000000003,0.6000000000000001,0.65,0.15000000000000002,0.45,0.66,0
+kurimanju,2,87,77,77,newest trusted interval,0.35000000000000003,0.35000000000000003,0.02,0.25,0.2,0.45,0.2,0.33,0.71,0
+larp larp sahur,4,91,71,71,newest trusted interval,0.17,0.17,0.03,0.1,0.5,0.65,0.65,0.26,0.745,0
+let it go,2,92,32,32,newest trusted interval,0.06,0.0,0.0,0.05,0.2,0.0,0.15000000000000002,0.02,0.435,0
+lil-fruit,1,0,141,0,No trusted play time; newest submission cannot be assigned,1.0,0.1,0.04,0.35000000000000003,0.5,0.15000000000000002,0.05,0.23,0.96,0
+lil-fruit 2.2,1,0,121,0,No trusted play time; newest submission cannot be assigned,0.9500000000000001,0.89,0.01,0.2,0.2,0.25,0.1,0.35000000000000003,0.88,1
+lil-fruit x,1,0,32,0,No trusted play time; newest submission cannot be assigned,1.0,1.0,0.39,0.0,0.7000000000000001,0.6000000000000001,1.0,0.02,0.355,0
+love-of-da-game,8,100,70,70,newest trusted interval,0.17,0.17,0.03,0.05,0.05,0.25,0.75,0.19,0.89,0
+luck is all u need,11,110,75,75,newest trusted interval,0.13,0.13,0.02,0.1,0.5,0.15000000000000002,0.05,0.31,0.62,0
+merch where,11,120,1,1,newest trusted interval,0.9866666666666667,0.9866666666666667,0.08,0.17500000000000002,0.7166666666666667,0.6000000000000001,0.8833333333333334,0.35833333333333334,0.5125,0
+netanyahu,4,124,76,76,newest trusted interval,0.23,0.23,0.03,0.1,0.7000000000000001,0.45,0.9500000000000001,0.21,0.36,0
+orcabot,2,125,79,79,newest trusted interval,0.16,0.16,0.03,0.7000000000000001,0.30000000000000004,0.5,0.8500000000000001,0.1,1.165,0
+percy-perc-filet,5,130,56,56,newest trusted interval,0.49,0.49,0.11,0.1,0.25,0.05,0.5,0.9400000000000001,0.605,0
+pocket-nuts,2,131,110,110,newest trusted interval,0.17,0.17,0.06,0.1,0.5,0.4,0.75,0.46,0.54,0
+poke-bowl,1,0,130,93,Shared base epoch includes undated observations; temporal fits exclude them,0.17,0.17,0.03,0.05,0.5,0.15000000000000002,0.5,0.33,0.64,1
+poke-bowl-one,1,0,265,0,No trusted play time; newest submission cannot be assigned,0.36,0.36,0.06,0.30000000000000004,0.0,0.55,0.8500000000000001,0.5,0.605,0
+polygamous lavender marriage,6,136,68,68,newest trusted interval,0.22,0.22,0.03,0.1,0.2,0.8,0.8500000000000001,0.0,0.5449999999999999,0
+preflop-warrior,10,145,55,55,newest trusted interval,0.26,0.26,0.03,0.15000000000000002,0.8500000000000001,0.5,0.35000000000000003,0.24,0.6000000000000001,0
+pressure,1,0,40,40,newest trusted interval,0.1,0.1,0.03,0.65,0.5,0.65,0.8500000000000001,0.43,1.165,0
+radishv0,1,0,117,0,No trusted play time; newest submission cannot be assigned,0.64,0.52,0.05,0.0,0.7000000000000001,0.55,0.15000000000000002,0.39,0.71,0
+radishv1,1,0,103,11,Shared base epoch includes undated observations; temporal fits exclude them,0.38,0.38,0.02,0.35000000000000003,0.5,0.4,0.0,0.35000000000000003,0.71,0
+radishv2,1,146,76,76,newest trusted interval,0.38,0.38,0.02,0.2,0.05,0.35000000000000003,0.35000000000000003,0.43,0.7150000000000001,0
+renbot,2,147,10,10,newest trusted interval,0.23,0.23,0.03,0.1,1.0,1.0,1.0,0.41000000000000003,1.17,0
+samith pai is lowkey leng,2,149,4,4,newest trusted interval,0.22000000000000003,0.22000000000000003,0.04,0.2,0.7000000000000001,0.8500000000000001,0.26666666666666666,0.8800000000000001,0.585,0
+scaffold,1,0,36,0,No trusted play time; newest submission cannot be assigned,0.0,0.0,0.0,0.05,0.0,0.65,0.0,1.0,0.66,0
+test1,1,0,4,0,No trusted play time; newest submission cannot be assigned,0.0,0.0,0.0,0.05,0.0,0.65,0.0,0.99,0.66,0
+testQ,6,155,4,4,newest trusted interval,0.22333333333333333,0.22000000000000003,0.026666666666666665,0.20000000000000004,0.2,0.5166666666666667,0.6666666666666667,0.18000000000000002,0.44333333333333336,0
+the GOON,11,165,76,76,newest trusted interval,0.17,0.17,0.05,0.1,0.15000000000000002,0.7000000000000001,1.0,0.0,0.36,0
+the big dog,2,167,44,44,newest trusted interval,0.17,0.17,0.03,0.2,0.5,0.55,0.15000000000000002,0.71,0.745,1
+the notorious,1,168,70,70,newest trusted interval,0.14,0.14,0.07,0.05,0.05,0.45,0.30000000000000004,0.24,1.1800000000000002,0
+tripi tropi,2,169,30,30,newest trusted interval,0.17,0.17,0.03,0.1,0.5,0.6000000000000001,0.25,0.87,0.745,0
+tungbot,3,171,91,91,newest trusted interval,0.23,0.23,0.06,0.2,0.15000000000000002,0.65,1.0,0.24,0.365,0
+tutududu,3,173,51,51,newest trusted interval,0.18,0.18,0.04,0.0,0.65,0.7000000000000001,0.45,1.0,0.45,0
+wicked wings combo,2,175,7,7,newest trusted interval,0.85,0.85,0.03,0.1,0.7000000000000001,0.6000000000000001,0.15000000000000002,0.26,0.655,0
+yep,4,178,8,8,newest trusted interval,0.23,0.23,0.05,0.2,0.5,0.65,0.35000000000000003,0.45,0.76,0
+zinger box,1,179,54,54,newest trusted interval,0.38,0.38,0.03,0.15000000000000002,0.5,0.5,0.05,0.43,0.645,0

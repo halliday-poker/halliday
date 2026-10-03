@@ -1,0 +1,236 @@
+{
+  "generated_at": "2026-10-03T20:54:48.725515+00:00",
+  "input_audit": {
+    "metadata_matches_without_collected_state": 2,
+    "metadata_matches": 2230,
+    "matches_sha256": "4649fc5e2e6208f213937bc23b88778208337dd5ea72066ac339d525f6833287",
+    "state_sha256": "c2be745dbb9f874ebdd15331d4cad417511c5a812cc41f344d1e093ccddf1741",
+    "rows": 2180812,
+    "hands": 196246,
+    "actions": 1525720,
+    "actions_sha256": "7c86b5ce5ff8636f4a3ebdbacdc51d24c35c12fa571842092016c935f7daa2a2",
+    "bots": 89,
+    "matches_with_actions": 2230,
+    "missing_hole_actions": 0,
+    "timestamp_basis": "state.collected[match_id].collected_at",
+    "stack": 200,
+    "sb": 1,
+    "bb": 2
+  },
+  "split_policy": "60/20/20 deterministic hash of whole match ID; all bots at a table share a split",
+  "validation_audit": {
+    "validation_matches": 273,
+    "passed": 270,
+    "collection_time_only": 93,
+    "failed_or_unknown": 3,
+    "trusted_play_time": 180
+  },
+  "selection": "lowest validation action NLL + 0.2 sizing-bin NLL; test excluded from selection",
+  "selected": "upload",
+  "selected_epoch": 98,
+  "validation_objectives": {
+    "none": 0.4447211265563965,
+    "upload": 0.40569086670875554,
+    "placebo": 0.4208255231380463,
+    "change": 0.4172941327095032
+  },
+  "baseline": {
+    "validation": {
+      "actions": 316525,
+      "nll": 0.7542410492897034,
+      "brier": 0.3609127402305603,
+      "accuracy": 0.7896690624753179,
+      "sizing_mae": 18.24960708618164,
+      "ece": 0.1138663951791902
+    },
+    "test": {
+      "actions": 297545,
+      "nll": 0.7516667246818542,
+      "brier": 0.36080265045166016,
+      "accuracy": 0.7898032230418929,
+      "sizing_mae": 15.456690788269043,
+      "ece": 0.11168263751458993
+    }
+  },
+  "models": {
+    "none": {
+      "validation": {
+        "actions": 316525,
+        "nll": 0.31116563081741333,
+        "brier": 0.18657511472702026,
+        "accuracy": 0.8673311744727905,
+        "sizing_mae": 7.7432920829726735,
+        "ece": 0.0011624012685634041
+      },
+      "test": {
+        "actions": 297545,
+        "nll": 0.30763521790504456,
+        "brier": 0.18712688982486725,
+        "accuracy": 0.8665781646473643,
+        "sizing_mae": 7.897247180968749,
+        "ece": 0.0020836775507495544
+      }
+    },
+    "upload": {
+      "validation": {
+        "actions": 316525,
+        "nll": 0.27974119782447815,
+        "brier": 0.16612564027309418,
+        "accuracy": 0.882407392780981,
+        "sizing_mae": 7.120356601488543,
+        "ece": 0.003313843297521489
+      },
+      "test": {
+        "actions": 297545,
+        "nll": 0.2750151753425598,
+        "brier": 0.16634587943553925,
+        "accuracy": 0.8814767514157522,
+        "sizing_mae": 7.3918240798727375,
+        "ece": 0.0035717026203248283
+      }
+    },
+    "placebo": {
+      "validation": {
+        "actions": 316525,
+        "nll": 0.2905961573123932,
+        "brier": 0.17181196808815002,
+        "accuracy": 0.8790427296422083,
+        "sizing_mae": 7.118800565660431,
+        "ece": 0.0019117586554890172
+      },
+      "test": {
+        "actions": 297545,
+        "nll": 0.2847191095352173,
+        "brier": 0.1723443567752838,
+        "accuracy": 0.877400057134215,
+        "sizing_mae": 7.228942083229786,
+        "ece": 0.0015610277733870874
+      }
+    },
+    "change": {
+      "validation": {
+        "actions": 316525,
+        "nll": 0.2902964949607849,
+        "brier": 0.16988058388233185,
+        "accuracy": 0.8791501461180001,
+        "sizing_mae": 7.7499863076287605,
+        "ece": 0.0030037160914389307
+      },
+      "test": {
+        "actions": 297545,
+        "nll": 0.2930414378643036,
+        "brier": 0.1718016117811203,
+        "accuracy": 0.877571459779193,
+        "sizing_mae": 7.947288264150329,
+        "ece": 0.002354051678419767
+      }
+    }
+  },
+  "paired_comparisons": [
+    {
+      "reference": "baseline",
+      "candidate": "none",
+      "matches": 390,
+      "mean_match_nll_gain": 0.470133839146449,
+      "bootstrap_95_interval": [
+        0.45320287017199473,
+        0.4885730224969582
+      ],
+      "bonferroni_7_comparisons_interval": [
+        0.4477184723327858,
+        0.4960152821626936
+      ]
+    },
+    {
+      "reference": "baseline",
+      "candidate": "upload",
+      "matches": 390,
+      "mean_match_nll_gain": 0.4949985765589353,
+      "bootstrap_95_interval": [
+        0.47874542794524666,
+        0.5121126163158661
+      ],
+      "bonferroni_7_comparisons_interval": [
+        0.4734577457436221,
+        0.5201320759044623
+      ]
+    },
+    {
+      "reference": "baseline",
+      "candidate": "placebo",
+      "matches": 390,
+      "mean_match_nll_gain": 0.48934428000297303,
+      "bootstrap_95_interval": [
+        0.4727611402849643,
+        0.5075851218278209
+      ],
+      "bonferroni_7_comparisons_interval": [
+        0.4672104209283838,
+        0.514375260259185
+      ]
+    },
+    {
+      "reference": "baseline",
+      "candidate": "change",
+      "matches": 390,
+      "mean_match_nll_gain": 0.4847401082038115,
+      "bootstrap_95_interval": [
+        0.4656877438380168,
+        0.5042453556383649
+      ],
+      "bonferroni_7_comparisons_interval": [
+        0.4590266099963133,
+        0.5115139297588008
+      ]
+    },
+    {
+      "reference": "none",
+      "candidate": "upload",
+      "matches": 390,
+      "mean_match_nll_gain": 0.02486473741248632,
+      "bootstrap_95_interval": [
+        0.021365261880251077,
+        0.02852653277393144
+      ],
+      "bonferroni_7_comparisons_interval": [
+        0.020080502595813884,
+        0.029725845653645583
+      ]
+    },
+    {
+      "reference": "placebo",
+      "candidate": "upload",
+      "matches": 390,
+      "mean_match_nll_gain": 0.005654296555962318,
+      "bootstrap_95_interval": [
+        0.0029256011975499303,
+        0.008560857334627931
+      ],
+      "bonferroni_7_comparisons_interval": [
+        0.0018047975117320215,
+        0.00979099551840061
+      ]
+    },
+    {
+      "reference": "none",
+      "candidate": "change",
+      "matches": 390,
+      "mean_match_nll_gain": 0.014606269057362507,
+      "bootstrap_95_interval": [
+        0.0027067343532465975,
+        0.02420181752492984
+      ],
+      "bonferroni_7_comparisons_interval": [
+        -0.004080734807390705,
+        0.02651649503276134
+      ]
+    }
+  ],
+  "cautions": [
+    "Bootstrap resamples whole test matches, preserving actions and all bots within each game.",
+    "Validation marks uploads, not selection as main. Only passed events with trustworthy play timestamps are epoch candidates.",
+    "The split measures generalization to held-out matches from observed versions; it is not a guarantee for future versions.",
+    "Sizing uses discrete legal target mixtures; the baseline MAE uses a central target approximation.",
+    "Display names may refer to renamed teams or code replacements. Empty/sparse epochs cannot establish behavior."
+  ]
+}

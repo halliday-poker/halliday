@@ -1,7 +1,7 @@
 # Offline opponent estimates and behavior replicas
 
-The newest upload is documented in the [latest-segment rerun](../analysis/reports/latest-analysis-20261004-r2.md),
-with [complete reproduction commands](../analysis/reports/reproduce-latest-20261004-r2.md).
+The newest upload is documented in the [within-game study](../analysis/reports/within-game-patterns-20261004-r3.md),
+including reproduction commands and parameter trajectories for each bot/game.
 Its 65-opponent pool is `sparring/competitors/from_data/latest-pool.txt`.
 Shared model training uses historical intervals with separate epoch features;
 the simulation field instantiates only newest reliably dated ladder intervals.
@@ -9,6 +9,31 @@ Earlier commands and results below refer to the first October 4 snapshot.
 The competitor builder now exports a shared `bots.json` parameter catalogue
 and pool entries selecting its records; it no longer generates one Python file
 per bot. See [catalogue usage](../sparring/competitors/README.md).
+
+## Within-game analysis
+
+`python -B -m opponent_model.within_game` provides `prepare`, `train`, `windows`
+and `explain` stages, each accepting `--directory`. Run them after
+`analysis/run_refresh_models.py`. `train --devices 0,1,2,3 --epochs 100` compares
+static context, hand progress, preceding public history and both additions
+simultaneously on four GPUs. `windows --devices 0,1,2,3` distributes bots across
+the same devices to refit ten-hand windows and bootstrap pooled 20-hand phases.
+
+Only a focal bot's newest reliably dated ladder interval enters this study;
+other seats retain the versions it actually encountered. Histories reset per
+match and use strictly earlier public actions/results, including hands with no
+action. Whole matches stay together in train/validation/test partitions. Sparse
+window fits shrink toward other games of the same interval; these descriptive
+fits are kept separate from the predictive experiment.
+
+`analysis/verify_within_game.py` reconciles source hashes, selected intervals,
+all hand/window denominators, chip totals and GPU allocation.
+`analysis/report_within_game.py` exports CSV trajectories, plots, corrected
+comparisons and explanations. Install `matplotlib==3.11.2` in the analysis
+environment for the report. The time/history models remain diagnostics; the
+shared executable catalogue retains the separately validated static workflow.
+The earlier [exact-main performance study](../analysis/reports/latest-analysis-20261004-r2.md)
+uses the preceding frozen upload.
 
 ## October 4 refresh
 
