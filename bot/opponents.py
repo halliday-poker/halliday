@@ -1,0 +1,101 @@
+"""Per-opponent counters built from this game's public events only.
+
+Three narrow reads gate the field exploits in strategy.py:
+- a shover moves all in preflop often, so its shoves are near-random hands;
+- a station calls almost every postflop bet, so bluffing it cannot work;
+- how often a player folds to our own postflop bets sets how hard we bluff
+  them, so we back off anyone who starts calling us down.
+Counters are keyed by player id, which is fixed for one game; nothing is
+stored between games or keyed to a bot's name.
+"""
+
+from collections import Counter, defaultdict
+
+
+class OpponentTracker:
+    def __init__(self):
+        self.profiles = defaultdict(Counter)
+        self._start_stacks = []
+        self._bets = []
+        self._shoved = set()
+        self._me = None
+        self._aggressor = None
+
+    def on_hand_start(self, info):
+        try:
+            players, stacks = info["players"], info["stacks"]
+            for player in players:
+                self.profiles[player]["hands"] += 1
+            self._start_stacks = list(stacks)
+            self._bets = [0] * len(players)
+            self._shoved = set()
+            self._me = info.get("seat")
+            self._aggressor = None
+        except (AttributeError, KeyError, TypeError):
+            pass
+
+    def on_street(self, event):
+        self._bets = [0] * len(self._bets)
+        self._aggressor = None
+
+    def on_action(self, event):
+        try:
+            seat, street = event["seat"], event["street"]
+            kind, amount = event["action"], event["amount"]
+            player = event["players"][seat]
+            if street == "preflop":
+                # Raise amounts are street totals, so a raise to the starting
+                # stack is an all-in. Blinds are not sent to bots.
+                if (kind == "raise" and amount >= self._start_stacks[seat]
+                        and player not in self._shoved):
+                    self._shoved.add(player)
+                    self.profiles[player]["shoves"] += 1
+                return
+            facing = max(self._bets) > self._bets[seat]
+            ours = facing and self._me is not None and self._aggressor == self._me
+            if kind == "raise":
+                self._bets[seat] = amount
+                self._aggressor = seat
+            elif kind == "call":
+                self._bets[seat] += amount
+            if facing:
+                profile = self.profiles[player]
+                profile["faced"] += 1
+                profile[kind] += 1
+                if ours:
+                    profile["faced_us"] += 1
+                    profile[kind + "_us"] += 1
+        except (KeyError, IndexError, TypeError, ValueError):
+            pass
+
+
+def profile_of(state, seat, profiles):
+    if not profiles:
+        return None
+    try:
+        return profiles.get(state.player_at(seat))
+    except (IndexError, KeyError):
+        return None
+
+
+def is_shover(profile, params):
+    if not profile or profile["hands"] < params["shover_min_hands"]:
+        return False
+    shoves = profile["shoves"]
+    return shoves >= params["shover_min_shoves"] and shoves / profile["hands"] >= params["shover_min_rate"]
+
+
+def is_station(profile, params):
+    if not profile or profile["faced"] < params["station_min_faced"]:
+        return False
+    faced = profile["faced"]
+    return (profile["fold"] / faced <= params["station_max_fold"]
+            and profile["raise"] / faced <= params["station_max_raise"])
+
+
+def fold_to_us(profile, params):
+    """This game's fold rate to our postflop bets, shrunk toward the field's."""
+    prior, weight = params["bluff_fold_prior"], params["bluff_prior_weight"]
+    faced = profile["faced_us"] if profile else 0
+    folds = profile["fold_us"] if profile else 0
+    return (folds + prior * weight) / (faced + weight)

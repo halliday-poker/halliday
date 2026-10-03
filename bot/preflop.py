@@ -1,8 +1,14 @@
 """Fixed 169-class preflop tables for the 1/2 blind, 100 bb game.
 
 These are simple starting ranges, not solver-derived charts. No opponent
-identity, observations from other hands, or game score is used.
+identity or game score is used; this game's shove counts (opponents.py)
+only widen calls against a proven shover.
 """
+
+if __package__:
+    from .opponents import is_shover, profile_of
+else:
+    from opponents import is_shover, profile_of
 
 RANKS = "23456789TJQKA"
 
@@ -53,8 +59,12 @@ THREE_BET_LATE = expand_range("TT+,AJs+,KQs,AQo+")
 CALL_OPEN = expand_range("22+,ATs+,KJs+,QJs,JTs,T9s,AQo+")
 CALL_OPEN_LATE = expand_range("22+,A2s+,KTs+,QTs+,JTs,T9s,98s,87s,ATo+,KQo")
 BB_DEFEND = expand_range("22+,A2s+,K5s+,Q8s+,J8s+,T8s+,97s+,86s+,75s+,65s,54s,A8o+,KTo+,QTo+,JTo")
-FOUR_BET = expand_range("KK+,AKs")
+# Ladder 3-bets are light (about half are outside the top 30%) but the field
+# folds only ~19% to 4-bets: value 4-bet wider, flat wider in position, and
+# never 4-bet bluff.
+FOUR_BET = expand_range("QQ+,AKs,AKo")
 CALL_THREE_BET = expand_range("TT+,AQs+,AKo")
+CALL_THREE_BET_IP = expand_range("77+,AJs+,KQs,AQo+")
 LARGE_CALL = expand_range("QQ+,AKs,AKo")
 
 
@@ -92,7 +102,7 @@ def pot_odds(state):
     return state.to_call / max(1, state.pot + state.to_call - excess)
 
 
-def preflop_plan(state, equity, params):
+def preflop_plan(state, equity, params, opp_profiles=None):
     """Return (kind, desired raise-to) for the legal-action wrapper."""
     hand, pos = hand_class(state.hole), position(state)
     raises = [a for a in state.history if a[0] == "preflop" and a[2] == "raise"]
@@ -113,6 +123,17 @@ def preflop_plan(state, equity, params):
         price = pot_odds(state)
         if hand in LARGE_CALL and equity is not None and equity >= price + params["preflop_call_margin"]:
             return "call", 0
+        # A proven shover's all-in is close to random cards, which is what
+        # the equity estimate assumes, so any hand beating the price calls.
+        # Not when someone else has already called the shove.
+        shove = raises[-1]
+        shover = shove[1]
+        called = any(a[0] == "preflop" and a[2] == "call"
+                     for a in state.history[state.history.index(shove) + 1:])
+        if (state.stacks[shover] == 0 and not called and equity is not None
+                and is_shover(profile_of(state, shover, opp_profiles), params)
+                and equity >= price + params["shover_call_margin"]):
+            return "call", 0
         return passive
 
     raiser = raises[-1][1]
@@ -131,6 +152,7 @@ def preflop_plan(state, equity, params):
     else:
         if hand in FOUR_BET:
             return "raise", round(current * params["fourbet_multiplier"])
-        if hand in CALL_THREE_BET and current <= bb * params["max_threebet_call_bb"]:
+        calling = CALL_THREE_BET_IP if in_position(state, raiser) else CALL_THREE_BET
+        if hand in calling and current <= bb * params["max_threebet_call_bb"]:
             return "call", 0
     return passive

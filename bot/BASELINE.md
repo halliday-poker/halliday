@@ -1,5 +1,9 @@
 # Non-adaptive baseline
 
+> `feat/field-exploits` changes the c-bet, c-bet defence, 3-bet/4-bet and
+> all-in rules below and adds per-game opponent counters; see
+> [FIELD_EXPLOITS.md](FIELD_EXPLOITS.md). This file still describes the base.
+
 This branch starts from `feat/odds-calc` at `d8c1a2c`, including the merged
 evaluation harness. The equity engine and its public API are unchanged.
 The scaffold's pot-odds-only action rule is replaced with a fixed strategy.

@@ -1,4 +1,4 @@
-"""SDK glue for the fixed baseline strategy and Person A's equity engine."""
+"""SDK glue for the strategy, the equity engine and this game's opponent counters."""
 
 from hashlib import blake2b
 import json
@@ -7,10 +7,12 @@ from macpoker import Bot
 
 if __package__:
     from .engine import EquitySamplingError, EquityTimeout, estimate_equity
+    from .opponents import OpponentTracker
     from .params import DEFAULT_PARAMS
     from .strategy import decide
 else:  # SDK loads main.py as a standalone module from the submission folder.
     from engine import EquitySamplingError, EquityTimeout, estimate_equity
+    from opponents import OpponentTracker
     from params import DEFAULT_PARAMS
     from strategy import decide
 
@@ -19,10 +21,18 @@ class MyBot(Bot):
     def __init__(self):
         self.last_equity = None
         self.last_estimate = None
+        self.opponents = OpponentTracker()
 
     def on_hand_start(self, info):
         self.last_equity = None
         self.last_estimate = None
+        self.opponents.on_hand_start(info)
+
+    def on_action(self, event):
+        self.opponents.on_action(event)
+
+    def on_street(self, event):
+        self.opponents.on_street(event)
 
     def act(self, state):
         self.last_equity = None
@@ -51,4 +61,4 @@ class MyBot(Bot):
                     self.last_equity = result.equity
             except (EquityTimeout, EquitySamplingError):
                 pass
-        return decide(state, self.last_equity, params=p)
+        return decide(state, self.last_equity, self.opponents.profiles, params=p)

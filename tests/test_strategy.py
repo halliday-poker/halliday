@@ -1,5 +1,6 @@
 """Fixed-policy regressions, engine integration, and raw-action legality."""
 
+from collections import Counter
 from copy import deepcopy
 from pathlib import Path
 from random import Random
@@ -16,6 +17,7 @@ sys.path.insert(0, str(ROOT))
 from macpoker import GameState
 from macpoker.hand import Sink, play_hand
 from bot.main import MyBot
+from bot.opponents import OpponentTracker
 from bot.params import DEFAULT_PARAMS
 from bot.preflop import OPEN_RANGES, expand_range, hand_class, in_position, position, pot_odds
 from bot.strategy import bet, board_texture, decide, has_draw, legal_raise
@@ -110,6 +112,72 @@ class PreflopTests(unittest.TestCase):
         self.assertEqual(decide(s, None).kind, "call")
 
 
+    def test_wider_fourbets_and_threebet_flats_in_position_only(self):
+        s = state(seat=3, pot=23, to_call=10, min_raise_to=25,
+                  street_bets=[15, 1, 2, 5, 0, 0],
+                  history=[["preflop", 3, "raise", 5], ["preflop", 0, "raise", 15]])
+        for hole in (["Qs", "Qh"], ["As", "Kd"]):
+            s._m["hole"] = hole
+            self.assertEqual(decide(s, None).to_wire(), {"action": "raise", "amount": 34})
+        s._m["hole"] = ["8s", "8d"]
+        self.assertEqual(decide(s, None).kind, "fold")  # out of position
+        s = state(seat=0, hole=["8s", "8d"], pot=23, to_call=10, min_raise_to=25,
+                  street_bets=[5, 1, 15, 0, 0, 0],
+                  history=[["preflop", 0, "raise", 5], ["preflop", 2, "raise", 15]])
+        self.assertEqual(decide(s, None).kind, "call")  # in position vs the big blind
+
+    def test_proven_shover_is_called_with_any_hand_beating_the_price(self):
+        folds = [["preflop", seat, "fold", 0] for seat in (4, 5, 0, 1)]
+        s = state(seat=2, hole=["As", "5d"], pot=203, to_call=198, can_raise=False,
+                  stacks=[200, 199, 198, 0, 200, 200], street_bets=[0, 1, 2, 200, 0, 0],
+                  folded=[True, True, False, False, True, True],
+                  history=[["preflop", 3, "raise", 200]] + folds)
+        shover = {3: Counter(hands=10, shoves=4)}
+        self.assertEqual(decide(s, 0.55, shover).kind, "call")
+        self.assertEqual(decide(s, 0.50, shover).kind, "fold")  # below price + margin
+        self.assertEqual(decide(s, 0.55).kind, "fold")  # unknown shover
+        self.assertEqual(decide(s, 0.55, {3: Counter(hands=10, shoves=2)}).kind, "fold")
+        s._m["history"] = [["preflop", 3, "raise", 200], ["preflop", 4, "call", 200]]
+        self.assertEqual(decide(s, 0.55, shover).kind, "fold")  # someone else called
+
+
+class OpponentTrackerTests(unittest.TestCase):
+    def test_counts_shoves_and_responses_to_postflop_bets(self):
+        t = OpponentTracker()
+        players = [10, 11, 12]
+        t.on_hand_start({"players": players, "stacks": [200, 200, 200]})
+        t.on_action({"seat": 1, "street": "preflop", "action": "raise", "amount": 200, "players": players})
+        t.on_street({"street": "flop", "players": players})
+        for seat, kind, amount in ((0, "check", 0), (2, "raise", 10), (0, "call", 10), (1, "fold", 0)):
+            t.on_action({"seat": seat, "street": "flop", "action": kind, "amount": amount, "players": players})
+        self.assertEqual(t.profiles[11]["shoves"], 1)
+        self.assertEqual((t.profiles[10]["faced"], t.profiles[10]["call"]), (1, 1))
+        self.assertEqual((t.profiles[11]["faced"], t.profiles[11]["fold"]), (1, 1))
+        self.assertEqual(t.profiles[12]["faced"], 0)  # bet into an unbet pot
+        self.assertEqual(t.profiles[10]["hands"], 1)
+
+    def test_counts_responses_to_our_own_bets(self):
+        t = OpponentTracker()
+        players = [10, 11, 12]
+        t.on_hand_start({"players": players, "stacks": [200, 200, 200], "seat": 0})
+        t.on_street({"street": "flop", "players": players})
+        for seat, kind, amount in ((0, "raise", 10), (1, "call", 10), (2, "raise", 30),
+                                   (0, "call", 20), (1, "fold", 0)):
+            t.on_action({"seat": seat, "street": "flop", "action": kind, "amount": amount, "players": players})
+        self.assertEqual((t.profiles[11]["faced_us"], t.profiles[11]["call_us"]), (1, 1))
+        self.assertEqual(t.profiles[11]["fold_us"], 0)  # folded to seat 2's raise, not ours
+        self.assertEqual((t.profiles[12]["faced_us"], t.profiles[12]["raise_us"]), (1, 1))
+        self.assertEqual(t.profiles[10]["faced_us"], 0)
+
+    def test_malformed_events_never_raise(self):
+        bot = MyBot()
+        for event in ({}, {"seat": 9, "street": "flop"}, {"players": None}, None):
+            bot.on_hand_start(event or {})
+            bot.on_action(event or {})
+            bot.on_street(event or {})
+        self.assertEqual(bot.act(state()).kind, "raise")
+
+
 class PostflopTests(unittest.TestCase):
     def test_value_check_call_raise_and_fold(self):
         s = postflop()
@@ -143,17 +211,60 @@ class PostflopTests(unittest.TestCase):
         self.assertFalse(has_draw(["As", "Kh"], ["Qd", "Jc", "2d"]))
         self.assertFalse(has_draw(["As", "Ks"], ["Qs", "7s", "2d", "3c", "4h"]))
 
-    def test_continuation_bet_requires_heads_up_initiative_and_equity(self):
+    def test_heads_up_flop_cbet_is_pot_sized_with_any_hand(self):
         s = postflop(history=[["preflop", 0, "raise", 5]])
-        self.assertEqual(decide(s, 0.55).kind, "raise")
+        for equity in (0.10, 0.45, 0.80):  # one size for air and value
+            self.assertEqual(decide(s, equity).to_wire(), {"action": "raise", "amount": 40})
+        s._m.update(board=["Qc", "Qh", "2d"])
+        self.assertEqual(decide(s, 0.10).amount, 40)
+        s._m["history"] = [["preflop", 1, "raise", 5]]  # no initiative
         self.assertEqual(decide(s, 0.45).kind, "check")
-        s._m["history"] = [["preflop", 1, "raise", 5]]
-        self.assertEqual(decide(s, 0.55).kind, "check")
-        s._m.update(history=[["preflop", 0, "raise", 5]], board=["Qc", "Qh", "2d"])
-        self.assertEqual(decide(s, 0.55).kind, "check")
-        s._m.update(players=[0, 1, 2], stacks=[190, 190, 190],
+        s._m.update(history=[["preflop", 0, "raise", 5]], board=["Ac", "7h", "2d", "9s"])
+        self.assertEqual(decide(s, 0.45).kind, "check")  # flop only
+        s._m.update(board=["Ac", "7h", "2d"], players=[0, 1, 2], stacks=[190, 190, 190],
                     folded=[False] * 3, street_bets=[0] * 3)
-        self.assertEqual(decide(s, 0.55).kind, "check")
+        self.assertEqual(decide(s, 0.45).kind, "check")  # multiway: value only
+
+    def test_station_gets_no_bluff_cbet(self):
+        s = postflop(history=[["preflop", 0, "raise", 5]])
+        profiles = {1: Counter(hands=20, faced=10, call=10)}
+        self.assertEqual(decide(s, 0.10, profiles).kind, "check")
+        self.assertEqual(decide(s, 0.80, profiles).amount, 40)  # value still bets
+        profiles[1].update(fold=4)  # folds 4 of 10: not a station
+        self.assertEqual(decide(s, 0.10, profiles).kind, "raise")
+
+    def test_bluffs_stop_once_an_opponent_calls_our_bets(self):
+        s = postflop(hole=["Ks", "Qh"], history=[["preflop", 0, "raise", 5]])  # air
+        profiles = {1: Counter(hands=10, faced_us=1, call_us=1)}
+        self.assertEqual(decide(s, 0.10, profiles).amount, 40)  # one call is not enough
+        profiles[1].update(faced_us=1, call_us=1)  # called our last two bets
+        self.assertEqual(decide(s, 0.10, profiles).kind, "check")
+        self.assertEqual(decide(s, 0.80, profiles).amount, 40)  # value still bets pot
+        s._m["hole"] = ["Ks", "7c"]  # a pair still bets pot
+        self.assertEqual(decide(s, 0.55, profiles).amount, 40)
+        s._m["hole"] = ["Ks", "Qh"]
+        profiles[1].update(faced_us=4, fold_us=4)  # folds again: bluff again
+        self.assertEqual(decide(s, 0.10, profiles).amount, 40)
+
+    def test_bluff_frequency_mixes_air_repeatably(self):
+        params = dict(DEFAULT_PARAMS, bluff_frequency=0.5)
+        boards = [[a, b, c] for a, b, c in (("Qd", "8c", "3h"), ("Jd", "9c", "4h"), ("Td", "6c", "2h"),
+                                             ("9d", "5c", "3s"), ("8d", "4c", "2s"), ("Qc", "6d", "4s"),
+                                             ("Jc", "5d", "2c"), ("Tc", "8h", "3c"))]
+        kinds = []
+        for board in boards:
+            s = postflop(board=board, history=[["preflop", 0, "raise", 5]])
+            kinds.append(decide(s, 0.10, params=params).kind)
+            self.assertEqual(decide(s, 0.10, params=params).kind, kinds[-1])
+        self.assertEqual(set(kinds), {"raise", "check"})
+
+    def test_cbet_defence_drops_big_bet_margins(self):
+        # Their pot-sized heads-up flop c-bet prices us at 1/3.
+        s = postflop(to_call=40, pot=80, street_bets=[0, 40], min_raise_to=80,
+                     history=[["preflop", 1, "raise", 5], ["flop", 1, "raise", 40]])
+        self.assertEqual(decide(s, 0.36).kind, "call")
+        s._m["history"] = [["preflop", 0, "raise", 5], ["flop", 1, "raise", 40]]  # a donk bet
+        self.assertEqual(decide(s, 0.36).kind, "fold")
 
     def test_low_spr_value_shoves_and_all_in_opponents_cannot_be_bluffed(self):
         s = postflop(pot=300)
@@ -196,7 +307,7 @@ class BotIntegrationTests(unittest.TestCase):
             bot.act(s)
             self.assertEqual(estimate.call_args.args[-2:], (192, 10))
 
-    def test_public_seed_no_learning_no_mutation_or_global_randomness(self):
+    def test_public_seed_one_observation_no_mutation_or_global_randomness(self):
         bot, s = MyBot(), postflop()
         before, rng = deepcopy(s.raw()), random.getstate()
         result = SimpleNamespace(equity=0.7, method="monte_carlo", samples=768)

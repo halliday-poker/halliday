@@ -1,16 +1,29 @@
-"""A fixed, value-oriented baseline using current-hand information only."""
+"""The value-oriented baseline plus narrow field exploits (FIELD_EXPLOITS.md)."""
 
 from collections import Counter
+from hashlib import blake2b
+import json
 from math import ceil, isfinite
 
 if __package__:
     from .engine import evaluate_hand
+    from .opponents import fold_to_us, is_station, profile_of
     from .params import DEFAULT_PARAMS
     from .preflop import pot_odds, preflop_plan
 else:
     from engine import evaluate_hand
+    from opponents import fold_to_us, is_station, profile_of
     from params import DEFAULT_PARAMS
     from preflop import pot_odds, preflop_plan
+
+
+def mixed(state, frequency):
+    """A repeatable coin flip from the visible spot, without global randomness."""
+    if frequency >= 1:
+        return True
+    spot = json.dumps((sorted(state.hole), state.board, state.history))
+    draw = int.from_bytes(blake2b(spot.encode(), digest_size=8).digest(), "big")
+    return draw / 2 ** 64 < frequency
 
 
 def safe_action(state):
@@ -63,13 +76,13 @@ def has_draw(hole, board):
 
 
 def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS):
-    """Shared B interface; profiles are unused in this baseline.
+    """Shared B interface. opp_profiles maps player id -> this game's counters.
 
     Equity is fractional showdown share against all live opponents,
     including all-ins. It is not chip EV or a model of future betting.
     """
     if not state.board:
-        kind, target = preflop_plan(state, equity, params)
+        kind, target = preflop_plan(state, equity, params, opp_profiles)
         if kind == "raise":
             return legal_raise(state, target)
         if kind == "call":
@@ -88,29 +101,49 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS):
     raise_value = min(0.97, params["raise_threshold"] + extra * params["multiway_raise_margin"])
     fraction = params["size_wet"] if board_texture(state.board) else params["size_dry"]
     can_bet = state.can_raise and any(state.stacks[s] > 0 for s in opponents)
+    street = {3: "flop", 4: "turn", 5: "river"}[len(state.board)]
+    raises = [a for a in state.history if a[0] == "preflop" and a[2] == "raise"]
+    aggressor = raises[-1][1] if raises else None
+    villain = opponents[0] if n == 1 else None
+    profile = profile_of(state, villain, opp_profiles) if villain is not None else None
+    station = villain is not None and is_station(profile, params)
+    # Heads-up flop as the preflop raiser: ladder bots fold ~74% to a
+    # pot-sized c-bet almost regardless of their hand, so bet pot with
+    # everything (one size for value and air) unless they never fold.
+    cbet_spot = villain is not None and street == "flop" and aggressor == state.seat
     if not state.to_call:
         if can_bet and equity >= value:
             if equity >= params["shove_equity"] and state.my_stack <= params["shove_spr"] * state.pot:
                 return legal_raise(state, state.max_raise_to)
-            return bet(state, fraction)
-        raises = [a for a in state.history if a[0] == "preflop" and a[2] == "raise"]
+            return bet(state, params["cbet_pot_fraction"] if cbet_spot else fraction)
         own_pair = (state.hole[0][0] == state.hole[1][0]
                     or bool({c[0] for c in state.hole} & {c[0] for c in state.board}))
-        # A modest heads-up flop continuation bet with initiative and equity.
-        if (can_bet and n == 1 and len(state.board) == 3 and raises
-                and raises[-1][1] == state.seat and equity >= params["cbet_equity"]
-                and (own_pair or has_draw(state.hole, state.board))):
+        made_or_draw = own_pair or has_draw(state.hole, state.board)
+        # Pure air bets only while this opponent still folds to our bets
+        # often enough to pay for a pot-sized bluff, and then only some of
+        # the time so a watching opponent cannot assume every bet is a bluff.
+        bluff = (fold_to_us(profile, params) >= params["bluff_min_fold"]
+                 and mixed(state, params["bluff_frequency"]))
+        if can_bet and cbet_spot and not station and (made_or_draw or bluff):
+            return bet(state, params["cbet_pot_fraction"])
+        # Against a station, only the modest c-bet with a pair or draw.
+        if can_bet and cbet_spot and equity >= params["cbet_equity"] and made_or_draw:
             return bet(state, params["size_dry"])
         return state.check()
 
-    street = {3: "flop", 4: "turn", 5: "river"}[len(state.board)]
     price = pot_odds(state)
-    margin = params["call_margin_" + street] + extra * params["multiway_call_margin"]
-    # Uniform-card equity overstates strength against a selective bettor.
-    margin += params["large_bet_margin"] * min(1.0, state.to_call / max(1, state.pot - state.to_call))
     street_raises = sum(a[0] == street and a[2] == "raise" for a in state.history)
-    if street_raises > 1:
-        margin += params["reraise_margin"]
+    if villain is not None and street == "flop" and aggressor == villain and street_raises == 1:
+        # Facing their heads-up flop c-bet: ~56% of ladder c-bets are air
+        # and their ranges are wide, so uniform-card equity is roughly
+        # right. Drop the big-bet and street margins.
+        margin = params["cbet_defence_margin"]
+    else:
+        margin = params["call_margin_" + street] + extra * params["multiway_call_margin"]
+        # Uniform-card equity overstates strength against a selective bettor.
+        margin += params["large_bet_margin"] * min(1.0, state.to_call / max(1, state.pot - state.to_call))
+        if street_raises > 1:
+            margin += params["reraise_margin"]
     if can_bet and equity >= raise_value:
         if equity >= params["shove_equity"] and state.my_stack <= params["shove_spr"] * (state.pot + state.to_call):
             return legal_raise(state, state.max_raise_to)
