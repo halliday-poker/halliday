@@ -65,10 +65,18 @@ def field_compute_plan(args, specs):
     return harness.compute_plan(args, compatible=compatible)
 
 
+def is_house(spec):
+    if spec.startswith('house:'):
+        return True
+    if spec.startswith('fitted:'):
+        return harness.make_bot(spec, 'roster-check').DISPLAY_NAME.startswith('house:')
+    return Path(spec).stem == 'house_call'
+
+
 def run(args):
     field = [spec for spec, _ in harness.read_pool(Path(args.pool), [])]
     # The validation house bot is not a team entrant.
-    field = [s for s in field if s != 'house:call' and Path(s).stem != 'house_call']
+    field = [s for s in field if not is_house(s)]
     if len(field) != len(set(field)) or any(c in field for c in args.bots):
         raise ValueError('Entrants must be unique; exclude candidates from the pool')
     count = len(field) + 1

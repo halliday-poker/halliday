@@ -161,3 +161,14 @@ in [the compact evidence bundle](../analysis/reports/evidence/20261004/index.jso
 The additional strategy studies completed 17,895 full games with no player
 failures. No candidate passed its performance selection rule; harness fixes
 and equivalent feature acceleration do not imply a stronger poker strategy.
+
+## Opponent catalogue loader follow-up
+
+The data-catalogue migration passed all 149 tests with CUDA enabled and no
+skips. A CLI integration run completed 76 games with catalogue opponents and
+a catalogue candidate across four concurrent V100 workers; every device
+performed CUDA rankings. A separate 24-game CPU tournament exercised catalogue
+roster filtering and exact-main fallback. Both runs had zero player failures.
+All 89 current replicas also matched their previous generated-file versions'
+chips, action counters and verdicts exactly on 15 seeded tables. The 65-identity
+strict roster and all 77 reference-field parameter records are unchanged.

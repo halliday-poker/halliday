@@ -6,6 +6,9 @@ Its 65-opponent pool is `sparring/competitors/from_data/latest-pool.txt`.
 Shared model training uses historical intervals with separate epoch features;
 the simulation field instantiates only newest reliably dated ladder intervals.
 Earlier commands and results below refer to the first October 4 snapshot.
+The competitor builder now exports a shared `bots.json` parameter catalogue
+and pool entries selecting its records; it no longer generates one Python file
+per bot. See [catalogue usage](../sparring/competitors/README.md).
 
 ## October 4 refresh
 

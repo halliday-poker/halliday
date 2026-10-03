@@ -34,7 +34,7 @@ def main():
     bot=harness.resolve_path(args.bot)
     lineups=[['house:call','house:random','sparring/station.py','sparring/tag.py'],
              ['house:allin','house:checkfold','sparring/maniac.py','sparring/nit.py'],
-             ['sparring/competitors/from_data/'+name+'.py' for name in
+             ['fitted:sparring/competitors/from_data/bots.json@'+name for name in
               ('catherine','jongwon','tungbot','pocket_nuts','alo','lil_fruit','guaguanco_5')]]
     rows=[]
     cpu=min(os.sched_getaffinity(0))

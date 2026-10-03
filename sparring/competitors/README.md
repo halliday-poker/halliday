@@ -1,5 +1,43 @@
 # Fitted competitors
 
+## Data catalogue and shared loader
+
+`from_data/bots.json` stores all 89 opponents' executable settings: a stable
+ID, display name, ten `param.py` scaffold parameters, and optional learned
+policy configuration. JSON keeps the nested policy settings readable without
+embedding serialized objects in CSV cells. `competitor_base.py` is the shared
+implementation; no Python source is generated for individual opponents.
+`profiles.json` retains the larger analysis evidence and uncertainty separately.
+
+Pool entries select a record from the catalogue:
+
+```text
+fitted:sparring/competitors/from_data/bots.json@catherine 1
+```
+
+The same spec works as a candidate in `harness/eval.py`, in tournament pools,
+and in JSON table lineups. The loader reads policy paths relative to the
+catalogue, shares model weights within a worker, and creates fresh counters,
+settings and a seeded RNG for each game. Bot hashes include the selected
+record, policy weights and shared implementation. Archived pool entries naming
+removed generated `.py` files resolve to their catalogue IDs in the harness;
+the SDK's standalone Python-file loader does not load catalogue specs.
+
+Regenerate the catalogue and pools from the current fitted report:
+
+```sh
+.venv-estimators/bin/python -B sparring/competitors/build.py analysis/results/refresh-20261004-r2/opponent-estimates.json --policy analysis/results/refresh-20261004-r2/policy-refit-upload.npz
+.venv-estimators/bin/python -B harness/eval.py run bot --no-league --no-extend --pool sparring/competitors/from_data/latest-pool.txt --tables 400 --device auto --workers 12
+```
+
+For parameter experiments, edit a record's `style` in `bots.json`. If it has a
+learned `policy`, its `weight` controls policy use; set it to `0` to use only
+the scaffold. A rebuild replaces manual catalogue edits with fitted values,
+updates pool membership and removes obsolete generated wrappers. It preserves
+unrelated Python helpers. `--destination` selects another directory inside the
+repository. `param_reference/bots.json` stores the historical scaffold-only
+field using the same format and loader.
+
 ## Current data refresh (October 4, second upload)
 
 `from_data/` now contains 89 observed identities fitted to the new frozen upload.
@@ -36,7 +74,7 @@ recreated; `Gladiator_v3` is a separately observed name. The final entrant list
 is unknown. The house validation bot remains in the general pool for stress
 testing, but `harness/tournament.py` excludes it from its team roster.
 
-Each replica subclasses `sparring/param.py`. The ten estimated scaffold settings
+Each replica uses the shared subclass of `sparring/param.py`. The ten estimated scaffold settings
 remain an interpretable fallback. A compact NumPy model predicts actions and
 legal raise-size mixtures from own cards and public context, plus identity and
 candidate upload interval. It uses no hidden cards or future outcomes. Private

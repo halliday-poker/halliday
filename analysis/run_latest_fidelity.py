@@ -11,6 +11,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from analysis.summarize_benchmarks import summarize
+from sparring.competitors.catalog import spec
 
 
 def main():
@@ -22,7 +23,7 @@ def main():
     run = args.directory
     baseline = json.loads((run/'baseline-manifest.json').read_text())
     profiles = json.loads((ROOT/'sparring/competitors/from_data/profiles.json').read_text())['profiles']
-    replica = 'sparring/competitors/from_data/'+profiles['Halliday']['file']
+    replica = spec('sparring/competitors/from_data/bots.json', profiles['Halliday']['id'])
     tables = run/'latest-matched-tables.json'
     plan = dict(seed=args.seed, baseline=baseline, replica=replica, tables_sha256=sha256(tables.read_bytes()).hexdigest(),
                 purpose='Descriptive fidelity on newest-interval observed compositions, with fresh duplicate decks; not original-deck replay, held-out model validation or proof of a source version.')

@@ -1,4 +1,4 @@
-"""Materialize latest opponent intervals with optional NumPy policy inference.
+"""Write a catalogue of latest opponent parameters and optional NumPy policies.
 
     python sparring/competitors/build.py analysis/results/opponent-estimates.json
 """
@@ -8,7 +8,6 @@ from collections import Counter
 from hashlib import sha256
 import json
 import keyword
-import math
 from pathlib import Path
 import re
 import shutil
@@ -16,8 +15,10 @@ import unicodedata
 
 
 ROOT = Path(__file__).resolve().parents[2]
-PARAMETERS = ("vpip", "pfr", "threebet", "limp", "aggression", "cbet", "bluff",
-              "stickiness", "size", "adaptive")
+if __package__:
+    from .catalog import record, spec, validate_style, write_catalog
+else:
+    from catalog import record, spec, validate_style, write_catalog
 
 
 def slug(name):
@@ -39,20 +40,13 @@ def latest_profiles(report):
             raise ValueError(f"{name}: no fitted segments")
         segment = max(segments, key=lambda s: tuple(s.get('selection_key',(False,s['observed_through'])))+(s['observed_from'],))
         style = segment["surrogate_style"]
-        if set(style) != set(PARAMETERS):
-            raise ValueError(f"{name}: expected all ten surrogate parameters")
-        for key, value in style.items():
-            low, high = (.25, 1.5) if key == "size" else (0, 1)
-            if not isinstance(value, (int, float)) or not math.isfinite(value) or not low <= value <= high:
-                raise ValueError(f"{name}: invalid {key}={value}")
-        if not style["threebet"] <= style["pfr"] <= style["vpip"] or style["adaptive"] not in (0, 1):
-            raise ValueError(f"{name}: inconsistent surrogate style")
+        validate_style(name, style)
         stem = slug(name)
         if counts[stem] > 1 or stem in {"build", "competitor_base"}:
             stem += "_" + sha256(name.encode()).hexdigest()[:8]
-        profiles[name] = dict(file=stem + ".py", **segment)
-    if len({p["file"] for p in profiles.values()}) != len(profiles):
-        raise ValueError("Competitor filenames collide")
+        profiles[name] = dict(id=stem, **segment)
+    if len({p["id"] for p in profiles.values()}) != len(profiles):
+        raise ValueError("Competitor IDs collide")
     return profiles
 
 
@@ -75,18 +69,13 @@ def build(report_path, destination, exclude=("Halliday",), policy_path=None):
     unknown = excluded - set(profiles)
     if unknown:
         raise ValueError(f"Unknown excluded identities: {sorted(unknown)}")
-    for name, profile in profiles.items():
-        style = {key: profile["surrogate_style"][key] for key in PARAMETERS}
-        source = (f'"""Generated fitted opponent: {name!r}. See profiles.json for uncertainty."""\n\n'
-                  'import competitor_base\n\n\n'
-                  'class CompetitorBot(competitor_base.FittedBot):\n'
-                  f'    DISPLAY_NAME = {name!r}\n'
-                  f'    STYLE = {style!r}\n'
-                  + (f'    POLICY = {profile["behavior"]!r}\n' if 'behavior' in profile else '') + '\n\n'
-                  'def make_seeded_bot(seed):\n'
-                  '    return CompetitorBot(seed=seed)\n')
-        (destination / profile["file"]).write_text(source, encoding="utf-8")
-    manifest = dict(schema_version=2 if report.get('behavior_model_sha256') else 1, report_sha256=sha256(raw).hexdigest(),
+    write_catalog(destination/'bots.json', {p['id']: record(name, p) for name, p in profiles.items()})
+    # Remove only wrappers produced by previous versions of this generator.
+    # This also removes obsolete identities when the report's roster shrinks.
+    for path in destination.glob('*.py'):
+        if path.read_text().startswith('"""Generated fitted opponent:'):
+            path.unlink()
+    manifest = dict(schema_version=3, catalog='bots.json', report_sha256=sha256(raw).hexdigest(),
                     analysis_generated_at_utc=report["generated_at_utc"],
                     surrogate_source_sha256=fingerprint, input_audit=report["input_audit"],
                     analysis_settings=report["settings"], pool_excluded=sorted(excluded),
@@ -102,8 +91,16 @@ def build(report_path, destination, exclude=("Halliday",), policy_path=None):
         lines = ["# Equal weight per recorded identity; latest fitted segment."]
         if omitted:
             lines.append("# Current bot replaces: " + ", ".join(sorted(omitted)))
-        lines += [f"{prefix}/{p['file']} 1" for name, p in profiles.items() if name not in omitted]
+        lines += [f"{spec(prefix+'/bots.json', p['id'])} 1" for name, p in profiles.items() if name not in omitted]
         (destination / filename).write_text("\n".join(lines) + "\n")
+    if all('known_play_times' in p and 'validation_only' in p for p in profiles.values()):
+        lines = ['# Latest trusted observed ladder interval per external identity.']
+        lines += [f"{spec(prefix+'/bots.json', p['id'])} 1" for name, p in profiles.items()
+                  if name not in excluded and not name.startswith('house:')
+                  and p['known_play_times'] and not p['validation_only']]
+        (destination/'latest-pool.txt').write_text('\n'.join(lines)+'\n')
+    else:
+        (destination/'latest-pool.txt').unlink(missing_ok=True)
     return manifest
 
 
@@ -112,8 +109,9 @@ def main():
     parser.add_argument("report", type=Path)
     parser.add_argument("--exclude", action="append", help="identity replaced by the candidate; default Halliday")
     parser.add_argument('--policy',type=Path,help='Refitted NumPy policy required by a schema-2 behavior report')
+    parser.add_argument('--destination', type=Path, default=Path(__file__).resolve().parent/'from_data')
     args = parser.parse_args()
-    manifest = build(args.report, Path(__file__).resolve().parent / "from_data",
+    manifest = build(args.report, args.destination,
                      ("Halliday",) if args.exclude is None else args.exclude,policy_path=args.policy)
     print(f"Generated {len(manifest['profiles'])} competitors; "
           f"{len(manifest['profiles']) - len(manifest['pool_excluded'])} in the evaluation pool")

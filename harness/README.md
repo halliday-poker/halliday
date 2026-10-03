@@ -136,8 +136,13 @@ stickiness, size`, plus an `adaptive` flag that adjusts to opponents' aggression
 
 ### Fitted competitors
 
-`sparring/competitors/from_data/pool.txt` contains the latest fitted segments for 76
-external identities; the historical Halliday fit is also available separately.
+`sparring/competitors/from_data/latest-pool.txt` contains 65 reliably dated latest
+external identities. The general `pool.txt` has 88 entries excluding Halliday.
+All fitted opponents are records in `from_data/bots.json`, loaded through one
+shared implementation with specs such as
+`fitted:sparring/competitors/from_data/bots.json@halliday`. These specs work in
+candidate arguments, pools, and explicit tables. The builder updates the JSON
+catalogue and pools instead of generating per-opponent Python files.
 See [the competitor documentation](../sparring/competitors/README.md) for
 provenance, uncertainties, regeneration and the field evaluation command.
 File bots may expose `make_seeded_bot(seed)` to receive the harness's per-seat

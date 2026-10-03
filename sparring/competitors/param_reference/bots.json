@@ -1,0 +1,1160 @@
+{
+  "schema_version": 1,
+  "bots": {
+    "allen_iverson": {
+      "name": "Allen Iverson",
+      "style": {
+        "vpip": 0.11,
+        "pfr": 0.11,
+        "threebet": 0.03,
+        "limp": 0.05,
+        "aggression": 0.5,
+        "cbet": 0.1,
+        "bluff": 0.2,
+        "stickiness": 0.9500000000000001,
+        "size": 0.775,
+        "adaptive": 0
+      }
+    },
+    "allen_iverson_2_0": {
+      "name": "Allen Iverson 2.0",
+      "style": {
+        "vpip": 0.1,
+        "pfr": 0.1,
+        "threebet": 0.03,
+        "limp": 0.05,
+        "aggression": 0.0,
+        "cbet": 0.25,
+        "bluff": 0.45,
+        "stickiness": 0.92,
+        "size": 0.775,
+        "adaptive": 0
+      }
+    },
+    "artificial_incompetence": {
+      "name": "Artificial Incompetence",
+      "style": {
+        "vpip": 1.0,
+        "pfr": 1.0,
+        "threebet": 0.24,
+        "limp": 0.05,
+        "aggression": 0.8,
+        "cbet": 0.8,
+        "bluff": 1.0,
+        "stickiness": 0.08,
+        "size": 0.9400000000000001,
+        "adaptive": 0
+      }
+    },
+    "bigballer": {
+      "name": "BigBaller",
+      "style": {
+        "vpip": 0.2,
+        "pfr": 0.2,
+        "threebet": 0.06,
+        "limp": 0.05,
+        "aggression": 0.2,
+        "cbet": 0.05,
+        "bluff": 0.5,
+        "stickiness": 0.59,
+        "size": 0.61,
+        "adaptive": 0
+      }
+    },
+    "gladiator_v3": {
+      "name": "Gladiator_v3",
+      "style": {
+        "vpip": 0.52,
+        "pfr": 0.47000000000000003,
+        "threebet": 0.02,
+        "limp": 0.55,
+        "aggression": 0.5,
+        "cbet": 0.55,
+        "bluff": 1.0,
+        "stickiness": 0.41000000000000003,
+        "size": 1.175,
+        "adaptive": 0
+      }
+    },
+    "halliday": {
+      "name": "Halliday",
+      "style": {
+        "vpip": 0.14,
+        "pfr": 0.14,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.5,
+        "bluff": 0.25,
+        "stickiness": 1.0,
+        "size": 0.755,
+        "adaptive": 0
+      }
+    },
+    "invoker": {
+      "name": "Invoker",
+      "style": {
+        "vpip": 0.97,
+        "pfr": 0.97,
+        "threebet": 0.01,
+        "limp": 0.25,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.75,
+        "bluff": 1.0,
+        "stickiness": 0.18,
+        "size": 0.335,
+        "adaptive": 0
+      }
+    },
+    "invokerv2": {
+      "name": "Invokerv2",
+      "style": {
+        "vpip": 0.93,
+        "pfr": 0.93,
+        "threebet": 0.02,
+        "limp": 0.2,
+        "aggression": 1.0,
+        "cbet": 0.9500000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.07,
+        "size": 0.33999999999999997,
+        "adaptive": 0
+      }
+    },
+    "jason_idea": {
+      "name": "Jason_idea",
+      "style": {
+        "vpip": 1.0,
+        "pfr": 1.0,
+        "threebet": 1.0,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.1,
+        "bluff": 0.1,
+        "stickiness": 0.27,
+        "size": 0.39,
+        "adaptive": 0
+      }
+    },
+    "lf5": {
+      "name": "LF5",
+      "style": {
+        "vpip": 0.03,
+        "pfr": 0.03,
+        "threebet": 0.03,
+        "limp": 0.30000000000000004,
+        "aggression": 0.9500000000000001,
+        "cbet": 0.0,
+        "bluff": 0.0,
+        "stickiness": 0.25,
+        "size": 0.585,
+        "adaptive": 0
+      }
+    },
+    "mac_projects_team": {
+      "name": "MAC Projects Team",
+      "style": {
+        "vpip": 0.0,
+        "pfr": 0.0,
+        "threebet": 0.0,
+        "limp": 0.05,
+        "aggression": 0.0,
+        "cbet": 0.65,
+        "bluff": 0.0,
+        "stickiness": 1.0,
+        "size": 0.66,
+        "adaptive": 0
+      }
+    },
+    "mac_projects_team_testing_bot": {
+      "name": "MAC Projects Team Testing Bot",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.04,
+        "limp": 0.15000000000000002,
+        "aggression": 0.15000000000000002,
+        "cbet": 0.6000000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.09,
+        "size": 0.365,
+        "adaptive": 1
+      }
+    },
+    "mac_projects_team_testing_bot_2": {
+      "name": "MAC Projects Team Testing Bot 2",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.06,
+        "limp": 0.15000000000000002,
+        "aggression": 0.30000000000000004,
+        "cbet": 0.7000000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.0,
+        "size": 0.36,
+        "adaptive": 0
+      }
+    },
+    "mac_projects_team_testing_bot_3": {
+      "name": "MAC Projects Team Testing Bot 3",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.06,
+        "limp": 0.0,
+        "aggression": 0.5,
+        "cbet": 1.0,
+        "bluff": 0.7000000000000001,
+        "stickiness": 0.45,
+        "size": 0.33999999999999997,
+        "adaptive": 0
+      }
+    },
+    "messi": {
+      "name": "Messi",
+      "style": {
+        "vpip": 0.1,
+        "pfr": 0.01,
+        "threebet": 0.0,
+        "limp": 0.9500000000000001,
+        "aggression": 0.0,
+        "cbet": 0.15000000000000002,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.0,
+        "size": 0.435,
+        "adaptive": 0
+      }
+    },
+    "nice_hand_sir": {
+      "name": "Nice Hand, Sir",
+      "style": {
+        "vpip": 0.97,
+        "pfr": 0.97,
+        "threebet": 0.06,
+        "limp": 0.2,
+        "aggression": 0.9500000000000001,
+        "cbet": 0.75,
+        "bluff": 1.0,
+        "stickiness": 0.0,
+        "size": 0.335,
+        "adaptive": 0
+      }
+    },
+    "phil_ivey_goat": {
+      "name": "Phil_Ivey_GOAT",
+      "style": {
+        "vpip": 0.07,
+        "pfr": 0.07,
+        "threebet": 0.01,
+        "limp": 0.05,
+        "aggression": 0.5,
+        "cbet": 0.0,
+        "bluff": 0.75,
+        "stickiness": 0.51,
+        "size": 0.7,
+        "adaptive": 0
+      }
+    },
+    "raiseyouredge": {
+      "name": "RaiseYourEdge",
+      "style": {
+        "vpip": 0.15,
+        "pfr": 0.15,
+        "threebet": 0.05,
+        "limp": 0.15000000000000002,
+        "aggression": 0.35000000000000003,
+        "cbet": 0.30000000000000004,
+        "bluff": 0.6000000000000001,
+        "stickiness": 0.24,
+        "size": 0.89,
+        "adaptive": 0
+      }
+    },
+    "riverforge": {
+      "name": "RiverForge",
+      "style": {
+        "vpip": 0.16,
+        "pfr": 0.16,
+        "threebet": 0.03,
+        "limp": 0.2,
+        "aggression": 0.5,
+        "cbet": 0.15000000000000002,
+        "bluff": 0.35000000000000003,
+        "stickiness": 1.0,
+        "size": 0.535,
+        "adaptive": 0
+      }
+    },
+    "thanos": {
+      "name": "Thanos",
+      "style": {
+        "vpip": 0.19,
+        "pfr": 0.19,
+        "threebet": 0.07,
+        "limp": 0.05,
+        "aggression": 0.5,
+        "cbet": 0.2,
+        "bluff": 0.35000000000000003,
+        "stickiness": 0.87,
+        "size": 0.665,
+        "adaptive": 0
+      }
+    },
+    "tilted_towers_2": {
+      "name": "Tilted_Towers_2",
+      "style": {
+        "vpip": 0.13,
+        "pfr": 0.13,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.0,
+        "bluff": 0.25,
+        "stickiness": 1.0,
+        "size": 0.375,
+        "adaptive": 0
+      }
+    },
+    "tilted_towers_1": {
+      "name": "Tilted_towers_1",
+      "style": {
+        "vpip": 0.1,
+        "pfr": 0.1,
+        "threebet": 0.01,
+        "limp": 0.0,
+        "aggression": 0.5,
+        "cbet": 0.05,
+        "bluff": 0.55,
+        "stickiness": 0.79,
+        "size": 0.75,
+        "adaptive": 0
+      }
+    },
+    "who_me": {
+      "name": "Who me?",
+      "style": {
+        "vpip": 0.48,
+        "pfr": 0.06,
+        "threebet": 0.06,
+        "limp": 0.2,
+        "aggression": 0.2,
+        "cbet": 0.05,
+        "bluff": 0.2,
+        "stickiness": 0.03,
+        "size": 0.535,
+        "adaptive": 0
+      }
+    },
+    "alo": {
+      "name": "alo",
+      "style": {
+        "vpip": 1.0,
+        "pfr": 1.0,
+        "threebet": 1.0,
+        "limp": 0.0,
+        "aggression": 0.6000000000000001,
+        "cbet": 0.65,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.45,
+        "size": 0.66,
+        "adaptive": 0
+      }
+    },
+    "axiom": {
+      "name": "axiom",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.06,
+        "limp": 0.25,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.05,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.35000000000000003,
+        "size": 0.925,
+        "adaptive": 1
+      }
+    },
+    "best_bot": {
+      "name": "best-bot",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.05,
+        "limp": 0.15000000000000002,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.4,
+        "bluff": 0.65,
+        "stickiness": 0.37,
+        "size": 0.745,
+        "adaptive": 0
+      }
+    },
+    "big_dog": {
+      "name": "big dog",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.03,
+        "limp": 0.2,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.65,
+        "bluff": 0.2,
+        "stickiness": 0.84,
+        "size": 0.745,
+        "adaptive": 0
+      }
+    },
+    "biji_satu": {
+      "name": "biji satu",
+      "style": {
+        "vpip": 1.0,
+        "pfr": 1.0,
+        "threebet": 0.08,
+        "limp": 0.2,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.7000000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.37,
+        "size": 0.335,
+        "adaptive": 0
+      }
+    },
+    "catherine": {
+      "name": "catherine",
+      "style": {
+        "vpip": 0.18,
+        "pfr": 0.18,
+        "threebet": 0.06,
+        "limp": 0.1,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.8,
+        "bluff": 0.2,
+        "stickiness": 0.49,
+        "size": 1.175,
+        "adaptive": 1
+      }
+    },
+    "dan_negreanu_on_ket": {
+      "name": "dan_negreanu_on_ket",
+      "style": {
+        "vpip": 0.24,
+        "pfr": 0.24,
+        "threebet": 0.06,
+        "limp": 0.1,
+        "aggression": 0.15000000000000002,
+        "cbet": 0.2,
+        "bluff": 0.6000000000000001,
+        "stickiness": 0.5,
+        "size": 0.605,
+        "adaptive": 0
+      }
+    },
+    "diddy_blud": {
+      "name": "diddy blud",
+      "style": {
+        "vpip": 0.03,
+        "pfr": 0.03,
+        "threebet": 0.03,
+        "limp": 0.15000000000000002,
+        "aggression": 1.0,
+        "cbet": 0.0,
+        "bluff": 0.2,
+        "stickiness": 0.24,
+        "size": 0.585,
+        "adaptive": 0
+      }
+    },
+    "dudududu": {
+      "name": "dudududu",
+      "style": {
+        "vpip": 0.18,
+        "pfr": 0.18,
+        "threebet": 0.04,
+        "limp": 0.05,
+        "aggression": 0.8500000000000001,
+        "cbet": 0.65,
+        "bluff": 0.25,
+        "stickiness": 0.99,
+        "size": 0.45,
+        "adaptive": 0
+      }
+    },
+    "elaine": {
+      "name": "elaine",
+      "style": {
+        "vpip": 0.16,
+        "pfr": 0.16,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.0,
+        "bluff": 0.2,
+        "stickiness": 1.0,
+        "size": 0.5,
+        "adaptive": 0
+      }
+    },
+    "finian_sucks": {
+      "name": "finian sucks",
+      "style": {
+        "vpip": 0.03,
+        "pfr": 0.02,
+        "threebet": 0.02,
+        "limp": 0.9500000000000001,
+        "aggression": 0.9500000000000001,
+        "cbet": 0.0,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.1,
+        "size": 0.5449999999999999,
+        "adaptive": 1
+      }
+    },
+    "fold_a2": {
+      "name": "fold-a2",
+      "style": {
+        "vpip": 0.0,
+        "pfr": 0.0,
+        "threebet": 0.0,
+        "limp": 0.05,
+        "aggression": 0.0,
+        "cbet": 0.65,
+        "bluff": 0.0,
+        "stickiness": 1.0,
+        "size": 0.66,
+        "adaptive": 0
+      }
+    },
+    "fufufafa": {
+      "name": "fufufafa",
+      "style": {
+        "vpip": 0.9,
+        "pfr": 0.9,
+        "threebet": 0.0,
+        "limp": 0.5,
+        "aggression": 1.0,
+        "cbet": 0.8500000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.07,
+        "size": 0.335,
+        "adaptive": 0
+      }
+    },
+    "fullhouse": {
+      "name": "fullhouse",
+      "style": {
+        "vpip": 0.11,
+        "pfr": 0.11,
+        "threebet": 0.03,
+        "limp": 0.65,
+        "aggression": 0.2,
+        "cbet": 0.7000000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.39,
+        "size": 1.375,
+        "adaptive": 0
+      }
+    },
+    "goatbot": {
+      "name": "goatbot",
+      "style": {
+        "vpip": 0.38,
+        "pfr": 0.38,
+        "threebet": 0.06,
+        "limp": 0.15000000000000002,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.2,
+        "bluff": 0.45,
+        "stickiness": 0.43,
+        "size": 0.365,
+        "adaptive": 1
+      }
+    },
+    "guaguanco": {
+      "name": "guaguanco",
+      "style": {
+        "vpip": 0.0,
+        "pfr": 0.0,
+        "threebet": 0.0,
+        "limp": 0.05,
+        "aggression": 0.0,
+        "cbet": 0.65,
+        "bluff": 0.0,
+        "stickiness": 1.0,
+        "size": 0.66,
+        "adaptive": 0
+      }
+    },
+    "guaguanco_2": {
+      "name": "guaguanco 2",
+      "style": {
+        "vpip": 0.29,
+        "pfr": 0.18,
+        "threebet": 0.07,
+        "limp": 0.05,
+        "aggression": 0.0,
+        "cbet": 0.65,
+        "bluff": 0.0,
+        "stickiness": 0.45,
+        "size": 0.66,
+        "adaptive": 0
+      }
+    },
+    "guaguanco_3": {
+      "name": "guaguanco 3",
+      "style": {
+        "vpip": 0.0,
+        "pfr": 0.0,
+        "threebet": 0.0,
+        "limp": 0.05,
+        "aggression": 0.0,
+        "cbet": 0.65,
+        "bluff": 0.0,
+        "stickiness": 1.0,
+        "size": 0.66,
+        "adaptive": 0
+      }
+    },
+    "guaguanco_4": {
+      "name": "guaguanco 4",
+      "style": {
+        "vpip": 0.16,
+        "pfr": 0.16,
+        "threebet": 0.05,
+        "limp": 0.1,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.5,
+        "bluff": 1.0,
+        "stickiness": 0.73,
+        "size": 0.85,
+        "adaptive": 0
+      }
+    },
+    "guaguanco_5": {
+      "name": "guaguanco 5",
+      "style": {
+        "vpip": 0.16,
+        "pfr": 0.16,
+        "threebet": 0.05,
+        "limp": 0.05,
+        "aggression": 0.6000000000000001,
+        "cbet": 0.45,
+        "bluff": 1.0,
+        "stickiness": 0.34,
+        "size": 0.875,
+        "adaptive": 0
+      }
+    },
+    "house_call": {
+      "name": "house:call",
+      "style": {
+        "vpip": 1.0,
+        "pfr": 0.01,
+        "threebet": 0.01,
+        "limp": 0.05,
+        "aggression": 0.0,
+        "cbet": 0.65,
+        "bluff": 0.0,
+        "stickiness": 1.0,
+        "size": 0.66,
+        "adaptive": 0
+      }
+    },
+    "idc": {
+      "name": "idc",
+      "style": {
+        "vpip": 0.15,
+        "pfr": 0.15,
+        "threebet": 0.03,
+        "limp": 0.15000000000000002,
+        "aggression": 0.5,
+        "cbet": 0.45,
+        "bluff": 0.35000000000000003,
+        "stickiness": 0.84,
+        "size": 0.9500000000000001,
+        "adaptive": 0
+      }
+    },
+    "jongwon": {
+      "name": "jongwon",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.02,
+        "limp": 0.1,
+        "aggression": 0.2,
+        "cbet": 0.35000000000000003,
+        "bluff": 0.9500000000000001,
+        "stickiness": 0.44,
+        "size": 0.88,
+        "adaptive": 0
+      }
+    },
+    "kingfisher": {
+      "name": "kingfisher",
+      "style": {
+        "vpip": 0.98,
+        "pfr": 0.98,
+        "threebet": 0.97,
+        "limp": 0.35000000000000003,
+        "aggression": 0.6000000000000001,
+        "cbet": 0.65,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.45,
+        "size": 0.66,
+        "adaptive": 0
+      }
+    },
+    "larp_larp_sahur": {
+      "name": "larp larp sahur",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.7000000000000001,
+        "bluff": 0.6000000000000001,
+        "stickiness": 0.26,
+        "size": 0.745,
+        "adaptive": 0
+      }
+    },
+    "let_it_go": {
+      "name": "let it go",
+      "style": {
+        "vpip": 0.06,
+        "pfr": 0.0,
+        "threebet": 0.0,
+        "limp": 0.05,
+        "aggression": 0.0,
+        "cbet": 0.0,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.01,
+        "size": 0.435,
+        "adaptive": 0
+      }
+    },
+    "lil_fruit": {
+      "name": "lil-fruit",
+      "style": {
+        "vpip": 1.0,
+        "pfr": 0.06,
+        "threebet": 0.03,
+        "limp": 0.25,
+        "aggression": 0.5,
+        "cbet": 0.0,
+        "bluff": 0.0,
+        "stickiness": 0.23,
+        "size": 0.955,
+        "adaptive": 0
+      }
+    },
+    "lil_fruit_2_2": {
+      "name": "lil-fruit 2.2",
+      "style": {
+        "vpip": 0.9500000000000001,
+        "pfr": 0.89,
+        "threebet": 0.01,
+        "limp": 0.2,
+        "aggression": 0.2,
+        "cbet": 0.25,
+        "bluff": 0.1,
+        "stickiness": 0.35000000000000003,
+        "size": 0.88,
+        "adaptive": 1
+      }
+    },
+    "lil_fruit_x": {
+      "name": "lil-fruit x",
+      "style": {
+        "vpip": 1.0,
+        "pfr": 1.0,
+        "threebet": 0.39,
+        "limp": 0.0,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.6000000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.02,
+        "size": 0.355,
+        "adaptive": 0
+      }
+    },
+    "love_of_da_game": {
+      "name": "love-of-da-game",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.03,
+        "limp": 0.05,
+        "aggression": 0.05,
+        "cbet": 0.4,
+        "bluff": 0.8,
+        "stickiness": 0.54,
+        "size": 0.895,
+        "adaptive": 0
+      }
+    },
+    "luck_is_all_u_need": {
+      "name": "luck is all u need",
+      "style": {
+        "vpip": 0.13,
+        "pfr": 0.13,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.15000000000000002,
+        "bluff": 0.05,
+        "stickiness": 0.23,
+        "size": 0.63,
+        "adaptive": 0
+      }
+    },
+    "merch_where": {
+      "name": "merch where",
+      "style": {
+        "vpip": 1.0,
+        "pfr": 1.0,
+        "threebet": 0.05,
+        "limp": 0.15000000000000002,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.55,
+        "bluff": 0.8500000000000001,
+        "stickiness": 0.37,
+        "size": 0.315,
+        "adaptive": 1
+      }
+    },
+    "netanyahu": {
+      "name": "netanyahu",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 1.0,
+        "cbet": 1.0,
+        "bluff": 1.0,
+        "stickiness": 0.0,
+        "size": 0.35,
+        "adaptive": 0
+      }
+    },
+    "pocket_nuts": {
+      "name": "pocket-nuts",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.06,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.4,
+        "bluff": 0.7000000000000001,
+        "stickiness": 0.86,
+        "size": 0.5449999999999999,
+        "adaptive": 0
+      }
+    },
+    "poke_bowl": {
+      "name": "poke-bowl",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.05,
+        "limp": 0.05,
+        "aggression": 0.5,
+        "cbet": 0.15000000000000002,
+        "bluff": 0.55,
+        "stickiness": 0.52,
+        "size": 0.755,
+        "adaptive": 1
+      }
+    },
+    "poke_bowl_one": {
+      "name": "poke-bowl-one",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.06,
+        "limp": 0.15000000000000002,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.45,
+        "bluff": 0.5,
+        "stickiness": 0.35000000000000003,
+        "size": 0.6000000000000001,
+        "adaptive": 0
+      }
+    },
+    "polygamous_lavender_marriage": {
+      "name": "polygamous lavender marriage",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.03,
+        "limp": 0.2,
+        "aggression": 0.2,
+        "cbet": 0.8500000000000001,
+        "bluff": 0.9500000000000001,
+        "stickiness": 0.0,
+        "size": 0.42500000000000004,
+        "adaptive": 0
+      }
+    },
+    "preflop_warrior": {
+      "name": "preflop-warrior",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.03,
+        "limp": 0.15000000000000002,
+        "aggression": 0.5,
+        "cbet": 0.2,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.36,
+        "size": 0.6000000000000001,
+        "adaptive": 0
+      }
+    },
+    "pressure": {
+      "name": "pressure",
+      "style": {
+        "vpip": 0.1,
+        "pfr": 0.1,
+        "threebet": 0.03,
+        "limp": 0.65,
+        "aggression": 0.5,
+        "cbet": 0.65,
+        "bluff": 0.8500000000000001,
+        "stickiness": 0.43,
+        "size": 1.165,
+        "adaptive": 0
+      }
+    },
+    "radishv0": {
+      "name": "radishv0",
+      "style": {
+        "vpip": 0.64,
+        "pfr": 0.52,
+        "threebet": 0.05,
+        "limp": 0.0,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.55,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.39,
+        "size": 0.71,
+        "adaptive": 0
+      }
+    },
+    "radishv1": {
+      "name": "radishv1",
+      "style": {
+        "vpip": 0.38,
+        "pfr": 0.38,
+        "threebet": 0.02,
+        "limp": 0.5,
+        "aggression": 0.2,
+        "cbet": 0.4,
+        "bluff": 0.2,
+        "stickiness": 0.35000000000000003,
+        "size": 0.71,
+        "adaptive": 0
+      }
+    },
+    "radishv2": {
+      "name": "radishv2",
+      "style": {
+        "vpip": 0.38,
+        "pfr": 0.38,
+        "threebet": 0.02,
+        "limp": 0.2,
+        "aggression": 0.05,
+        "cbet": 0.35000000000000003,
+        "bluff": 0.35000000000000003,
+        "stickiness": 0.43,
+        "size": 0.7150000000000001,
+        "adaptive": 0
+      }
+    },
+    "renbot": {
+      "name": "renbot",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 1.0,
+        "cbet": 1.0,
+        "bluff": 1.0,
+        "stickiness": 0.41000000000000003,
+        "size": 1.17,
+        "adaptive": 0
+      }
+    },
+    "samith_pai_is_lowkey_leng": {
+      "name": "samith pai is lowkey leng",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.04,
+        "limp": 0.2,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.8,
+        "bluff": 0.30000000000000004,
+        "stickiness": 0.88,
+        "size": 0.745,
+        "adaptive": 0
+      }
+    },
+    "scaffold": {
+      "name": "scaffold",
+      "style": {
+        "vpip": 0.0,
+        "pfr": 0.0,
+        "threebet": 0.0,
+        "limp": 0.05,
+        "aggression": 0.0,
+        "cbet": 0.65,
+        "bluff": 0.0,
+        "stickiness": 1.0,
+        "size": 0.66,
+        "adaptive": 0
+      }
+    },
+    "test1": {
+      "name": "test1",
+      "style": {
+        "vpip": 0.0,
+        "pfr": 0.0,
+        "threebet": 0.0,
+        "limp": 0.05,
+        "aggression": 0.0,
+        "cbet": 0.65,
+        "bluff": 0.0,
+        "stickiness": 0.99,
+        "size": 0.66,
+        "adaptive": 0
+      }
+    },
+    "testq": {
+      "name": "testQ",
+      "style": {
+        "vpip": 0.24,
+        "pfr": 0.17,
+        "threebet": 0.02,
+        "limp": 0.8,
+        "aggression": 0.2,
+        "cbet": 0.7000000000000001,
+        "bluff": 0.45,
+        "stickiness": 0.26,
+        "size": 0.6799999999999999,
+        "adaptive": 0
+      }
+    },
+    "the_goon": {
+      "name": "the GOON",
+      "style": {
+        "vpip": 0.62,
+        "pfr": 0.38,
+        "threebet": 0.03,
+        "limp": 0.25,
+        "aggression": 0.2,
+        "cbet": 0.5,
+        "bluff": 0.8,
+        "stickiness": 0.27,
+        "size": 0.995,
+        "adaptive": 0
+      }
+    },
+    "the_big_dog": {
+      "name": "the big dog",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.03,
+        "limp": 0.15000000000000002,
+        "aggression": 0.5,
+        "cbet": 0.55,
+        "bluff": 0.1,
+        "stickiness": 0.71,
+        "size": 0.745,
+        "adaptive": 1
+      }
+    },
+    "tripi_tropi": {
+      "name": "tripi tropi",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.6000000000000001,
+        "bluff": 0.25,
+        "stickiness": 0.87,
+        "size": 0.745,
+        "adaptive": 0
+      }
+    },
+    "tungbot": {
+      "name": "tungbot",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.06,
+        "limp": 0.2,
+        "aggression": 0.25,
+        "cbet": 0.65,
+        "bluff": 1.0,
+        "stickiness": 0.24,
+        "size": 0.365,
+        "adaptive": 0
+      }
+    },
+    "tutududu": {
+      "name": "tutududu",
+      "style": {
+        "vpip": 0.18,
+        "pfr": 0.18,
+        "threebet": 0.05,
+        "limp": 0.0,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.7000000000000001,
+        "bluff": 0.45,
+        "stickiness": 1.0,
+        "size": 0.445,
+        "adaptive": 0
+      }
+    },
+    "yep": {
+      "name": "yep",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.7000000000000001,
+        "bluff": 0.30000000000000004,
+        "stickiness": 0.32,
+        "size": 0.745,
+        "adaptive": 0
+      }
+    },
+    "zinger_box": {
+      "name": "zinger box",
+      "style": {
+        "vpip": 0.38,
+        "pfr": 0.38,
+        "threebet": 0.03,
+        "limp": 0.15000000000000002,
+        "aggression": 0.5,
+        "cbet": 0.5,
+        "bluff": 0.05,
+        "stickiness": 0.4,
+        "size": 0.645,
+        "adaptive": 0
+      }
+    }
+  }
+}

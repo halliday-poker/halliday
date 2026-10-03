@@ -1,5 +1,12 @@
 # Offline analysis
 
+Opponent builds now write `sparring/competitors/from_data/bots.json` and pool
+specs such as `fitted:sparring/competitors/from_data/bots.json@halliday`.
+The [shared catalogue loader](../sparring/competitors/README.md) replaces
+per-opponent Python files without changing fitted settings or seeded behavior.
+Archived result files remain unchanged; their old generated-file specs are
+accepted by the harness through matching catalogue IDs.
+
 ## Current rerun: newest intervals and exact main
 
 [Newest-segment analysis](reports/latest-analysis-20261004-r2.md) uses the

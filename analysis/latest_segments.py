@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT))
 from opponent_model.data import load_cache
 from opponent_model.behavior import metrics, MODES
 from sparring.competitors.build import latest_profiles
+from sparring.competitors.catalog import spec
 
 
 def select(directory, profiles_path):
@@ -50,13 +51,14 @@ def select(directory, profiles_path):
         raise ValueError('No reliably dated latest Halliday interval')
     strict = [mid for mid in hero if all(mid in selected.get(name, {}).get('match_ids', []) for name in metadata[mid]['names'])]
     prefix = profiles_path.parent.resolve().relative_to(ROOT).as_posix()
-    pool = [f'{prefix}/{profiles[name]["file"]} 1' for name in included]
+    catalog = prefix+'/'+manifest['catalog']
+    pool = [f'{spec(catalog, profiles[name]["id"])} 1' for name in included]
     pool_text = '# Latest trusted observed ladder interval per external identity.\n'+'\n'.join(pool)+'\n'
     (directory/'latest-field-pool.txt').write_text(pool_text)
     (profiles_path.parent/'latest-pool.txt').write_text(pool_text)
     for filename, ids in [('latest-halliday-matches.json', hero), ('strict-latest-halliday-matches.json', strict)]:
         (directory/filename).write_text(json.dumps(sorted(ids), indent=2)+'\n')
-    matched = [[f'{prefix}/{profiles[name]["file"]}' for name in metadata[mid]['names'] if name != 'Halliday']
+    matched = [[spec(catalog, profiles[name]['id']) for name in metadata[mid]['names'] if name != 'Halliday']
                for mid in sorted(strict)]
     (directory/'latest-matched-tables.json').write_text(json.dumps(matched, indent=2)+'\n')
     result = dict(input_actions_sha256=data.audit['actions_sha256'], profiles_sha256=sha256(profiles_path.read_bytes()).hexdigest(),

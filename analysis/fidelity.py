@@ -14,11 +14,12 @@ DIRECTORY=ROOT/'analysis/results/refresh-20261004'
 
 
 def simulated_rates(simulation,profiles):
-    names={profile['file']:name for name,profile in profiles.items()}
+    names={profile.get('id', Path(profile.get('file', '')).stem):name for name,profile in profiles.items()}
     simulated=defaultdict(lambda:dict(matches=0,hands=0,folds=0,vpip=0,pfr=0))
     for game in simulation['games']:
         if game['cand_idx']!=1:continue
-        lineup=['Halliday']+[names[Path(s).stem.rsplit('_epoch_',1)[0]+'.py'] for s in game['opponents']]
+        identities=[s.rsplit('@',1)[1] if s.startswith('fitted:') else Path(s).stem for s in game['opponents']]
+        lineup=['Halliday']+[names[identity.rsplit('_epoch_',1)[0]] for identity in identities]
         for name,behavior in zip(lineup,game['behavior']):
             totals=simulated[name]
             totals['matches']+=1;totals['hands']+=simulation['args']['deals']

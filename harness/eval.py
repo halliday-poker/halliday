@@ -17,7 +17,8 @@ With a single candidate, `run` is a gate: the last K promoted league versions
 become baselines (and opponents), and the candidate must be significantly
 better than each of them. Inconclusive gates extend automatically.
 
-A bot spec is a .py file, a directory containing main.py, house:<name>, or
+A bot spec is a .py file, a directory containing main.py, house:<name>,
+fitted:<catalogue.json>@<id>, or
 param:<archetype>[@seed] (see sparring/param.py). In a pool file,
 param:random draws a jittered random archetype for every seat it fills.
 """
@@ -52,6 +53,7 @@ RESULTS = HARNESS / "results"
 LEAGUE = HARNESS / "league.json"
 DEFAULT_POOL = HARNESS / "pools" / "default.txt"
 PARAM_BOT = ROOT / "sparring" / "param.py"
+FITTED_BOT = ROOT / "sparring" / "competitors" / "competitor_base.py"
 
 from macpoker.bots import BUILTINS  # noqa: E402
 from macpoker.match import VERDICT_OK, MatchConfig, MatchRunner  # noqa: E402
@@ -156,10 +158,32 @@ def param_module():
     return _cached_module(PARAM_BOT)[0]
 
 
+def fitted_entry(spec):
+    """Resolve a data catalogue and stable identity; no Python per opponent."""
+    path, separator, identity = spec.removeprefix('fitted:').rpartition('@')
+    if not separator or not path or not identity:
+        raise ValueError('Expected fitted:<catalogue.json>@<id>')
+    return resolve_path(path), identity
+
+
+def catalog_spec(spec):
+    """Keep archived pools usable after removing generated Python wrappers."""
+    if spec.startswith(('fitted:', 'house:', 'param:')):
+        return spec
+    path = Path(spec)
+    if not path.is_absolute():
+        path = ROOT/path if (ROOT/path.parent).exists() else Path.cwd()/path
+    catalog = path.parent/'bots.json'
+    if path.suffix == '.py' and not path.exists() and catalog.is_file():
+        return f'fitted:{catalog}@{path.stem}'
+    return spec
+
+
 def make_bot(spec: str, seed: str) -> Bot:
     """A fresh bot instance for one game. Our bots' modules are imported once
     per worker; each game gets a new instance, as the tournament's fresh
     process would give it fresh state on self."""
+    spec = catalog_spec(spec)
     if spec.startswith("house:"):
         cls = BUILTINS[spec.split(":", 1)[1]]
         try:
@@ -169,6 +193,9 @@ def make_bot(spec: str, seed: str) -> Bot:
     if spec.startswith("param:"):
         module, cls = _cached_module(PARAM_BOT)
         return cls(style=module.style_for(spec.split(":", 1)[1]), seed=seed)
+    if spec.startswith('fitted:'):
+        path, identity = fitted_entry(spec)
+        return _cached_module(FITTED_BOT)[0].make_from_catalog(path, identity, seed)
     path = resolve_path(spec)
     module, cls = _cached_module(path)
     # Optional factory for stochastic file bots: keep their private RNG tied
@@ -188,9 +215,21 @@ def make_bot(spec: str, seed: str) -> Bot:
 
 def bot_hash(spec: str) -> str:
     """Short content hash of a bot's directory, to identify uncommitted versions."""
+    spec = catalog_spec(spec)
     if spec.startswith(("house:", "param:")):
         return spec.split(":", 1)[0]
     h = hashlib.sha1()
+    if spec.startswith('fitted:'):
+        path, identity = fitted_entry(spec)
+        record = _cached_module(FITTED_BOT)[0].load_record(path, identity)
+        h.update(json.dumps(record, sort_keys=True).encode())
+        sources = [FITTED_BOT, PARAM_BOT, FITTED_BOT.parent/'catalog.py', FITTED_BOT.parent/'policy.py']
+        if record.get('policy'):
+            sources.append(path.parent/record['policy']['file'])
+        for source in sources:
+            h.update(source.name.encode())
+            h.update(source.read_bytes())
+        return h.hexdigest()[:8]
     d = resolve_path(spec).parent
     for f in sorted(d.rglob("*")):
         if f.is_file() and "__pycache__" not in f.parts and f.suffix not in (".md", ".pyc"):

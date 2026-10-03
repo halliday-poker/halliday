@@ -1,5 +1,6 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
+  "catalog": "bots.json",
   "report_sha256": "3314e905116e5537e0e08f5f6d2edae4c41d8ff6bfc74412f226bc1b1bc575e3",
   "analysis_generated_at_utc": "2026-10-03T19:54:16.271264+00:00",
   "surrogate_source_sha256": "5c86c1f661770aadedb6eaf8be74c20f10a04136caa962d616c45b3f832c87c7",
@@ -275,7 +276,7 @@
   },
   "profiles": {
     "Allen Iverson": {
-      "file": "allen_iverson.py",
+      "id": "allen_iverson",
       "segment": 1,
       "epoch": 1,
       "observed_from": 1791030953.535,
@@ -966,7 +967,7 @@
       }
     },
     "Allen Iverson 2.0": {
-      "file": "allen_iverson_2_0.py",
+      "id": "allen_iverson_2_0",
       "segment": 1,
       "epoch": 2,
       "observed_from": 1791033304.961,
@@ -1713,7 +1714,7 @@
       }
     },
     "Althaf Productions v1": {
-      "file": "althaf_productions_v1.py",
+      "id": "althaf_productions_v1",
       "segment": 1,
       "epoch": 3,
       "observed_from": 1791041797.555,
@@ -2467,7 +2468,7 @@
       }
     },
     "Artificial Incompetence": {
-      "file": "artificial_incompetence.py",
+      "id": "artificial_incompetence",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790991776.0669005,
@@ -3167,7 +3168,7 @@
       }
     },
     "BigBaller": {
-      "file": "bigballer.py",
+      "id": "bigballer",
       "segment": 3,
       "epoch": 6,
       "observed_from": 1791020384.747,
@@ -3864,7 +3865,7 @@
       }
     },
     "Gladiator": {
-      "file": "gladiator.py",
+      "id": "gladiator",
       "segment": 3,
       "epoch": 9,
       "observed_from": 1791039904.542,
@@ -4549,7 +4550,7 @@
       }
     },
     "Gladiator_v3": {
-      "file": "gladiator_v3.py",
+      "id": "gladiator_v3",
       "segment": 3,
       "epoch": 14,
       "observed_from": 1791035020.156,
@@ -5241,7 +5242,7 @@
       }
     },
     "Gladiators": {
-      "file": "gladiators.py",
+      "id": "gladiators",
       "segment": 3,
       "epoch": 16,
       "observed_from": 1791043545.056,
@@ -5993,7 +5994,7 @@
       }
     },
     "Halliday": {
-      "file": "halliday.py",
+      "id": "halliday",
       "segment": 4,
       "epoch": 20,
       "observed_from": 1791046629.32,
@@ -6743,7 +6744,7 @@
       }
     },
     "Invoker": {
-      "file": "invoker.py",
+      "id": "invoker",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791008909.3734791,
@@ -7433,7 +7434,7 @@
       }
     },
     "Invokerv2": {
-      "file": "invokerv2.py",
+      "id": "invokerv2",
       "segment": 1,
       "epoch": 21,
       "observed_from": 1791010472.8,
@@ -8125,7 +8126,7 @@
       }
     },
     "Jason_idea": {
-      "file": "jason_idea.py",
+      "id": "jason_idea",
       "segment": 3,
       "epoch": 23,
       "observed_from": 1791014208.476,
@@ -8610,7 +8611,7 @@
       }
     },
     "LF5": {
-      "file": "lf5.py",
+      "id": "lf5",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791009777.5137498,
@@ -9303,7 +9304,7 @@
       }
     },
     "MAC Projects Team": {
-      "file": "mac_projects_team.py",
+      "id": "mac_projects_team",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790943935.0048718,
@@ -10055,7 +10056,7 @@
       }
     },
     "MAC Projects Team Testing Bot": {
-      "file": "mac_projects_team_testing_bot.py",
+      "id": "mac_projects_team_testing_bot",
       "segment": 1,
       "epoch": 24,
       "observed_from": 1791015964.495,
@@ -10783,7 +10784,7 @@
       }
     },
     "MAC Projects Team Testing Bot 2": {
-      "file": "mac_projects_team_testing_bot_2.py",
+      "id": "mac_projects_team_testing_bot_2",
       "segment": 2,
       "epoch": 26,
       "observed_from": 1791025014.83,
@@ -11523,7 +11524,7 @@
       }
     },
     "MAC Projects Team Testing Bot 3": {
-      "file": "mac_projects_team_testing_bot_3.py",
+      "id": "mac_projects_team_testing_bot_3",
       "segment": 1,
       "epoch": 27,
       "observed_from": 1791037632.787,
@@ -12270,7 +12271,7 @@
       }
     },
     "McSmart Meal": {
-      "file": "mcsmart_meal.py",
+      "id": "mcsmart_meal",
       "segment": 2,
       "epoch": 28,
       "observed_from": 1791048981.968,
@@ -13005,7 +13006,7 @@
       }
     },
     "Messi": {
-      "file": "messi.py",
+      "id": "messi",
       "segment": 3,
       "epoch": 30,
       "observed_from": 1791025444.773,
@@ -13767,7 +13768,7 @@
       }
     },
     "Nice Hand, Sir": {
-      "file": "nice_hand_sir.py",
+      "id": "nice_hand_sir",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790994477.186125,
@@ -14525,7 +14526,7 @@
       }
     },
     "Phil_Ivey_GOAT": {
-      "file": "phil_ivey_goat.py",
+      "id": "phil_ivey_goat",
       "segment": 3,
       "epoch": 33,
       "observed_from": 1791045362.769,
@@ -15235,7 +15236,7 @@
       }
     },
     "RaiseYourEdge": {
-      "file": "raiseyouredge.py",
+      "id": "raiseyouredge",
       "segment": 2,
       "epoch": 34,
       "observed_from": 1791031340.973,
@@ -15983,7 +15984,7 @@
       }
     },
     "RiverForge": {
-      "file": "riverforge.py",
+      "id": "riverforge",
       "segment": 3,
       "epoch": 37,
       "observed_from": 1791050790.138,
@@ -16704,7 +16705,7 @@
       }
     },
     "Sus bot": {
-      "file": "sus_bot.py",
+      "id": "sus_bot",
       "segment": 3,
       "epoch": 40,
       "observed_from": 1791042890.145,
@@ -17455,7 +17456,7 @@
       }
     },
     "Tester67": {
-      "file": "tester67.py",
+      "id": "tester67",
       "segment": 1,
       "epoch": 41,
       "observed_from": 1791047739.774,
@@ -18200,7 +18201,7 @@
       }
     },
     "Thanos": {
-      "file": "thanos.py",
+      "id": "thanos",
       "segment": 1,
       "epoch": 42,
       "observed_from": 1791012151.249,
@@ -18895,7 +18896,7 @@
       }
     },
     "Tilted_Towers_2": {
-      "file": "tilted_towers_2.py",
+      "id": "tilted_towers_2",
       "segment": 2,
       "epoch": 43,
       "observed_from": 1791014437.235,
@@ -19642,7 +19643,7 @@
       }
     },
     "Tilted_towers_1": {
-      "file": "tilted_towers_1.py",
+      "id": "tilted_towers_1",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791009406.1594455,
@@ -20339,7 +20340,7 @@
       }
     },
     "Who me?": {
-      "file": "who_me.py",
+      "id": "who_me",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790998042.3527071,
@@ -21023,7 +21024,7 @@
       }
     },
     "alo": {
-      "file": "alo.py",
+      "id": "alo",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790956791.4514647,
@@ -21765,7 +21766,7 @@
       }
     },
     "axiom": {
-      "file": "axiom.py",
+      "id": "axiom",
       "segment": 2,
       "epoch": 44,
       "observed_from": 1791031372.592,
@@ -22479,7 +22480,7 @@
       }
     },
     "best-bot": {
-      "file": "best_bot.py",
+      "id": "best_bot",
       "segment": 3,
       "epoch": 47,
       "observed_from": 1791029199.562,
@@ -23231,7 +23232,7 @@
       }
     },
     "big dog": {
-      "file": "big_dog.py",
+      "id": "big_dog",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791002355.3698673,
@@ -23974,7 +23975,7 @@
       }
     },
     "biji satu": {
-      "file": "biji_satu.py",
+      "id": "biji_satu",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791004329.0955262,
@@ -24660,7 +24661,7 @@
       }
     },
     "catherine": {
-      "file": "catherine.py",
+      "id": "catherine",
       "segment": 7,
       "epoch": 54,
       "observed_from": 1791047345.665,
@@ -25404,7 +25405,7 @@
       }
     },
     "dan_negreanu_on_ket": {
-      "file": "dan_negreanu_on_ket.py",
+      "id": "dan_negreanu_on_ket",
       "segment": 3,
       "epoch": 57,
       "observed_from": 1791039767.88,
@@ -26097,7 +26098,7 @@
       }
     },
     "data": {
-      "file": "data.py",
+      "id": "data",
       "segment": 2,
       "epoch": 59,
       "observed_from": 1791038312.346,
@@ -26777,7 +26778,7 @@
       }
     },
     "diddy blud": {
-      "file": "diddy_blud.py",
+      "id": "diddy_blud",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791007421.174593,
@@ -27469,7 +27470,7 @@
       }
     },
     "dudududu": {
-      "file": "dudududu.py",
+      "id": "dudududu",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791007668.9965768,
@@ -28164,7 +28165,7 @@
       }
     },
     "elaine": {
-      "file": "elaine.py",
+      "id": "elaine",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790941916.3915803,
@@ -28895,7 +28896,7 @@
       }
     },
     "finian sucks": {
-      "file": "finian_sucks.py",
+      "id": "finian_sucks",
       "segment": 1,
       "epoch": 60,
       "observed_from": 1791011731.158,
@@ -29679,7 +29680,7 @@
       }
     },
     "fold-a2": {
-      "file": "fold_a2.py",
+      "id": "fold_a2",
       "segment": 1,
       "epoch": 61,
       "observed_from": 1791011744.74,
@@ -30362,7 +30363,7 @@
       }
     },
     "fufufafa": {
-      "file": "fufufafa.py",
+      "id": "fufufafa",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791005565.094449,
@@ -31059,7 +31060,7 @@
       }
     },
     "fullhouse": {
-      "file": "fullhouse.py",
+      "id": "fullhouse",
       "segment": 2,
       "epoch": 62,
       "observed_from": 1791016254.36,
@@ -31757,7 +31758,7 @@
       }
     },
     "goatbot": {
-      "file": "goatbot.py",
+      "id": "goatbot",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790941916.3915803,
@@ -32546,7 +32547,7 @@
       }
     },
     "guaguanco": {
-      "file": "guaguanco.py",
+      "id": "guaguanco",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790950489.0514941,
@@ -33302,7 +33303,7 @@
       }
     },
     "guaguanco 2": {
-      "file": "guaguanco_2.py",
+      "id": "guaguanco_2",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790985162.8942382,
@@ -33772,7 +33773,7 @@
       }
     },
     "guaguanco 3": {
-      "file": "guaguanco_3.py",
+      "id": "guaguanco_3",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790985285.8153448,
@@ -34543,7 +34544,7 @@
       }
     },
     "guaguanco 4": {
-      "file": "guaguanco_4.py",
+      "id": "guaguanco_4",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791005689.4717512,
@@ -35246,7 +35247,7 @@
       }
     },
     "guaguanco 5": {
-      "file": "guaguanco_5.py",
+      "id": "guaguanco_5",
       "segment": 5,
       "epoch": 66,
       "observed_from": 1791031598.993,
@@ -35992,7 +35993,7 @@
       }
     },
     "house:call": {
-      "file": "house_call.py",
+      "id": "house_call",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790942380.4992387,
@@ -36922,7 +36923,7 @@
       }
     },
     "idc": {
-      "file": "idc.py",
+      "id": "idc",
       "segment": 11,
       "epoch": 76,
       "observed_from": 1791037522.878,
@@ -37669,7 +37670,7 @@
       }
     },
     "jongwon": {
-      "file": "jongwon.py",
+      "id": "jongwon",
       "segment": 9,
       "epoch": 84,
       "observed_from": 1791049924.157,
@@ -38396,7 +38397,7 @@
       }
     },
     "kingfisher": {
-      "file": "kingfisher.py",
+      "id": "kingfisher",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790956186.4445026,
@@ -39027,7 +39028,7 @@
       }
     },
     "kurimanju": {
-      "file": "kurimanju.py",
+      "id": "kurimanju",
       "segment": 2,
       "epoch": 86,
       "observed_from": 1791041275.038,
@@ -39779,7 +39780,7 @@
       }
     },
     "larp larp sahur": {
-      "file": "larp_larp_sahur.py",
+      "id": "larp_larp_sahur",
       "segment": 4,
       "epoch": 90,
       "observed_from": 1791035345.707,
@@ -40525,7 +40526,7 @@
       }
     },
     "let it go": {
-      "file": "let_it_go.py",
+      "id": "let_it_go",
       "segment": 2,
       "epoch": 91,
       "observed_from": 1791018198.391,
@@ -41234,7 +41235,7 @@
       }
     },
     "lil-fruit": {
-      "file": "lil_fruit.py",
+      "id": "lil_fruit",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790941916.3915803,
@@ -42052,7 +42053,7 @@
       }
     },
     "lil-fruit 2.2": {
-      "file": "lil_fruit_2_2.py",
+      "id": "lil_fruit_2_2",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790967078.2456481,
@@ -42847,7 +42848,7 @@
       }
     },
     "lil-fruit x": {
-      "file": "lil_fruit_x.py",
+      "id": "lil_fruit_x",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790987855.5127296,
@@ -43553,7 +43554,7 @@
       }
     },
     "love-of-da-game": {
-      "file": "love_of_da_game.py",
+      "id": "love_of_da_game",
       "segment": 8,
       "epoch": 99,
       "observed_from": 1791039300.465,
@@ -44298,7 +44299,7 @@
       }
     },
     "luck is all u need": {
-      "file": "luck_is_all_u_need.py",
+      "id": "luck_is_all_u_need",
       "segment": 11,
       "epoch": 109,
       "observed_from": 1791030218.117,
@@ -45048,7 +45049,7 @@
       }
     },
     "merch where": {
-      "file": "merch_where.py",
+      "id": "merch_where",
       "segment": 10,
       "epoch": 118,
       "observed_from": 1791055027.55,
@@ -45737,7 +45738,7 @@
       }
     },
     "netanyahu": {
-      "file": "netanyahu.py",
+      "id": "netanyahu",
       "segment": 4,
       "epoch": 122,
       "observed_from": 1791040849.523,
@@ -46488,7 +46489,7 @@
       }
     },
     "orcabot": {
-      "file": "orcabot.py",
+      "id": "orcabot",
       "segment": 2,
       "epoch": 123,
       "observed_from": 1791042948.875,
@@ -47242,7 +47243,7 @@
       }
     },
     "percy-perc-filet": {
-      "file": "percy_perc_filet.py",
+      "id": "percy_perc_filet",
       "segment": 5,
       "epoch": 128,
       "observed_from": 1791052890.722,
@@ -47946,7 +47947,7 @@
       }
     },
     "pocket-nuts": {
-      "file": "pocket_nuts.py",
+      "id": "pocket_nuts",
       "segment": 2,
       "epoch": 129,
       "observed_from": 1791011321.551,
@@ -48731,7 +48732,7 @@
       }
     },
     "poke-bowl": {
-      "file": "poke_bowl.py",
+      "id": "poke_bowl",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791005936.6531608,
@@ -49536,7 +49537,7 @@
       }
     },
     "poke-bowl-one": {
-      "file": "poke_bowl_one.py",
+      "id": "poke_bowl_one",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790941915.7995708,
@@ -50478,7 +50479,7 @@
       }
     },
     "polygamous lavender marriage": {
-      "file": "polygamous_lavender_marriage.py",
+      "id": "polygamous_lavender_marriage",
       "segment": 6,
       "epoch": 134,
       "observed_from": 1791033954.524,
@@ -51221,7 +51222,7 @@
       }
     },
     "preflop-warrior": {
-      "file": "preflop_warrior.py",
+      "id": "preflop_warrior",
       "segment": 10,
       "epoch": 143,
       "observed_from": 1791053003.744,
@@ -51925,7 +51926,7 @@
       }
     },
     "pressure": {
-      "file": "pressure.py",
+      "id": "pressure",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791019901.279,
@@ -52642,7 +52643,7 @@
       }
     },
     "radishv0": {
-      "file": "radishv0.py",
+      "id": "radishv0",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790961230.8250356,
@@ -53433,7 +53434,7 @@
       }
     },
     "radishv1": {
-      "file": "radishv1.py",
+      "id": "radishv1",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790995707.964548,
@@ -54213,7 +54214,7 @@
       }
     },
     "radishv2": {
-      "file": "radishv2.py",
+      "id": "radishv2",
       "segment": 1,
       "epoch": 144,
       "observed_from": 1791016891.466,
@@ -54966,7 +54967,7 @@
       }
     },
     "renbot": {
-      "file": "renbot.py",
+      "id": "renbot",
       "segment": 2,
       "epoch": 145,
       "observed_from": 1791026388.83,
@@ -55653,7 +55654,7 @@
       }
     },
     "samith pai is lowkey leng": {
-      "file": "samith_pai_is_lowkey_leng.py",
+      "id": "samith_pai_is_lowkey_leng",
       "segment": 2,
       "epoch": 147,
       "observed_from": 1791010786.063,
@@ -56331,7 +56332,7 @@
       }
     },
     "scaffold": {
-      "file": "scaffold.py",
+      "id": "scaffold",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1790941915.7995708,
@@ -57030,7 +57031,7 @@
       }
     },
     "test1": {
-      "file": "test1.py",
+      "id": "test1",
       "segment": 1,
       "epoch": 0,
       "observed_from": 1791008909.7396414,
@@ -57697,7 +57698,7 @@
       }
     },
     "testQ": {
-      "file": "testq.py",
+      "id": "testq",
       "segment": 6,
       "epoch": 153,
       "observed_from": 1791040148.812,
@@ -58378,7 +58379,7 @@
       }
     },
     "the GOON": {
-      "file": "the_goon.py",
+      "id": "the_goon",
       "segment": 11,
       "epoch": 163,
       "observed_from": 1791039300.465,
@@ -59129,7 +59130,7 @@
       }
     },
     "the big dog": {
-      "file": "the_big_dog.py",
+      "id": "the_big_dog",
       "segment": 2,
       "epoch": 165,
       "observed_from": 1791012095.546,
@@ -59850,7 +59851,7 @@
       }
     },
     "the notorious": {
-      "file": "the_notorious.py",
+      "id": "the_notorious",
       "segment": 1,
       "epoch": 166,
       "observed_from": 1791038532.287,
@@ -60595,7 +60596,7 @@
       }
     },
     "tripi tropi": {
-      "file": "tripi_tropi.py",
+      "id": "tripi_tropi",
       "segment": 2,
       "epoch": 167,
       "observed_from": 1791019722.905,
@@ -61302,7 +61303,7 @@
       }
     },
     "tungbot": {
-      "file": "tungbot.py",
+      "id": "tungbot",
       "segment": 3,
       "epoch": 169,
       "observed_from": 1791020895.158,
@@ -62068,7 +62069,7 @@
       }
     },
     "tutududu": {
-      "file": "tutududu.py",
+      "id": "tutududu",
       "segment": 3,
       "epoch": 171,
       "observed_from": 1791030953.535,
@@ -62795,7 +62796,7 @@
       }
     },
     "wicked wings combo": {
-      "file": "wicked_wings_combo.py",
+      "id": "wicked_wings_combo",
       "segment": 1,
       "epoch": 172,
       "observed_from": 1791041867.399,
@@ -63514,7 +63515,7 @@
       }
     },
     "yep": {
-      "file": "yep.py",
+      "id": "yep",
       "segment": 4,
       "epoch": 175,
       "observed_from": 1791029531.573,
@@ -64199,7 +64200,7 @@
       }
     },
     "zinger box": {
-      "file": "zinger_box.py",
+      "id": "zinger_box",
       "segment": 1,
       "epoch": 176,
       "observed_from": 1791030907.71,
