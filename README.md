@@ -7,7 +7,8 @@ Entry for the MAC Poker Bot Tournament. Submissions close **Sun 4 Oct 2026, 6pm 
 | Path | What it is |
 |---|---|
 | `bot/` | **The submission.** Zip this folder with `main.py` at the root and upload it at https://poker.monashcoding.com/app |
-| `bot/main.py` | Your bot. It started as the scaffold's template bot |
+| `bot/main.py` | Thin SDK entry point for the equity engine and fixed baseline strategy |
+| `bot/BASELINE.md` | Fixed policy, assumptions, clock budgets and testing |
 | `bot/README.md` | The scaffold's own README: setup, testing, submission |
 | `sparring/` | Local opponents for testing. These are never submitted |
 | `sparring/template.py` | Untouched copy of the template bot (calls at pot odds under 0.3, otherwise checks or folds) |

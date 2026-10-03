@@ -1,6 +1,6 @@
-# MAC poker bot scaffold
+# MAC poker bot: fixed baseline
 
-Everything you need to start building.
+A non-adaptive strategy built on the Person A equity engine.
 
 ## Setup
 
@@ -22,6 +22,27 @@ Test against the house bots (`house:call`, `house:checkfold`, `house:allin`, `ho
 macpoker play main.py house:call house:random --deals 50
 macpoker play main.py house:call --deals 100 --subprocess --history out.json
 ```
+
+## Person A: equity engine
+
+The agreed API is available in `engine.py`:
+
+```python
+from engine import equity
+
+eq = equity(hole, board, opp_ranges, n_iters, time_budget_ms)
+```
+
+It returns expected showdown pot share against separate weighted opponent
+ranges. Optional `estimate_equity` diagnostics include each player's hand
+probabilities, win/tie/loss, sample counts and Monte Carlo error.
+
+See [EQUITY_ENGINE.md](EQUITY_ENGINE.md) for the complete B/C handoff,
+range format, deadlines, failure handling, integration example and testing.
+
+`main.py` connects the engine to the fixed policy in `strategy.py` and
+`preflop.py`. Settings live in `params.py`. See [BASELINE.md](BASELINE.md)
+for the policy, modelling assumptions, clock behaviour and validation commands.
 
 ## Submit
 
