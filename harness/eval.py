@@ -287,15 +287,33 @@ def _play_game(job: dict) -> dict:
 # Tables and scoring
 # --------------------------------------------------------------------------
 
-def read_pool(path: Path, extra: list[str]) -> list[tuple[str, float]]:
+def _pool_lines(path: Path) -> list[tuple[str, float]]:
+    """`spec [weight]` lines; `include <pool file> <total weight>` spreads that
+    total over the included pool in proportion to its own weights."""
     pool = []
     for line in path.read_text().splitlines():
         line = line.split("#", 1)[0].strip()
-        if line:
-            parts = line.split()
+        if not line:
+            continue
+        parts = line.split()
+        if parts[0] == "include":
+            inner = resolve_pool(parts[1])
+            entries = _pool_lines(inner)
+            total = float(parts[2]) if len(parts) > 2 else sum(w for _, w in entries)
+            scale = total / max(1e-9, sum(w for _, w in entries))
+            pool += [(spec, w * scale) for spec, w in entries]
+        else:
             pool.append((parts[0], float(parts[1]) if len(parts) > 1 else 1.0))
-    pool += [(s, 1.0) for s in extra]
     return pool
+
+
+def resolve_pool(spec: str) -> Path:
+    p = Path(spec)
+    return p if p.is_absolute() else (ROOT / p if (ROOT / p).exists() else Path.cwd() / p)
+
+
+def read_pool(path: Path, extra: list[str]) -> list[tuple[str, float]]:
+    return _pool_lines(path) + [(s, 1.0) for s in extra]
 
 
 def draw_tables(pool, n_tables: int, sizes: list[int], seed: str) -> list[list[str]]:

@@ -58,7 +58,8 @@ def latest_profiles(report):
 def build(report_path, destination, exclude=("Halliday",)):
     raw = Path(report_path).read_bytes()
     report = json.loads(raw)
-    fingerprint = sha256((ROOT / "sparring/param.py").read_bytes()).hexdigest()
+    # Line endings normalised: Windows checkouts convert LF to CRLF.
+    fingerprint = sha256((ROOT / "sparring/param.py").read_bytes().replace(b"\r\n", b"\n")).hexdigest()
     if report["surrogate_source_sha256"] != fingerprint:
         raise ValueError("param.py differs from the fitted scaffold; regenerate the analysis first")
     profiles = latest_profiles(report)

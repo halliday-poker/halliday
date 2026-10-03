@@ -33,8 +33,9 @@ class CompetitorTests(unittest.TestCase):
         self.assertNotEqual(profiles["build"]["file"], "build.py")
 
     def test_all_profiles_match_scaffold_and_load_without_state_leaks(self):
-        self.assertEqual(MANIFEST["surrogate_source_sha256"],
-                         sha256((ROOT / "sparring/param.py").read_bytes()).hexdigest())
+        # Line endings normalised: Windows checkouts convert LF to CRLF.
+        source = (ROOT / "sparring/param.py").read_bytes().replace(b"\r\n", b"\n")
+        self.assertEqual(MANIFEST["surrogate_source_sha256"], sha256(source).hexdigest())
         for name, profile in MANIFEST["profiles"].items():
             with self.subTest(bot=name):
                 spec = str(DIRECTORY / profile["file"])
