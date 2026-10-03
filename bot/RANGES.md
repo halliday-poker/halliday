@@ -59,7 +59,7 @@ All live in `DEFAULT_PARAMS`. **Bold** marks the ones most worth tuning first.
 | `range_raise_shift` | 0.15 | Read raises over a bet as stronger than bets |
 | `range_size_slope` | 0.15 | Make bet size matter more (overbets beyond 2x pot read as 2x) |
 | `range_draw_bonus` | 0.20 | Treat draws as stronger hands when betting or calling |
-| **`range_bluff_floor`** | 0.60 | **Assume more bluffs** (prior: weak hands bet this often relative to strong ones; 0.6 makes about half of bets come from below the cutoff, as in the field's c-bets) |
+| **`range_bluff_floor`** | 0.30 | **Assume more bluffs** (prior: weak hands bet this often relative to strong ones; was 0.6 from the bugged "56% air" figure; big ladder turn/river bets are 12-15% air) |
 | `range_showdown_prior` | 6 | Learn from showdowns more slowly (the priors are worth this many shown samples) |
 | `range_showdown_weight_indirect` | 0.5 | Trust shown bets from earlier streets more |
 | `range_showdown_weight_passive` | 0.4 | Trust shown calls more |

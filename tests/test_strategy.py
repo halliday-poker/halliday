@@ -263,10 +263,11 @@ class PostflopTests(unittest.TestCase):
         self.assertEqual(decide(s, 0.10, {1: Counter(hands=10, faced_us=2, call_us=2)}).kind, "check")  # dial
         self.assertEqual(decide(s, 0.10, params=dict(DEFAULT_PARAMS, turn_barrel=False)).kind, "check")
         self.assertEqual(decide(s, 0.10, params=dict(DEFAULT_PARAMS, barrel_bluffs=False)).kind, "check")
-        s._m["history"] = line[:1]  # flop checked through: no barrel
-        self.assertEqual(decide(s, 0.10).kind, "check")
+        no_stab = dict(DEFAULT_PARAMS, stab=False)
+        s._m["history"] = line[:1]  # flop checked through: no barrel (the stab covers it)
+        self.assertEqual(decide(s, 0.10, params=no_stab).kind, "check")
         s._m["history"] = line[:1] + [["flop", 1, "raise", 10], ["flop", 0, "call", 10]]  # their bet
-        self.assertEqual(decide(s, 0.10).kind, "check")
+        self.assertEqual(decide(s, 0.10, params=no_stab).kind, "check")
 
     def test_bluff_frequency_mixes_air_repeatably(self):
         params = dict(DEFAULT_PARAMS, bluff_frequency=0.5)
@@ -301,6 +302,36 @@ class PostflopTests(unittest.TestCase):
         self.assertEqual(decide(s, 0.10).kind, "check")  # no OOP air barrel
         s._m["hole"] = ["8s", "6s"]  # an open-ender still barrels
         self.assertEqual(decide(s, 0.30).amount, 50)
+
+    def test_stab_when_we_did_not_bet_the_previous_street(self):
+        # The field folds ~78% to a heads-up pot bet once the last street went
+        # without a bet from us, but only ~half when it called our last bet.
+        board = ["Ac", "7h", "2d", "9s", "4c"]
+        checked = [["preflop", 1, "raise", 5], ["preflop", 0, "call", 5],
+                   ["flop", 1, "raise", 10], ["flop", 0, "call", 10]]
+        s = postflop(board=board, hole=["Ks", "Qh"], pot=60, history=checked + [["turn", 1, "check", 0]])
+        self.assertEqual(decide(s, 0.10).to_wire(), {"action": "raise", "amount": 60})  # air
+        self.assertEqual(decide(s, 0.80).amount, 60)  # value bets the same pot size
+        s._m["board"] = board[:4]  # turn after their flop bet: stab too
+        s._m["history"] = checked
+        self.assertEqual(decide(s, 0.10).amount, 60)
+        s._m.update(board=board, hole=["Ks", "7c"])  # a weak pair keeps its showdown value
+        self.assertEqual(decide(s, 0.40).kind, "check")
+        s._m["hole"] = ["Ks", "Qh"]
+        s._m["history"] = checked + [["turn", 0, "raise", 30], ["turn", 1, "call", 30]]
+        self.assertEqual(decide(s, 0.10).kind, "check")  # they called our last bet
+        s._m["history"] = checked
+        self.assertEqual(decide(s, 0.10, params=dict(DEFAULT_PARAMS, stab=False)).kind, "check")
+        s._m.update(players=[0, 1, 2], stacks=[190, 170, 170], folded=[False] * 3, street_bets=[0] * 3)
+        self.assertEqual(decide(s, 0.10).kind, "check")  # never multiway
+
+    def test_bluffs_stop_against_players_who_rarely_fold_to_anyone(self):
+        s = postflop(hole=["Ks", "Qh"], history=[["preflop", 0, "raise", 5]])
+        self.assertEqual(decide(s, 0.10, {1: Counter(hands=10, faced=6, call=5, fold=1)}).kind, "check")
+        self.assertEqual(decide(s, 0.10, {1: Counter(hands=10, faced=6, call=4, fold=2)}).amount, 40)
+        self.assertEqual(decide(s, 0.10, {1: Counter(hands=10, faced=5, call=5)}).amount, 40)  # too few
+        s._m["hole"] = ["Ks", "7c"]  # a pair still bets
+        self.assertEqual(decide(s, 0.45, {1: Counter(hands=10, faced=6, call=6)}).amount, 40)
 
     def test_low_spr_value_shoves_and_all_in_opponents_cannot_be_bluffed(self):
         s = postflop(pot=300)

@@ -1,10 +1,12 @@
 """Per-opponent counters built from this game's public events only.
 
-Three narrow reads gate the field exploits in strategy.py:
+Four narrow reads gate the field exploits in strategy.py:
 - a shover moves all in preflop often, so its shoves are near-random hands;
 - a station calls almost every postflop bet, so bluffing it cannot work;
 - how often a player folds to our own postflop bets sets how hard we bluff
-  them, so we back off anyone who starts calling us down.
+  them, so we back off anyone who starts calling us down;
+- how often it folds to anyone's postflop bets stops bluffs against players
+  who rarely fold, before they have faced many of ours.
 Preflop frequencies (vpip, pfr, 3-bets per chance) also set how wide
 ranges.py assumes each player's opening, calling and 3-betting ranges are.
 Counters are keyed by player id, which is fixed for one game; nothing is
@@ -120,6 +122,13 @@ def is_station(profile, params):
     faced = profile["faced"]
     return (profile["fold"] / faced <= params["station_max_fold"]
             and profile["raise"] / faced <= params["station_max_raise"])
+
+
+def fold_to_any(profile, params):
+    """This game's fold rate to anyone's postflop bets, once there are enough."""
+    if not profile or profile["faced"] < params["bluff_any_min_faced"]:
+        return params["bluff_any_prior"]
+    return shrunk_rate(profile["fold"], profile["faced"], params["bluff_any_prior"], params["bluff_prior_weight"])
 
 
 def fold_to_us(profile, params):

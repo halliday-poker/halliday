@@ -47,9 +47,17 @@ DEFAULT_PARAMS = MappingProxyType({
     "bluff_prior_weight": 4,
     "bluff_min_fold": 0.50,
     "bluff_frequency": 1.0,
+    # Fold rate to anyone's postflop bets, prior 0.55: players under 0.35
+    # after 6 bets fold only ~38% later in the game, so bluffs lose.
+    "bluff_any_prior": 0.55,
+    "bluff_any_min_faced": 6,
+    "bluff_min_fold_any": 0.35,
+    # Bluff turn/river when we did not bet the previous street.
+    "stab": True,
     # Turn barrel after a called heads-up flop c-bet (FIELD_EXPLOITS.md).
     "turn_barrel": True,
-    "barrel_pot_fraction": 1.0,
+    # Size of every heads-up turn/river bet: value, barrels and stabs.
+    "late_pot_fraction": 1.0,
     "barrel_bluffs": True,
     "barrel_weak_pairs": False,
     "shove_equity": 0.90,
@@ -98,9 +106,10 @@ DEFAULT_PARAMS = MappingProxyType({
     "range_size_slope": 0.15,
     "range_draw_bonus": 0.20,
     # Prior: hands below the betting cutoff bet range_bluff_floor times as
-    # often as hands above it (0.6 makes ~half of bets come from below the
-    # cutoff, close to the field's ~44% air c-bets). Showdowns update it.
-    "range_bluff_floor": 0.60,
+    # often as hands above it. Ladder bettors are 44% air on flop c-bets but
+    # 12-15% on big turn/river bets; replaying real river calls, 0.3 lifts
+    # call EV from +0.19 to +0.36 pot (both halves). Showdowns update it.
+    "range_bluff_floor": 0.30,
     # Showdown learning: the priors above are worth range_showdown_prior
     # shown samples. A shown bet whose call ended the hand counts fully;
     # earlier bets that survived later streets count `indirect`, shown calls

@@ -7,12 +7,12 @@ from math import ceil, isfinite
 
 if __package__:
     from .engine import evaluate_hand
-    from .opponents import fold_to_us, is_station, profile_of
+    from .opponents import fold_to_any, fold_to_us, is_station, profile_of
     from .params import DEFAULT_PARAMS, margin as pick
     from .preflop import in_position, pot_odds, preflop_plan
 else:
     from engine import evaluate_hand
-    from opponents import fold_to_us, is_station, profile_of
+    from opponents import fold_to_any, fold_to_us, is_station, profile_of
     from params import DEFAULT_PARAMS, margin as pick
     from preflop import in_position, pot_odds, preflop_plan
 
@@ -119,20 +119,32 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
     flop_bettors = [a[1] for a in state.history if a[0] == "flop" and a[2] == "raise"]
     barrel_spot = (params["turn_barrel"] and villain is not None and street == "turn"
                    and aggressor == state.seat and flop_bettors == [state.seat])
+    # Heads-up turn/river when we did not bet the previous street: the field
+    # folds ~78% to a pot bet here, but only ~half once it called our last bet.
+    prev = {"turn": "flop", "river": "turn"}.get(street)
+    prev_bettors = [a[1] for a in state.history if a[0] == prev and a[2] == "raise"]
+    stab_spot = (params["stab"] and villain is not None and prev is not None
+                 and state.seat not in prev_bettors)
+    # Heads-up turn/river bets are pot-sized, value and bluffs alike: the
+    # field pays off big value bets (bettor EV rises with size up to pot).
+    late_hu = villain is not None and street != "flop"
     if not state.to_call:
         if can_bet and equity >= value:
             if equity >= params["shove_equity"] and state.my_stack <= params["shove_spr"] * state.pot:
                 return legal_raise(state, state.max_raise_to)
             if cbet_spot:
                 return bet(state, params["cbet_pot_fraction"])
-            return bet(state, params["barrel_pot_fraction"] if barrel_spot else fraction)
+            return bet(state, params["late_pot_fraction"] if late_hu else fraction)
         own_pair = (state.hole[0][0] == state.hole[1][0]
                     or bool({c[0] for c in state.hole} & {c[0] for c in state.board}))
         made_or_draw = own_pair or has_draw(state.hole, state.board)
         # Pure air bets only while this opponent still folds to our bets
-        # often enough to pay for a pot-sized bluff, and then only some of
-        # the time so a watching opponent cannot assume every bet is a bluff.
+        # often enough to pay for a pot-sized bluff, and to anyone's bets
+        # often enough (rarely-folding players lose bluffs from either), and
+        # then only some of the time so a watching opponent cannot assume
+        # every bet is a bluff.
         bluff = (fold_to_us(profile, params) >= params["bluff_min_fold"]
+                 and fold_to_any(profile, params) >= params["bluff_min_fold_any"]
                  and mixed(state, params["bluff_frequency"]))
         # Air only bets in position: the field folds 83% to an in-position
         # pot bet but 55% when we act first (45% to an OOP turn barrel).
@@ -143,7 +155,9 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
         # showdown value and check.
         if can_bet and barrel_spot and not station and bluff and (air_ok or made_or_draw) and (
                 params["barrel_weak_pairs"] if own_pair else params["barrel_bluffs"]):
-            return bet(state, params["barrel_pot_fraction"])
+            return bet(state, params["late_pot_fraction"])
+        if can_bet and stab_spot and not own_pair and not station and bluff:
+            return bet(state, params["late_pot_fraction"])
         # Against a station, only the modest c-bet with a pair or draw.
         if can_bet and cbet_spot and equity >= params["cbet_equity"] and made_or_draw:
             return bet(state, params["size_dry"])
