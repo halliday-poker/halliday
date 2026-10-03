@@ -209,11 +209,15 @@ class ShowdownStats:
         self.call_weight = 0.0
         self.call_cut_sum = 0.0
 
-    def learned(self, p):
-        """(bet_cut, call_cut, bluff_floor) for this player: priors moved by evidence."""
+    def learned(self, p, bet_prior=None, call_prior=None):
+        """(bet_cut, call_cut, bluff_floor) for this player: priors moved by evidence.
+        The priors default to the field's; RangeTracker passes ones from this
+        player's betting and calling frequencies."""
         k = p["range_showdown_prior"]
-        bet_cut = (self.value_cut_sum + p["range_bet_cut"] * k) / (self.value_weight + k)
-        call_cut = (self.call_cut_sum + p["range_call_cut"] * k) / (self.call_weight + k)
+        bet_prior = p["range_bet_cut"] if bet_prior is None else bet_prior
+        call_prior = p["range_call_cut"] if call_prior is None else call_prior
+        bet_cut = (self.value_cut_sum + bet_prior * k) / (self.value_weight + k)
+        call_cut = (self.call_cut_sum + call_prior * k) / (self.call_weight + k)
         bet_cut = min(0.95, max(0.2, bet_cut))
         call_cut = min(0.9, max(0.05, call_cut))
         # The bluff floor is how likely a hand below the cutoff bets relative
@@ -328,10 +332,29 @@ class RangeTracker:
         strength, draws = board_strength(boards[street])
         # Board-blocked combos are excluded later; give them a neutral strength.
         s = np.minimum(1.0, np.nan_to_num(strength, nan=0.5) + p["range_draw_bonus"] * draws)
-        weights *= postflop_likelihood(kind, s, size, facing_raise, learned_for(seat), p) ** p["range_temper"]
+        bet_cut, call_cut, floor = learned_for(seat)
+        # Later-street bets bluff less: the field's big river bets are mostly strong.
+        floor *= {"flop": 1.0, "turn": p["range_bluff_turn_factor"],
+                  "river": p["range_bluff_river_factor"]}[street]
+        weights *= postflop_likelihood(kind, s, size, facing_raise, (bet_cut, call_cut, floor),
+                                       p) ** p["range_temper"]
+
+    def frequency_cuts(self, player):
+        """Betting and calling cutoffs implied by how often this player bets when
+        checked to and continues when facing a bet, pulled toward the field's
+        cutoffs until there is evidence. A player who bets 85% of the time bets
+        almost any hand; one who bets 20% bets only the top of its range."""
+        p, prof = self.p, self.profiles.get(player)
+        if not prof or not p["range_frequency_cuts"]:
+            return p["range_bet_cut"], p["range_call_cut"]
+        w = p["range_frequency_weight"]
+        bet_freq = shrunk_rate(prof["bets"], prof["bet_chances"], 1 - p["range_bet_cut"], w)
+        cont_freq = shrunk_rate(prof["call"] + prof["raise"], prof["faced"], 1 - p["range_call_cut"], w)
+        return 1 - bet_freq, 1 - cont_freq
 
     def _learned(self, seat):
-        return self.showdowns[self.players[seat]].learned(self.p)
+        player = self.players[seat]
+        return self.showdowns[player].learned(self.p, *self.frequency_cuts(player))
 
     def _catch_up(self):
         """Apply logged actions not yet folded into the opponents' weights."""
@@ -370,7 +393,7 @@ class RangeTracker:
                     # streets that could have ended the hand, so count less.
                     w = 1.0 if last_aggression.get(seat) == i else p["range_showdown_weight_indirect"]
                     stats.bet_weight += w
-                    if s < stats.learned(p)[0] and not draws[idx]:
+                    if s < stats.learned(p, *self.frequency_cuts(players[seat]))[0] and not draws[idx]:
                         stats.bluff_weight += w
                     else:
                         stats.value_weight += w
@@ -380,6 +403,23 @@ class RangeTracker:
                     stats.call_weight += w
                     stats.call_cut_sum += w * (2 * s - 1)
         self._pending.clear()
+
+    def weights_for(self, seat, hole, board):
+        """This opponent's combo weights now (blocked combos zeroed, summing to 1),
+        or None if it has not acted this hand (any two cards)."""
+        self.learn_pending()
+        self._catch_up()
+        weights = self.weights.get(seat)
+        if weights is None:
+            return None
+        known = [_parse_card(c) for c in list(hole) + list(board)]
+        w = np.where(np.isin(COMBO_A, known) | np.isin(COMBO_B, known), 0.0, weights)
+        total = w.sum()
+        return w / total if total > 0 else None
+
+    def learned_for(self, seat):
+        """(bet_cut, call_cut, bluff_floor) this game's showdowns imply for this seat."""
+        return self._learned(seat)
 
     def ranges_for(self, seats, hole, board):
         """Engine-ready ranges for these opponent seats: a {combo: weight} dict, or None

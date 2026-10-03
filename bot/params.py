@@ -87,6 +87,7 @@ DEFAULT_PARAMS = MappingProxyType({
     # Each further preflop re-raise range is this share of the previous one.
     "range_4bet_ratio": 0.5,
     # Share of strong hands that check or just call instead of raising.
+    # 0.5: a check caps a range only mildly (checks compound across streets).
     "range_slowplay": 0.25,
     # Postflop priors before showdowns: strength (share of combos beaten,
     # 1 = nuts) where betting and calling become likely; raises over a bet
@@ -94,6 +95,13 @@ DEFAULT_PARAMS = MappingProxyType({
     # range_size_slope / 2. Draws count as range_draw_bonus stronger.
     "range_bet_cut": 0.60,
     "range_call_cut": 0.35,
+    # Per-player cutoffs from frequencies: betting when checked to sets
+    # bet_cut = 1 - bet rate, continuing vs bets sets call_cut = 1 - continue
+    # rate; the field cutoffs above count as range_frequency_weight chances.
+    # Showdowns then refine these instead of the field cutoffs. Off: with
+    # the river factors above it tested worse vs aggressive pools (EV.md).
+    "range_frequency_cuts": False,
+    "range_frequency_weight": 10,
     "range_raise_shift": 0.15,
     "range_size_slope": 0.15,
     "range_draw_bonus": 0.20,
@@ -101,6 +109,12 @@ DEFAULT_PARAMS = MappingProxyType({
     # often as hands above it (0.6 makes ~half of bets come from below the
     # cutoff, close to the field's ~44% air c-bets). Showdowns update it.
     "range_bluff_floor": 0.60,
+    # The floor on later streets, as a share of the flop's. The ladder says
+    # big river bets are mostly two pair or better (a weak pair wins ~10-13%),
+    # which suggests ~0.7 / 0.35, but those values (with range_slowplay 0.5)
+    # lost to the sparring pools' river bluffs (EV.md), so they default off.
+    "range_bluff_turn_factor": 1.0,
+    "range_bluff_river_factor": 1.0,
     # Showdown learning: the priors above are worth range_showdown_prior
     # shown samples. A shown bet whose call ended the hand counts fully;
     # earlier bets that survived later streets count `indirect`, shown calls
@@ -121,6 +135,56 @@ DEFAULT_PARAMS = MappingProxyType({
     "range_large_bet_margin": 0.02,
     "range_reraise_margin": 0.03,
     "range_preflop_call_margin": 0.03,
+
+    # --- EV action selection (ev.py, EV.md): postflop only ---
+    # Off by default: it wins chips from passive callers but tested worse
+    # than the rule chain against aggressive and drifting pools (EV.md).
+    # When on, the rules still take over beyond ev_max_opponents live
+    # opponents, on a low clock, or if a spot fails.
+    "ev_enabled": False,
+    "ev_max_opponents": 3,
+    # Candidate sizes as fractions of the pot after calling, plus all in.
+    "ev_bet_sizes": (0.33, 0.66, 1.0),
+    "ev_raise_sizes": (0.75, 1.25),
+    # How opponents respond to our bets: each combo keeps playing with a
+    # chance from floor to ceiling, crossing halfway at strength cut (share
+    # of combos beaten, 1 = nuts) over a ramp of width softness. Bigger bets
+    # and raises move the cut up (range_size_slope per pot, range_raise_shift)
+    # to at most cut_max; above pot size the floor shrinks in proportion.
+    # Bets we make out of position are called wider by oop_continue_shift.
+    # The defaults follow the field: ~3/4 fold to an in-position pot c-bet,
+    # air folds ~3/4, top pair ~1/6.
+    "ev_continue_floor": 0.20,
+    "ev_continue_ceiling": 0.92,
+    "ev_continue_cut": 0.62,
+    "ev_continue_cut_max": 0.95,
+    "ev_continue_softness": 0.10,
+    "ev_oop_continue_shift": 0.15,
+    # The modelled fold rate counts as this many of our bets; this game's
+    # actual folds to our bets pull it toward the truth. The same weight
+    # pulls each opponent's re-raise rate (share of its continues that are
+    # raises) from ev_raise_prior toward its actual rate this game.
+    "ev_fold_evidence": 6,
+    "ev_raise_prior": 0.10,
+    # A re-raise is assumed to go to this multiple of our bet.
+    "ev_reraise_multiple": 3.0,
+    # Share of showdown equity we keep when acting first.
+    "ev_realize_oop": 0.92,
+    # Extra EV (x pot) a bet needs over checking/calling, and a call over
+    # folding, to cover what the model ignores (re-raises, later streets).
+    "ev_bet_margin": 0.03,
+    "ev_call_margin": 0.0,
+    # Bet sizes within this much EV (x pot) of the best count as equal; the
+    # smallest wins, so model error is risked with the fewest chips.
+    "ev_size_tolerance": 0.02,
+    # All in is a candidate only when our stack is at most this x the pot.
+    "ev_allin_spr": 3.0,
+    # Compute: combos per opponent, flop runouts sampled, time budget and
+    # the fewest runouts worth trusting.
+    "ev_max_combos": 300,
+    "ev_flop_runouts": 40,
+    "ev_time_budget_ms": 60,
+    "ev_min_runouts": 8,
 })
 
 

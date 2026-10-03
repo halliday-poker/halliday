@@ -30,6 +30,12 @@ game's showdowns; equity is computed against those ranges. See
 [RANGES.md](RANGES.md) for how it works, the tunable `range_*` parameters, and
 validation results.
 
+## EV action selection (off by default)
+
+`ev.py` scores every postflop action in chips instead of using the threshold
+rules. It's built and tested but switched off (`ev_enabled`), because it lost to
+aggressive pools. See [EV.md](EV.md) for the model, parameters and results.
+
 ## Person A: equity engine
 
 The agreed API is available in `engine.py`:

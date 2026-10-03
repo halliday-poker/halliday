@@ -75,6 +75,10 @@ class OpponentTracker:
                 self._aggressor = seat
             elif kind == "call":
                 self._bets[seat] += amount
+            if not facing:
+                # Postflop betting frequency when not facing a bet: how wide its bets are.
+                self.profiles[player]["bet_chances"] += 1
+                self.profiles[player]["bets"] += kind == "raise"
             if facing:
                 profile = self.profiles[player]
                 profile["faced"] += 1

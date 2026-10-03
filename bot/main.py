@@ -7,13 +7,15 @@ import json
 from macpoker import Bot
 
 if __package__:
-    from .engine import EquitySamplingError, EquityTimeout, estimate_equity
+    from .engine import EquitySamplingError, EquityTimeout, estimate_equity, evaluate_hand
+    from .ev import choose
     from .opponents import OpponentTracker, is_shover, profile_of
     from .params import DEFAULT_PARAMS
     from .ranges import RangeTracker
     from .strategy import decide
 else:  # SDK loads main.py as a standalone module from the submission folder.
-    from engine import EquitySamplingError, EquityTimeout, estimate_equity
+    from engine import EquitySamplingError, EquityTimeout, estimate_equity, evaluate_hand
+    from ev import choose
     from opponents import OpponentTracker, is_shover, profile_of
     from params import DEFAULT_PARAMS
     from ranges import RangeTracker
@@ -27,6 +29,7 @@ class MyBot(Bot):
         self.opponents = OpponentTracker()
         self.ranges = RangeTracker(self.opponents.profiles, DEFAULT_PARAMS)
         self.last_ranged = False
+        self.last_ev = None
 
     def on_hand_start(self, info):
         self.last_equity = None
@@ -60,10 +63,33 @@ class MyBot(Bot):
         return [None if is_shover(profile_of(state, seat, self.opponents.profiles), p) else r
                 for seat, r in zip(opponents, ranges)]
 
+    @staticmethod
+    def private_seed(state):
+        """A simulation seed from legal observations only. It has no connection
+        to deck seeds, identities, scores or earlier hands."""
+        observed = (sorted(state.hole), state.board, state.seat, state.button,
+                    state.stacks, state.folded, state.history)
+        return int.from_bytes(blake2b(json.dumps(observed).encode(), digest_size=8).digest(), "big")
+
+    def ev_action(self, state):
+        """The EV-best postflop action, or None to let the rule chain decide."""
+        p = DEFAULT_PARAMS
+        if (not p["ev_enabled"] or not state.board or state.clock_ms < p["low_clock_ms"]
+                or (len(state.board) == 5 and evaluate_hand(state.board) == (8, 14))):
+            return None
+        try:
+            action, self.last_ev = choose(state, self.ranges, self.opponents.profiles, p,
+                                          self.private_seed(state))
+            return action
+        except Exception:  # an enhancement; the rule chain is always there
+            self.last_ev = None
+            return None
+
     def act(self, state):
         self.last_equity = None
         self.last_estimate = None
         self.last_ranged = False
+        self.last_ev = None
         p = DEFAULT_PARAMS
         # Learn from finished showdowns every turn, so they never pile up
         # into one slow decision. Cheap when nothing is pending.
@@ -72,6 +98,9 @@ class MyBot(Bot):
                 self.ranges.learn_pending()
             except Exception:
                 self.ranges._pending.clear()
+        action = self.ev_action(state)
+        if action is not None:
+            return action
         # Ordinary preflop decisions need only the fixed tables.
         raises = sum(a[0] == "preflop" and a[2] == "raise" for a in state.history)
         needs_equity = (bool(state.board) or raises >= 3
@@ -82,11 +111,7 @@ class MyBot(Bot):
             low = state.clock_ms < p["low_clock_ms"]
             iterations = p["low_clock_iters"] if low else p["equity_iters"]
             budget = p["low_clock_budget_ms"] if low else p["equity_budget_ms"]
-            # A private simulation seed from legal observations only. It has
-            # no connection to deck seeds, identities, scores or earlier hands.
-            observed = (sorted(state.hole), state.board, state.seat, state.button,
-                        state.stacks, state.folded, state.history)
-            seed = int.from_bytes(blake2b(json.dumps(observed).encode(), digest_size=8).digest(), "big")
+            seed = self.private_seed(state)
             ranges = self.opponent_ranges(state, opponents)
             ranged = any(r is not None for r in ranges)
             try:
