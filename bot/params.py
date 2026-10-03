@@ -47,6 +47,11 @@ DEFAULT_PARAMS = MappingProxyType({
     "bluff_prior_weight": 4,
     "bluff_min_fold": 0.50,
     "bluff_frequency": 1.0,
+    # Turn barrel after a called heads-up flop c-bet (FIELD_EXPLOITS.md).
+    "turn_barrel": True,
+    "barrel_pot_fraction": 1.0,
+    "barrel_bluffs": True,
+    "barrel_weak_pairs": False,
     "shove_equity": 0.90,
     "shove_spr": 1.0,
     "equity_iters": 768,

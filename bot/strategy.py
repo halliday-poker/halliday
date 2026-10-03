@@ -111,11 +111,19 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS):
     # pot-sized c-bet almost regardless of their hand, so bet pot with
     # everything (one size for value and air) unless they never fold.
     cbet_spot = villain is not None and street == "flop" and aggressor == state.seat
+    # Turn after our heads-up flop c-bet was called: the field folds ~70% to a
+    # pot-sized second barrel (21% to a third of pot), and big bets fold out
+    # air, draws and weak pairs while top pair+ calls.
+    flop_bettors = [a[1] for a in state.history if a[0] == "flop" and a[2] == "raise"]
+    barrel_spot = (params["turn_barrel"] and villain is not None and street == "turn"
+                   and aggressor == state.seat and flop_bettors == [state.seat])
     if not state.to_call:
         if can_bet and equity >= value:
             if equity >= params["shove_equity"] and state.my_stack <= params["shove_spr"] * state.pot:
                 return legal_raise(state, state.max_raise_to)
-            return bet(state, params["cbet_pot_fraction"] if cbet_spot else fraction)
+            if cbet_spot:
+                return bet(state, params["cbet_pot_fraction"])
+            return bet(state, params["barrel_pot_fraction"] if barrel_spot else fraction)
         own_pair = (state.hole[0][0] == state.hole[1][0]
                     or bool({c[0] for c in state.hole} & {c[0] for c in state.board}))
         made_or_draw = own_pair or has_draw(state.hole, state.board)
@@ -126,6 +134,11 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS):
                  and mixed(state, params["bluff_frequency"]))
         if can_bet and cbet_spot and not station and (made_or_draw or bluff):
             return bet(state, params["cbet_pot_fraction"])
+        # Barrel air and draws at the value size; weak pairs keep their
+        # showdown value and check.
+        if can_bet and barrel_spot and not station and bluff and (
+                params["barrel_weak_pairs"] if own_pair else params["barrel_bluffs"]):
+            return bet(state, params["barrel_pot_fraction"])
         # Against a station, only the modest c-bet with a pair or draw.
         if can_bet and cbet_spot and equity >= params["cbet_equity"] and made_or_draw:
             return bet(state, params["size_dry"])
