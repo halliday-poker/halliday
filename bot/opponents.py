@@ -5,6 +5,8 @@ Three narrow reads gate the field exploits in strategy.py:
 - a station calls almost every postflop bet, so bluffing it cannot work;
 - how often a player folds to our own postflop bets sets how hard we bluff
   them, so we back off anyone who starts calling us down.
+Preflop frequencies (vpip, pfr, 3-bets per chance) also set how wide
+ranges.py assumes each player's opening, calling and 3-betting ranges are.
 Counters are keyed by player id, which is fixed for one game; nothing is
 stored between games or keyed to a bot's name.
 """
@@ -20,6 +22,8 @@ class OpponentTracker:
         self._shoved = set()
         self._me = None
         self._aggressor = None
+        self._preflop_raises = 0
+        self._counted = set()  # (player, stat) already counted this hand
 
     def on_hand_start(self, info):
         try:
@@ -31,6 +35,8 @@ class OpponentTracker:
             self._shoved = set()
             self._me = info.get("seat")
             self._aggressor = None
+            self._preflop_raises = 0
+            self._counted = set()
         except (AttributeError, KeyError, TypeError):
             pass
 
@@ -50,6 +56,17 @@ class OpponentTracker:
                         and player not in self._shoved):
                     self._shoved.add(player)
                     self.profiles[player]["shoves"] += 1
+                # Each stat counts at most once per player per hand. A 3-bet
+                # chance is acting when exactly one raise is in front.
+                if kind in ("call", "raise"):
+                    self._count_once(player, "vpip")
+                if kind == "raise":
+                    self._count_once(player, "pfr")
+                if self._preflop_raises == 1 and kind != "check":
+                    if self._count_once(player, "threebet_chances") and kind == "raise":
+                        self.profiles[player]["threebets"] += 1
+                if kind == "raise":
+                    self._preflop_raises += 1
                 return
             facing = max(self._bets) > self._bets[seat]
             ours = facing and self._me is not None and self._aggressor == self._me
@@ -67,6 +84,18 @@ class OpponentTracker:
                     profile[kind + "_us"] += 1
         except (KeyError, IndexError, TypeError, ValueError):
             pass
+
+    def _count_once(self, player, stat):
+        if (player, stat) in self._counted:
+            return False
+        self._counted.add((player, stat))
+        self.profiles[player][stat] += 1
+        return True
+
+
+def shrunk_rate(count, chances, prior, weight):
+    """A frequency pulled toward the field's prior until there is evidence."""
+    return (count + prior * weight) / (chances + weight)
 
 
 def profile_of(state, seat, profiles):

@@ -7,8 +7,10 @@ only widen calls against a proven shover.
 
 if __package__:
     from .opponents import is_shover, profile_of
+    from .params import margin
 else:
     from opponents import is_shover, profile_of
+    from params import margin
 
 RANKS = "23456789TJQKA"
 
@@ -102,7 +104,7 @@ def pot_odds(state):
     return state.to_call / max(1, state.pot + state.to_call - excess)
 
 
-def preflop_plan(state, equity, params, opp_profiles=None):
+def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
     """Return (kind, desired raise-to) for the legal-action wrapper."""
     hand, pos = hand_class(state.hole), position(state)
     raises = [a for a in state.history if a[0] == "preflop" and a[2] == "raise"]
@@ -121,7 +123,7 @@ def preflop_plan(state, equity, params, opp_profiles=None):
         if hand == "AA":
             return "raise", state.max_raise_to
         price = pot_odds(state)
-        if hand in LARGE_CALL and equity is not None and equity >= price + params["preflop_call_margin"]:
+        if hand in LARGE_CALL and equity is not None and equity >= price + margin(params, "preflop_call_margin", ranged):
             return "call", 0
         # A proven shover's all-in is close to random cards, which is what
         # the equity estimate assumes, so any hand beating the price calls.

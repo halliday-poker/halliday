@@ -8,12 +8,12 @@ from math import ceil, isfinite
 if __package__:
     from .engine import evaluate_hand
     from .opponents import fold_to_us, is_station, profile_of
-    from .params import DEFAULT_PARAMS
+    from .params import DEFAULT_PARAMS, margin as pick
     from .preflop import pot_odds, preflop_plan
 else:
     from engine import evaluate_hand
     from opponents import fold_to_us, is_station, profile_of
-    from params import DEFAULT_PARAMS
+    from params import DEFAULT_PARAMS, margin as pick
     from preflop import pot_odds, preflop_plan
 
 
@@ -75,14 +75,16 @@ def has_draw(hole, board):
     return len(missing) >= 2
 
 
-def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS):
+def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False):
     """Shared B interface. opp_profiles maps player id -> this game's counters.
 
     Equity is fractional showdown share against all live opponents,
     including all-ins. It is not chip EV or a model of future betting.
+    ranged: equity was computed against tracked ranges rather than random
+    cards, so the range-mode margins apply.
     """
     if not state.board:
-        kind, target = preflop_plan(state, equity, params, opp_profiles)
+        kind, target = preflop_plan(state, equity, params, opp_profiles, ranged)
         if kind == "raise":
             return legal_raise(state, target)
         if kind == "call":
@@ -152,11 +154,11 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS):
         # right. Drop the big-bet and street margins.
         margin = params["cbet_defence_margin"]
     else:
-        margin = params["call_margin_" + street] + extra * params["multiway_call_margin"]
+        margin = pick(params, "call_margin_" + street, ranged) + extra * params["multiway_call_margin"]
         # Uniform-card equity overstates strength against a selective bettor.
-        margin += params["large_bet_margin"] * min(1.0, state.to_call / max(1, state.pot - state.to_call))
+        margin += pick(params, "large_bet_margin", ranged) * min(1.0, state.to_call / max(1, state.pot - state.to_call))
         if street_raises > 1:
-            margin += params["reraise_margin"]
+            margin += pick(params, "reraise_margin", ranged)
     if can_bet and equity >= raise_value:
         if equity >= params["shove_equity"] and state.my_stack <= params["shove_spr"] * (state.pot + state.to_call):
             return legal_raise(state, state.max_raise_to)

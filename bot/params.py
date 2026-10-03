@@ -1,5 +1,6 @@
 """Strategy settings. Values never change during a game; this game's
-opponent counters only decide whether the shover/station rules apply."""
+opponent counters decide whether the shover/station rules apply and how
+wide ranges.py assumes each player's ranges are."""
 
 from types import MappingProxyType
 
@@ -61,4 +62,69 @@ DEFAULT_PARAMS = MappingProxyType({
     "low_clock_iters": 192,
     "low_clock_budget_ms": 10,
     "skip_equity_clock_ms": 250,
+
+    # --- Range tracking (ranges.py, RANGES.md) ---
+    # Switches: track ranges at all; use them when 2+ opponents are in the
+    # pot; learn per-player cutoffs from this game's showdowns.
+    "range_enabled": True,
+    "range_multiway": True,
+    "range_learn_showdowns": True,
+    # Field priors for preflop widths (share of hands played / raised /
+    # 3-bet per chance), worth range_prior_hands hands of this game's counts.
+    "range_prior_vpip": 0.35,
+    "range_prior_pfr": 0.20,
+    "range_prior_threebet": 0.08,
+    "range_prior_hands": 12,
+    # How hard each action narrows a range. temper is an exponent on every
+    # likelihood: 1 = full Bayesian update, 0 = actions change nothing.
+    # floor is the least likely any combo becomes per action, so the true
+    # hand never vanishes. Softness is the width of each cutoff's ramp:
+    # larger = gentler, smaller = sharper. Preflop it is a share of the
+    # range's width (0.25 = a quarter of it); postflop it is in strength units.
+    "range_temper": 0.8,
+    "range_floor": 0.03,
+    "range_preflop_softness": 0.25,
+    "range_postflop_softness": 0.08,
+    # Each further preflop re-raise range is this share of the previous one.
+    "range_4bet_ratio": 0.5,
+    # Share of strong hands that check or just call instead of raising.
+    "range_slowplay": 0.25,
+    # Postflop priors before showdowns: strength (share of combos beaten,
+    # 1 = nuts) where betting and calling become likely; raises over a bet
+    # need range_raise_shift more; each extra half-pot of size adds
+    # range_size_slope / 2. Draws count as range_draw_bonus stronger.
+    "range_bet_cut": 0.60,
+    "range_call_cut": 0.35,
+    "range_raise_shift": 0.15,
+    "range_size_slope": 0.15,
+    "range_draw_bonus": 0.20,
+    # Prior: hands below the betting cutoff bet range_bluff_floor times as
+    # often as hands above it (0.6 makes ~half of bets come from below the
+    # cutoff, matching the field's ~56% air c-bets). Showdowns update it.
+    "range_bluff_floor": 0.60,
+    # Showdown learning: the priors above are worth range_showdown_prior
+    # shown samples. A shown bet whose call ended the hand counts fully;
+    # earlier bets that survived later streets count `indirect`, shown calls
+    # count `passive` (both are biased samples: winning bluffs and folded
+    # hands are never shown).
+    "range_showdown_prior": 6,
+    "range_showdown_weight_indirect": 0.5,
+    "range_showdown_weight_passive": 0.4,
+    # Engine input: keep the heaviest combos only, and pass a range as
+    # random cards when its effective share of combos is above this.
+    "range_max_combos": 400,
+    "range_uniform_skip": 0.90,
+    # Margins used instead of the random-card ones when equity came from
+    # tracked ranges; the originals compensate for random-card equity.
+    "range_call_margin_flop": 0.03,
+    "range_call_margin_turn": 0.03,
+    "range_call_margin_river": 0.02,
+    "range_large_bet_margin": 0.02,
+    "range_reraise_margin": 0.03,
+    "range_preflop_call_margin": 0.03,
 })
+
+
+def margin(params, name, ranged):
+    """The range-mode version of a margin when equity came from tracked ranges."""
+    return params.get("range_" + name, params[name]) if ranged else params[name]

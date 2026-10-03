@@ -23,6 +23,13 @@ macpoker play main.py house:call house:random --deals 50
 macpoker play main.py house:call --deals 100 --subprocess --history out.json
 ```
 
+## Opponent ranges
+
+`ranges.py` tracks each opponent's range through the hand and learns from this
+game's showdowns; equity is computed against those ranges. See
+[RANGES.md](RANGES.md) for how it works, the tunable `range_*` parameters, and
+validation results.
+
 ## Person A: equity engine
 
 The agreed API is available in `engine.py`:
