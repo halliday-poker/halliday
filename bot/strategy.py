@@ -148,8 +148,11 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
                  and mixed(state, params["bluff_frequency"]))
         # Air only bets in position: the field folds 83% to an in-position
         # pot bet but 55% when we act first (45% to an OOP turn barrel).
+        # Flop c-bets are the exception at short tables, where an OOP pot
+        # c-bet still gets 65% folds (4-6 seats; 58% at 8).
         air_ok = villain is not None and in_position(state, villain)
-        if can_bet and cbet_spot and not station and (made_or_draw or (bluff and air_ok)):
+        cbet_air_ok = air_ok or state.num_players <= params["oop_cbet_max_seats"]
+        if can_bet and cbet_spot and not station and (made_or_draw or (bluff and cbet_air_ok)):
             return bet(state, params["cbet_pot_fraction"])
         # Barrel air and draws at the value size; weak pairs keep their
         # showdown value and check.
@@ -158,6 +161,11 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
             return bet(state, params["late_pot_fraction"])
         if can_bet and stab_spot and not own_pair and not station and bluff:
             return bet(state, params["late_pot_fraction"])
+        # Heads-up limped flop: the field folds 87-89% to a pot bet when
+        # checked to and 67-69% when we act first.
+        limp_spot = params["limp_stab"] and villain is not None and street == "flop" and aggressor is None
+        if can_bet and limp_spot and not station and bluff:
+            return bet(state, params["cbet_pot_fraction"])
         # Against a station, only the modest c-bet with a pair or draw.
         if can_bet and cbet_spot and equity >= params["cbet_equity"] and made_or_draw:
             return bet(state, params["size_dry"])

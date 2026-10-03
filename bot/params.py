@@ -33,6 +33,8 @@ DEFAULT_PARAMS = MappingProxyType({
     # Field exploits (bot/FIELD_EXPLOITS.md). Ladder bots fold ~74% to a
     # pot-sized heads-up flop c-bet and c-bet ~44% air themselves.
     "cbet_pot_fraction": 1.0,
+    # Air c-bets out of position too at tables of up to this many seats.
+    "oop_cbet_max_seats": 6,
     "shover_min_hands": 8,
     "shover_min_shoves": 3,
     "shover_min_rate": 0.25,
@@ -56,6 +58,10 @@ DEFAULT_PARAMS = MappingProxyType({
     "stab": True,
     # Turn barrel after a called heads-up flop c-bet (FIELD_EXPLOITS.md).
     "turn_barrel": True,
+    # Bet pot on a heads-up limped flop with non-value hands (bluff gates apply).
+    "limp_stab": True,
+    # Open the small blind wide (preflop.SB_STEAL) when it is folded to us.
+    "sb_steal_wide": True,
     # Size of every heads-up turn/river bet: value, barrels and stabs.
     "late_pot_fraction": 1.0,
     "barrel_bluffs": True,

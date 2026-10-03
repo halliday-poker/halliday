@@ -56,6 +56,10 @@ OPEN_RANGES = {
     "small_blind": expand_range("22+,A2s+,K5s+,Q8s+,J8s+,T8s+,98s,87s,76s,65s,A5o+,K9o+,QTo+,JTo"),
     "heads_up": expand_range("22+,A2s+,K2s+,Q2s+,J4s+,T6s+,96s+,85s+,74s+,64s+,53s+,43s,A2o+,K2o+,Q7o+,J8o+,T8o+,98o,87o"),
 }
+# Folded to the small blind: field steals with hands outside the SB range
+# beat folding by ~1.1 bb at 4-6 seats and 0.55 at 8 (FIELD_EXPLOITS.md).
+SB_STEAL = expand_range("22+,A2s+,A2o+,K2s+,K2o+,Q2s+,Q5o+,J5s+,J7o+,T6s+,T8o+,96s+,98o,85s+,87o,"
+                        "74s+,76o,63s+,65o,53s+,54o,43s")
 THREE_BET = expand_range("JJ+,AQs+,AKo")
 THREE_BET_LATE = expand_range("TT+,AJs+,KQs,AQo+")
 CALL_OPEN = expand_range("22+,ATs+,KJs+,QJs,JTs,T9s,AQo+")
@@ -110,6 +114,8 @@ def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
     if not raises:
         limpers = sum(a[0] == "preflop" and a[2] == "call" for a in state.history)
         opening = OPEN_RANGES["cutoff" if pos == "big_blind" else pos]
+        if pos == "small_blind" and not limpers and params["sb_steal_wide"]:
+            opening = SB_STEAL
         if hand in opening:
             return "raise", round(bb * (params["open_bb"] + params["limper_bb"] * limpers))
         return passive
