@@ -84,9 +84,10 @@ class PreflopTests(unittest.TestCase):
     def test_threebet_and_fourbet_use_raise_to_and_position(self):
         s = state(seat=0, pot=8, to_call=5, min_raise_to=8,
                   street_bets=[0, 1, 2, 5, 0, 0], history=[["preflop", 3, "raise", 5]])
-        self.assertEqual(decide(s, None).amount, 15)
+        # 3-bets are 2.5x in position and 3x out of position (research upgrades).
+        self.assertEqual(decide(s, None).amount, 12)
         s._m.update(seat=1, to_call=4)
-        self.assertEqual(decide(s, None).amount, 20)
+        self.assertEqual(decide(s, None).amount, 15)
         s._m.update(seat=3, to_call=10, min_raise_to=25,
                     street_bets=[15, 1, 2, 5, 0, 0],
                     history=[["preflop", 3, "raise", 5], ["preflop", 0, "raise", 15]])

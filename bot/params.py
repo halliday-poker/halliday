@@ -9,8 +9,8 @@ DEFAULT_PARAMS = MappingProxyType({
     "big_blind": 2,
     "open_bb": 2.5,
     "limper_bb": 1.0,
-    "threebet_ip": 3.0,
-    "threebet_oop": 4.0,
+    "threebet_ip": 2.5,
+    "threebet_oop": 3.0,
     "fourbet_multiplier": 2.3,
     "max_open_call_bb": 6,
     "max_threebet_call_bb": 16,
@@ -60,6 +60,77 @@ DEFAULT_PARAMS = MappingProxyType({
     "late_pot_fraction": 1.0,
     "barrel_bluffs": True,
     "barrel_weak_pairs": False,
+    # --- Research upgrades (bot/RESEARCH.md). On: light 3-bets (safe
+    # settings), open_wide + steal_wide, bb_defend_wide, call_vs_loose,
+    # vs_light3. Off (no reliable gain): squeeze, iso_wide, station_value,
+    # bluffcatch. threebet_ip/oop above were lowered to 2.5/3.0 for them. ---
+    # Light 3-bets: 3-bet the top light3_range of hands (by equity vs a
+    # random hand) against an opener whose fold-to-3-bet rate, pulled toward
+    # light3_prior over light3_prior_weight chances, is at least
+    # light3_min_fold (a 3x 3-bet risks ~15 to win ~8: break-even ~65%,
+    # less with equity when called).
+    "light3bet": True,
+    "light3_range": 0.55,
+    "light3_prior": 0.60,
+    "light3_prior_weight": 4,
+    "light3_min_fold": 0.65,
+    # Use recency-weighted fold-to-3-bet evidence (old chances decay by
+    # opponents.RECENT_DECAY each new chance), so changes are noticed fast.
+    "light3_recent": True,
+    # Squeeze: also light 3-bet when the opener has callers, with the range
+    # cut to squeeze_share of light3_range, sized up by one per caller.
+    "squeeze": False,
+    "squeeze_share": 0.5,
+    # Against a 3-bettor whose 3-bet rate (pulled toward vs_light3_prior over
+    # vs_light3_prior_weight chances) is at least vs_light3_min_rate, call
+    # and 4-bet wider ranges instead of folding most hands.
+    "vs_light3": True,
+    "vs_light3_prior": 0.08,
+    "vs_light3_prior_weight": 10,
+    "vs_light3_min_rate": 0.20,
+    # Wider big blind defence against opens of at most 3bb (pot odds 3.5:1).
+    "bb_defend_wide": True,
+    # Wider steals: open the top steal_range from CO/BTN/SB when every player
+    # still to act folds to steals at least steal_min_fold (prior-shrunk).
+    "steal_wide": True,
+    "steal_range": 0.60,
+    "steal_prior": 0.55,
+    "steal_prior_weight": 4,
+    "steal_min_fold": 0.65,
+    # Wider opens from any position: open the top open_wide_range when the
+    # chance that every player still to act folds (product of their
+    # fold-to-open rates, each pulled toward open_wide_prior) is at least
+    # open_wide_min_all_fold. A 2.5bb open risks 5 to win 3.
+    "open_wide": True,
+    "open_wide_range": 0.50,
+    "open_wide_prior": 0.75,
+    "open_wide_prior_weight": 6,
+    "open_wide_min_all_fold": 0.55,
+    # Flat-call wider (top call_vs_loose_range) against an opener whose raise
+    # rate, pulled toward the prior, is at least call_vs_loose_min_pfr.
+    "call_vs_loose": True,
+    "call_vs_loose_prior": 0.18,
+    "call_vs_loose_prior_weight": 12,
+    "call_vs_loose_min_pfr": 0.30,
+    "call_vs_loose_range": 0.35,
+    # Isolation: with limpers in and nobody raised, raise the top iso_range
+    # of hands, iso_extra_bb bigger than a normal open over limpers.
+    "iso_wide": False,
+    "iso_range": 0.45,
+    "iso_extra_bb": 1.0,
+    # Value against stations: thinner (threshold lowered by delta) and bigger.
+    "station_value": False,
+    "station_value_delta": 0.10,
+    "station_value_size": 0.90,
+    # Bluff-catching: against a heads-up bettor who bets when not facing a
+    # bet at least bluffcatch_min_rate of the time (pulled toward
+    # bluffcatch_prior over bluffcatch_prior_weight chances), shrink the
+    # call margin by bluffcatch_margin.
+    "bluffcatch": False,
+    "bluffcatch_prior": 0.40,
+    "bluffcatch_prior_weight": 10,
+    "bluffcatch_min_rate": 0.60,
+    "bluffcatch_margin": 0.06,
     "shove_equity": 0.90,
     "shove_spr": 1.0,
     "equity_iters": 768,

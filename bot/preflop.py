@@ -6,10 +6,12 @@ only widen calls against a proven shover.
 """
 
 if __package__:
-    from .opponents import is_shover, profile_of
+    from .hand_ranks import EQUITY
+    from .opponents import is_shover, profile_of, shrunk_rate
     from .params import margin
 else:
-    from opponents import is_shover, profile_of
+    from hand_ranks import EQUITY
+    from opponents import is_shover, profile_of, shrunk_rate
     from params import margin
 
 RANKS = "23456789TJQKA"
@@ -60,10 +62,27 @@ THREE_BET = expand_range("JJ+,AQs+,AKo")
 THREE_BET_LATE = expand_range("TT+,AJs+,KQs,AQo+")
 CALL_OPEN = expand_range("22+,ATs+,KJs+,QJs,JTs,T9s,AQo+")
 CALL_OPEN_LATE = expand_range("22+,A2s+,KTs+,QTs+,JTs,T9s,98s,87s,ATo+,KQo")
+BB_DEFEND_WIDE = expand_range("22+,A2s+,K2s+,Q4s+,J6s+,T6s+,96s+,85s+,74s+,64s+,53s+,43s,"
+                              "A2o+,K7o+,Q8o+,J8o+,T8o+,98o,87o,76o")
 BB_DEFEND = expand_range("22+,A2s+,K5s+,Q8s+,J8s+,T8s+,97s+,86s+,75s+,65s,54s,A8o+,KTo+,QTo+,JTo")
 FOUR_BET = expand_range("KK+,AKs")
+FOUR_BET_VS_LIGHT = expand_range("TT+,AQs+,AKo")
+CALL_VS_LIGHT = expand_range("55+,A8s+,KTs+,QTs+,JTs,T9s,AJo+,KQo")
 CALL_THREE_BET = expand_range("TT+,AQs+,AKo")
 LARGE_CALL = expand_range("QQ+,AKs,AKo")
+
+
+def _class_percentiles():
+    """Share of combos ranked above each class by heads-up equity (0 = best)."""
+    combos = lambda c: 6 if len(c) == 2 else 4 if c.endswith("s") else 12
+    cum, out = 0, {}
+    for c in sorted(EQUITY, key=lambda c: -EQUITY[c][0]):
+        out[c] = (cum + combos(c) / 2) / 1326
+        cum += combos(c)
+    return out
+
+
+CLASS_PCT = _class_percentiles()
 
 
 def position(state, seat=None):
@@ -110,8 +129,37 @@ def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
     if not raises:
         limpers = sum(a[0] == "preflop" and a[2] == "call" for a in state.history)
         opening = OPEN_RANGES["cutoff" if pos == "big_blind" else pos]
+        open_size = round(bb * (params["open_bb"] + params["limper_bb"] * limpers))
         if hand in opening:
-            return "raise", round(bb * (params["open_bb"] + params["limper_bb"] * limpers))
+            return "raise", open_size
+        # Isolate limpers: their ranges are capped (strong hands raise), so raise wider.
+        if params["iso_wide"] and limpers and CLASS_PCT[hand] < params["iso_range"]:
+            return "raise", open_size + round(bb * params["iso_extra_bb"])
+        # Open wider from any position when everyone left to act folds to opens.
+        if params["open_wide"] and not limpers and CLASS_PCT[hand] < params["open_wide_range"]:
+            behind = [s for s in ((state.seat + k) % state.num_players
+                                  for k in range(1, state.num_players)) if not state.folded[s]]
+            folds = [shrunk_rate((profile_of(state, s, opp_profiles) or {}).get("fold_open", 0),
+                                 (profile_of(state, s, opp_profiles) or {}).get("faced_open", 0),
+                                 params["open_wide_prior"], params["open_wide_prior_weight"])
+                     for s in behind]
+            # Everyone must fold for the open to win now: need the product to be high enough.
+            all_fold = 1.0
+            for f in folds:
+                all_fold *= f
+            if behind and all_fold >= params["open_wide_min_all_fold"]:
+                return "raise", open_size
+        # Steal wider when everyone left to act folds to steals.
+        if (params["steal_wide"] and not limpers and pos in ("cutoff", "button", "small_blind")
+                and CLASS_PCT[hand] < params["steal_range"]):
+            behind = [(state.seat + k) % state.num_players for k in range(1, state.num_players)]
+            behind = [s for s in behind if not state.folded[s]
+                      and position(state, s) in ("button", "small_blind", "big_blind")]
+            folds = [shrunk_rate((profile_of(state, s, opp_profiles) or {}).get("fold_steal", 0),
+                                 (profile_of(state, s, opp_profiles) or {}).get("faced_steal", 0),
+                                 params["steal_prior"], params["steal_prior_weight"]) for s in behind]
+            if behind and min(folds) >= params["steal_min_fold"]:
+                return "raise", open_size
         return passive
 
     # The whitelist guards against treating every huge raise as random cards.
@@ -142,14 +190,41 @@ def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
             callers = sum(a[0] == "preflop" and a[2] == "call"
                           for a in state.history[state.history.index(raises[-1]) + 1:])
             return "raise", round(current * (factor + callers))
+        # Light 3-bet an opener who folds to 3-bets often enough (no callers yet).
+        callers = sum(a[0] == "preflop" and a[2] == "call"
+                      for a in state.history[state.history.index(raises[-1]) + 1:])
+        light_range = params["light3_range"] * (params["squeeze_share"] if callers else 1.0)
+        if (params["light3bet"] and (not callers or params["squeeze"])
+                and CLASS_PCT[hand] < light_range):
+            prof = profile_of(state, raiser, opp_profiles) or {}
+            suffix = "_recent" if params["light3_recent"] else ""
+            fold = shrunk_rate(prof.get("fold_3bet" + suffix, 0), prof.get("faced_3bet" + suffix, 0),
+                               params["light3_prior"], params["light3_prior_weight"])
+            if fold >= params["light3_min_fold"]:
+                factor = params["threebet_ip"] if in_position(state, raiser) else params["threebet_oop"]
+                return "raise", round(current * (factor + callers))
         calling = CALL_OPEN_LATE if late else CALL_OPEN
+        if params["call_vs_loose"] and not callers:
+            prof = profile_of(state, raiser, opp_profiles) or {}
+            pfr = shrunk_rate(prof.get("pfr", 0), prof.get("hands", 0),
+                              params["call_vs_loose_prior"], params["call_vs_loose_prior_weight"])
+            if pfr >= params["call_vs_loose_min_pfr"] and CLASS_PCT[hand] < params["call_vs_loose_range"]:
+                calling = calling | {hand}
         if pos == "big_blind" and current <= 3 * bb:
-            calling = BB_DEFEND
+            calling = BB_DEFEND_WIDE if params["bb_defend_wide"] else BB_DEFEND
         if hand in calling and current <= bb * params["max_open_call_bb"]:
             return "call", 0
     else:
-        if hand in FOUR_BET:
+        four, call3 = FOUR_BET, CALL_THREE_BET
+        if params["vs_light3"] and len(raises) == 2:
+            # A 3-bettor who 3-bets far too often: fight back wider.
+            prof = profile_of(state, raiser, opp_profiles) or {}
+            rate = shrunk_rate(prof.get("threebets", 0), prof.get("threebet_chances", 0),
+                               params["vs_light3_prior"], params["vs_light3_prior_weight"])
+            if rate >= params["vs_light3_min_rate"]:
+                four, call3 = FOUR_BET_VS_LIGHT, CALL_VS_LIGHT
+        if hand in four:
             return "raise", round(current * params["fourbet_multiplier"])
-        if hand in CALL_THREE_BET and current <= bb * params["max_threebet_call_bb"]:
+        if hand in call3 and current <= bb * params["max_threebet_call_bb"]:
             return "call", 0
     return passive

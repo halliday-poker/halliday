@@ -23,6 +23,14 @@ macpoker play main.py house:call house:random --deals 50
 macpoker play main.py house:call --deals 100 --subprocess --history out.json
 ```
 
+## Research upgrades
+
+Five preflop exploits found by leak analysis against the fitted ladder field: light
+3-bets against over-folding openers, wider opens and steals against folding tables,
+wider big blind defence, wider calls against loose openers, and fighting back against
+frequent 3-bettors. On by default with robust settings; together about +288 mbb/hand
+against the fitted field. See [RESEARCH.md](RESEARCH.md).
+
 ## Opponent ranges
 
 `ranges.py` tracks each opponent's range through the hand and learns from this

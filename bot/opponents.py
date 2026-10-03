@@ -15,6 +15,9 @@ stored between games or keyed to a bot's name.
 
 from collections import Counter, defaultdict
 
+# Decay applied to old evidence in the *_recent counters at each new chance.
+RECENT_DECAY = 0.75
+
 
 class OpponentTracker:
     def __init__(self):
@@ -26,6 +29,10 @@ class OpponentTracker:
         self._aggressor = None
         self._preflop_raises = 0
         self._counted = set()  # (player, stat) already counted this hand
+        self._button = 0
+        self._opener = None      # seat of the first preflop raiser
+        self._steal = False      # that open came from CO/BTN/SB with no limpers
+        self._preflop_calls = 0
 
     def on_hand_start(self, info):
         try:
@@ -39,6 +46,10 @@ class OpponentTracker:
             self._aggressor = None
             self._preflop_raises = 0
             self._counted = set()
+            self._button = info.get("button", 0)
+            self._opener = None
+            self._steal = False
+            self._preflop_calls = 0
         except (AttributeError, KeyError, TypeError):
             pass
 
@@ -67,8 +78,35 @@ class OpponentTracker:
                 if self._preflop_raises == 1 and kind != "check":
                     if self._count_once(player, "threebet_chances") and kind == "raise":
                         self.profiles[player]["threebets"] += 1
+                n = len(self._start_stacks)
+                pos = (seat - self._button) % n
+                # Fold to a 3-bet: the opener acting with exactly one re-raise in front.
+                if self._preflop_raises == 2 and seat == self._opener:
+                    if self._count_once(player, "faced_3bet"):
+                        prof = self.profiles[player]
+                        prof["fold_3bet"] += kind == "fold"
+                        # Recency-weighted copies: each new chance shrinks the old
+                        # evidence, so a player who stops folding is noticed fast.
+                        prof["faced_3bet_recent"] = prof["faced_3bet_recent"] * RECENT_DECAY + 1
+                        prof["fold_3bet_recent"] = (prof["fold_3bet_recent"] * RECENT_DECAY
+                                                    + (kind == "fold"))
+                # Fold to an open: anyone facing a lone open with no callers yet.
+                if (self._preflop_raises == 1 and seat != self._opener
+                        and self._preflop_calls == 0):
+                    if self._count_once(player, "faced_open") and kind == "fold":
+                        self.profiles[player]["fold_open"] += 1
+                # Fold to a steal: a blind facing a lone late-position open.
+                if (self._preflop_raises == 1 and self._steal and seat != self._opener
+                        and pos in (1, 2) and self._preflop_calls == 0):
+                    if self._count_once(player, "faced_steal") and kind == "fold":
+                        self.profiles[player]["fold_steal"] += 1
                 if kind == "raise":
+                    if self._preflop_raises == 0:
+                        self._opener = seat
+                        self._steal = self._preflop_calls == 0 and pos in (0, 1, n - 1)
                     self._preflop_raises += 1
+                elif kind == "call":
+                    self._preflop_calls += 1
                 return
             facing = max(self._bets) > self._bets[seat]
             ours = facing and self._me is not None and self._aggressor == self._me
@@ -77,6 +115,10 @@ class OpponentTracker:
                 self._aggressor = seat
             elif kind == "call":
                 self._bets[seat] += amount
+            if not facing:
+                # Postflop betting frequency when not facing a bet.
+                self.profiles[player]["bet_chances"] += 1
+                self.profiles[player]["bets"] += kind == "raise"
             if facing:
                 profile = self.profiles[player]
                 profile["faced"] += 1

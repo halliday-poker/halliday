@@ -7,12 +7,12 @@ from math import ceil, isfinite
 
 if __package__:
     from .engine import evaluate_hand
-    from .opponents import fold_to_any, fold_to_us, is_station, profile_of
+    from .opponents import fold_to_any, fold_to_us, is_station, profile_of, shrunk_rate
     from .params import DEFAULT_PARAMS, margin as pick
     from .preflop import in_position, pot_odds, preflop_plan
 else:
     from engine import evaluate_hand
-    from opponents import fold_to_any, fold_to_us, is_station, profile_of
+    from opponents import fold_to_any, fold_to_us, is_station, profile_of, shrunk_rate
     from params import DEFAULT_PARAMS, margin as pick
     from preflop import in_position, pot_odds, preflop_plan
 
@@ -109,6 +109,10 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
     villain = opponents[0] if n == 1 else None
     profile = profile_of(state, villain, opp_profiles) if villain is not None else None
     station = villain is not None and is_station(profile, params)
+    if params["station_value"] and station:
+        # Stations call too much: bet thinner and bigger for value.
+        value -= params["station_value_delta"]
+        fraction = params["station_value_size"]
     # Heads-up flop as the preflop raiser: ladder bots fold ~74% to a
     # pot-sized c-bet almost regardless of their hand, so bet pot with
     # everything (one size for value and air) unless they never fold.
@@ -170,6 +174,12 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
     margin += pick(params, "large_bet_margin", ranged) * min(1.0, state.to_call / max(1, state.pot - state.to_call))
     if street_raises > 1:
         margin += pick(params, "reraise_margin", ranged)
+    if params["bluffcatch"] and villain is not None and profile:
+        # A heads-up bettor who bets most of the time is bluffing often: call lighter.
+        rate = shrunk_rate(profile.get("bets", 0), profile.get("bet_chances", 0),
+                           params["bluffcatch_prior"], params["bluffcatch_prior_weight"])
+        if rate >= params["bluffcatch_min_rate"]:
+            margin -= params["bluffcatch_margin"]
     if can_bet and equity >= raise_value:
         if equity >= params["shove_equity"] and state.my_stack <= params["shove_spr"] * (state.pot + state.to_call):
             return legal_raise(state, state.max_raise_to)
