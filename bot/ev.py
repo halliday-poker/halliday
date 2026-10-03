@@ -210,9 +210,19 @@ def _targets(state, p):
     return sorted(out)
 
 
-def choose(state, tracker, profiles, params, seed):
+def best_size(table, tolerance_chips):
+    """The smallest bet/raise target whose EV is within tolerance of the best one."""
+    sizes = [k for k in table if isinstance(k, int)]
+    if not sizes:
+        return None
+    top = max(table[k] for k in sizes)
+    return min(k for k in sizes if table[k] >= top - tolerance_chips)
+
+
+def choose(state, tracker, profiles, params, seed, extra_targets=()):
     """The EV-best postflop action and a table of every candidate's EV, or (None, None)
-    when this spot is out of scope (too many opponents, too little time)."""
+    when this spot is out of scope (too many opponents, too little time).
+    extra_targets: more raise-to totals to score (the rule chain's own size)."""
     p = params
     opponents = [s for s, f in enumerate(state.folded) if s != state.seat and not f]
     if not opponents or len(opponents) > p["ev_max_opponents"]:
@@ -258,16 +268,12 @@ def choose(state, tracker, profiles, params, seed):
         table["call"] = realize * equity * (state.pot + state.to_call) - state.to_call
     else:
         table["check"] = realize * equity * state.pot
-    for target in _targets(state, p):
+    for target in sorted(set(_targets(state, p)) | set(extra_targets)):
         table[target] = _bet_value(state, target, opps, realize, p)
 
     passive = "call" if state.to_call and table["call"] > p["ev_call_margin"] * state.pot else (
         "fold" if state.to_call else "check")
-    sizes = [k for k in table if isinstance(k, int)]
-    best = None
-    if sizes:
-        top = max(table[k] for k in sizes)
-        best = min(k for k in sizes if table[k] >= top - p["ev_size_tolerance"] * state.pot)
+    best = best_size(table, p["ev_size_tolerance"] * state.pot)
     if best is not None and table[best] > table[passive] + p["ev_bet_margin"] * state.pot:
         action = state.raise_to(best)
     elif passive == "call":

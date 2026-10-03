@@ -1,12 +1,19 @@
 # EV action selection (postflop)
 
-> **Status: built, tested, and switched off by default** (`ev_enabled: False`). It wins
-> chips from passive callers but loses to aggressive and drifting opponents, and it never
-> improved round points. With it off, the bot plays like `main` (see Validation). Turn it
-> on with `ev_enabled: True`.
+> **Status (4 Oct 2026):** `ev_mode` has three settings.
+> - **`"sizing"` (default):** the rule chain decides *whether* to bet or raise, and EV picks
+>   *how much*. It gains **+36 ± 21 mbb/hand** over `"off"` across four independent runs
+>   (850 paired tables on three pools, mostly the fitted ladder field), with round points
+>   unchanged. Tuning found nothing better than the defaults below.
+> - **`"full"`:** EV picks every postflop action. It is significantly worse against the
+>   fitted field whatever the settings (−76 to −279 mbb/hand), so don't use it as is.
+> - **`"off"`:** the rule chain alone.
 
-When enabled, the bot stops comparing equity with fixed thresholds and special-case rules
-postflop. It scores every candidate action in chips and takes the best. Code: [ev.py](ev.py).
+In `"full"` mode the bot stops comparing equity with fixed thresholds and special-case
+rules postflop: it scores every candidate action in chips and takes the best. In
+`"sizing"` mode the same scores are computed only when the rules have decided to bet or
+raise, over the candidate sizes plus the rules' own size, and the best size is used
+(`MyBot.ev_resize`); the decision itself never changes. Code: [ev.py](ev.py).
 Wiring: `MyBot.ev_action` in [main.py](main.py). Parameters: the `ev_*` block in
 [params.py](params.py). Preflop is unchanged (charts plus the shover rule).
 
@@ -44,7 +51,7 @@ Wiring: `MyBot.ev_action` in [main.py](main.py). Parameters: the `ev_*` block in
    bets within `ev_size_tolerance` × pot of the best, the smallest wins. A call must beat
    folding by `ev_call_margin` × pot.
 
-**The old rules still decide** when EV is off, with more than `ev_max_opponents`
+**The old rules still decide** when `ev_mode` is `"off"`, with more than `ev_max_opponents`
 opponents, below the low-clock threshold, on a royal-flush board, or if anything fails.
 `MyBot.last_ev` holds the EV table of the last decision, for debugging.
 
@@ -59,7 +66,7 @@ The margins and the size tolerance absorb some of that optimism.
 
 | Parameter | Default | Raise it to... |
 |---|---|---|
-| `ev_enabled` | on | (off = the rule chain) |
+| `ev_mode` | `"sizing"` | `"off"` = rules only, `"full"` = EV picks every action, `"sizing"` = EV picks bet amounts |
 | `ev_max_opponents` | 3 | Use EV in bigger multiway pots (the independence assumption gets worse) |
 | `ev_bet_sizes` / `ev_raise_sizes` | (0.33, 0.66, 1.0) / (0.75, 1.25) | Change the candidate sizes |
 | `ev_allin_spr` | 3.0 | Consider all in with deeper stacks |
@@ -122,7 +129,51 @@ What the runs show:
   `main` against an exact copy of itself gives +17 ± 23. The equity engine's time budget
   makes results vary slightly under load.
 
-## Why it doesn't win yet, and what to try next
+## Against the fitted ladder field (4 Oct 2026)
+
+The default pool now draws about 73% of opponents from the 66 fitted ladder competitors
+(`include sparring/competitors/from_data/pool.txt 50` in
+[pools/default.txt](../harness/pools/default.txt)). All runs are paired against `"off"`
+on identical tables and cards.
+
+**Modes:**
+
+| Run | Pool | Tables | `"full"` | `"sizing"` |
+|---|---|---|---|---|
+| modes-1 | default (73% fitted) | 200 | **−114 ± 94**, round −0.37 ± 0.18 | +46 ± 51, round +0.04 ± 0.10 |
+| modes-1 | fitted competitors only | 200 | **−183 ± 69**, round −0.54 ± 0.22 | +30 ± 31, round −0.03 ± 0.14 |
+| tune-1 (default settings) | default | 150 | n/a | +52 ± 73, round +0.03 ± 0.17 |
+| confirm-2 (fresh seed) | default | 300 | −76 ± 52 (best combined settings) | +35 ± 43, round −0.01 ± 0.08 |
+| **Pooled `"sizing"`** | | **850** | | **+36 ± 21** |
+
+**Tuning `"sizing"`** (tune-1, 150 tables, each variant against the default hybrid on the
+same tables): size tolerance 0 / 0.05, bet sizes (½, ¾, 1, 1½) / (¼, 0.4, 0.6), continue
+cutoff 0.52 / 0.72, continue floor 0.3 and softness 0.18 all came out between −14 and +4
+mbb/hand (each ± 14 to 51). The hybrid's gain doesn't depend on these settings, so the
+defaults stay.
+
+**Tuning `"full"`** (tune-full-1, fitted pool, 150 tables, against `"off"`):
+
+| Change | mbb/hand | Round points |
+|---|---|---|
+| defaults | −197 ± 78 | −0.39 ± 0.23 |
+| `ev_bet_margin` 0.08 | −142 ± 64 | −0.24 ± 0.20 |
+| `ev_max_opponents` 1 (heads-up only) | −159 ± 63 | −0.26 ± 0.20 |
+| `ev_realize_oop` 0.85 | −161 ± 77 | −0.20 ± 0.22 |
+| `ev_oop_continue_shift` 0.25 | −171 ± 68 | −0.32 ± 0.20 |
+| `ev_continue_floor` 0.30 | −194 ± 74 | −0.43 ± 0.21 |
+| `ev_fold_evidence` 12 | −216 ± 74 | −0.41 ± 0.22 |
+| `ev_continue_cut` 0.72 | −279 ± 75 | −0.52 ± 0.23 |
+| margin 0.12 + heads-up + realize 0.85 + oop 0.25 (confirm-2, default pool) | −76 ± 52 | −0.25 ± 0.13 |
+
+Every variant is significantly worse. Making full EV more cautious helps, but even the
+combination loses, so the problem is structural (the generic response model and the
+showdown-after-this-action assumption), not a tuning one.
+
+**Cost:** the hybrid's slowest decision was 224 ms under 15-worker load, with up to 22% of
+the clock used (16% for `"off"`).
+
+## Why full EV doesn't win yet, and what to try next
 
 1. **The response model is generic.** One continue curve (floor, ceiling, cutoff) for every
    opponent, adjusted only by aggregate fold and raise counts. Aggressive bots don't fold
@@ -132,7 +183,6 @@ What the runs show:
    raised or bluffed off later, and undervalues pot control.
 3. **Ranges feed everything.** Miscalibrated ranges (as with the recalibration above) hurt
    EV more than thresholds, because EV acts on smaller equity edges.
-4. **Possible hybrid:** keep the rule chain's decision on *whether* to bet, and use EV only
-   to *size* value bets. That's where its gains against callers came from.
-5. **Test on a ladder-like pool** (the `est`/`estf` pools in FIELD_EXPLOITS.md) before
-   deciding. The sparring pools may not reflect the real field.
+4. **The hybrid (now the default)** keeps the rule chain's decision on *whether* to bet
+   and uses EV only to size bets. Its gain is real but small (+36).
+5. **The fitted ladder field** confirmed the sparring-pool verdict on full EV (above).

@@ -82,6 +82,11 @@ stickiness, size`, plus an `adaptive` flag that adjusts to opponents' aggression
 
 ### Fitted competitors
 
+The default pool includes them with `include sparring/competitors/from_data/pool.txt 50`,
+so about 73% of opponents drawn are fitted ladder bots. In any pool file,
+`include <pool file> <total weight>` spreads that total weight over the included pool in
+proportion to its own weights.
+
 `sparring/competitors/from_data/pool.txt` contains the latest fitted segments for 66
 external identities; the historical Halliday fit is also available separately.
 See [the competitor documentation](../sparring/competitors/README.md) for

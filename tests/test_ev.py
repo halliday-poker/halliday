@@ -20,7 +20,7 @@ from bot.main import MyBot
 from bot.params import DEFAULT_PARAMS
 from bot.ranges import RangeTracker
 
-P = dict(DEFAULT_PARAMS, ev_enabled=True)
+P = dict(DEFAULT_PARAMS, ev_mode="full")
 STREETS = {"flop": 3, "turn": 4, "river": 5}
 
 
@@ -126,6 +126,23 @@ class Integration(unittest.TestCase):
         bot.act = spy
         self.assertEqual(self.play(bot).verdicts[0], "OK")
         self.assertTrue(any(used))
+
+    @patch("bot.main.DEFAULT_PARAMS", dict(P, ev_mode="sizing"))
+    def test_sizing_mode_only_changes_bet_amounts(self):
+        bot = MyBot()
+        resized, original_resize = [], bot.ev_resize
+
+        def spy(state, action):
+            new = original_resize(state, action)
+            self.assertEqual(new.kind, action.kind)  # never changes what the rules decided
+            if action.kind == "raise":
+                self.assertGreaterEqual(new.amount, state.min_raise_to)
+                self.assertLessEqual(new.amount, state.max_raise_to)
+                resized.append(new.amount != action.amount)
+            return new
+        bot.ev_resize = spy
+        self.assertEqual(self.play(bot).verdicts[0], "OK")
+        self.assertTrue(resized)
 
     @patch("bot.main.DEFAULT_PARAMS", P)
     def test_failure_falls_back_to_rules(self):

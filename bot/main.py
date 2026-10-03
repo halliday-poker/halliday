@@ -8,14 +8,14 @@ from macpoker import Bot
 
 if __package__:
     from .engine import EquitySamplingError, EquityTimeout, estimate_equity, evaluate_hand
-    from .ev import choose
+    from .ev import best_size, choose
     from .opponents import OpponentTracker, is_shover, profile_of
     from .params import DEFAULT_PARAMS
     from .ranges import RangeTracker
     from .strategy import decide
 else:  # SDK loads main.py as a standalone module from the submission folder.
     from engine import EquitySamplingError, EquityTimeout, estimate_equity, evaluate_hand
-    from ev import choose
+    from ev import best_size, choose
     from opponents import OpponentTracker, is_shover, profile_of
     from params import DEFAULT_PARAMS
     from ranges import RangeTracker
@@ -71,11 +71,15 @@ class MyBot(Bot):
                     state.stacks, state.folded, state.history)
         return int.from_bytes(blake2b(json.dumps(observed).encode(), digest_size=8).digest(), "big")
 
-    def ev_action(self, state):
-        """The EV-best postflop action, or None to let the rule chain decide."""
+    def ev_in_scope(self, state):
         p = DEFAULT_PARAMS
-        if (not p["ev_enabled"] or not state.board or state.clock_ms < p["low_clock_ms"]
-                or (len(state.board) == 5 and evaluate_hand(state.board) == (8, 14))):
+        return (bool(state.board) and state.clock_ms >= p["low_clock_ms"]
+                and not (len(state.board) == 5 and evaluate_hand(state.board) == (8, 14)))
+
+    def ev_action(self, state):
+        """ev_mode "full": the EV-best postflop action, or None to let the rules decide."""
+        p = DEFAULT_PARAMS
+        if p["ev_mode"] != "full" or not self.ev_in_scope(state):
             return None
         try:
             action, self.last_ev = choose(state, self.ranges, self.opponents.profiles, p,
@@ -84,6 +88,23 @@ class MyBot(Bot):
         except Exception:  # an enhancement; the rule chain is always there
             self.last_ev = None
             return None
+
+    def ev_resize(self, state, action):
+        """ev_mode "sizing": keep the rules' decision to bet or raise, but pick the
+        amount by EV among the candidate sizes and the rules' own size."""
+        p = DEFAULT_PARAMS
+        if p["ev_mode"] != "sizing" or action.kind != "raise" or not self.ev_in_scope(state):
+            return action
+        try:
+            _, self.last_ev = choose(state, self.ranges, self.opponents.profiles, p,
+                                     self.private_seed(state), extra_targets=(action.amount,))
+            if self.last_ev is None:
+                return action
+            target = best_size(self.last_ev["table"], p["ev_size_tolerance"] * state.pot)
+            return state.raise_to(target) if target is not None else action
+        except Exception:
+            self.last_ev = None
+            return action
 
     def act(self, state):
         self.last_equity = None
@@ -128,5 +149,5 @@ class MyBot(Bot):
                     self.last_ranged = ranged
             except (EquityTimeout, EquitySamplingError):
                 pass
-        return decide(state, self.last_equity, self.opponents.profiles, params=p,
-                      ranged=self.last_ranged)
+        return self.ev_resize(state, decide(state, self.last_equity, self.opponents.profiles, params=p,
+                      ranged=self.last_ranged))

@@ -145,11 +145,15 @@ DEFAULT_PARAMS = MappingProxyType({
     "range_preflop_call_margin": 0.03,
 
     # --- EV action selection (ev.py, EV.md): postflop only ---
-    # Off by default: it wins chips from passive callers but tested worse
-    # than the rule chain against aggressive and drifting pools (EV.md).
-    # When on, the rules still take over beyond ev_max_opponents live
+    # "off": the rule chain in strategy.py decides everything.
+    # "full": EV picks every postflop action (tested worse: -76 to -197
+    #   mbb/hand against the fitted ladder field, whatever the settings).
+    # "sizing": the rules decide whether to bet or raise; EV picks how much.
+    #   +36 +-21 mbb/hand over "off" across 850 paired tables, round points
+    #   unchanged; the tuned values below were already the best tried.
+    # In both EV modes the rules take over beyond ev_max_opponents live
     # opponents, on a low clock, or if a spot fails.
-    "ev_enabled": False,
+    "ev_mode": "sizing",
     "ev_max_opponents": 3,
     # Candidate sizes as fractions of the pot after calling, plus all in.
     "ev_bet_sizes": (0.33, 0.66, 1.0),

@@ -17,3 +17,9 @@ sparring/tag.py
 # (sparring/param.py). Weighted so about half of every table is randomised,
 # counting the 3 league versions run adds automatically.
 param:random      10
+
+# Fitted ladder competitors (sparring/competitors/): the 66 external ladder
+# identities' latest fitted styles, equal weight each. A total weight of 50
+# makes them ~70% of opponents drawn (the rest above total 18, plus the 3
+# league versions `run` adds), so evaluation mostly reflects the real field.
+include sparring/competitors/from_data/pool.txt 50
