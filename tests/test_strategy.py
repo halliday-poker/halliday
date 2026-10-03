@@ -246,6 +246,24 @@ class PostflopTests(unittest.TestCase):
         profiles[1].update(faced_us=4, fold_us=4)  # folds again: bluff again
         self.assertEqual(decide(s, 0.10, profiles).amount, 40)
 
+    def test_turn_barrel_after_a_called_cbet(self):
+        line = [["preflop", 0, "raise", 5], ["flop", 0, "raise", 20], ["flop", 1, "call", 20]]
+        s = postflop(board=["Ac", "7h", "2d", "9s"], hole=["Ks", "Qh"], pot=50, history=line)
+        self.assertEqual(decide(s, 0.10).to_wire(), {"action": "raise", "amount": 50})  # air
+        self.assertEqual(decide(s, 0.80).amount, 50)  # value uses the same size
+        s._m["hole"] = ["Ks", "7c"]  # weak pair checks
+        self.assertEqual(decide(s, 0.45).kind, "check")
+        self.assertEqual(decide(s, 0.45, params=dict(DEFAULT_PARAMS, barrel_weak_pairs=True)).amount, 50)
+        s._m["hole"] = ["Ks", "Qh"]
+        self.assertEqual(decide(s, 0.10, {1: Counter(hands=20, faced=10, call=10)}).kind, "check")  # station
+        self.assertEqual(decide(s, 0.10, {1: Counter(hands=10, faced_us=2, call_us=2)}).kind, "check")  # dial
+        self.assertEqual(decide(s, 0.10, params=dict(DEFAULT_PARAMS, turn_barrel=False)).kind, "check")
+        self.assertEqual(decide(s, 0.10, params=dict(DEFAULT_PARAMS, barrel_bluffs=False)).kind, "check")
+        s._m["history"] = line[:1]  # flop checked through: no barrel
+        self.assertEqual(decide(s, 0.10).kind, "check")
+        s._m["history"] = line[:1] + [["flop", 1, "raise", 10], ["flop", 0, "call", 10]]  # their bet
+        self.assertEqual(decide(s, 0.10).kind, "check")
+
     def test_bluff_frequency_mixes_air_repeatably(self):
         params = dict(DEFAULT_PARAMS, bluff_frequency=0.5)
         boards = [[a, b, c] for a, b, c in (("Qd", "8c", "3h"), ("Jd", "9c", "4h"), ("Td", "6c", "2h"),
