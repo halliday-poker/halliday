@@ -1,8 +1,52 @@
-# Offline bot estimators and collection-time regimes
+# Offline opponent estimates and behavior replicas
+
+## October 4 refresh
+
+The current field uses successful-upload intervals and a compact public-context
+action/raise-size model. The original ten-parameter estimates below remain the
+interpretable scaffold and sparse-data fallback. See the [predictive comparison
+and provenance](../analysis/reports/opponent-refresh-20261004.md).
+
+Validation against `house:call` marks an upload, not a confirmed deployment:
+passing uploads must still be selected as main. Failed validation and unknown
+play-time events cannot define intervals. `validation.py` tests this distinction;
+timestamp provenance distinguishes server milliseconds from collection-time
+seconds. Unknown-time games use the shared base interval. Segmentation is
+supported by whole-held-out-match predictions and a randomized-boundary control.
+
+Reproduce using a frozen directory with `source/{actions.jsonl,matches.json,state.json}`
+and `validation-meta.json` (public `tournament:replay` API responses keyed by ID):
+
+```sh
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+python -B -m opponent_model.fetch_validation --matches analysis/results/refresh-20261004/source/matches.json --output analysis/results/refresh-20261004/validation-meta.json
+python -B -m opponent_model --data-dir analysis/results/refresh-20261004/source --save-cache analysis/results/refresh-20261004/context-features.npz --output analysis/results/refresh-20261004/baseline-estimates.json --devices cuda:0 cuda:1 cuda:2 cuda:3 --bootstrap 1000 --permutations 4999 --batch-size 128 --memory-limit-mib 768
+python -B -m opponent_model.behavior prepare --directory analysis/results/refresh-20261004
+python -B -m opponent_model.behavior train --directory analysis/results/refresh-20261004 --epochs 100
+python -B -m opponent_model.behavior compare --directory analysis/results/refresh-20261004
+python -B -m opponent_model.behavior refit --directory analysis/results/refresh-20261004 --devices 0
+python -B -m opponent_model.refresh --directory analysis/results/refresh-20261004 --devices 1,2,3
+python sparring/competitors/build.py analysis/results/refresh-20261004/opponent-estimates.json --policy analysis/results/refresh-20261004/policy-refit-upload.npz
+```
+
+The four ablations train simultaneously on four distinct GPUs. They use a
+60/20/20 split by whole match, exclude team validation hands, and choose stopping
+and model only on validation data. The test split assesses interpolation to
+unseen matches from observed versions; it cannot validate future versions.
+Runtime replicas use NumPy, own cards and public game context only. They do not
+load PyTorch or hidden opponent cards. The candidate submission uses neither the
+replica model nor historical opponent profiles.
+
+Fresh feature caches have 37 raw context columns. Legacy caches remain readable
+for the original estimator, with extra fields explicitly missing; neural
+training refuses missing-context caches. The original report format remains
+supported by `build.py`, without `--policy`.
+
+## Original scaffold estimator
 
 This package maps each bot display name to estimates of all ten settings in
-`sparring/param.py`, observed poker statistics, model diagnostics and confirmed
-time segments. It is separate from `bot/`; no profiles, dependencies or private
+`sparring/param.py`, observed poker statistics, model diagnostics and statistically
+supported collection-time segments. It is separate from `bot/`; no profiles, dependencies or private
 replay cards are added to the tournament submission.
 
 ## Run with the RTX 5070 Ti

@@ -1,0 +1,13 @@
+{
+  "frozen_at": "2026-10-03T17:01:36.669030+00:00",
+  "candidate": "analysis/candidates/mixed_65",
+  "candidate_hash": "f1abf214",
+  "baseline_hash": "8015e4b3",
+  "repeats": 40,
+  "rounds": 4,
+  "deals": 100,
+  "seed": "four-round-replication-20261004",
+  "reason": "Independent random-table primary test failed: round-point delta -0.04958 +/-0.04265. The earlier 20 full tournaments showed +1.45 +/-1.23 cumulative placement points and 8 vs3 definite top-three finishes. This conflicting format-specific result warrants a fresh, fixed-sample replication; it does not overturn the failed table test.",
+  "primary": "Paired total four-round placement-point difference, 95% confidence interval, across the 40 new event seeds. Report paired rank and definite/possible top-three rates as secondary. Keep the original table-test failure visible.",
+  "restrictions": "No parameter changes or early stopping. Separate old discovery tournaments from new replication. No assertion of universal superiority or real-roster equivalence. A result that does not replicate leaves the production baseline preferred."
+}

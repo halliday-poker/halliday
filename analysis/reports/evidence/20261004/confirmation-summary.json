@@ -1,0 +1,390 @@
+{
+  "purpose": "independent-confirmation",
+  "units": {
+    "mbb": "bb/100 after multiplying harness mbb/hand by 0.1",
+    "game_pts": "per game",
+    "round_pts": "per duplicate set"
+  },
+  "inference": "Paired complete duplicate tables; seed blocks retained. Intervals exclude opponent model error. Tuning results cannot confirm selected performance.",
+  "comparisons": 1,
+  "summary": [
+    {
+      "bot": "snapshots/analysis_baseline_20261004",
+      "hash": "8015e4b3",
+      "tables": 1200,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            73.97935416666667,
+            6.6126756366626065
+          ],
+          "family_adjusted_mean_ci": [
+            73.97935416666667,
+            6.612554127196009
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.4076319444444443,
+            0.036577897217174686
+          ],
+          "family_adjusted_mean_ci": [
+            3.4076319444444443,
+            0.03657722508972971
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.7604166666666665,
+            0.07025064044115709
+          ],
+          "family_adjusted_mean_ci": [
+            3.7604166666666665,
+            0.0702493495691535
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/mixed_65",
+      "hash": "f1abf214",
+      "tables": 1200,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            72.50564583333335,
+            6.628495132270672
+          ],
+          "family_adjusted_mean_ci": [
+            72.50564583333335,
+            6.62837333211713
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            -1.4737083333333336,
+            1.5227376586268966
+          ],
+          "family_adjusted_mean_ci": [
+            -1.4737083333333336,
+            1.5227096779650837
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.391534722222222,
+            0.037638857311754176
+          ],
+          "family_adjusted_mean_ci": [
+            3.391534722222222,
+            0.03763816568891849
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            -0.016097222222222225,
+            0.016840404973597886
+          ],
+          "family_adjusted_mean_ci": [
+            -0.016097222222222225,
+            0.016840095527204616
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.7108333333333334,
+            0.07082390272958743
+          ],
+          "family_adjusted_mean_ci": [
+            3.7108333333333334,
+            0.07082260132375477
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            -0.04958333333333333,
+            0.04265058426127149
+          ],
+          "family_adjusted_mean_ci": [
+            -0.04958333333333333,
+            0.04264980054677702
+          ]
+        }
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "file": "harness/results/20261004-035621.json",
+      "sha256": "cb243e6b8dbe6d3a581a0c1ec858a783a101ac24c55acacb33af6d793dc7dee4",
+      "seed": "strategy-confirm-20261004",
+      "args": {
+        "cmd": "run",
+        "bots": [
+          "snapshots/analysis_baseline_20261004",
+          "analysis/candidates/mixed_65"
+        ],
+        "tables": 1200,
+        "seed": "strategy-confirm-20261004",
+        "pool": "sparring/competitors/from_data/pool.txt",
+        "add": [],
+        "sizes": "4,5,5,6",
+        "tables_json": null,
+        "deals": 100,
+        "time_ms": 30000,
+        "increment_ms": 100,
+        "workers": 15,
+        "device": "cuda",
+        "gpu_devices": "0,1,2",
+        "gpu_workers": 12,
+        "gpu_batch_size": 128,
+        "league": 3,
+        "no_league": true,
+        "max_tables": 1600,
+        "no_extend": false,
+        "max_bank": 50,
+        "label": "independent-confirmation-mixed65"
+      },
+      "tables": 1200,
+      "games": 12038,
+      "summary": [
+        {
+          "bot": "snapshots/analysis_baseline_20261004",
+          "hash": "8015e4b3",
+          "mbb": [
+            739.7935416666667,
+            66.12675636662605
+          ],
+          "game_pts": [
+            3.4076319444444443,
+            0.036577897217174686
+          ],
+          "round_pts": [
+            3.7604166666666665,
+            0.07025064044115709
+          ],
+          "won_pct": 30.0,
+          "bad_games": 0,
+          "max_ms": 149.1,
+          "bank_pct": 11.378499999999999
+        },
+        {
+          "bot": "analysis/candidates/mixed_65",
+          "hash": "f1abf214",
+          "mbb": [
+            725.0564583333334,
+            66.28495132270672
+          ],
+          "game_pts": [
+            3.391534722222222,
+            0.037638857311754176
+          ],
+          "round_pts": [
+            3.7108333333333334,
+            0.07082390272958743
+          ],
+          "won_pct": 27.916666666666668,
+          "bad_games": 0,
+          "max_ms": 113.96,
+          "bank_pct": 10.92075,
+          "vs_baseline": {
+            "d_mbb": [
+              -14.737083333333333,
+              15.227376586268965
+            ],
+            "d_round_pts": [
+              -0.04958333333333333,
+              0.04265058426127149
+            ],
+            "call": "inconclusive"
+          }
+        }
+      ],
+      "compute": {
+        "requested": "cuda",
+        "device": "cuda",
+        "workers": 12,
+        "devices": [
+          {
+            "index": 0,
+            "name": "Tesla V100-SXM2-16GB",
+            "architecture": "sm_70"
+          },
+          {
+            "index": 1,
+            "name": "Tesla V100-SXM2-16GB",
+            "architecture": "sm_70"
+          },
+          {
+            "index": 2,
+            "name": "Tesla V100-SXM2-16GB",
+            "architecture": "sm_70"
+          }
+        ],
+        "batch_size": 128,
+        "worker_startup": [
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          }
+        ],
+        "gpu_usage": {
+          "cuda:0": {
+            "games": 4026,
+            "batches": 927325,
+            "ranked_hands": 293048734,
+            "gpu_seconds": 119.19651432789396
+          },
+          "cuda:2": {
+            "games": 4017,
+            "batches": 921285,
+            "ranked_hands": 290970415,
+            "gpu_seconds": 116.56576278770808
+          },
+          "cuda:1": {
+            "games": 3995,
+            "batches": 924363,
+            "ranked_hands": 291885784,
+            "gpu_seconds": 117.38425352505874
+          }
+        }
+      },
+      "failures": 0,
+      "player_verdicts": 61554
+    }
+  ]
+}

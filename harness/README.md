@@ -81,8 +81,12 @@ python harness/eval.py run bot --no-league --device cpu --workers 8
 ```
 
 `--gpu-devices` uses indices reported by the CUDA driver (respecting
-`CUDA_VISIBLE_DEVICES`). `--gpu-workers` limits the selected devices to the first
-N; at most one worker uses each device. `--workers` controls CPU execution and
+`CUDA_VISIBLE_DEVICES`). By default one worker uses each GPU. `--gpu-workers N`
+can also share devices round-robin: `--gpu-devices 0,1,2,3 --gpu-workers 16`
+uses four processes per GPU. Choose this only when CPU cores and GPU memory
+permit; each process has its own CUDA context (about 308 MiB on the tested V100).
+A count below the device count selects the first N devices.
+`--workers` controls CPU execution and
 fallback. `--gpu-batch-size` accepts 1–4096 deals, default 128. At the default,
 each worker allocates 36 KiB of device input/output buffers plus CUDA context
 overhead; memory is independent of the number of tables. Workers are independent
@@ -132,12 +136,43 @@ stickiness, size`, plus an `adaptive` flag that adjusts to opponents' aggression
 
 ### Fitted competitors
 
-`sparring/competitors/from_data/pool.txt` contains the latest fitted segments for 66
+`sparring/competitors/from_data/pool.txt` contains the latest fitted segments for 76
 external identities; the historical Halliday fit is also available separately.
 See [the competitor documentation](../sparring/competitors/README.md) for
 provenance, uncertainties, regeneration and the field evaluation command.
 File bots may expose `make_seeded_bot(seed)` to receive the harness's per-seat
 seed; otherwise the existing no-argument constructor behavior is unchanged.
+
+Use `--tables-json FILE` for a JSON list of ordered opponent-spec lists. This
+overrides random table selection and makes observed lineup comparisons possible.
+Fresh duplicate decks are still used. Results also retain per-player action,
+VPIP and preflop-raise hand counts to assess behavioral simulation fidelity.
+
+## Four-round simulations and submission limits
+
+```sh
+python harness/tournament.py snapshots/analysis_baseline_20261004 analysis/candidates/value_pressure --repeats 20 --device cuda --gpu-workers 16 --output harness/results/four-round.json
+python harness/resource_check.py analysis/candidates/value_pressure --repeats 3 --output harness/results/cpu-resources.json
+```
+
+`tournament.py` reuses the engine and worker pool from `eval.py`, following the
+[documented round scoring](https://docs.poker.monashcoding.com/game-format/scoring/). It scores each
+duplicate set, then regroups by cumulative placement points with total game
+points breaking regrouping ties. It assumes balanced tables nearest five seats
+and an entrant for every observed external display identity, excluding the
+validation house bot. This is not an authenticated final roster. Exact grouping
+ties use initial seeded ordering. Final prize ties are retained as unresolved;
+the organizers' playoff procedure must determine prizes. Per-event results
+retain all rounds, entrants, standings and games. Use `--repeat-start` with
+disjoint event-index ranges to distribute a fixed-seed study across separate
+pools; event seeds and initial lineups are independent of shard boundaries.
+
+`resource_check.py` runs real SDK subprocess games on Linux. The candidate has
+one CPU affinity, a 512 MiB address-space ceiling, a read-only chroot, a fresh
+64 MiB tmpfs per game and a private network namespace, with the real 30 s plus
+0.1 s/hand clock. It requires unprivileged user namespaces and mount support.
+It checks a cooperative bot's resource use; it is not a hardened security judge.
+The launcher and replicas are offline tools, not submission contents.
 
 ## Reading the output
 

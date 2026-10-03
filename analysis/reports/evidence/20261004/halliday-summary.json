@@ -1,0 +1,1742 @@
+{
+  "matches": 140,
+  "hands": 14000,
+  "actions": 17847,
+  "chips": -6772,
+  "losing_matches": 75,
+  "winning_matches": 65,
+  "match_mean_ci": [
+    -48.371428571428574,
+    42.0075676443624
+  ],
+  "folds": 12456,
+  "facing_decisions": 15643,
+  "streets": {
+    "preflop": {
+      "actions": 14208,
+      "faced_bet": 14161,
+      "fold": 11970,
+      "raise": 1363,
+      "call": 838,
+      "check": 37
+    },
+    "flop": {
+      "actions": 1848,
+      "faced_bet": 759,
+      "call": 473,
+      "check": 609,
+      "raise": 521,
+      "fold": 245
+    },
+    "turn": {
+      "actions": 1129,
+      "faced_bet": 463,
+      "call": 284,
+      "check": 389,
+      "raise": 303,
+      "fold": 153
+    },
+    "river": {
+      "actions": 662,
+      "faced_bet": 260,
+      "raise": 176,
+      "check": 235,
+      "call": 163,
+      "fold": 88
+    }
+  },
+  "classifications": {
+    "fold_not_flagged": 12431,
+    "raise_not_flagged": 2339,
+    "call_not_flagged": 1589,
+    "check_not_flagged": 1270,
+    "possible_nonterminal_bad_call": 23,
+    "probable_bad_terminal_call": 38,
+    "hindsight_losing_call_only": 108,
+    "hindsight_missed_call_only": 15,
+    "failed_semibluff": 14,
+    "probable_missed_terminal_call": 10,
+    "failed_air_bet": 10
+  },
+  "fold_tags": {
+    "positive_hidden_card_checkdown_ev": 3943,
+    "would_share_recorded_final_board_against_then_live_hands": 497,
+    "hindsight_profitable_terminal_call": 20
+  },
+  "terminal_folds": 123,
+  "terminal_calls": 232,
+  "terminal_folds_by_street": {
+    "river": 77,
+    "turn": 17,
+    "flop": 2,
+    "preflop": 27
+  },
+  "public_scored": 1196,
+  "losses_in_negative_matches": {
+    "non_losing_hand": {
+      "hands": 5460,
+      "chips": 11488
+    },
+    "blind_only_fold": {
+      "hands": 1487,
+      "chips": -2161
+    },
+    "other_showdown_loss": {
+      "hands": 103,
+      "chips": -8576
+    },
+    "postflop_invest_then_fold": {
+      "hands": 260,
+      "chips": -3388
+    },
+    "probable_bad_terminal_call": {
+      "hands": 28,
+      "chips": -3349
+    },
+    "profitable_allin_lost_runout": {
+      "hands": 18,
+      "chips": -3600
+    },
+    "other_losing_allin": {
+      "hands": 32,
+      "chips": -6400
+    },
+    "probable_missed_terminal_call": {
+      "hands": 9,
+      "chips": -91
+    },
+    "preflop_invest_then_fold": {
+      "hands": 87,
+      "chips": -508
+    },
+    "failed_semibluff_hand": {
+      "hands": 10,
+      "chips": -924
+    },
+    "failed_air_bet_hand": {
+      "hands": 6,
+      "chips": -148
+    }
+  },
+  "negative_match_net": -17657,
+  "allin_runouts": [
+    {
+      "expected_chips": 64.46875,
+      "realized_chips": 203,
+      "luck": 138.53125,
+      "equity": 0.65625,
+      "board": [
+        "5s",
+        "6c",
+        "Ts",
+        "4c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 136.87890625,
+      "realized_chips": 208,
+      "luck": 71.12109375,
+      "equity": 0.82568359375,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.409601949167522
+    },
+    {
+      "expected_chips": -186.71875,
+      "realized_chips": -200,
+      "luck": -13.28125,
+      "equity": 0.03125,
+      "board": [
+        "Ks",
+        "3c",
+        "Kd",
+        "8c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 210.0,
+      "realized_chips": 210,
+      "luck": 0.0,
+      "equity": 1.0,
+      "board": [
+        "Jc",
+        "Kc",
+        "4d",
+        "6h"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 146.124267578125,
+      "realized_chips": 24,
+      "luck": -122.124267578125,
+      "equity": 0.7691650390625,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.8483200272575324
+    },
+    {
+      "expected_chips": -49.4375,
+      "realized_chips": -200,
+      "luck": -150.5625,
+      "equity": 0.1875,
+      "board": [
+        "7d",
+        "8h",
+        "3d",
+        "3s"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 156.125,
+      "realized_chips": 207,
+      "luck": 50.875,
+      "equity": 0.875,
+      "board": [
+        "7h",
+        "3c",
+        "Jc",
+        "7c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 151.0,
+      "realized_chips": -200,
+      "luck": -351.0,
+      "equity": 0.8125,
+      "board": [
+        "Qs",
+        "3d",
+        "5c"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -174.5,
+      "realized_chips": -200,
+      "luck": -25.5,
+      "equity": 0.0625,
+      "board": [
+        "Kh",
+        "3s",
+        "Kc",
+        "Qd"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 203.0,
+      "realized_chips": 203,
+      "luck": 0.0,
+      "equity": 1.0,
+      "board": [
+        "3h",
+        "2d",
+        "Qc",
+        "7h"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 296.5377197265625,
+      "realized_chips": 403,
+      "luck": 106.4622802734375,
+      "equity": 0.8234456380208334,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 3.5667590548008836
+    },
+    {
+      "expected_chips": 204.23295454545456,
+      "realized_chips": 205,
+      "luck": 0.767045454545439,
+      "equity": 0.9981060606060606,
+      "board": [
+        "Kd",
+        "7s",
+        "5d"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -200.0,
+      "realized_chips": -200,
+      "luck": 0.0,
+      "equity": 0.0,
+      "board": [
+        "5d",
+        "Ad",
+        "4h",
+        "Qc"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -98.5,
+      "realized_chips": -200,
+      "luck": -101.5,
+      "equity": 0.25,
+      "board": [
+        "Kh",
+        "Ah",
+        "4c",
+        "9s"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 58.7130126953125,
+      "realized_chips": -200,
+      "luck": -258.7130126953125,
+      "equity": 0.6419677734375,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 3.0148141330892377
+    },
+    {
+      "expected_chips": 134.37841796875,
+      "realized_chips": -200,
+      "luck": -334.37841796875,
+      "equity": 0.831787109375,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.3436629187646965
+    },
+    {
+      "expected_chips": 60.10074869791663,
+      "realized_chips": -200,
+      "luck": -260.10074869791663,
+      "equity": 0.43277994791666663,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 4.646050767627513
+    },
+    {
+      "expected_chips": -200.0,
+      "realized_chips": -200,
+      "luck": 0.0,
+      "equity": 0.0,
+      "board": [
+        "Jh",
+        "Jc",
+        "Ks",
+        "4c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 3.5,
+      "realized_chips": 3,
+      "luck": -0.5,
+      "equity": 0.5,
+      "board": [
+        "9s",
+        "Th",
+        "8s",
+        "2c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -187.25,
+      "realized_chips": -200,
+      "luck": -12.75,
+      "equity": 0.03125,
+      "board": [
+        "2d",
+        "5c",
+        "Js",
+        "8c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 177.8125,
+      "realized_chips": 203,
+      "luck": 25.1875,
+      "equity": 0.9375,
+      "board": [
+        "2c",
+        "Kc",
+        "2h",
+        "Ad"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 83.94970703125,
+      "realized_chips": -200,
+      "luck": -283.94970703125,
+      "equity": 0.70458984375,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.8664065505719942
+    },
+    {
+      "expected_chips": 69.73592122395831,
+      "realized_chips": -200,
+      "luck": -269.7359212239583,
+      "equity": 0.44881184895833337,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 4.6064792771674234
+    },
+    {
+      "expected_chips": 77.1070556640625,
+      "realized_chips": 201,
+      "luck": 123.8929443359375,
+      "equity": 0.6910400390625,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.7218243253282584
+    },
+    {
+      "expected_chips": 79.5714111328125,
+      "realized_chips": 203,
+      "luck": 123.4285888671875,
+      "equity": 0.6937255859375,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.873112524624721
+    },
+    {
+      "expected_chips": -112.6239013671875,
+      "realized_chips": -200,
+      "luck": -87.3760986328125,
+      "equity": 0.2178955078125,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.560324958024042
+    },
+    {
+      "expected_chips": 126.279296875,
+      "realized_chips": -200,
+      "luck": -326.279296875,
+      "equity": 0.5419921875,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 4.68093102636506
+    },
+    {
+      "expected_chips": 14.24951171875,
+      "realized_chips": -200,
+      "luck": -214.24951171875,
+      "equity": 0.35530598958333337,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 3.159055035198079
+    },
+    {
+      "expected_chips": 163.2017822265625,
+      "realized_chips": 203,
+      "luck": 39.7982177734375,
+      "equity": 0.9012451171875,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 1.8665124942623004
+    },
+    {
+      "expected_chips": 107.3170166015625,
+      "realized_chips": -200,
+      "luck": -307.3170166015625,
+      "equity": 0.7625732421875,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.6738065786739855
+    },
+    {
+      "expected_chips": 59.3870849609375,
+      "realized_chips": 0,
+      "luck": -59.3870849609375,
+      "equity": 0.6468505859375,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.6106437996779244
+    },
+    {
+      "expected_chips": 124.78507486979163,
+      "realized_chips": -200,
+      "luck": -324.78507486979163,
+      "equity": 0.5395100911458333,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 4.630710333245151
+    },
+    {
+      "expected_chips": 68.932373046875,
+      "realized_chips": -200,
+      "luck": -268.932373046875,
+      "equity": 0.670654296875,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.9336352626283486
+    },
+    {
+      "expected_chips": 101.9056396484375,
+      "realized_chips": 203,
+      "luck": 101.0943603515625,
+      "equity": 0.7491455078125,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.724290095330606
+    },
+    {
+      "expected_chips": -187.34375,
+      "realized_chips": -200,
+      "luck": -12.65625,
+      "equity": 0.03125,
+      "board": [
+        "8s",
+        "7d",
+        "Th",
+        "Ks"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -173.35227272727272,
+      "realized_chips": -200,
+      "luck": -26.64772727272728,
+      "equity": 0.06628787878787878,
+      "board": [
+        "Ts",
+        "Kc",
+        "4s"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -142.02734375,
+      "realized_chips": -200,
+      "luck": -57.97265625,
+      "equity": 0.14208984375,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.217119118621859
+    },
+    {
+      "expected_chips": 144.25,
+      "realized_chips": -200,
+      "luck": -344.25,
+      "equity": 0.84375,
+      "board": [
+        "Jh",
+        "4s",
+        "3d",
+        "Jd"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -174.8125,
+      "realized_chips": -200,
+      "luck": -25.1875,
+      "equity": 0.0625,
+      "board": [
+        "6s",
+        "Ac",
+        "2c",
+        "Ah"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 322.74479166666674,
+      "realized_chips": 401,
+      "luck": 78.25520833333326,
+      "equity": 0.8697916666666667,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 3.134027991048847
+    },
+    {
+      "expected_chips": 4.0,
+      "realized_chips": 3,
+      "luck": -1.0,
+      "equity": 0.5,
+      "board": [
+        "5d",
+        "3c",
+        "4s",
+        "Kd"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 163.40625,
+      "realized_chips": 201,
+      "luck": 37.59375,
+      "equity": 0.90625,
+      "board": [
+        "9h",
+        "Ah",
+        "8d",
+        "Jh"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 206.0,
+      "realized_chips": 206,
+      "luck": 0.0,
+      "equity": 1.0,
+      "board": [
+        "Tc",
+        "9d",
+        "Jc",
+        "9s"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 158.074951171875,
+      "realized_chips": 206,
+      "luck": 47.925048828125,
+      "equity": 0.8819580078125,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.036883711855613
+    },
+    {
+      "expected_chips": 144.609375,
+      "realized_chips": 201,
+      "luck": 56.390625,
+      "equity": 0.859375,
+      "board": [
+        "Kd",
+        "7s",
+        "Ks",
+        "Jd"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 172.794677734375,
+      "realized_chips": 203,
+      "luck": 30.205322265625,
+      "equity": 0.925048828125,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 1.6243267473605632
+    },
+    {
+      "expected_chips": 194.7021484375,
+      "realized_chips": 208,
+      "luck": 13.2978515625,
+      "equity": 0.9674072265625,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 1.111121227220682
+    },
+    {
+      "expected_chips": -174.9375,
+      "realized_chips": -200,
+      "luck": -25.0625,
+      "equity": 0.0625,
+      "board": [
+        "Ts",
+        "6h",
+        "4d",
+        "Jd"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -200.0,
+      "realized_chips": -200,
+      "luck": 0.0,
+      "equity": 0.0,
+      "board": [
+        "Qs",
+        "2s",
+        "8s",
+        "Jc"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -200.0,
+      "realized_chips": -200,
+      "luck": 0.0,
+      "equity": 0.0,
+      "board": [
+        "Qd",
+        "3d",
+        "Kc",
+        "9s"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 145.09375,
+      "realized_chips": 209,
+      "luck": 63.90625,
+      "equity": 0.84375,
+      "board": [
+        "6s",
+        "9s",
+        "5d",
+        "7c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -116.2847900390625,
+      "realized_chips": -200,
+      "luck": -83.7152099609375,
+      "equity": 0.2056884765625,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.5616575561355837
+    },
+    {
+      "expected_chips": 40.75189393939394,
+      "realized_chips": -200,
+      "luck": -240.75189393939394,
+      "equity": 0.6003787878787878,
+      "board": [
+        "4s",
+        "7s",
+        "Ts"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -200.0,
+      "realized_chips": -200,
+      "luck": 0.0,
+      "equity": 0.0,
+      "board": [
+        "5h",
+        "Qc",
+        "Qs",
+        "Jc"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -143.609375,
+      "realized_chips": -200,
+      "luck": -56.390625,
+      "equity": 0.140625,
+      "board": [
+        "As",
+        "Ks",
+        "6c",
+        "Jd"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -174.4375,
+      "realized_chips": -200,
+      "luck": -25.5625,
+      "equity": 0.0625,
+      "board": [
+        "2c",
+        "7c",
+        "9c",
+        "Th"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 184.935302734375,
+      "realized_chips": -200,
+      "luck": -384.935302734375,
+      "equity": 0.941162109375,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 1.4940526184628407
+    },
+    {
+      "expected_chips": -174.6875,
+      "realized_chips": -200,
+      "luck": -25.3125,
+      "equity": 0.0625,
+      "board": [
+        "Qh",
+        "Qs",
+        "4s",
+        "2h"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 32.83544921875,
+      "realized_chips": -200,
+      "luck": -232.83544921875,
+      "equity": 0.573486328125,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 3.128403376928342
+    },
+    {
+      "expected_chips": -48.875,
+      "realized_chips": -200,
+      "luck": -151.125,
+      "equity": 0.375,
+      "board": [
+        "4d",
+        "2s",
+        "9s",
+        "Qs"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -200.0,
+      "realized_chips": -200,
+      "luck": 0.0,
+      "equity": 0.0,
+      "board": [
+        "4d",
+        "Qd",
+        "Td",
+        "Ac"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -200.0,
+      "realized_chips": -200,
+      "luck": 0.0,
+      "equity": 0.0,
+      "board": [
+        "As",
+        "Tc",
+        "6d",
+        "Kh"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -187.4375,
+      "realized_chips": -200,
+      "luck": -12.5625,
+      "equity": 0.03125,
+      "board": [
+        "As",
+        "8h",
+        "2c",
+        "3c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 176.875,
+      "realized_chips": 202,
+      "luck": 25.125,
+      "equity": 0.9375,
+      "board": [
+        "2h",
+        "2s",
+        "3d",
+        "6c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 1.0,
+      "realized_chips": 1,
+      "luck": 0.0,
+      "equity": 0.5,
+      "board": [
+        "6d",
+        "4s",
+        "6h"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 150.85400390625,
+      "realized_chips": 203,
+      "luck": 52.14599609375,
+      "equity": 0.87060546875,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.107982672499919
+    },
+    {
+      "expected_chips": 127.4375,
+      "realized_chips": 203,
+      "luck": 75.5625,
+      "equity": 0.8125,
+      "board": [
+        "Qd",
+        "3d",
+        "8h",
+        "2c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -31.738636363636374,
+      "realized_chips": 202,
+      "luck": 233.73863636363637,
+      "equity": 0.4185606060606061,
+      "board": [
+        "Ac",
+        "7c",
+        "Ks"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 184.375,
+      "realized_chips": 210,
+      "luck": 25.625,
+      "equity": 0.9375,
+      "board": [
+        "Qs",
+        "Ah",
+        "2d",
+        "4h"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -114.645263671875,
+      "realized_chips": 207,
+      "luck": 321.645263671875,
+      "equity": 0.209716796875,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.577790782071291
+    },
+    {
+      "expected_chips": -59.54541015625,
+      "realized_chips": -200,
+      "luck": -140.45458984375,
+      "equity": 0.345947265625,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 3.0097868789860716
+    },
+    {
+      "expected_chips": 198.72727272727275,
+      "realized_chips": 208,
+      "luck": 9.272727272727252,
+      "equity": 0.9772727272727273,
+      "board": [
+        "Qs",
+        "8s",
+        "4h"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -5.624053030303031,
+      "realized_chips": -200,
+      "luck": -194.37594696969697,
+      "equity": 0.39109848484848486,
+      "board": [
+        "Th",
+        "Ah",
+        "Qh"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 177.04924242424244,
+      "realized_chips": 203,
+      "luck": 25.950757575757564,
+      "equity": 0.9356060606060606,
+      "board": [
+        "4d",
+        "7c",
+        "2h"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -186.89583333333334,
+      "realized_chips": -200,
+      "luck": -13.104166666666657,
+      "equity": 0.032196969696969696,
+      "board": [
+        "Qs",
+        "2h",
+        "3c"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 179.33901515151513,
+      "realized_chips": 203,
+      "luck": 23.660984848484873,
+      "equity": 0.9412878787878788,
+      "board": [
+        "3s",
+        "7h",
+        "7d"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -200.0,
+      "realized_chips": -200,
+      "luck": 0.0,
+      "equity": 0.0,
+      "board": [
+        "4d",
+        "Jc",
+        "6h",
+        "9c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -135.70643939393938,
+      "realized_chips": -200,
+      "luck": -64.29356060606062,
+      "equity": 0.1571969696969697,
+      "board": [
+        "Jd",
+        "8d",
+        "3h"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 189.4375,
+      "realized_chips": 202,
+      "luck": 12.5625,
+      "equity": 0.96875,
+      "board": [
+        "2h",
+        "4s",
+        "6s",
+        "Qc"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -187.40625,
+      "realized_chips": -200,
+      "luck": -12.59375,
+      "equity": 0.03125,
+      "board": [
+        "2s",
+        "3d",
+        "4h",
+        "5c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -174.9375,
+      "realized_chips": -200,
+      "luck": -25.0625,
+      "equity": 0.0625,
+      "board": [
+        "4c",
+        "Jc",
+        "Th",
+        "5d"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -111.40625,
+      "realized_chips": 205,
+      "luck": 316.40625,
+      "equity": 0.21875,
+      "board": [
+        "9d",
+        "Js",
+        "Ad",
+        "Jd"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 116.6142578125,
+      "realized_chips": 202,
+      "luck": 85.3857421875,
+      "equity": 0.78759765625,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.5496330902237654
+    },
+    {
+      "expected_chips": -91.57954545454545,
+      "realized_chips": 206,
+      "luck": 297.57954545454544,
+      "equity": 0.26704545454545453,
+      "board": [
+        "Qs",
+        "2s",
+        "Tc"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -159.96875,
+      "realized_chips": -200,
+      "luck": -40.03125,
+      "equity": 0.09375,
+      "board": [
+        "4s",
+        "8c",
+        "7s",
+        "Jc"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -161.75,
+      "realized_chips": -200,
+      "luck": -38.25,
+      "equity": 0.09375,
+      "board": [
+        "9d",
+        "4c",
+        "2h",
+        "4d"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -200.0,
+      "realized_chips": -200,
+      "luck": 0.0,
+      "equity": 0.0,
+      "board": [
+        "4d",
+        "Td",
+        "Jh",
+        "Jc"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -119.9375,
+      "realized_chips": -200,
+      "luck": -80.0625,
+      "equity": 0.1875,
+      "board": [
+        "2s",
+        "Td",
+        "3d",
+        "4h"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -174.5625,
+      "realized_chips": -200,
+      "luck": -25.4375,
+      "equity": 0.0625,
+      "board": [
+        "6c",
+        "Ac",
+        "Th",
+        "Qd"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -184.6344696969697,
+      "realized_chips": -200,
+      "luck": -15.365530303030312,
+      "equity": 0.03598484848484849,
+      "board": [
+        "7c",
+        "Kc",
+        "5h"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -187.3125,
+      "realized_chips": -200,
+      "luck": -12.6875,
+      "equity": 0.03125,
+      "board": [
+        "5h",
+        "Qs",
+        "7h",
+        "3d"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -149.75,
+      "realized_chips": 202,
+      "luck": 351.75,
+      "equity": 0.125,
+      "board": [
+        "3h",
+        "3d",
+        "7d",
+        "2c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 16.8994140625,
+      "realized_chips": -200,
+      "luck": -216.8994140625,
+      "equity": 0.53955078125,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 3.125006167562917
+    },
+    {
+      "expected_chips": -173.9375,
+      "realized_chips": -200,
+      "luck": -26.0625,
+      "equity": 0.0625,
+      "board": [
+        "Jc",
+        "Kh",
+        "6s",
+        "6d"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 1.5,
+      "realized_chips": 2,
+      "luck": 0.5,
+      "equity": 0.5,
+      "board": [
+        "3c",
+        "Ks",
+        "Js",
+        "Qc"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 190.0,
+      "realized_chips": 216,
+      "luck": 26.0,
+      "equity": 0.9375,
+      "board": [
+        "2h",
+        "6s",
+        "3h",
+        "5c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 155.330078125,
+      "realized_chips": 207,
+      "luck": 51.669921875,
+      "equity": 0.873046875,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.113923543435224
+    },
+    {
+      "expected_chips": 206.0,
+      "realized_chips": 206,
+      "luck": 0.0,
+      "equity": 1.0,
+      "board": [
+        "As",
+        "4s",
+        "7s",
+        "8d"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -149.0,
+      "realized_chips": -200,
+      "luck": -51.0,
+      "equity": 0.125,
+      "board": [
+        "3s",
+        "Jc",
+        "4d",
+        "2d"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 114.3671875,
+      "realized_chips": -200,
+      "luck": -314.3671875,
+      "equity": 0.7705078125,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 2.6773505151614665
+    },
+    {
+      "expected_chips": -176.33901515151516,
+      "realized_chips": -200,
+      "luck": -23.660984848484844,
+      "equity": 0.058712121212121215,
+      "board": [
+        "6s",
+        "4s",
+        "Qc"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 117.1875,
+      "realized_chips": 206,
+      "luck": 88.8125,
+      "equity": 0.78125,
+      "board": [
+        "8d",
+        "2d",
+        "Td",
+        "2s"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -162.3125,
+      "realized_chips": -200,
+      "luck": -37.6875,
+      "equity": 0.09375,
+      "board": [
+        "9d",
+        "Jh",
+        "7h",
+        "Ts"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 196.21875,
+      "realized_chips": 209,
+      "luck": 12.78125,
+      "equity": 0.96875,
+      "board": [
+        "7h",
+        "8c",
+        "4s",
+        "Jh"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 208.0,
+      "realized_chips": 208,
+      "luck": 0.0,
+      "equity": 1.0,
+      "board": [
+        "Ad",
+        "3h",
+        "Th",
+        "2d"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 165.21875,
+      "realized_chips": -200,
+      "luck": -365.21875,
+      "equity": 0.90625,
+      "board": [
+        "Jh",
+        "4h",
+        "2h",
+        "Kc"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 189.6875,
+      "realized_chips": 230,
+      "luck": 40.3125,
+      "equity": 0.90625,
+      "board": [
+        "3d",
+        "Tc",
+        "6s",
+        "8h"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -200.0,
+      "realized_chips": -200,
+      "luck": 0.0,
+      "equity": 0.0,
+      "board": [
+        "As",
+        "2c",
+        "6c",
+        "8h"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 165.6003787878788,
+      "realized_chips": 203,
+      "luck": 37.39962121212119,
+      "equity": 0.9071969696969697,
+      "board": [
+        "4h",
+        "6h",
+        "Kc"
+      ],
+      "samples": 528,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 81.1875,
+      "realized_chips": -200,
+      "luck": -281.1875,
+      "equity": 0.6875,
+      "board": [
+        "2h",
+        "6d",
+        "5c",
+        "8d"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 169.75,
+      "realized_chips": 208,
+      "luck": 38.25,
+      "equity": 0.90625,
+      "board": [
+        "7s",
+        "Ad",
+        "7c",
+        "8c"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 162.484375,
+      "realized_chips": 207,
+      "luck": 44.515625,
+      "equity": 0.890625,
+      "board": [
+        "Qc",
+        "3c",
+        "7c",
+        "Jc"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -187.4375,
+      "realized_chips": -200,
+      "luck": -12.5625,
+      "equity": 0.03125,
+      "board": [
+        "Kh",
+        "Kc",
+        "6h",
+        "6s"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": 184.9906005859375,
+      "realized_chips": 207,
+      "luck": 22.0093994140625,
+      "equity": 0.9459228515625,
+      "board": [],
+      "samples": 4096,
+      "exact": false,
+      "ev_se": 1.4046065680990656
+    },
+    {
+      "expected_chips": -187.28125,
+      "realized_chips": -200,
+      "luck": -12.71875,
+      "equity": 0.03125,
+      "board": [
+        "Ac",
+        "5d",
+        "7h",
+        "2d"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -86.09375,
+      "realized_chips": -200,
+      "luck": -113.90625,
+      "equity": 0.28125,
+      "board": [
+        "Tc",
+        "Qs",
+        "Ad",
+        "Jd"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    },
+    {
+      "expected_chips": -47.0,
+      "realized_chips": -200,
+      "luck": -153.0,
+      "equity": 0.375,
+      "board": [
+        "7c",
+        "4s",
+        "9d",
+        "8d"
+      ],
+      "samples": 32,
+      "exact": true,
+      "ev_se": 0.0
+    }
+  ],
+  "periods": [
+    {
+      "matches": 35,
+      "hands": 3500,
+      "chips": -2910,
+      "from_at": 1791012646753.0,
+      "to_at": 1791018198391.0,
+      "folds": 3107,
+      "blunders": 19
+    },
+    {
+      "matches": 35,
+      "hands": 3500,
+      "chips": -1402,
+      "from_at": 1791018374790.0,
+      "to_at": 1791024941024.0,
+      "folds": 3024,
+      "blunders": 23
+    },
+    {
+      "matches": 35,
+      "hands": 3500,
+      "chips": -1768,
+      "from_at": 1791025100101.0,
+      "to_at": 1791030477565.0,
+      "folds": 3173,
+      "blunders": 5
+    },
+    {
+      "matches": 35,
+      "hands": 3500,
+      "chips": -692,
+      "from_at": 1791030607575.0,
+      "to_at": 1791037778861.0,
+      "folds": 3152,
+      "blunders": 1
+    }
+  ],
+  "latest_20": {
+    "matches": 20,
+    "hands": 2000,
+    "chips": -383,
+    "folds": 1764,
+    "classifications": {
+      "fold_not_flagged": 1760,
+      "raise_not_flagged": 398,
+      "call_not_flagged": 206,
+      "check_not_flagged": 220,
+      "hindsight_missed_call_only": 4,
+      "hindsight_losing_call_only": 17,
+      "failed_semibluff": 4,
+      "failed_air_bet": 4
+    }
+  }
+}

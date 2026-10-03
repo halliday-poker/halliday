@@ -5,7 +5,8 @@ import competitor_base
 
 class CompetitorBot(competitor_base.FittedBot):
     DISPLAY_NAME = 'poke-bowl-one'
-    STYLE = {'vpip': 0.22, 'pfr': 0.22, 'threebet': 0.06, 'limp': 0.15000000000000002, 'aggression': 0.7000000000000001, 'cbet': 0.45, 'bluff': 0.5, 'stickiness': 0.35000000000000003, 'size': 0.6000000000000001, 'adaptive': 0}
+    STYLE = {'vpip': 0.36, 'pfr': 0.36, 'threebet': 0.06, 'limp': 0.30000000000000004, 'aggression': 0.0, 'cbet': 0.55, 'bluff': 0.8500000000000001, 'stickiness': 0.5, 'size': 0.605, 'adaptive': 0}
+    POLICY = {'file': 'behavior-policy.npz', 'bot': 58, 'epoch': 0, 'weight': 1, 'model': 'upload', 'heldout_comparison': 'behavior-comparison.json', 'status': 'fitted_public_context_policy'}
 
 
 def make_seeded_bot(seed):

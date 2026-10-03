@@ -1,0 +1,14 @@
+{
+  "rows_checked": 1147147,
+  "dtypes": [
+    "float32",
+    "float64"
+  ],
+  "bitwise_equal": true,
+  "single_row_calls": 1148,
+  "elapsed_s": {
+    "before": 0.6775922829983756,
+    "after": 0.17427192302420735
+  },
+  "caution": "Nonexclusive host timing; no end-to-end speedup claim."
+}

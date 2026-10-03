@@ -1,0 +1,31 @@
+{
+  "stage": "Additional exploratory screen, fixed before outcomes",
+  "seed": "field-priors-screen-20261004",
+  "tables": 192,
+  "deals": 100,
+  "sizes": "4,5,5,6",
+  "pool": "sparring/competitors/from_data/pool.txt",
+  "candidates": {
+    "snapshots/analysis_baseline_20261004": "8015e4b3",
+    "analysis/candidates/field_mean_priors": "175d5891",
+    "analysis/candidates/field_median_priors": "8b82b400",
+    "analysis/candidates/fast_adaptation": "50a87e99",
+    "analysis/candidates/shove_ranges_only": "3c0217d4"
+  },
+  "primary": "paired round points per complete duplicate table",
+  "selection": "Only a positive family-adjusted lower 95% bound qualifies for a new independent confirmation. This screen is exploratory, including the previously screened isolated shove correction. If none qualifies, retain baseline and report no demonstrated strategy improvement.",
+  "prior_derivation": {
+    "source": "Latest intervals, 74 ladder identities excluding Halliday and house:call; equal bot weights",
+    "mean": [
+      0.29759728,
+      0.1744979,
+      0.07198028
+    ],
+    "median": [
+      0.22111111,
+      0.13675758,
+      0.04235413
+    ],
+    "caveat": "The empirical priors describe the fitted field, not an independent future sample. Three-bet rates use observed preflop decisions with one raise and positive call price. Fast adaptation changes only prior strengths."
+  }
+}

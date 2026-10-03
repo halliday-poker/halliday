@@ -1,0 +1,266 @@
+{
+  "seed": "four-round-replication-20261004",
+  "events_per_candidate": 40,
+  "games": 24320,
+  "summary": [
+    {
+      "candidate": "snapshots/analysis_baseline_20261004",
+      "rank": [
+        16.225,
+        4.295141139736436
+      ],
+      "placement": [
+        15.2625,
+        0.7525784693731961
+      ],
+      "definite_top3": 4,
+      "possible_top3": 5
+    },
+    {
+      "candidate": "analysis/candidates/mixed_65",
+      "rank": [
+        18.2,
+        4.252191278231338
+      ],
+      "placement": [
+        14.875,
+        0.7050745550685602
+      ],
+      "definite_top3": 2,
+      "possible_top3": 4
+    }
+  ],
+  "paired_differences": {
+    "rank": {
+      "mean_ci95": [
+        1.975,
+        4.491876824920338
+      ],
+      "bootstrap_ci95": [
+        -2.5125,
+        6.4
+      ],
+      "by_event": [
+        23.5,
+        14.5,
+        -34.0,
+        2.0,
+        -3.5,
+        6.0,
+        11.5,
+        20.0,
+        1.5,
+        8.0,
+        13.5,
+        -8.0,
+        -29.5,
+        5.5,
+        -6.0,
+        16.0,
+        10.5,
+        3.0,
+        -3.0,
+        9.0,
+        2.0,
+        -15.5,
+        -3.0,
+        -21.0,
+        -12.5,
+        -11.0,
+        35.0,
+        -6.0,
+        -1.0,
+        4.5,
+        4.5,
+        11.5,
+        5.5,
+        8.0,
+        2.0,
+        -2.0,
+        -1.0,
+        -25.5,
+        20.5,
+        23.5
+      ]
+    },
+    "placement": {
+      "mean_ci95": [
+        -0.3875,
+        0.8225412428284955
+      ],
+      "bootstrap_ci95": [
+        -1.2,
+        0.4375
+      ],
+      "by_event": [
+        -3.5,
+        -2.5,
+        4.5,
+        -1.0,
+        0.5,
+        -4.5,
+        -1.0,
+        -2.0,
+        -0.5,
+        -1.5,
+        -2.5,
+        1.0,
+        4.5,
+        -3.5,
+        1.0,
+        -3.0,
+        -1.0,
+        -0.5,
+        0.5,
+        -2.5,
+        -0.5,
+        7.5,
+        0.5,
+        2.0,
+        3.5,
+        1.0,
+        -5.5,
+        1.0,
+        0.5,
+        -1.5,
+        -0.5,
+        -2.5,
+        -0.5,
+        -1.0,
+        -2.5,
+        0.5,
+        0.5,
+        4.5,
+        -2.0,
+        -3.0
+      ]
+    },
+    "game_points": {
+      "mean_ci95": [
+        0.0625,
+        1.9341317786488816
+      ],
+      "bootstrap_ci95": [
+        -1.875,
+        1.9378124999999955
+      ],
+      "by_event": [
+        -5.0,
+        -1.0,
+        2.0,
+        -3.0,
+        0.0,
+        -14.0,
+        0.0,
+        -5.0,
+        -1.0,
+        -5.0,
+        -4.0,
+        0.0,
+        11.5,
+        0.0,
+        6.0,
+        -6.0,
+        0.0,
+        1.0,
+        -5.0,
+        1.0,
+        8.0,
+        14.0,
+        2.0,
+        4.0,
+        9.0,
+        1.0,
+        -17.5,
+        1.5,
+        3.0,
+        -4.0,
+        1.0,
+        -7.0,
+        -2.0,
+        -2.0,
+        -4.0,
+        1.5,
+        11.5,
+        9.0,
+        1.0,
+        0.0
+      ]
+    }
+  },
+  "evidence": [
+    {
+      "file": "analysis/results/refresh-20261004/tournament-replication-00-09.json",
+      "sha256": "b45fa0d16d0c229668b29a0a050aa4f4e2b3bfa4570b0dbd3d0a50050a161204",
+      "games": 6080,
+      "elapsed_s": 373.16890630708076,
+      "args": {
+        "bots": [
+          "snapshots/analysis_baseline_20261004",
+          "analysis/candidates/mixed_65"
+        ],
+        "pool": "sparring/competitors/from_data/pool.txt",
+        "repeats": 10,
+        "repeat_start": 0,
+        "rounds": 4,
+        "deals": 100,
+        "seed": "four-round-replication-20261004",
+        "device": "cuda",
+        "workers": 15,
+        "gpu_workers": 6,
+        "gpu_devices": "0,1",
+        "gpu_batch_size": 128,
+        "output": "analysis/results/refresh-20261004/tournament-replication-00-09.json"
+      }
+    },
+    {
+      "file": "analysis/results/refresh-20261004/tournament-replication-10-19.json",
+      "sha256": "a9c7b8ac601b0181cc9e18c8d54997e030785c657757aba00f40f33b5c2f001e",
+      "games": 6080,
+      "elapsed_s": 268.3239583889954,
+      "args": {
+        "bots": [
+          "snapshots/analysis_baseline_20261004",
+          "analysis/candidates/mixed_65"
+        ],
+        "pool": "sparring/competitors/from_data/pool.txt",
+        "repeats": 10,
+        "repeat_start": 10,
+        "rounds": 4,
+        "deals": 100,
+        "seed": "four-round-replication-20261004",
+        "device": "cuda",
+        "workers": 15,
+        "gpu_workers": 6,
+        "gpu_devices": "2,3",
+        "gpu_batch_size": 128,
+        "output": "analysis/results/refresh-20261004/tournament-replication-10-19.json"
+      }
+    },
+    {
+      "file": "analysis/results/refresh-20261004/tournament-replication-20-39.json",
+      "sha256": "ef627ed8c8a3d59f806f1cf40ba69072bcbc8c3558efce0928af13cce72e2e66",
+      "games": 12160,
+      "elapsed_s": 385.9905477919383,
+      "args": {
+        "bots": [
+          "snapshots/analysis_baseline_20261004",
+          "analysis/candidates/mixed_65"
+        ],
+        "pool": "sparring/competitors/from_data/pool.txt",
+        "repeats": 20,
+        "repeat_start": 20,
+        "rounds": 4,
+        "deals": 100,
+        "seed": "four-round-replication-20261004",
+        "device": "cuda",
+        "workers": 15,
+        "gpu_workers": 10,
+        "gpu_devices": "0,1",
+        "gpu_batch_size": 128,
+        "output": "analysis/results/refresh-20261004/tournament-replication-20-39.json"
+      }
+    }
+  ],
+  "all_shards_verified": true
+}

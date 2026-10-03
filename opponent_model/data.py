@@ -12,12 +12,8 @@ import numpy as np
 
 from sparring import param
 from sparring.param import hand_percentile, strength
+from sparring.competitors.policy import BASE_FIELDS, FIELDS, COL, extras
 
-FIELDS = ("match", "street", "seat", "players", "pct", "strength", "draw",
-          "facing", "can_raise", "pre_raises", "cbet", "action", "amount",
-          "pot", "minimum", "maximum", "call", "stack", "top", "bet",
-          "agg_high", "fold_high", "fold_low", "hand")
-COL = {name: i for i, name in enumerate(FIELDS)}
 STREETS = {"preflop": 0, "flop": 1, "turn": 2, "river": 3}
 ACTIONS = {"fold": 0, "check": 1, "call": 2, "raise": 3}
 
@@ -59,7 +55,10 @@ def read_metadata(matches_path, state_path):
         if item.get("collected_at") is not None and abs(item["collected_at"] - timestamp) > 1e-6:
             audit["timestamp_disagreements_state_used"] += 1
         found[mid] = dict(id=mid, collected_at=float(timestamp), names=names,
-                          kind=item.get("kind", "unknown"), source=meta.get("source"))
+                          kind=item.get("kind", "unknown"), source=meta.get("source"),
+                          at=item.get("at"),
+                          played_at=item['at']/1000 if isinstance(item.get('at'),(int,float)) and item['at']>1e11 else None,
+                          timestamp_provenance='server_milliseconds' if isinstance(item.get('at'),(int,float)) and item['at']>1e11 else 'collection_fallback')
     rows = sorted(found.values(), key=lambda x: (x["collected_at"], x["id"]))
     audit.update({"metadata_matches": len(rows)})
     hashes = {"matches_sha256": sha256(matches_bytes).hexdigest(),
@@ -89,6 +88,7 @@ def reconstruct_hand(events, metadata, match_index, stats, *, stack=200, sb=1, b
         stacks[seat] -= bets[seat]
     pot, current, increment, street = sum(bets), max(bets), bb, 0
     board, acted, pre_raises, street_raises, pre_aggressor = [], set(), 0, 0, None
+    limpers, own_raises = 0, [0]*n
     hand_metrics = {name: [1, 0, 0] for name in seats}  # dealt, VPIP, PFR
     result = []
     for event in events:
@@ -131,11 +131,14 @@ def reconstruct_hand(events, metadata, match_index, stats, *, stack=200, sb=1, b
         agg = sum(x[1] / x[0] for x in seen) / len(seen) if seen else 0
         folds = sum(x[2] / max(x[3], 1) for x in seen) / len(seen) if seen else 0.3
         cbet = street == 1 and pre_aggressor == seat and street_raises == 0
+        category = param.evaluate(param.parse_cards(hole+board))[0] if hole and board else 0
+        context = extras(hole,board,seat,folded,stacks,street_raises,limpers,own_raises[seat],category)
         result.append((bot, (match_index, street, seat, n, pct, made, draw, call > 0,
                             can_raise, pre_raises, cbet, ACTIONS[kind], amount, pot,
                             minimum, maximum, call, stacks[seat], current, bets[seat],
-                            agg > .3, folds > .5, folds < .25, event["hand"])))
+                            agg > .3, folds > .5, folds < .25, event["hand"], *context)))
         if street == 0:
+            limpers += kind=='call' and pre_raises==0
             hand_metrics[bot][1] |= kind in ("call", "raise")
             hand_metrics[bot][2] |= kind == "raise"
         acted.add(seat)
@@ -146,6 +149,7 @@ def reconstruct_hand(events, metadata, match_index, stats, *, stack=200, sb=1, b
             bets[seat] += call
             pot += call
         elif kind == "raise":
+            own_raises[seat] += 1
             paid, inc = amount - bets[seat], amount - current
             stacks[seat] -= paid
             pot += paid
@@ -239,7 +243,7 @@ def load_dataset(actions_path, matches_path, state_path, *, stack=200, sb=1, bb=
 def save_dataset(dataset, path):
     """Safe NumPy cache: no pickles and no source files modified."""
     bots = sorted(dataset.observations)
-    metadata = dict(format_version=1, fields=list(FIELDS), matches=dataset.matches,
+    metadata = dict(format_version=2, fields=list(FIELDS), matches=dataset.matches,
                     hands=dataset.hands, audit=dataset.audit, bots=bots,
                     feature_source_sha256=sha256(Path(param.__file__).read_bytes()).hexdigest())
     arrays = {f"bot_{i}": dataset.observations[b] for i, b in enumerate(bots)}
@@ -249,10 +253,14 @@ def save_dataset(dataset, path):
 def load_cache(path):
     with np.load(path, allow_pickle=False) as cache:
         meta = json.loads(str(cache["metadata"]))
-        if meta.get("format_version") != 1 or meta.get("fields") != list(FIELDS):
+        legacy = meta.get('format_version')==1 and meta.get('fields')==list(BASE_FIELDS)
+        if not legacy and (meta.get("format_version") != 2 or meta.get("fields") != list(FIELDS)):
             raise ValueError("Incompatible feature cache; rebuild it from the input JSON files")
         if meta.get("feature_source_sha256") != sha256(Path(param.__file__).read_bytes()).hexdigest():
             raise ValueError("sparring/param.py changed since this feature cache was built; rebuild it")
         arrays = {b: cache[f"bot_{i}"].copy() for i, b in enumerate(meta["bots"])}
+        if legacy:
+            arrays = {b:np.pad(a,((0,0),(0,len(FIELDS)-len(BASE_FIELDS))),constant_values=np.nan) for b,a in arrays.items()}
+            meta['audit']['legacy_context_missing'] = True
     return Dataset(meta["matches"], arrays,
                    {b: {int(k): v for k, v in x.items()} for b, x in meta["hands"].items()}, meta["audit"])

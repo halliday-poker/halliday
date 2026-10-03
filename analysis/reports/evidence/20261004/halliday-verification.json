@@ -1,0 +1,39 @@
+{
+  "source_sha256": "10331deef87e5cacb4e09ac79c5ebe2d4aeb4ff477b153d20cdb7de8fbd01d9a",
+  "actions": 17865,
+  "hands": 14006,
+  "matches": 143,
+  "input_unchanged": true,
+  "accounting_reconciled": true,
+  "public_contexts_rechecked": [
+    "j974dagrebak85z3kzna2kwcth8fjzzf:13:10",
+    "j974dagrebak85z3kzna2kwcth8fjzzf:13:12",
+    "j974dagrebak85z3kzna2kwcth8fjzzf:74:17",
+    "j977413qbcbcgxcjn4d0v7d9ax8fkgz2:16:18",
+    "j978cjya3dkg56c89tmspk3j2d8fkk0n:62:12",
+    "j973m8xrhq5vvtyfd8c7mxyvyh8fjkvr:5:8",
+    "j973m8xrhq5vvtyfd8c7mxyvyh8fjkvr:13:8",
+    "j973m8xrhq5vvtyfd8c7mxyvyh8fjkvr:16:10",
+    "j976xc3rrc1640xgtgw3rp71ah8fjvgp:46:20",
+    "j9741k8dmq4fejp32d5kgwh2vh8fkehc:48:11"
+  ],
+  "audit_tests_passed": 7,
+  "devices": [
+    "cuda:0",
+    "cuda:1",
+    "cuda:2",
+    "cuda:3"
+  ],
+  "code_sha256": {
+    "analysis/halliday_performance.py": "57ab68ffc80c412fee87a593f1718e7748bb9e1ad6c1c182ad4dfa19842ec534",
+    "analysis/halliday_report.py": "6453281001e644ecf6ee1eec8ddcbd9e36ad155ca2b9deecd36700f259561baa",
+    "analysis/render_halliday_report.py": "a060da09dd45c46b29589e517aec45572c6aeaad7d0f67a6f0387fad33bc8f69",
+    "analysis/verify_halliday_report.py": "caa28e34dde4dc6a1f09abdc698def9bcfbfe0675b90542d12eed87d4727d791",
+    "bot/ranges.py": "d54983af267e67dc164f5cad550726c0c272920ae526e830e96ede5e99a7e18e",
+    "bot/engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "bot/params.py": "917b039c9c1f37292536e417b914de6c04d7fcee9ffe7bbf74a27d1279464713",
+    "harness/gpu_rank.cu": "b88f31baf667f7c2285cd0e845da2249b3a16a4d1cde3ecea5701590288a42c6",
+    "tests/test_halliday_performance.py": "f252322b38930955591f01cf645321c73e27e8e68378bfcbfd6e4367643d17b9"
+  },
+  "description": "7 audit tests passed. All 17,865 action IDs and 14,006 hand IDs are unique, all 143 match totals and exclusive loss buckets reconcile, and prior histories contain no future actions. Both public-range models were reproduced exactly in 10 representative contexts after removing every field outside the explicit public-information allowlist. The source SHA-256 was unchanged after computation. Source-code fingerprints, tested context IDs and test output are retained alongside this report."
+}

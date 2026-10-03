@@ -1,0 +1,21 @@
+{
+  "name": "turn_discipline",
+  "baseline": "snapshots/analysis_baseline_20261004",
+  "baseline_sha256": {
+    "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "a565ff304b1babbdeb5f8768212edd46391adf5850f9ba8751ade3517ee69746",
+    "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+    "params.py": "df863d2d45c0fa757b1931874dad1bea70b44685fe200c90e940fb0bb0a64fcb",
+    "preflop.py": "415bb44dfb8555a990e516ce67d698813ddf7ff0f12c52b778e4cba16586ea68",
+    "ranges.py": "d54983af267e67dc164f5cad550726c0c272920ae526e830e96ede5e99a7e18e",
+    "strategy.py": "144d59b38c7e55f42059a4acf0fe5f0ecb105b1ec3b54675b09562e843136d1e"
+  },
+  "parameter_overrides": {
+    "range_call_margin_turn": 0.06,
+    "range_call_margin_river": 0.04,
+    "range_large_bet_margin": 0.05
+  },
+  "status": "unselected experiment; no performance improvement established",
+  "sampling": "mixed variants use the existing private visible-spot hash for repeatable weighted bluff decisions; value logic is unchanged"
+}

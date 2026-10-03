@@ -1,0 +1,811 @@
+{
+  "passed": true,
+  "source": "analysis/results/refresh-20261004/tournament-replication-00-09.json",
+  "sha256": "b45fa0d16d0c229668b29a0a050aa4f4e2b3bfa4570b0dbd3d0a50050a161204",
+  "games": 6080,
+  "tournaments": 20,
+  "rounds": 4,
+  "candidate_results": [
+    {
+      "candidate": "snapshots/analysis_baseline_20261004",
+      "repeat": 0,
+      "rank": 6.5,
+      "rank_min": 5,
+      "rank_max": 8,
+      "placement": 16.5,
+      "game_points": 67.0
+    },
+    {
+      "candidate": "analysis/candidates/mixed_65",
+      "repeat": 0,
+      "rank": 30.0,
+      "rank_min": 27,
+      "rank_max": 33,
+      "placement": 13.0,
+      "game_points": 62.0
+    },
+    {
+      "candidate": "snapshots/analysis_baseline_20261004",
+      "repeat": 1,
+      "rank": 8.5,
+      "rank_min": 7,
+      "rank_max": 10,
+      "placement": 16.0,
+      "game_points": 63.0
+    },
+    {
+      "candidate": "analysis/candidates/mixed_65",
+      "repeat": 1,
+      "rank": 23.0,
+      "rank_min": 22,
+      "rank_max": 24,
+      "placement": 13.5,
+      "game_points": 62.0
+    },
+    {
+      "candidate": "snapshots/analysis_baseline_20261004",
+      "repeat": 2,
+      "rank": 39.5,
+      "rank_min": 37,
+      "rank_max": 42,
+      "placement": 12.0,
+      "game_points": 65.0
+    },
+    {
+      "candidate": "analysis/candidates/mixed_65",
+      "repeat": 2,
+      "rank": 5.5,
+      "rank_min": 5,
+      "rank_max": 6,
+      "placement": 16.5,
+      "game_points": 67.0
+    },
+    {
+      "candidate": "snapshots/analysis_baseline_20261004",
+      "repeat": 3,
+      "rank": 2.0,
+      "rank_min": 1,
+      "rank_max": 3,
+      "placement": 18.5,
+      "game_points": 87.0
+    },
+    {
+      "candidate": "analysis/candidates/mixed_65",
+      "repeat": 3,
+      "rank": 4.0,
+      "rank_min": 4,
+      "rank_max": 4,
+      "placement": 17.5,
+      "game_points": 84.0
+    },
+    {
+      "candidate": "snapshots/analysis_baseline_20261004",
+      "repeat": 4,
+      "rank": 20.0,
+      "rank_min": 17,
+      "rank_max": 23,
+      "placement": 14.0,
+      "game_points": 66.0
+    },
+    {
+      "candidate": "analysis/candidates/mixed_65",
+      "repeat": 4,
+      "rank": 16.5,
+      "rank_min": 15,
+      "rank_max": 18,
+      "placement": 14.5,
+      "game_points": 66.0
+    },
+    {
+      "candidate": "snapshots/analysis_baseline_20261004",
+      "repeat": 5,
+      "rank": 1.0,
+      "rank_min": 1,
+      "rank_max": 1,
+      "placement": 21.5,
+      "game_points": 100.0
+    },
+    {
+      "candidate": "analysis/candidates/mixed_65",
+      "repeat": 5,
+      "rank": 7.0,
+      "rank_min": 7,
+      "rank_max": 7,
+      "placement": 17.0,
+      "game_points": 86.0
+    },
+    {
+      "candidate": "snapshots/analysis_baseline_20261004",
+      "repeat": 6,
+      "rank": 32.5,
+      "rank_min": 31,
+      "rank_max": 34,
+      "placement": 12.5,
+      "game_points": 59.0
+    },
+    {
+      "candidate": "analysis/candidates/mixed_65",
+      "repeat": 6,
+      "rank": 44.0,
+      "rank_min": 41,
+      "rank_max": 47,
+      "placement": 11.5,
+      "game_points": 59.0
+    },
+    {
+      "candidate": "snapshots/analysis_baseline_20261004",
+      "repeat": 7,
+      "rank": 19.0,
+      "rank_min": 16,
+      "rank_max": 22,
+      "placement": 14.0,
+      "game_points": 67.0
+    },
+    {
+      "candidate": "analysis/candidates/mixed_65",
+      "repeat": 7,
+      "rank": 39.0,
+      "rank_min": 36,
+      "rank_max": 42,
+      "placement": 12.0,
+      "game_points": 62.0
+    },
+    {
+      "candidate": "snapshots/analysis_baseline_20261004",
+      "repeat": 8,
+      "rank": 11.5,
+      "rank_min": 11,
+      "rank_max": 12,
+      "placement": 15.5,
+      "game_points": 68.0
+    },
+    {
+      "candidate": "analysis/candidates/mixed_65",
+      "repeat": 8,
+      "rank": 13.0,
+      "rank_min": 10,
+      "rank_max": 16,
+      "placement": 15.0,
+      "game_points": 67.0
+    },
+    {
+      "candidate": "snapshots/analysis_baseline_20261004",
+      "repeat": 9,
+      "rank": 9.5,
+      "rank_min": 8,
+      "rank_max": 11,
+      "placement": 16.0,
+      "game_points": 70.0
+    },
+    {
+      "candidate": "analysis/candidates/mixed_65",
+      "repeat": 9,
+      "rank": 17.5,
+      "rank_min": 17,
+      "rank_max": 18,
+      "placement": 14.5,
+      "game_points": 65.0
+    }
+  ],
+  "field_mean_ranks": {
+    "snapshots/analysis_baseline_20261004": [
+      [
+        "snapshots/analysis_baseline_20261004",
+        15.0
+      ],
+      [
+        "sparring/competitors/from_data/best_bot.py",
+        16.9
+      ],
+      [
+        "sparring/competitors/from_data/yep.py",
+        17.5
+      ],
+      [
+        "sparring/competitors/from_data/polygamous_lavender_marriage.py",
+        17.75
+      ],
+      [
+        "sparring/competitors/from_data/larp_larp_sahur.py",
+        17.85
+      ],
+      [
+        "sparring/competitors/from_data/mac_projects_team_testing_bot.py",
+        18.6
+      ],
+      [
+        "sparring/competitors/from_data/raiseyouredge.py",
+        20.55
+      ],
+      [
+        "sparring/competitors/from_data/mac_projects_team_testing_bot_2.py",
+        21.8
+      ],
+      [
+        "sparring/competitors/from_data/mac_projects_team_testing_bot_3.py",
+        22.65
+      ],
+      [
+        "sparring/competitors/from_data/guaguanco_2.py",
+        24.3
+      ],
+      [
+        "sparring/competitors/from_data/big_dog.py",
+        24.45
+      ],
+      [
+        "sparring/competitors/from_data/zinger_box.py",
+        25.95
+      ],
+      [
+        "sparring/competitors/from_data/tripi_tropi.py",
+        26.15
+      ],
+      [
+        "sparring/competitors/from_data/artificial_incompetence.py",
+        26.5
+      ],
+      [
+        "sparring/competitors/from_data/guaguanco_4.py",
+        26.75
+      ],
+      [
+        "sparring/competitors/from_data/love_of_da_game.py",
+        27.0
+      ],
+      [
+        "sparring/competitors/from_data/catherine.py",
+        27.15
+      ],
+      [
+        "sparring/competitors/from_data/poke_bowl_one.py",
+        27.25
+      ],
+      [
+        "sparring/competitors/from_data/samith_pai_is_lowkey_leng.py",
+        27.65
+      ],
+      [
+        "sparring/competitors/from_data/guaguanco_5.py",
+        28.05
+      ],
+      [
+        "sparring/competitors/from_data/jongwon.py",
+        28.95
+      ],
+      [
+        "sparring/competitors/from_data/diddy_blud.py",
+        29.0
+      ],
+      [
+        "sparring/competitors/from_data/phil_ivey_goat.py",
+        29.75
+      ],
+      [
+        "sparring/competitors/from_data/testq.py",
+        29.75
+      ],
+      [
+        "sparring/competitors/from_data/poke_bowl.py",
+        30.3
+      ],
+      [
+        "sparring/competitors/from_data/riverforge.py",
+        30.4
+      ],
+      [
+        "sparring/competitors/from_data/preflop_warrior.py",
+        31.25
+      ],
+      [
+        "sparring/competitors/from_data/the_big_dog.py",
+        31.3
+      ],
+      [
+        "sparring/competitors/from_data/lil_fruit_x.py",
+        32.0
+      ],
+      [
+        "sparring/competitors/from_data/radishv1.py",
+        32.0
+      ],
+      [
+        "sparring/competitors/from_data/luck_is_all_u_need.py",
+        32.4
+      ],
+      [
+        "sparring/competitors/from_data/lf5.py",
+        32.55
+      ],
+      [
+        "sparring/competitors/from_data/tilted_towers_1.py",
+        32.9
+      ],
+      [
+        "sparring/competitors/from_data/pocket_nuts.py",
+        32.9
+      ],
+      [
+        "sparring/competitors/from_data/goatbot.py",
+        33.15
+      ],
+      [
+        "sparring/competitors/from_data/idc.py",
+        33.15
+      ],
+      [
+        "sparring/competitors/from_data/gladiator_v3.py",
+        33.2
+      ],
+      [
+        "sparring/competitors/from_data/finian_sucks.py",
+        33.25
+      ],
+      [
+        "sparring/competitors/from_data/nice_hand_sir.py",
+        33.45
+      ],
+      [
+        "sparring/competitors/from_data/tungbot.py",
+        33.8
+      ],
+      [
+        "sparring/competitors/from_data/pressure.py",
+        35.2
+      ],
+      [
+        "sparring/competitors/from_data/axiom.py",
+        36.4
+      ],
+      [
+        "sparring/competitors/from_data/radishv2.py",
+        36.85
+      ],
+      [
+        "sparring/competitors/from_data/dan_negreanu_on_ket.py",
+        36.9
+      ],
+      [
+        "sparring/competitors/from_data/netanyahu.py",
+        37.25
+      ],
+      [
+        "sparring/competitors/from_data/radishv0.py",
+        37.55
+      ],
+      [
+        "sparring/competitors/from_data/fullhouse.py",
+        38.1
+      ],
+      [
+        "sparring/competitors/from_data/renbot.py",
+        38.55
+      ],
+      [
+        "sparring/competitors/from_data/merch_where.py",
+        39.25
+      ],
+      [
+        "sparring/competitors/from_data/invoker.py",
+        39.5
+      ],
+      [
+        "sparring/competitors/from_data/elaine.py",
+        40.05
+      ],
+      [
+        "sparring/competitors/from_data/messi.py",
+        41.45
+      ],
+      [
+        "sparring/competitors/from_data/allen_iverson_2_0.py",
+        42.55
+      ],
+      [
+        "sparring/competitors/from_data/the_goon.py",
+        44.35
+      ],
+      [
+        "sparring/competitors/from_data/tutududu.py",
+        45.05
+      ],
+      [
+        "sparring/competitors/from_data/fufufafa.py",
+        46.4
+      ],
+      [
+        "sparring/competitors/from_data/invokerv2.py",
+        47.6
+      ],
+      [
+        "sparring/competitors/from_data/allen_iverson.py",
+        47.7
+      ],
+      [
+        "sparring/competitors/from_data/bigballer.py",
+        47.8
+      ],
+      [
+        "sparring/competitors/from_data/lil_fruit_2_2.py",
+        48.75
+      ],
+      [
+        "sparring/competitors/from_data/lil_fruit.py",
+        50.8
+      ],
+      [
+        "sparring/competitors/from_data/thanos.py",
+        51.8
+      ],
+      [
+        "sparring/competitors/from_data/biji_satu.py",
+        52.1
+      ],
+      [
+        "sparring/competitors/from_data/dudududu.py",
+        56.65
+      ],
+      [
+        "sparring/competitors/from_data/tilted_towers_2.py",
+        57.7
+      ],
+      [
+        "sparring/competitors/from_data/let_it_go.py",
+        58.5
+      ],
+      [
+        "sparring/competitors/from_data/who_me.py",
+        59.3
+      ],
+      [
+        "sparring/competitors/from_data/jason_idea.py",
+        60.15
+      ],
+      [
+        "sparring/competitors/from_data/scaffold.py",
+        65.2
+      ],
+      [
+        "sparring/competitors/from_data/kingfisher.py",
+        67.5
+      ],
+      [
+        "sparring/competitors/from_data/mac_projects_team.py",
+        69.75
+      ],
+      [
+        "sparring/competitors/from_data/fold_a2.py",
+        70.1
+      ],
+      [
+        "sparring/competitors/from_data/guaguanco.py",
+        70.2
+      ],
+      [
+        "sparring/competitors/from_data/guaguanco_3.py",
+        70.65
+      ],
+      [
+        "sparring/competitors/from_data/test1.py",
+        71.1
+      ],
+      [
+        "sparring/competitors/from_data/alo.py",
+        72.0
+      ]
+    ],
+    "analysis/candidates/mixed_65": [
+      [
+        "sparring/competitors/from_data/jongwon.py",
+        14.75
+      ],
+      [
+        "sparring/competitors/from_data/yep.py",
+        16.5
+      ],
+      [
+        "sparring/competitors/from_data/polygamous_lavender_marriage.py",
+        16.9
+      ],
+      [
+        "sparring/competitors/from_data/catherine.py",
+        17.05
+      ],
+      [
+        "sparring/competitors/from_data/mac_projects_team_testing_bot_2.py",
+        17.85
+      ],
+      [
+        "sparring/competitors/from_data/best_bot.py",
+        18.95
+      ],
+      [
+        "sparring/competitors/from_data/larp_larp_sahur.py",
+        19.65
+      ],
+      [
+        "analysis/candidates/mixed_65",
+        19.95
+      ],
+      [
+        "sparring/competitors/from_data/finian_sucks.py",
+        20.25
+      ],
+      [
+        "sparring/competitors/from_data/raiseyouredge.py",
+        20.4
+      ],
+      [
+        "sparring/competitors/from_data/gladiator_v3.py",
+        21.55
+      ],
+      [
+        "sparring/competitors/from_data/big_dog.py",
+        21.65
+      ],
+      [
+        "sparring/competitors/from_data/poke_bowl_one.py",
+        22.0
+      ],
+      [
+        "sparring/competitors/from_data/mac_projects_team_testing_bot_3.py",
+        23.1
+      ],
+      [
+        "sparring/competitors/from_data/axiom.py",
+        25.05
+      ],
+      [
+        "sparring/competitors/from_data/guaguanco_2.py",
+        26.6
+      ],
+      [
+        "sparring/competitors/from_data/the_big_dog.py",
+        27.35
+      ],
+      [
+        "sparring/competitors/from_data/zinger_box.py",
+        27.6
+      ],
+      [
+        "sparring/competitors/from_data/phil_ivey_goat.py",
+        28.45
+      ],
+      [
+        "sparring/competitors/from_data/love_of_da_game.py",
+        29.4
+      ],
+      [
+        "sparring/competitors/from_data/pocket_nuts.py",
+        29.4
+      ],
+      [
+        "sparring/competitors/from_data/diddy_blud.py",
+        30.05
+      ],
+      [
+        "sparring/competitors/from_data/mac_projects_team_testing_bot.py",
+        30.4
+      ],
+      [
+        "sparring/competitors/from_data/idc.py",
+        30.45
+      ],
+      [
+        "sparring/competitors/from_data/goatbot.py",
+        30.95
+      ],
+      [
+        "sparring/competitors/from_data/fullhouse.py",
+        31.05
+      ],
+      [
+        "sparring/competitors/from_data/poke_bowl.py",
+        31.95
+      ],
+      [
+        "sparring/competitors/from_data/testq.py",
+        32.25
+      ],
+      [
+        "sparring/competitors/from_data/artificial_incompetence.py",
+        32.3
+      ],
+      [
+        "sparring/competitors/from_data/tripi_tropi.py",
+        32.3
+      ],
+      [
+        "sparring/competitors/from_data/guaguanco_4.py",
+        33.55
+      ],
+      [
+        "sparring/competitors/from_data/radishv2.py",
+        34.1
+      ],
+      [
+        "sparring/competitors/from_data/renbot.py",
+        34.15
+      ],
+      [
+        "sparring/competitors/from_data/samith_pai_is_lowkey_leng.py",
+        34.2
+      ],
+      [
+        "sparring/competitors/from_data/guaguanco_5.py",
+        34.35
+      ],
+      [
+        "sparring/competitors/from_data/nice_hand_sir.py",
+        34.45
+      ],
+      [
+        "sparring/competitors/from_data/riverforge.py",
+        35.0
+      ],
+      [
+        "sparring/competitors/from_data/tungbot.py",
+        35.25
+      ],
+      [
+        "sparring/competitors/from_data/pressure.py",
+        35.3
+      ],
+      [
+        "sparring/competitors/from_data/fufufafa.py",
+        35.4
+      ],
+      [
+        "sparring/competitors/from_data/lf5.py",
+        36.0
+      ],
+      [
+        "sparring/competitors/from_data/luck_is_all_u_need.py",
+        36.3
+      ],
+      [
+        "sparring/competitors/from_data/preflop_warrior.py",
+        37.35
+      ],
+      [
+        "sparring/competitors/from_data/radishv0.py",
+        38.05
+      ],
+      [
+        "sparring/competitors/from_data/allen_iverson_2_0.py",
+        38.55
+      ],
+      [
+        "sparring/competitors/from_data/merch_where.py",
+        39.0
+      ],
+      [
+        "sparring/competitors/from_data/invoker.py",
+        39.55
+      ],
+      [
+        "sparring/competitors/from_data/tilted_towers_1.py",
+        41.65
+      ],
+      [
+        "sparring/competitors/from_data/dan_negreanu_on_ket.py",
+        42.9
+      ],
+      [
+        "sparring/competitors/from_data/radishv1.py",
+        42.95
+      ],
+      [
+        "sparring/competitors/from_data/elaine.py",
+        43.1
+      ],
+      [
+        "sparring/competitors/from_data/netanyahu.py",
+        43.55
+      ],
+      [
+        "sparring/competitors/from_data/the_goon.py",
+        43.65
+      ],
+      [
+        "sparring/competitors/from_data/lil_fruit_x.py",
+        44.05
+      ],
+      [
+        "sparring/competitors/from_data/lil_fruit_2_2.py",
+        45.1
+      ],
+      [
+        "sparring/competitors/from_data/bigballer.py",
+        45.45
+      ],
+      [
+        "sparring/competitors/from_data/tilted_towers_2.py",
+        46.7
+      ],
+      [
+        "sparring/competitors/from_data/invokerv2.py",
+        47.6
+      ],
+      [
+        "sparring/competitors/from_data/thanos.py",
+        47.6
+      ],
+      [
+        "sparring/competitors/from_data/biji_satu.py",
+        47.8
+      ],
+      [
+        "sparring/competitors/from_data/lil_fruit.py",
+        48.35
+      ],
+      [
+        "sparring/competitors/from_data/tutududu.py",
+        48.4
+      ],
+      [
+        "sparring/competitors/from_data/allen_iverson.py",
+        48.75
+      ],
+      [
+        "sparring/competitors/from_data/messi.py",
+        53.85
+      ],
+      [
+        "sparring/competitors/from_data/dudududu.py",
+        54.3
+      ],
+      [
+        "sparring/competitors/from_data/jason_idea.py",
+        55.9
+      ],
+      [
+        "sparring/competitors/from_data/who_me.py",
+        59.8
+      ],
+      [
+        "sparring/competitors/from_data/let_it_go.py",
+        65.3
+      ],
+      [
+        "sparring/competitors/from_data/kingfisher.py",
+        65.9
+      ],
+      [
+        "sparring/competitors/from_data/scaffold.py",
+        66.95
+      ],
+      [
+        "sparring/competitors/from_data/fold_a2.py",
+        67.8
+      ],
+      [
+        "sparring/competitors/from_data/guaguanco_3.py",
+        68.8
+      ],
+      [
+        "sparring/competitors/from_data/guaguanco.py",
+        69.0
+      ],
+      [
+        "sparring/competitors/from_data/test1.py",
+        69.75
+      ],
+      [
+        "sparring/competitors/from_data/mac_projects_team.py",
+        70.75
+      ],
+      [
+        "sparring/competitors/from_data/alo.py",
+        73.65
+      ]
+    ]
+  },
+  "checks": [
+    "Zero-sum chips, every verdict OK, no transport errors.",
+    "Every entrant occurs once per round; all seat rotations present.",
+    "Game/round/final points recomputed by independent pair-count formula.",
+    "Initial seeded order and cumulative-placement/game-point regrouping reproduced.",
+    "Unresolved prize ties retained; no invented playoff winners."
+  ]
+}

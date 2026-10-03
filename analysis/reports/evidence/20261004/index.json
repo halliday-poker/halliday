@@ -1,0 +1,210 @@
+{
+  "source-audit.json": {
+    "source": "analysis/results/refresh-20261004/source-audit.json",
+    "source_sha256": "c5fa64ec257eb249b37ca9ace56a61f3f52d989086a3495695c6df48ea485391",
+    "omitted_keys": [
+      "match_hands"
+    ],
+    "exported_sha256": "066ba73342d4ddd27198077a95526973f5c5c96707efe5848174c18e97cbb37a"
+  },
+  "behavior-comparison.json": {
+    "source": "analysis/results/refresh-20261004/behavior-comparison.json",
+    "source_sha256": "07f2bad69b7f98fee99811d787622870948fab318948335c4cc505be2b3da0bb",
+    "omitted_keys": [],
+    "exported_sha256": "f14503719c5d0daf33a9617ab9f07ce6a30302d15a66c381cc7ff8017f977c44"
+  },
+  "closed-loop-fidelity.json": {
+    "source": "analysis/results/refresh-20261004/closed-loop-fidelity.json",
+    "source_sha256": "c6c5c481d6fad81157081a00950084510077b30563dac7649789532d1a52cc21",
+    "omitted_keys": [],
+    "exported_sha256": "c6c5c481d6fad81157081a00950084510077b30563dac7649789532d1a52cc21"
+  },
+  "confirmation-plan.json": {
+    "source": "analysis/results/refresh-20261004/confirmation-plan.json",
+    "source_sha256": "f11e23ba1d69579d4d2f4d7b374a674a6ba00e20674eb094eba2bad23e42226d",
+    "omitted_keys": [],
+    "exported_sha256": "f11e23ba1d69579d4d2f4d7b374a674a6ba00e20674eb094eba2bad23e42226d"
+  },
+  "stress-plan.json": {
+    "source": "analysis/results/refresh-20261004/stress-plan.json",
+    "source_sha256": "0dfe239a6f894c03a7a605c821b295bbdc450d87365d5fc7eb5caff8837f3594",
+    "omitted_keys": [],
+    "exported_sha256": "0dfe239a6f894c03a7a605c821b295bbdc450d87365d5fc7eb5caff8837f3594"
+  },
+  "tournament-replication-plan.json": {
+    "source": "analysis/results/refresh-20261004/tournament-replication-plan.json",
+    "source_sha256": "d11e71a678e70cb9747700caaefc2f8c4e757478d54cf537efdbc6c5cde8be3a",
+    "omitted_keys": [],
+    "exported_sha256": "d11e71a678e70cb9747700caaefc2f8c4e757478d54cf537efdbc6c5cde8be3a"
+  },
+  "field-priors-plan.json": {
+    "source": "analysis/results/refresh-20261004/field-priors-plan.json",
+    "source_sha256": "ba7c84dab348bc85be9b63d30a4ee931eb0f4f22c0452a3a8a1f39660e7b8b06",
+    "omitted_keys": [],
+    "exported_sha256": "ba7c84dab348bc85be9b63d30a4ee931eb0f4f22c0452a3a8a1f39660e7b8b06"
+  },
+  "main-integration-plan.json": {
+    "source": "analysis/results/refresh-20261004/main-integration-plan.json",
+    "source_sha256": "17fe7cbb246a3079317bf9053e3beb7c081865a06eac46871eda06108c506de6",
+    "omitted_keys": [],
+    "exported_sha256": "17fe7cbb246a3079317bf9053e3beb7c081865a06eac46871eda06108c506de6"
+  },
+  "tuning-all-summary.json": {
+    "source": "analysis/results/refresh-20261004/tuning-all-summary.json",
+    "source_sha256": "bd9ff7cb4af4eaf2d98608bdba5ad7e8226f929e1cf5d1936f3eba87bf6ce8cf",
+    "omitted_keys": [
+      "table_metrics"
+    ],
+    "exported_sha256": "d39a8e7d48e2eccefbeecf9d8ea3f74887ae9a0a8a99e360576dd02f9303ca6e"
+  },
+  "tuning-reference-summary.json": {
+    "source": "analysis/results/refresh-20261004/tuning-reference-summary.json",
+    "source_sha256": "e7960cf22090048030b182a833210be39c70938157d65c4ae2eef0703d89d154",
+    "omitted_keys": [
+      "table_metrics"
+    ],
+    "exported_sha256": "297cc41e393eb8837fc1afab597d36551887630a95fdf3e461ab4a3f59591096"
+  },
+  "confirmation-summary.json": {
+    "source": "analysis/results/refresh-20261004/confirmation-summary.json",
+    "source_sha256": "89da1e08274b95a5e5d19459923e26668bb78104f55ca877a04c1abf6ec871b2",
+    "omitted_keys": [
+      "table_metrics"
+    ],
+    "exported_sha256": "853666017d48b772ef2c510c5c405cbc1e88d3b869de23b70bc791c8c6f8b243"
+  },
+  "reference-confirm-summary.json": {
+    "source": "analysis/results/refresh-20261004/reference-confirm-summary.json",
+    "source_sha256": "511c6a29edb8ddf93177e73c2bd5bc910586a1f3d121cecc5e60f708b130cf94",
+    "omitted_keys": [
+      "table_metrics"
+    ],
+    "exported_sha256": "416c2cd40b24720c6665201f4e8871aa69d8e82f840056ec2c90a3c815967665"
+  },
+  "eight-seat-confirm-summary.json": {
+    "source": "analysis/results/refresh-20261004/eight-seat-confirm-summary.json",
+    "source_sha256": "59382d764d529fac367c62dd62ac093c30e2fa5d1c17fae9441eb2488169bc97",
+    "omitted_keys": [
+      "table_metrics"
+    ],
+    "exported_sha256": "15fd02fbb1f3780f06ff0e98626f77cdfe413a8a44d733234bb26045e01d4bbf"
+  },
+  "default-confirm-summary.json": {
+    "source": "analysis/results/refresh-20261004/default-confirm-summary.json",
+    "source_sha256": "a4e77443fdde3a6ee3b784f0af630a45bea4612416877215fdc1e4f4b21bfc68",
+    "omitted_keys": [
+      "table_metrics"
+    ],
+    "exported_sha256": "b7652d947cf162b0c12e2316c12b581740ca827d7339a929db2a3dc38815ab67"
+  },
+  "tournament-replication-summary.json": {
+    "source": "analysis/results/refresh-20261004/tournament-replication-summary.json",
+    "source_sha256": "5130ae399125f561d2703e76233962d4de7f7f3727473bd306e5b3ea374d3078",
+    "omitted_keys": [],
+    "exported_sha256": "5130ae399125f561d2703e76233962d4de7f7f3727473bd306e5b3ea374d3078"
+  },
+  "four-round-verification.json": {
+    "source": "analysis/results/refresh-20261004/four-round-verification.json",
+    "source_sha256": "6f17b36475bba96df87e569aef06f56c980b9e89a58aeef6ad175fd9119f8ff7",
+    "omitted_keys": [],
+    "exported_sha256": "6f17b36475bba96df87e569aef06f56c980b9e89a58aeef6ad175fd9119f8ff7"
+  },
+  "tournament-replication-00-09-verification.json": {
+    "source": "analysis/results/refresh-20261004/tournament-replication-00-09-verification.json",
+    "source_sha256": "53a207f5bb2317e391ddb090dedd45b893f91f26f4f12755f04dec00a62f9cf1",
+    "omitted_keys": [],
+    "exported_sha256": "53a207f5bb2317e391ddb090dedd45b893f91f26f4f12755f04dec00a62f9cf1"
+  },
+  "tournament-replication-10-19-verification.json": {
+    "source": "analysis/results/refresh-20261004/tournament-replication-10-19-verification.json",
+    "source_sha256": "de7a717f0f723c1db954530d8a438653edd47490b88521b02cc842b521fc07c7",
+    "omitted_keys": [],
+    "exported_sha256": "de7a717f0f723c1db954530d8a438653edd47490b88521b02cc842b521fc07c7"
+  },
+  "tournament-replication-20-39-verification.json": {
+    "source": "analysis/results/refresh-20261004/tournament-replication-20-39-verification.json",
+    "source_sha256": "6cc95f07bf5a39bad06a0fefc28cbc7e6e4297e522de0e0a6bdb301f4a3d7594",
+    "omitted_keys": [],
+    "exported_sha256": "6cc95f07bf5a39bad06a0fefc28cbc7e6e4297e522de0e0a6bdb301f4a3d7594"
+  },
+  "field-priors-summary.json": {
+    "source": "analysis/results/refresh-20261004/field-priors-summary.json",
+    "source_sha256": "58275c9f4b97ce5dd13643036fb4e832ddfc195de802b1f6292685e9f1e36d15",
+    "omitted_keys": [
+      "table_metrics"
+    ],
+    "exported_sha256": "3187d3225ead99e13459814d8a9b715ba644a2a9707b5fd1db6133b36ce6d273"
+  },
+  "main-integration-summary.json": {
+    "source": "analysis/results/refresh-20261004/main-integration-summary.json",
+    "source_sha256": "4e7328b8d7a7c29c9867be1c0ed7de06d6a197307d7748473bfd6fc15adb72d5",
+    "omitted_keys": [
+      "table_metrics"
+    ],
+    "exported_sha256": "e73246d8741dfa94ae6323119c5ed3cba9480c8f9fbdf75033ac5fd607cff401"
+  },
+  "baseline-resource-check.json": {
+    "source": "analysis/results/refresh-20261004/baseline-resource-check.json",
+    "source_sha256": "324e5c8a0de7c7dd5fd4d51436bc7556967b27321a79b88b009a44367149851b",
+    "omitted_keys": [],
+    "exported_sha256": "324e5c8a0de7c7dd5fd4d51436bc7556967b27321a79b88b009a44367149851b"
+  },
+  "mixed65-resource-check.json": {
+    "source": "analysis/results/refresh-20261004/mixed65-resource-check.json",
+    "source_sha256": "5a374106855208362d3e519a81f3dc1f46109262c28a3e747d3a20061177465d",
+    "omitted_keys": [],
+    "exported_sha256": "5a374106855208362d3e519a81f3dc1f46109262c28a3e747d3a20061177465d"
+  },
+  "main-resource-check.json": {
+    "source": "analysis/results/refresh-20261004/main-resource-check.json",
+    "source_sha256": "94f4c0dd6a864dd7323dcacec2c4f6386b50dafe1a347169f1f49af89b6c3155",
+    "omitted_keys": [],
+    "exported_sha256": "94f4c0dd6a864dd7323dcacec2c4f6386b50dafe1a347169f1f49af89b6c3155"
+  },
+  "feature-batching-check.json": {
+    "source": "analysis/results/refresh-20261004/feature-batching-check.json",
+    "source_sha256": "bd938ebbb3659f718c2fcd8b951e27df2b87611fe68b86b1555afb62815aba9f",
+    "omitted_keys": [],
+    "exported_sha256": "cef5fa48ae23a0ab691d2441b328a161a4f9db888eb1a2012e472e9c8ab9f66c"
+  },
+  "package-checks.json": {
+    "source": "analysis/results/refresh-20261004/package-checks.json",
+    "source_sha256": "32e2af23d764138ccd3f6936f2421863fc5099a10c7e781f5144928c072e338a",
+    "omitted_keys": [],
+    "exported_sha256": "32e2af23d764138ccd3f6936f2421863fc5099a10c7e781f5144928c072e338a"
+  },
+  "main-package-check.json": {
+    "source": "analysis/results/refresh-20261004/main-package-check.json",
+    "source_sha256": "46d00499c1bf338d85983e20885e6518f55b5f7d9dcd94b05c68a94d848fd00b",
+    "omitted_keys": [],
+    "exported_sha256": "46d00499c1bf338d85983e20885e6518f55b5f7d9dcd94b05c68a94d848fd00b"
+  },
+  "halliday-summary.json": {
+    "source": "analysis/results/halliday-performance-20261004/summary.json",
+    "source_sha256": "f48e6615f7664e4deb93d7af62d68ce02e056dbef1181c3b023f1b0f5a0d209f",
+    "omitted_keys": [],
+    "exported_sha256": "9a7baf09f4a2d7f2bdc5ba555af24b10e48bf537d23838d8a5dcf85c3e484e3c"
+  },
+  "halliday-verification.json": {
+    "source": "analysis/results/halliday-performance-20261004/verification.json",
+    "source_sha256": "cf3b801ead9cbe2409a68aeac5cd49a23b8a15206b615e53d6ec3b4d416f38bc",
+    "omitted_keys": [],
+    "exported_sha256": "a715239cba6e4c939e7f94673bc1593a5e15fa85e5a6dfe354eb3ea7e14765df"
+  },
+  "final-tests.log": {
+    "source": "analysis/results/refresh-20261004/final-tests.log",
+    "sha256": "a2b6a628b6c3806404ddbf0e6178c1a4f6244ed12089af7d381c6a14b2954193"
+  },
+  "gpu-concurrency.txt": {
+    "source": "analysis/results/refresh-20261004/gpu-concurrency.txt",
+    "sha256": "cb2c6db8c6686d21b88fc7319bf79a51aab00bae85743777dd8a18deac2ee9b8"
+  },
+  "initial-tournament-summary.json": {
+    "source": "analysis/results/refresh-20261004/four-round-confirm.json",
+    "source_sha256": "13db2a83f8afae4519f7ffc8b77c812bebeeccbc79ea09c256f016cca24802b7",
+    "omitted_keys": [
+      "per-game records",
+      "per-event standings"
+    ]
+  }
+}

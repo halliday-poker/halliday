@@ -5,7 +5,8 @@ import competitor_base
 
 class CompetitorBot(competitor_base.FittedBot):
     DISPLAY_NAME = 'guaguanco 4'
-    STYLE = {'vpip': 0.16, 'pfr': 0.16, 'threebet': 0.05, 'limp': 0.1, 'aggression': 0.7000000000000001, 'cbet': 0.5, 'bluff': 1.0, 'stickiness': 0.73, 'size': 0.85, 'adaptive': 0}
+    STYLE = {'vpip': 0.16, 'pfr': 0.16, 'threebet': 0.05, 'limp': 0.1, 'aggression': 0.7000000000000001, 'cbet': 0.5, 'bluff': 1.0, 'stickiness': 0.73, 'size': 0.87, 'adaptive': 0}
+    POLICY = {'file': 'behavior-policy.npz', 'bot': 41, 'epoch': 0, 'weight': 1, 'model': 'upload', 'heldout_comparison': 'behavior-comparison.json', 'status': 'fitted_public_context_policy'}
 
 
 def make_seeded_bot(seed):

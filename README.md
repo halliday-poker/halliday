@@ -16,7 +16,8 @@ Entry for the MAC Poker Bot Tournament. Submissions close **Sun 4 Oct 2026, 6pm 
 | `sparring/param.py` | Adjustable-style opponent; the harness draws randomised archetypes from it |
 | `sparring/competitors/from_data/` | Opponents fitted from the latest analyzed segments, with provenance and harness pools |
 | `harness/` | Evaluation harness: A/B bot versions over random tables. See [harness/README.md](harness/README.md) |
-| `opponent_model/` | Offline CUDA estimators for sparring parameters, uncertainty and confirmed collection-time regimes. See [opponent_model/README.md](opponent_model/README.md) |
+| `opponent_model/` | Offline CUDA parameter estimates and public-context replicas, with validated candidate upload intervals. See [opponent_model/README.md](opponent_model/README.md) |
+| `analysis/` | Replay blunder audits, simulation fidelity, strategy experiments and resource checks. See [analysis/README.md](analysis/README.md) |
 | `snapshots/` | Frozen versions of our bot (`v0` = the template). Promoted ones are listed in `harness/league.json` |
 | `docs/` | Markdown snapshot of https://docs.poker.monashcoding.com, one file per page |
 | `docs/writing-a-bot.md` | `state` fields, actions and observer hooks. Start here |

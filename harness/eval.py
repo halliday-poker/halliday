@@ -232,6 +232,10 @@ class TimedTransport(InProcessTransport):
         self.max_ms = 0.0
         self.total_ms = 0.0
         self.error: str | None = None
+        self.player = None
+        self.action_counts = defaultdict(lambda: defaultdict(int))
+        self.vpip_hands = set()
+        self.pfr_hands = set()
 
     def _record(self, exc: BaseException) -> None:
         if self.error is None:
@@ -239,6 +243,13 @@ class TimedTransport(InProcessTransport):
             self.error = "".join(traceback.format_exception(cause))[-2000:]
 
     def send(self, msg):
+        if msg.get('type')=='hello':
+            self.player=msg['player']
+        if msg.get('type')=='action' and msg['players'][msg['seat']]==self.player:
+            self.action_counts[msg['street']][msg['action']]+=1
+            if msg['street']=='preflop':
+                if msg['action'] in ('call','raise'):self.vpip_hands.add(msg['hand'])
+                if msg['action']=='raise':self.pfr_hands.add(msg['hand'])
         try:
             super().send(msg)
         except BotDied as exc:
@@ -310,10 +321,8 @@ def compute_plan(args, *, gating=False, compatible=True):
             raise ValueError("--gpu-devices must list distinct available CUDA indices")
         devices = [available[d] for d in selected]
     if args.gpu_workers is not None:
-        if args.gpu_workers > len(devices):
-            raise ValueError("Use at most one GPU worker per selected device")
         devices = devices[:args.gpu_workers]
-    return dict(requested=mode, device="cuda", workers=len(devices), devices=devices,
+    return dict(requested=mode, device="cuda", workers=args.gpu_workers or len(devices), devices=devices,
                 batch_size=args.gpu_batch_size)
 
 
@@ -322,15 +331,15 @@ def worker_pool(plan, args):
     if plan["device"] == "cuda":
         context = mp.get_context("spawn")
         devices, ready = context.Queue(), context.Queue()
-        for device in plan["devices"]:
-            devices.put(device["index"])
+        for index in range(plan['workers']):
+            devices.put(plan['devices'][index%len(plan['devices'])]['index'])
         pool = None
         try:
             pool = context.Pool(plan["workers"], initializer=_worker_init,
                                 initargs=(devices, ready, plan["batch_size"]))
             started = time.monotonic()
             info = [ready.get(timeout=max(1, 120 - (time.monotonic() - started)))
-                    for _ in plan["devices"]]
+                    for _ in range(plan['workers'])]
             errors = [item["error"] for item in info if "error" in item]
             if errors:
                 raise RuntimeError("; ".join(errors))
@@ -392,6 +401,7 @@ def _play_game(job: dict) -> dict:
     compute = dict(device="cpu")
     if before is not None:
         compute = _gpu_evaluator.metadata()
+        compute['worker_pid']=os.getpid()
         for key in ("batches", "ranked_hands", "gpu_seconds"):
             compute[key] -= before[key]
     return {
@@ -403,6 +413,8 @@ def _play_game(job: dict) -> dict:
         "errors": [t.error for t in transports],
         "wall_s": round(time.perf_counter() - t0, 3),
         "compute": compute,
+        "behavior": [dict(actions={street:dict(counts) for street,counts in t.action_counts.items()},
+                          vpip_hands=len(t.vpip_hands),pfr_hands=len(t.pfr_hands)) for t in transports],
     }
 
 
@@ -544,7 +556,18 @@ def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate
     """Play every candidate over the same tables, print the report and save it.
     With n_gate > 0, the last candidate is gated against the first n_gate."""
     sizes = [int(s) for s in args.sizes.split(",")]
-    tables = draw_tables(pool, n_tables, sizes, seed)
+    if getattr(args,'tables_json',None):
+        tables=json.loads(Path(args.tables_json).read_text())
+        if not isinstance(tables,list) or not tables or any(not isinstance(t,list) or not 1<=len(t)<=8 for t in tables):
+            raise ValueError('tables-json must contain a nonempty list of opponent-spec lists (1–8 opponents)')
+        for table in tables:
+            if len(set(table))!=len(table):
+                raise ValueError('Duplicate opponent identity in predefined table')
+            for spec in table:
+                make_bot(spec,'predefined-table-check')
+    else:
+        tables = draw_tables(pool, n_tables, sizes, seed)
+    n_tables=len(tables)
     budget_ms = args.time_ms + args.increment_ms * args.deals
 
     jobs = [
@@ -760,7 +783,7 @@ def cmd_run(args) -> int:
         report = evaluate(candidates, pool, n_tables, seed, args,
                           n_gate=len(league) if gating else 0, plan=plan)
         gate = report["gate"]
-        if not gate or gate["verdict"] != "INCONCLUSIVE" or args.no_extend \
+        if not gate or gate["verdict"] != "INCONCLUSIVE" or args.no_extend or getattr(args,'tables_json',None) \
                 or n_tables * 2 > args.max_tables:
             break
         n_tables *= 2
@@ -876,6 +899,7 @@ def main(argv=None) -> int:
     r.add_argument("--pool", default=str(DEFAULT_POOL), help="opponent pool file")
     r.add_argument("--add", nargs="*", default=[], help="extra opponents added to the pool")
     r.add_argument("--sizes", default="4,5,5,6", help="seat counts to draw from (repeat to weight)")
+    r.add_argument('--tables-json',help='Explicit ordered opponent tables, for matching observed field composition; overrides --tables and --sizes')
     r.add_argument("--deals", type=int, default=100, help="hands per game")
     r.add_argument("--time-ms", type=int, default=30_000, dest="time_ms")
     r.add_argument("--increment-ms", type=int, default=100, dest="increment_ms")
@@ -883,7 +907,7 @@ def main(argv=None) -> int:
     r.add_argument("--device", choices=("auto", "cpu", "cuda"), default="auto",
                    help="auto uses available CUDA workers for field/A-B runs; promotion gates stay on CPU")
     r.add_argument("--gpu-devices", help="comma-separated CUDA indices, e.g. 0,1,2,3; default all available")
-    r.add_argument("--gpu-workers", type=int, help="limit GPU workers; at most one per selected GPU")
+    r.add_argument("--gpu-workers", type=int, help="GPU worker processes; default one per device, larger counts share devices round-robin and need additional CUDA-context memory")
     r.add_argument("--gpu-batch-size", type=int, default=128,
                    help="equity deals per CUDA batch (1-4096); default 128")
     r.add_argument("--league", type=int, default=3, help="league versions used as gate baselines and opponents")

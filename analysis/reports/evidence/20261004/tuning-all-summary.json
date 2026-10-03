@@ -1,0 +1,2041 @@
+{
+  "purpose": "all-learned-field-tuning",
+  "units": {
+    "mbb": "bb/100 after multiplying harness mbb/hand by 0.1",
+    "game_pts": "per game",
+    "round_pts": "per duplicate set"
+  },
+  "inference": "Paired complete duplicate tables; seed blocks retained. Intervals exclude opponent model error. Tuning results cannot confirm selected performance.",
+  "comparisons": 11,
+  "summary": [
+    {
+      "bot": "snapshots/analysis_baseline_20261004",
+      "hash": "8015e4b3",
+      "tables": 352,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            64.51699810606061,
+            10.187425569804143
+          ],
+          "family_adjusted_mean_ci": [
+            64.51699810606061,
+            14.74888129985757
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.4245975378787876,
+            0.07307742864274153
+          ],
+          "family_adjusted_mean_ci": [
+            3.4245975378787876,
+            0.10579810506250675
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.7755681818181817,
+            0.13157368866853958
+          ],
+          "family_adjusted_mean_ci": [
+            3.7755681818181817,
+            0.19048627183187494
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/river_guard",
+      "hash": "c45615c5",
+      "tables": 192,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            69.81263020833333,
+            15.317107869753544
+          ],
+          "family_adjusted_mean_ci": [
+            69.81263020833333,
+            22.175396942061045
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            -2.6481770833333336,
+            3.4990993776256185
+          ],
+          "family_adjusted_mean_ci": [
+            -2.6481770833333336,
+            5.06583346532346
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.405208333333333,
+            0.09736388606411772
+          ],
+          "family_adjusted_mean_ci": [
+            3.405208333333333,
+            0.1409589094529342
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            -0.050998263888888895,
+            0.04340192395011679
+          ],
+          "family_adjusted_mean_ci": [
+            -0.050998263888888895,
+            0.0628352884778941
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.6953125,
+            0.18463530639930295
+          ],
+          "family_adjusted_mean_ci": [
+            3.6953125,
+            0.2673064160505573
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            -0.08072916666666667,
+            0.12174888571792586
+          ],
+          "family_adjusted_mean_ci": [
+            -0.08072916666666667,
+            0.1762623787079247
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/turn_discipline",
+      "hash": "4da27674",
+      "tables": 192,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            72.22708333333334,
+            15.295836665200682
+          ],
+          "family_adjusted_mean_ci": [
+            72.22708333333334,
+            22.14460148064584
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            -0.23372395833333295,
+            3.3080889294248896
+          ],
+          "family_adjusted_mean_ci": [
+            -0.23372395833333295,
+            4.789297415244686
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.444878472222222,
+            0.09965751138257663
+          ],
+          "family_adjusted_mean_ci": [
+            3.444878472222222,
+            0.14427951359737742
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            -0.011328124999999986,
+            0.03817019428360959
+          ],
+          "family_adjusted_mean_ci": [
+            -0.011328124999999986,
+            0.05526103340083428
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.7682291666666665,
+            0.18506328939563768
+          ],
+          "family_adjusted_mean_ci": [
+            3.7682291666666665,
+            0.26792602994300213
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            -0.0078125,
+            0.10746201757688634
+          ],
+          "family_adjusted_mean_ci": [
+            -0.0078125,
+            0.15557851496677738
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/shove_callers",
+      "hash": "06e601f4",
+      "tables": 192,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            66.94500868055556,
+            14.137031871339353
+          ],
+          "family_adjusted_mean_ci": [
+            66.94500868055556,
+            20.46693775321453
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            -5.515798611111111,
+            3.9005315204061834
+          ],
+          "family_adjusted_mean_ci": [
+            -5.515798611111111,
+            5.647008265890062
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.4391059027777775,
+            0.09921949350244591
+          ],
+          "family_adjusted_mean_ci": [
+            3.4391059027777775,
+            0.14364537166652383
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            -0.01710069444444444,
+            0.01964815413344607
+          ],
+          "family_adjusted_mean_ci": [
+            -0.01710069444444444,
+            0.028445684445974635
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.7395833333333335,
+            0.18222339471974475
+          ],
+          "family_adjusted_mean_ci": [
+            3.7395833333333335,
+            0.2638145624096352
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            -0.036458333333333336,
+            0.0399622120765577
+          ],
+          "family_adjusted_mean_ci": [
+            -0.036458333333333336,
+            0.05785543348104341
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/mixed_35",
+      "hash": "b82e9b47",
+      "tables": 192,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            73.30021701388888,
+            15.214945424091363
+          ],
+          "family_adjusted_mean_ci": [
+            73.30021701388888,
+            22.027490901025438
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            0.8394097222222222,
+            4.456289272940762
+          ],
+          "family_adjusted_mean_ci": [
+            0.8394097222222222,
+            6.451608512286337
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.461892361111111,
+            0.09721284057274596
+          ],
+          "family_adjusted_mean_ci": [
+            3.461892361111111,
+            0.14074023281006146
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            0.005685763888888897,
+            0.04846886085829004
+          ],
+          "family_adjusted_mean_ci": [
+            0.005685763888888897,
+            0.07017096425784988
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.8255208333333335,
+            0.1735145481711749
+          ],
+          "family_adjusted_mean_ci": [
+            3.8255208333333335,
+            0.25120629910273573
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            0.049479166666666664,
+            0.11749339124928006
+          ],
+          "family_adjusted_mean_ci": [
+            0.049479166666666664,
+            0.1701014715817621
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/mixed_65",
+      "hash": "f1abf214",
+      "tables": 352,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            65.39651988636363,
+            10.085843713669805
+          ],
+          "family_adjusted_mean_ci": [
+            65.39651988636363,
+            14.601815809358643
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            0.8795217803030299,
+            2.7720011737794787
+          ],
+          "family_adjusted_mean_ci": [
+            0.8795217803030299,
+            4.013174476221023
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.433996212121212,
+            0.0697369942250768
+          ],
+          "family_adjusted_mean_ci": [
+            3.433996212121212,
+            0.10096197935257993
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            0.009398674242424259,
+            0.03125403341591108
+          ],
+          "family_adjusted_mean_ci": [
+            0.009398674242424259,
+            0.045248137111240434
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.8110795454545454,
+            0.1277874130135157
+          ],
+          "family_adjusted_mean_ci": [
+            3.8110795454545454,
+            0.18500467789807393
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            0.03551136363636364,
+            0.08134356945144205
+          ],
+          "family_adjusted_mean_ci": [
+            0.03551136363636364,
+            0.1177654395730819
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/value_pressure",
+      "hash": "9bcdde8a",
+      "tables": 352,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            65.71313920454546,
+            10.350826796131313
+          ],
+          "family_adjusted_mean_ci": [
+            65.71313920454546,
+            14.98544600159084
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            1.1961410984848484,
+            2.706782801499965
+          ],
+          "family_adjusted_mean_ci": [
+            1.1961410984848484,
+            3.918754347727366
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.424147727272727,
+            0.0737811955071024
+          ],
+          "family_adjusted_mean_ci": [
+            3.424147727272727,
+            0.10681698602257947
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            -0.00044981060606061644,
+            0.0309320453833507
+          ],
+          "family_adjusted_mean_ci": [
+            -0.00044981060606061644,
+            0.044781977801445445
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.788352272727273,
+            0.1298745169995376
+          ],
+          "family_adjusted_mean_ci": [
+            3.788352272727273,
+            0.1880262900550782
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            0.01278409090909091,
+            0.07899447591243187
+          ],
+          "family_adjusted_mean_ci": [
+            0.01278409090909091,
+            0.1143645311166985
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/small_ball",
+      "hash": "4a45e40c",
+      "tables": 192,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            73.27790798611112,
+            13.868910565703782
+          ],
+          "family_adjusted_mean_ci": [
+            73.27790798611112,
+            20.078764187313535
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            0.8171006944444447,
+            6.127696871644612
+          ],
+          "family_adjusted_mean_ci": [
+            0.8171006944444447,
+            8.87139475838472
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.4222222222222225,
+            0.10230083190183821
+          ],
+          "family_adjusted_mean_ci": [
+            3.4222222222222225,
+            0.14810639020216193
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            -0.03398437500000002,
+            0.051872860692847474
+          ],
+          "family_adjusted_mean_ci": [
+            -0.03398437500000002,
+            0.07509911702427914
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.7760416666666665,
+            0.18687529670333913
+          ],
+          "family_adjusted_mean_ci": [
+            3.7760416666666665,
+            0.27054936991369866
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            0.0,
+            0.12885563238178452
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.1865511962561078
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/mixed_00",
+      "hash": "d03b8f36",
+      "tables": 160,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            53.283854166666664,
+            12.897370501581461
+          ],
+          "family_adjusted_mean_ci": [
+            53.283854166666664,
+            18.672213632846848
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            -1.7005729166666677,
+            5.277282211253103
+          ],
+          "family_adjusted_mean_ci": [
+            -1.7005729166666677,
+            7.640203934380085
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.3477083333333333,
+            0.09799421617715712
+          ],
+          "family_adjusted_mean_ci": [
+            3.3477083333333333,
+            0.14187147209726897
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            -0.03895833333333335,
+            0.06646878227959614
+          ],
+          "family_adjusted_mean_ci": [
+            -0.03895833333333335,
+            0.09623041398148711
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.63125,
+            0.1798670444938943
+          ],
+          "family_adjusted_mean_ci": [
+            3.63125,
+            0.26040314805928433
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            -0.14375,
+            0.1605485278524767
+          ],
+          "family_adjusted_mean_ci": [
+            -0.14375,
+            0.23243469745502934
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/mixed_85",
+      "hash": "7038e5ec",
+      "tables": 160,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            55.7665625,
+            12.973466005461777
+          ],
+          "family_adjusted_mean_ci": [
+            55.7665625,
+            18.782381166979338
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            0.7821354166666662,
+            3.7779781258942906
+          ],
+          "family_adjusted_mean_ci": [
+            0.7821354166666662,
+            5.46958115673816
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.379270833333333,
+            0.10527742894686874
+          ],
+          "family_adjusted_mean_ci": [
+            3.379270833333333,
+            0.1524157690725988
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            -0.007395833333333333,
+            0.033802263541156015
+          ],
+          "family_adjusted_mean_ci": [
+            -0.007395833333333333,
+            0.048937346262702366
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.75625,
+            0.1901711400291853
+          ],
+          "family_adjusted_mean_ci": [
+            3.75625,
+            0.27532093871317187
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            -0.01875,
+            0.0927300619367444
+          ],
+          "family_adjusted_mean_ci": [
+            -0.01875,
+            0.13425027422897556
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/pressure_mixed_65",
+      "hash": "51743912",
+      "tables": 160,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            55.3325,
+            12.693024511708824
+          ],
+          "family_adjusted_mean_ci": [
+            55.3325,
+            18.37637100527795
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            0.3480729166666666,
+            5.427195994929657
+          ],
+          "family_adjusted_mean_ci": [
+            0.3480729166666666,
+            7.857242143445552
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.372708333333333,
+            0.10257471369616274
+          ],
+          "family_adjusted_mean_ci": [
+            3.372708333333333,
+            0.1485029035358797
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            -0.01395833333333335,
+            0.05984443491419366
+          ],
+          "family_adjusted_mean_ci": [
+            -0.01395833333333335,
+            0.08663999171907211
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.75,
+            0.18514434280570383
+          ],
+          "family_adjusted_mean_ci": [
+            3.75,
+            0.2680433753033018
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            -0.025,
+            0.15417000336351724
+          ],
+          "family_adjusted_mean_ci": [
+            -0.025,
+            0.223200166129005
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/shove_ranges_only",
+      "hash": "3c0217d4",
+      "tables": 160,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            58.27432291666666,
+            13.801433212156999
+          ],
+          "family_adjusted_mean_ci": [
+            58.27432291666666,
+            19.981073610722735
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            3.2898958333333335,
+            6.365979941269992
+          ],
+          "family_adjusted_mean_ci": [
+            3.2898958333333335,
+            9.216369912862143
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.3921875,
+            0.10810584410551088
+          ],
+          "family_adjusted_mean_ci": [
+            3.3921875,
+            0.15651061709437755
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            0.005520833333333327,
+            0.01634288881258653
+          ],
+          "family_adjusted_mean_ci": [
+            0.005520833333333327,
+            0.023660474919989335
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            3.759375,
+            0.1960331020592885
+          ],
+          "family_adjusted_mean_ci": [
+            3.759375,
+            0.28380761491746503
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            -0.015625,
+            0.04381131709391017
+          ],
+          "family_adjusted_mean_ci": [
+            -0.015625,
+            0.06342798884575554
+          ]
+        }
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "file": "harness/results/20261004-030355.json",
+      "sha256": "8f28c5dba165beef7287ef794c7d2d0054c082243bc1cd42f6a6e4c62ef6ecc0",
+      "seed": "strategy-tune-a-20261004",
+      "args": {
+        "cmd": "run",
+        "bots": [
+          "snapshots/analysis_baseline_20261004",
+          "analysis/candidates/river_guard",
+          "analysis/candidates/turn_discipline",
+          "analysis/candidates/shove_callers",
+          "analysis/candidates/mixed_35",
+          "analysis/candidates/mixed_65",
+          "analysis/candidates/value_pressure",
+          "analysis/candidates/small_ball"
+        ],
+        "tables": 96,
+        "seed": "strategy-tune-a-20261004",
+        "pool": "sparring/competitors/from_data/pool.txt",
+        "add": [],
+        "sizes": "4,5,5,6",
+        "tables_json": null,
+        "deals": 100,
+        "time_ms": 30000,
+        "increment_ms": 100,
+        "workers": 15,
+        "device": "cuda",
+        "gpu_devices": "2,3",
+        "gpu_workers": 8,
+        "gpu_batch_size": 128,
+        "league": 3,
+        "no_league": true,
+        "max_tables": 1600,
+        "no_extend": false,
+        "max_bank": 50,
+        "label": "strategy-screen-a"
+      },
+      "tables": 96,
+      "games": 3904,
+      "summary": [
+        {
+          "bot": "snapshots/analysis_baseline_20261004",
+          "hash": "8015e4b3",
+          "mbb": [
+            695.5347222222222,
+            217.07630018399252
+          ],
+          "game_pts": [
+            3.4711805555555557,
+            0.1402191154554188
+          ],
+          "round_pts": [
+            3.7552083333333335,
+            0.26403058282315645
+          ],
+          "won_pct": 30.208333333333332,
+          "bad_games": 0,
+          "max_ms": 101.05,
+          "bank_pct": 8.38825
+        },
+        {
+          "bot": "analysis/candidates/river_guard",
+          "hash": "c45615c5",
+          "mbb": [
+            653.5069444444445,
+            221.9883693463584
+          ],
+          "game_pts": [
+            3.418923611111111,
+            0.13735275834907923
+          ],
+          "round_pts": [
+            3.6770833333333335,
+            0.25838007146529196
+          ],
+          "won_pct": 26.041666666666668,
+          "bad_games": 0,
+          "max_ms": 87.3,
+          "bank_pct": 8.09675,
+          "vs_baseline": {
+            "d_mbb": [
+              -42.027777777777786,
+              49.424647317139765
+            ],
+            "d_round_pts": [
+              -0.078125,
+              0.16567719303412481
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/turn_discipline",
+          "hash": "4da27674",
+          "mbb": [
+            702.0121527777778,
+            225.09004018033417
+          ],
+          "game_pts": [
+            3.4802083333333336,
+            0.13362083269850883
+          ],
+          "round_pts": [
+            3.8125,
+            0.25313893453089864
+          ],
+          "won_pct": 31.25,
+          "bad_games": 0,
+          "max_ms": 94.74,
+          "bank_pct": 7.88475,
+          "vs_baseline": {
+            "d_mbb": [
+              6.477430555555557,
+              51.39279467888605
+            ],
+            "d_round_pts": [
+              0.057291666666666664,
+              0.1666542196558298
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/shove_callers",
+          "hash": "06e601f4",
+          "mbb": [
+            636.6953125,
+            206.761211960041
+          ],
+          "game_pts": [
+            3.4447916666666667,
+            0.13835998274710692
+          ],
+          "round_pts": [
+            3.6979166666666665,
+            0.25939698613925466
+          ],
+          "won_pct": 28.125,
+          "bad_games": 0,
+          "max_ms": 85.1,
+          "bank_pct": 7.919,
+          "vs_baseline": {
+            "d_mbb": [
+              -58.83940972222223,
+              62.23059285069592
+            ],
+            "d_round_pts": [
+              -0.057291666666666664,
+              0.061348422384716356
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/mixed_35",
+          "hash": "b82e9b47",
+          "mbb": [
+            681.4322916666666,
+            214.91542916290155
+          ],
+          "game_pts": [
+            3.4869791666666665,
+            0.1330679206684535
+          ],
+          "round_pts": [
+            3.7760416666666665,
+            0.24451372612274122
+          ],
+          "won_pct": 31.25,
+          "bad_games": 0,
+          "max_ms": 83.64,
+          "bank_pct": 8.412,
+          "vs_baseline": {
+            "d_mbb": [
+              -14.102430555555564,
+              59.66995456458768
+            ],
+            "d_round_pts": [
+              0.020833333333333332,
+              0.19627739872808073
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/mixed_65",
+          "hash": "f1abf214",
+          "mbb": [
+            693.8012152777778,
+            217.41263679091614
+          ],
+          "game_pts": [
+            3.496527777777778,
+            0.1355617612842284
+          ],
+          "round_pts": [
+            3.8020833333333335,
+            0.2515653588065376
+          ],
+          "won_pct": 32.29166666666667,
+          "bad_games": 0,
+          "max_ms": 88.06,
+          "bank_pct": 8.4295,
+          "vs_baseline": {
+            "d_mbb": [
+              -1.7335069444444482,
+              53.36136790087227
+            ],
+            "d_round_pts": [
+              0.046875,
+              0.17955612378839178
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/value_pressure",
+          "hash": "9bcdde8a",
+          "mbb": [
+            758.4644097222222,
+            226.98090148628242
+          ],
+          "game_pts": [
+            3.5272569444444444,
+            0.1457201738478804
+          ],
+          "round_pts": [
+            3.9114583333333335,
+            0.2437048644295748
+          ],
+          "won_pct": 32.29166666666667,
+          "bad_games": 0,
+          "max_ms": 85.66,
+          "bank_pct": 8.7685,
+          "vs_baseline": {
+            "d_mbb": [
+              62.9296875,
+              52.16296439085857
+            ],
+            "d_round_pts": [
+              0.15625,
+              0.17005863604352017
+            ],
+            "call": "BETTER"
+          }
+        },
+        {
+          "bot": "analysis/candidates/small_ball",
+          "hash": "4a45e40c",
+          "mbb": [
+            729.6909722222222,
+            180.81847145981013
+          ],
+          "game_pts": [
+            3.4925347222222225,
+            0.1427025107216285
+          ],
+          "round_pts": [
+            3.8385416666666665,
+            0.2642299295755111
+          ],
+          "won_pct": 31.25,
+          "bad_games": 0,
+          "max_ms": 85.24,
+          "bank_pct": 8.478250000000001,
+          "vs_baseline": {
+            "d_mbb": [
+              34.15625,
+              107.86338122968478
+            ],
+            "d_round_pts": [
+              0.08333333333333333,
+              0.19721407610225364
+            ],
+            "call": "inconclusive"
+          }
+        }
+      ],
+      "compute": {
+        "requested": "cuda",
+        "device": "cuda",
+        "workers": 8,
+        "devices": [
+          {
+            "index": 2,
+            "name": "Tesla V100-SXM2-16GB",
+            "architecture": "sm_70"
+          },
+          {
+            "index": 3,
+            "name": "Tesla V100-SXM2-16GB",
+            "architecture": "sm_70"
+          }
+        ],
+        "batch_size": 128,
+        "worker_startup": [
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:3",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:3",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:3",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:3",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          }
+        ],
+        "gpu_usage": {
+          "cuda:2": {
+            "games": 1954,
+            "batches": 458888,
+            "ranked_hands": 142302624,
+            "gpu_seconds": 52.06779246672522
+          },
+          "cuda:3": {
+            "games": 1950,
+            "batches": 457638,
+            "ranked_hands": 142059142,
+            "gpu_seconds": 51.811824954347685
+          }
+        }
+      },
+      "failures": 0,
+      "player_verdicts": 20272
+    },
+    {
+      "file": "harness/results/20261004-031150.json",
+      "sha256": "331142b1dcada130e23d6e032d58bdd79e115683008ecc5808732292be196c4c",
+      "seed": "strategy-tune-b-20261004",
+      "args": {
+        "cmd": "run",
+        "bots": [
+          "snapshots/analysis_baseline_20261004",
+          "analysis/candidates/river_guard",
+          "analysis/candidates/turn_discipline",
+          "analysis/candidates/shove_callers",
+          "analysis/candidates/mixed_35",
+          "analysis/candidates/mixed_65",
+          "analysis/candidates/value_pressure",
+          "analysis/candidates/small_ball"
+        ],
+        "tables": 96,
+        "seed": "strategy-tune-b-20261004",
+        "pool": "sparring/competitors/from_data/pool.txt",
+        "add": [],
+        "sizes": "4,5,5,6",
+        "tables_json": null,
+        "deals": 100,
+        "time_ms": 30000,
+        "increment_ms": 100,
+        "workers": 15,
+        "device": "cuda",
+        "gpu_devices": "0,1",
+        "gpu_workers": 8,
+        "gpu_batch_size": 128,
+        "league": 3,
+        "no_league": true,
+        "max_tables": 1600,
+        "no_extend": false,
+        "max_bank": 50,
+        "label": "strategy-screen-b"
+      },
+      "tables": 96,
+      "games": 3776,
+      "summary": [
+        {
+          "bot": "snapshots/analysis_baseline_20261004",
+          "hash": "8015e4b3",
+          "mbb": [
+            753.6814236111112,
+            209.10735742447235
+          ],
+          "game_pts": [
+            3.441232638888889,
+            0.144436786701234
+          ],
+          "round_pts": [
+            3.796875,
+            0.25699018312280186
+          ],
+          "won_pct": 38.54166666666667,
+          "bad_games": 0,
+          "max_ms": 89.11,
+          "bank_pct": 9.041
+        },
+        {
+          "bot": "analysis/candidates/river_guard",
+          "hash": "c45615c5",
+          "mbb": [
+            742.7456597222222,
+            211.89523468958467
+          ],
+          "game_pts": [
+            3.3914930555555554,
+            0.13869926007762642
+          ],
+          "round_pts": [
+            3.7135416666666665,
+            0.265125135101195
+          ],
+          "won_pct": 35.41666666666667,
+          "bad_games": 0,
+          "max_ms": 103.27,
+          "bank_pct": 8.51675,
+          "vs_baseline": {
+            "d_mbb": [
+              -10.935763888888886,
+              49.60759111815451
+            ],
+            "d_round_pts": [
+              -0.08333333333333333,
+              0.17931464717099513
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/turn_discipline",
+          "hash": "4da27674",
+          "mbb": [
+            742.5295138888888,
+            208.27597519233274
+          ],
+          "game_pts": [
+            3.409548611111111,
+            0.14825683461551986
+          ],
+          "round_pts": [
+            3.7239583333333335,
+            0.2710661811128947
+          ],
+          "won_pct": 35.41666666666667,
+          "bad_games": 0,
+          "max_ms": 114.66,
+          "bank_pct": 8.634,
+          "vs_baseline": {
+            "d_mbb": [
+              -11.151909722222216,
+              41.8678459912801
+            ],
+            "d_round_pts": [
+              -0.07291666666666667,
+              0.1353478232563565
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/shove_callers",
+          "hash": "06e601f4",
+          "mbb": [
+            702.2048611111112,
+            193.71641238810486
+          ],
+          "game_pts": [
+            3.433420138888889,
+            0.14296567766469861
+          ],
+          "round_pts": [
+            3.78125,
+            0.2570862051646585
+          ],
+          "won_pct": 37.5,
+          "bad_games": 0,
+          "max_ms": 95.0,
+          "bank_pct": 8.50775,
+          "vs_baseline": {
+            "d_mbb": [
+              -51.4765625,
+              47.370301367215994
+            ],
+            "d_round_pts": [
+              -0.015625,
+              0.05121330789650044
+            ],
+            "call": "WORSE"
+          }
+        },
+        {
+          "bot": "analysis/candidates/mixed_35",
+          "hash": "b82e9b47",
+          "mbb": [
+            784.5720486111112,
+            216.05891714693004
+          ],
+          "game_pts": [
+            3.4368055555555554,
+            0.1422755405070587
+          ],
+          "round_pts": [
+            3.875,
+            0.24713977861817105
+          ],
+          "won_pct": 38.54166666666667,
+          "bad_games": 0,
+          "max_ms": 89.7,
+          "bank_pct": 9.2675,
+          "vs_baseline": {
+            "d_mbb": [
+              30.890625000000004,
+              66.2101111721513
+            ],
+            "d_round_pts": [
+              0.078125,
+              0.13007009855182206
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/mixed_65",
+          "hash": "f1abf214",
+          "mbb": [
+            784.9401041666666,
+            208.39690660158362
+          ],
+          "game_pts": [
+            3.4585069444444443,
+            0.13901525309847937
+          ],
+          "round_pts": [
+            3.8541666666666665,
+            0.2546597173434128
+          ],
+          "won_pct": 38.54166666666667,
+          "bad_games": 0,
+          "max_ms": 101.78,
+          "bank_pct": 8.88425,
+          "vs_baseline": {
+            "d_mbb": [
+              31.258680555555554,
+              46.879634501277735
+            ],
+            "d_round_pts": [
+              0.057291666666666664,
+              0.11688664841724386
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/value_pressure",
+          "hash": "9bcdde8a",
+          "mbb": [
+            729.9939236111112,
+            213.47475955480735
+          ],
+          "game_pts": [
+            3.411805555555556,
+            0.14786816276375825
+          ],
+          "round_pts": [
+            3.7708333333333335,
+            0.2583545973138786
+          ],
+          "won_pct": 38.54166666666667,
+          "bad_games": 0,
+          "max_ms": 91.41,
+          "bank_pct": 8.167250000000001,
+          "vs_baseline": {
+            "d_mbb": [
+              -23.6875,
+              51.174070768676636
+            ],
+            "d_round_pts": [
+              -0.026041666666666668,
+              0.10197044196411391
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/small_ball",
+          "hash": "4a45e40c",
+          "mbb": [
+            735.8671875,
+            211.29960152749936
+          ],
+          "game_pts": [
+            3.351909722222222,
+            0.146007952388897
+          ],
+          "round_pts": [
+            3.7135416666666665,
+            0.265125135101195
+          ],
+          "won_pct": 38.54166666666667,
+          "bad_games": 0,
+          "max_ms": 90.17,
+          "bank_pct": 9.06275,
+          "vs_baseline": {
+            "d_mbb": [
+              -17.81423611111111,
+              58.390054024759436
+            ],
+            "d_round_pts": [
+              -0.08333333333333333,
+              0.16525622494490466
+            ],
+            "call": "inconclusive"
+          }
+        }
+      ],
+      "compute": {
+        "requested": "cuda",
+        "device": "cuda",
+        "workers": 8,
+        "devices": [
+          {
+            "index": 0,
+            "name": "Tesla V100-SXM2-16GB",
+            "architecture": "sm_70"
+          },
+          {
+            "index": 1,
+            "name": "Tesla V100-SXM2-16GB",
+            "architecture": "sm_70"
+          }
+        ],
+        "batch_size": 128,
+        "worker_startup": [
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          }
+        ],
+        "gpu_usage": {
+          "cuda:0": {
+            "games": 1891,
+            "batches": 434470,
+            "ranked_hands": 137516530,
+            "gpu_seconds": 54.87229021277744
+          },
+          "cuda:1": {
+            "games": 1885,
+            "batches": 433505,
+            "ranked_hands": 137273885,
+            "gpu_seconds": 54.30509221123066
+          }
+        }
+      },
+      "failures": 0,
+      "player_verdicts": 18976
+    },
+    {
+      "file": "harness/results/20261004-032501.json",
+      "sha256": "97e8f7708b62cc5da82211d5d03af2b546f74725e9d1bedba1063865579bbf4e",
+      "seed": "strategy-tune-c-20261004",
+      "args": {
+        "cmd": "run",
+        "bots": [
+          "snapshots/analysis_baseline_20261004",
+          "analysis/candidates/value_pressure",
+          "analysis/candidates/mixed_65",
+          "analysis/candidates/mixed_00",
+          "analysis/candidates/mixed_85",
+          "analysis/candidates/pressure_mixed_65",
+          "analysis/candidates/shove_ranges_only"
+        ],
+        "tables": 160,
+        "seed": "strategy-tune-c-20261004",
+        "pool": "sparring/competitors/from_data/pool.txt",
+        "add": [],
+        "sizes": "4,5,5,6",
+        "tables_json": null,
+        "deals": 100,
+        "time_ms": 30000,
+        "increment_ms": 100,
+        "workers": 15,
+        "device": "cuda",
+        "gpu_devices": "0,1,2,3",
+        "gpu_workers": 16,
+        "gpu_batch_size": 128,
+        "league": 3,
+        "no_league": true,
+        "max_tables": 1600,
+        "no_extend": false,
+        "max_bank": 50,
+        "label": "strategy-weight-and-combination-screen"
+      },
+      "tables": 160,
+      "games": 5565,
+      "summary": [
+        {
+          "bot": "snapshots/analysis_baseline_20261004",
+          "hash": "8015e4b3",
+          "mbb": [
+            549.8442708333333,
+            131.94101522510303
+          ],
+          "game_pts": [
+            3.3866666666666667,
+            0.10648140896056837
+          ],
+          "round_pts": [
+            3.775,
+            0.18813791274976044
+          ],
+          "won_pct": 31.874999999999996,
+          "bad_games": 0,
+          "max_ms": 99.33,
+          "bank_pct": 8.943
+        },
+        {
+          "bot": "analysis/candidates/value_pressure",
+          "hash": "9bcdde8a",
+          "mbb": [
+            552.6140625,
+            129.3724106719961
+          ],
+          "game_pts": [
+            3.3696875,
+            0.103725693922625
+          ],
+          "round_pts": [
+            3.725,
+            0.19072864256408795
+          ],
+          "won_pct": 29.375,
+          "bad_games": 0,
+          "max_ms": 104.4,
+          "bank_pct": 8.953,
+          "vs_baseline": {
+            "d_mbb": [
+              2.7697916666666638,
+              39.82333674902941
+            ],
+            "d_round_pts": [
+              -0.05,
+              0.1256791862705803
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/mixed_65",
+          "hash": "f1abf214",
+          "mbb": [
+            551.4786458333333,
+            127.92093881621939
+          ],
+          "game_pts": [
+            3.3817708333333334,
+            0.09985831599734257
+          ],
+          "round_pts": [
+            3.790625,
+            0.18257194428179946
+          ],
+          "won_pct": 33.125,
+          "bad_games": 0,
+          "max_ms": 125.77,
+          "bank_pct": 9.332,
+          "vs_baseline": {
+            "d_mbb": [
+              1.6343749999999964,
+              43.738028692035186
+            ],
+            "d_round_pts": [
+              0.015625,
+              0.12514393246397193
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/mixed_00",
+          "hash": "d03b8f36",
+          "mbb": [
+            532.8385416666667,
+            128.97370501581463
+          ],
+          "game_pts": [
+            3.3477083333333333,
+            0.09799421617715712
+          ],
+          "round_pts": [
+            3.63125,
+            0.1798670444938943
+          ],
+          "won_pct": 26.25,
+          "bad_games": 0,
+          "max_ms": 119.41,
+          "bank_pct": 9.287,
+          "vs_baseline": {
+            "d_mbb": [
+              -17.005729166666676,
+              52.77282211253103
+            ],
+            "d_round_pts": [
+              -0.14375,
+              0.1605485278524767
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/mixed_85",
+          "hash": "7038e5ec",
+          "mbb": [
+            557.665625,
+            129.7346600546178
+          ],
+          "game_pts": [
+            3.379270833333333,
+            0.10527742894686874
+          ],
+          "round_pts": [
+            3.75625,
+            0.1901711400291853
+          ],
+          "won_pct": 32.5,
+          "bad_games": 0,
+          "max_ms": 100.0,
+          "bank_pct": 8.914,
+          "vs_baseline": {
+            "d_mbb": [
+              7.821354166666663,
+              37.7797812589429
+            ],
+            "d_round_pts": [
+              -0.01875,
+              0.0927300619367444
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/pressure_mixed_65",
+          "hash": "51743912",
+          "mbb": [
+            553.325,
+            126.93024511708822
+          ],
+          "game_pts": [
+            3.372708333333333,
+            0.10257471369616274
+          ],
+          "round_pts": [
+            3.75,
+            0.18514434280570383
+          ],
+          "won_pct": 31.25,
+          "bad_games": 0,
+          "max_ms": 100.98,
+          "bank_pct": 8.7575,
+          "vs_baseline": {
+            "d_mbb": [
+              3.4807291666666655,
+              54.27195994929657
+            ],
+            "d_round_pts": [
+              -0.025,
+              0.15417000336351724
+            ],
+            "call": "inconclusive"
+          }
+        },
+        {
+          "bot": "analysis/candidates/shove_ranges_only",
+          "hash": "3c0217d4",
+          "mbb": [
+            582.7432291666667,
+            138.01433212156996
+          ],
+          "game_pts": [
+            3.3921875,
+            0.10810584410551088
+          ],
+          "round_pts": [
+            3.759375,
+            0.1960331020592885
+          ],
+          "won_pct": 31.874999999999996,
+          "bad_games": 0,
+          "max_ms": 102.04,
+          "bank_pct": 9.43375,
+          "vs_baseline": {
+            "d_mbb": [
+              32.89895833333333,
+              63.659799412699904
+            ],
+            "d_round_pts": [
+              -0.015625,
+              0.04381131709391017
+            ],
+            "call": "inconclusive"
+          }
+        }
+      ],
+      "compute": {
+        "requested": "cuda",
+        "device": "cuda",
+        "workers": 16,
+        "devices": [
+          {
+            "index": 0,
+            "name": "Tesla V100-SXM2-16GB",
+            "architecture": "sm_70"
+          },
+          {
+            "index": 1,
+            "name": "Tesla V100-SXM2-16GB",
+            "architecture": "sm_70"
+          },
+          {
+            "index": 2,
+            "name": "Tesla V100-SXM2-16GB",
+            "architecture": "sm_70"
+          },
+          {
+            "index": 3,
+            "name": "Tesla V100-SXM2-16GB",
+            "architecture": "sm_70"
+          }
+        ],
+        "batch_size": 128,
+        "worker_startup": [
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:0",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:1",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:2",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:3",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:3",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:3",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          },
+          {
+            "device": "cuda:3",
+            "gpu": "Tesla V100-SXM2-16GB",
+            "batches": 0,
+            "ranked_hands": 0,
+            "gpu_seconds": 0.0,
+            "batch_size": 128,
+            "device_buffer_bytes": 36864
+          }
+        ],
+        "gpu_usage": {
+          "cuda:3": {
+            "games": 1402,
+            "batches": 309514,
+            "ranked_hands": 99032636,
+            "gpu_seconds": 39.61825826379936
+          },
+          "cuda:0": {
+            "games": 1386,
+            "batches": 309938,
+            "ranked_hands": 99454191,
+            "gpu_seconds": 40.86920871620532
+          },
+          "cuda:1": {
+            "games": 1386,
+            "batches": 310078,
+            "ranked_hands": 99401962,
+            "gpu_seconds": 39.89370249572676
+          },
+          "cuda:2": {
+            "games": 1391,
+            "batches": 309174,
+            "ranked_hands": 99784065,
+            "gpu_seconds": 39.90484854532406
+          }
+        }
+      },
+      "failures": 0,
+      "player_verdicts": 28203
+    }
+  ]
+}

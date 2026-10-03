@@ -1,0 +1,36 @@
+{
+  "candidate": "analysis/candidates/mixed_65",
+  "baseline": "snapshots/analysis_baseline_20261004",
+  "tests": [
+    {
+      "label": "original-model-stress",
+      "pool": "sparring/competitors/param_reference/pool.txt",
+      "tables": 200,
+      "sizes": "4,5,5,6",
+      "device": "cuda",
+      "devices": "0",
+      "workers": 4,
+      "seed": "mixed65-reference-confirm-20261004"
+    },
+    {
+      "label": "eight-seat-stress",
+      "pool": "sparring/competitors/from_data/pool.txt",
+      "tables": 128,
+      "sizes": "8",
+      "device": "cuda",
+      "devices": "1,2",
+      "workers": 4,
+      "seed": "mixed65-eight-seat-confirm-20261004"
+    },
+    {
+      "label": "cpu-default-stress",
+      "pool": "harness/pools/default.txt",
+      "tables": 128,
+      "sizes": "4,5,5,6",
+      "device": "cpu",
+      "workers": 4,
+      "seed": "mixed65-default-confirm-20261004"
+    }
+  ],
+  "note": "Fixed before seeing primary confirmation results. Launch after its workers exit; these 12 workers can coexist with the four tournament workers. Compare paired round points and chips, retain uncertainty. GPU kernel parity and separate restricted subprocess tests establish different properties."
+}

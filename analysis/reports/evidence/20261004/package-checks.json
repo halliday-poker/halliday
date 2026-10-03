@@ -1,0 +1,51 @@
+[
+  {
+    "path": "dist/submission-20261004-033009-f1abf214.zip",
+    "source": "analysis/candidates/mixed_65",
+    "bot_hash": "f1abf214",
+    "sha256": "28b78d69447448cf650bee807ae9e823138efa8575fd43b85f3965e27a632615",
+    "files": 13,
+    "unpacked_bytes": 107330,
+    "zip_bytes": 41510,
+    "passed": true,
+    "contents": {
+      "BASELINE.md": "472e8c0aa60d7eaff16b02c1261b27ca29c38bd360bae9ee25320a0baee66c5e",
+      "EQUITY_ENGINE.md": "6339427ba5e18ad10d372dd4ae9fd8e33c7554b0bacf3e6ab7fd8b62a4189d68",
+      "FIELD_EXPLOITS.md": "dfbc5da255d6e1519d7649a4a1acd81df3355e994858fe2c7dd8c2dd9cbef554",
+      "RANGES.md": "b1560aee5a3a92efc9413d79151b5cef0c67fb42faaa4731bf64b62d8fc31da7",
+      "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+      "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+      "main.py": "a565ff304b1babbdeb5f8768212edd46391adf5850f9ba8751ade3517ee69746",
+      "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+      "params.py": "46aff1220f125dc0d4ee96578ea157ac39730dd7ee9fd3f0a33d874f4851a25c",
+      "preflop.py": "415bb44dfb8555a990e516ce67d698813ddf7ff0f12c52b778e4cba16586ea68",
+      "ranges.py": "d54983af267e67dc164f5cad550726c0c272920ae526e830e96ede5e99a7e18e",
+      "strategy.py": "144d59b38c7e55f42059a4acf0fe5f0ecb105b1ec3b54675b09562e843136d1e",
+      "variant.json": "c2b13b4f9a1db6db68cad100c098d0edc0631b750be488b4b70b7317ea013bb0"
+    }
+  },
+  {
+    "path": "dist/submission-20261004-033009-8015e4b3.zip",
+    "source": "snapshots/analysis_baseline_20261004",
+    "bot_hash": "8015e4b3",
+    "sha256": "0c97b539f7bfaa457a73525d463a6965cccad8adbf43f270cd99dc3b7df418c6",
+    "files": 12,
+    "unpacked_bytes": 106111,
+    "zip_bytes": 40704,
+    "passed": true,
+    "contents": {
+      "BASELINE.md": "472e8c0aa60d7eaff16b02c1261b27ca29c38bd360bae9ee25320a0baee66c5e",
+      "EQUITY_ENGINE.md": "6339427ba5e18ad10d372dd4ae9fd8e33c7554b0bacf3e6ab7fd8b62a4189d68",
+      "FIELD_EXPLOITS.md": "dfbc5da255d6e1519d7649a4a1acd81df3355e994858fe2c7dd8c2dd9cbef554",
+      "RANGES.md": "b1560aee5a3a92efc9413d79151b5cef0c67fb42faaa4731bf64b62d8fc31da7",
+      "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+      "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+      "main.py": "a565ff304b1babbdeb5f8768212edd46391adf5850f9ba8751ade3517ee69746",
+      "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+      "params.py": "df863d2d45c0fa757b1931874dad1bea70b44685fe200c90e940fb0bb0a64fcb",
+      "preflop.py": "415bb44dfb8555a990e516ce67d698813ddf7ff0f12c52b778e4cba16586ea68",
+      "ranges.py": "d54983af267e67dc164f5cad550726c0c272920ae526e830e96ede5e99a7e18e",
+      "strategy.py": "144d59b38c7e55f42059a4acf0fe5f0ecb105b1ec3b54675b09562e843136d1e"
+    }
+  }
+]

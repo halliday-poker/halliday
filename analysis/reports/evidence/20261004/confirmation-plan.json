@@ -1,0 +1,14 @@
+{
+  "frozen_at": "2026-10-03T16:26:43.901601+00:00",
+  "candidate": "analysis/candidates/mixed_65",
+  "candidate_hash": "f1abf214",
+  "baseline": "snapshots/analysis_baseline_20261004",
+  "baseline_hash": "8015e4b3",
+  "selection": "65% bluff continuation was positive in tournament-point delta in all three learned-field tuning seeds; 352 tuning tables total. All tuning intervals include zero. It is a finalist, not an established improvement.",
+  "primary": "Paired round placement-point gain in 1200 fresh duplicate tables; two-sided 95% confidence lower bound above zero required for a superiority claim.",
+  "secondary": "Chip return, game points, zero failures, reference/default/eight-seat stress, four-round standings, restricted CPU protocol games.",
+  "decision": "Do not replace bot/ or promote if independent results are inconclusive or material stress regressions appear.",
+  "holdout_seed": "strategy-confirm-20261004",
+  "tables": 1200,
+  "deals": 100
+}

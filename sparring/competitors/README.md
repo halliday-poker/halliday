@@ -1,49 +1,45 @@
 # Fitted competitors
 
-The completed 400-table Halliday evaluation is recorded in [EVALUATION.md](EVALUATION.md).
+The October 4 field has **77 observed identities** in `from_data/`, with a
+76-opponent pool excluding Halliday. The latest Halliday replica is available
+separately. Display names are identities in this dataset; possible renames are
+not merged without evidence. `Gladiator` has no action replay and cannot be
+recreated; `Gladiator_v3` is a separately observed name. The final entrant list
+is unknown. The house validation bot remains in the general pool for stress
+testing, but `harness/tournament.py` excludes it from its team roster.
 
-The 67 bots derived from the analysis live in `from_data/`, alongside their
-profile manifest and pool files. `build.py` and these documents remain here.
+Each replica subclasses `sparring/param.py`. The ten estimated scaffold settings
+remain an interpretable fallback. A compact NumPy model predicts actions and
+legal raise-size mixtures from own cards and public context, plus identity and
+candidate upload interval. It uses no hidden cards or future outcomes. Private
+per-game sampling is seeded by the harness. Seventy-four identities use this
+model; three sparse/validation-only fits use the scaffold. The known `house:call`
+behavior is implemented exactly as call/check.
 
-These bots use `../param.py` with the exact `surrogate_style` from each
-identity's most recent collection-time segment. `from_data/profiles.json` preserves the
-selected segments, parameter uncertainties, observed statistics, residuals,
-match IDs, and analysis/input hashes. No replay cards or analysis dependencies
-are loaded during play.
-
-Each generated `.py` file is an ordinary harness/SDK opponent. The shared
-`from_data/competitor_base.py` loads the existing ParamBot scaffold relative to its own
-location. Counters, style dictionaries and random generators are fresh per game.
-The harness passes its seat seed through `make_seeded_bot(seed)` for repeatable
-decisions independent of other bots' constructors.
-
-`from_data/pool.txt` gives each of the 66 external identities equal weight. The updated
-`bot/` replaces the historical Halliday fit for evaluation. `from_data/all.txt` includes
-all 67 fitted identities, including `from_data/halliday.py`, for other experiments.
-Collection frequency is not a tournament sampling weight. Historical names
-remain separate identities because the analysis cannot resolve renames.
-
-From the repository root:
+`from_data/profiles.json` preserves interval evidence, input/model hashes,
+parameter uncertainty, conditional behavior rates, match IDs and timestamps.
+`from_data/behavior-policy.npz` contains the shared NumPy weights.
+`param_reference/` preserves the refreshed original ten-parameter replicas for
+cross-model tests. None of these opponents or weights is part of a submission.
 
 ```sh
-python sparring/competitors/build.py analysis/results/opponent-estimates.json
-python harness/eval.py run bot --no-league --pool sparring/competitors/from_data/pool.txt --tables 400 --deals 100 --sizes 4,5,5,6 --workers 8 --seed competitors-latest-20261003 --label latest-competitor-segments
+python sparring/competitors/build.py analysis/results/refresh-20261004/opponent-estimates.json --policy analysis/results/refresh-20261004/policy-refit-upload.npz
+python harness/eval.py run snapshots/analysis_baseline_20261004 --no-league --pool sparring/competitors/from_data/pool.txt --tables 400 --deals 100 --device cuda --gpu-devices 0,1,2,3 --gpu-workers 16 --seed refreshed-latest-field
 ```
 
-The generator checks that `param.py` matches the scaffold fingerprint in the
-analysis. It selects segments by their observed timestamps, even if the JSON
-array is out of order. It preserves best fits and the report's executable
-defaults for unobserved parameters; it does not convert null estimates into
-measured zeros or sample independent confidence intervals as new styles.
+The builder verifies scaffold and policy fingerprints and selects the newest
+interval containing a trusted server play time, using collection chronology
+when none is available. Legacy reports without policy models remain supported.
+Successful validation marks an upload, not a guaranteed deployment; failed
+checks and unknown-time validations do not define version boundaries. This
+choice improves held-out predictions compared with no segmentation and matched
+randomized boundaries. Sparse executable styles shrink toward the full-bot fit.
 
-These are surrogate opponents, not recovered source code. Sparse and
-unidentified settings may have arbitrary equivalent fits, and observed rates
-can differ from the scaffold's simulated rates. Check each profile's statuses
-and residuals. The analysis used all 1,537 metadata matches; 13 extra action-log
-matches without metadata were excluded from the audited snapshot.
-
-The harness evaluates random duplicate tables with tournament game/round
-scoring. It does not reproduce the tournament's four-round cumulative-score
-regrouping or predict final standings. Results are written to the ignored
-`harness/results/` directory. The fitted field stays in `sparring/` and is not
-part of the submitted bot.
+See [predictive evidence](../../analysis/reports/opponent-refresh-20261004.md),
+[Halliday's replay audit](../../analysis/reports/halliday-performance-20261004.md),
+and the [historical October 3 evaluation](EVALUATION.md). The replicas are
+approximations, not recovered source code. Better held-out action predictions
+do not guarantee realistic closed-loop winnings, especially at unseen contexts
+or against changed strategies. Original `eval.py run` compares duplicate tables;
+`harness/tournament.py` additionally simulates four rounds with regrouping and
+explicit roster/tie assumptions.

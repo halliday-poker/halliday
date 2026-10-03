@@ -1,0 +1,17 @@
+{
+  "seed": "merged-main-confirm-20261004",
+  "tables": 400,
+  "deals": 100,
+  "main_commit": "6cfdf0f",
+  "baseline": {
+    "path": "snapshots/analysis_baseline_20261004",
+    "hash": "8015e4b3"
+  },
+  "candidate": {
+    "path": "snapshots/analysis_main_20261004",
+    "hash": "bb2090c7"
+  },
+  "pool": "sparring/competitors/from_data/pool.txt",
+  "purpose": "Evaluate newly merged main against the frozen research baseline on new paired tables. Main features are upstream changes, not a selected research variant.",
+  "primary": "paired round points; report chip returns and failures alongside uncertainty"
+}

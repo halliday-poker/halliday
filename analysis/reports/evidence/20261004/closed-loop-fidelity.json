@@ -1,0 +1,1150 @@
+{
+  "source_sha256": "10331deef87e5cacb4e09ac79c5ebe2d4aeb4ff477b153d20cdb7de8fbd01d9a",
+  "simulation": "harness/results/20261004-014228.json",
+  "observed_halliday": {
+    "matches": 43,
+    "chips": -1556.0,
+    "bb100": [
+      -18.093023255813954,
+      34.262541651884035
+    ]
+  },
+  "simulated_halliday": [
+    {
+      "bot": "snapshots/analysis_baseline_20261004",
+      "hash": "8015e4b3",
+      "mbb": [
+        303.75,
+        120.00503726103857
+      ],
+      "game_pts": [
+        4.959302325581396,
+        0.21868995480211312
+      ],
+      "round_pts": [
+        5.848837209302325,
+        0.6260679932271742
+      ],
+      "won_pct": 20.930232558139537,
+      "bad_games": 0,
+      "max_ms": 38.4,
+      "bank_pct": 1.884
+    },
+    {
+      "bot": "sparring/competitors/from_data/halliday.py",
+      "hash": "b6ed3fb0",
+      "mbb": [
+        129.98546511627907,
+        109.4703661653248
+      ],
+      "game_pts": [
+        4.630813953488372,
+        0.1869803115861617
+      ],
+      "round_pts": [
+        4.953488372093023,
+        0.6674100956706729
+      ],
+      "won_pct": 9.30232558139535,
+      "bad_games": 0,
+      "max_ms": 5.27,
+      "bank_pct": 0.19475000000000003,
+      "vs_baseline": {
+        "d_mbb": [
+          -173.76453488372093,
+          139.63705520941184
+        ],
+        "d_round_pts": [
+          -0.8953488372093024,
+          0.7837545135766874
+        ],
+        "call": "WORSE"
+      }
+    }
+  ],
+  "historical_interval_halliday": [
+    {
+      "bot": "snapshots/analysis_baseline_20261004",
+      "hash": "8015e4b3",
+      "mbb": [
+        246.55523255813952,
+        96.55831595455759
+      ],
+      "game_pts": [
+        4.941860465116279,
+        0.1530412945000344
+      ],
+      "round_pts": [
+        5.511627906976744,
+        0.5130498914280025
+      ],
+      "won_pct": 11.627906976744185,
+      "bad_games": 0,
+      "max_ms": 106.03,
+      "bank_pct": 4.459
+    },
+    {
+      "bot": "sparring/competitors/from_data/halliday.py",
+      "hash": "b6ed3fb0",
+      "mbb": [
+        -34.92732558139535,
+        112.78484490079336
+      ],
+      "game_pts": [
+        4.377906976744186,
+        0.1730469710554185
+      ],
+      "round_pts": [
+        3.9651162790697674,
+        0.6233955645704308
+      ],
+      "won_pct": 6.976744186046512,
+      "bad_games": 0,
+      "max_ms": 26.12,
+      "bank_pct": 0.49475,
+      "vs_baseline": {
+        "d_mbb": [
+          -281.4825581395349,
+          141.3083360187066
+        ],
+        "d_round_pts": [
+          -1.5465116279069768,
+          0.7825701762553804
+        ],
+        "call": "WORSE"
+      }
+    }
+  ],
+  "rows": [
+    {
+      "name": "pocket-nuts",
+      "observed": {
+        "matches": 1,
+        "hands": 100,
+        "folds": 84,
+        "vpip": 22,
+        "pfr": 18
+      },
+      "simulated": {
+        "matches": 8,
+        "hands": 800,
+        "folds": 684,
+        "vpip": 166,
+        "pfr": 129
+      },
+      "observed_rates": {
+        "folds": 0.84,
+        "vpip": 0.22,
+        "pfr": 0.18
+      },
+      "simulated_rates": {
+        "folds": 0.855,
+        "vpip": 0.2075,
+        "pfr": 0.16125
+      },
+      "historical_interval_rates": {
+        "folds": 0.84375,
+        "vpip": 0.21125,
+        "pfr": 0.18
+      }
+    },
+    {
+      "name": "catherine",
+      "observed": {
+        "matches": 8,
+        "hands": 800,
+        "folds": 682,
+        "vpip": 192,
+        "pfr": 119
+      },
+      "simulated": {
+        "matches": 64,
+        "hands": 6400,
+        "folds": 5284,
+        "vpip": 1807,
+        "pfr": 977
+      },
+      "observed_rates": {
+        "folds": 0.8525,
+        "vpip": 0.24,
+        "pfr": 0.14875
+      },
+      "simulated_rates": {
+        "folds": 0.825625,
+        "vpip": 0.28234375,
+        "pfr": 0.15265625
+      },
+      "historical_interval_rates": {
+        "folds": 0.8390625,
+        "vpip": 0.24390625,
+        "pfr": 0.160625
+      }
+    },
+    {
+      "name": "the GOON",
+      "observed": {
+        "matches": 27,
+        "hands": 2700,
+        "folds": 2077,
+        "vpip": 1132,
+        "pfr": 533
+      },
+      "simulated": {
+        "matches": 216,
+        "hands": 21600,
+        "folds": 17406,
+        "vpip": 5588,
+        "pfr": 4061
+      },
+      "observed_rates": {
+        "folds": 0.7692592592592593,
+        "vpip": 0.4192592592592593,
+        "pfr": 0.19740740740740742
+      },
+      "simulated_rates": {
+        "folds": 0.8058333333333333,
+        "vpip": 0.2587037037037037,
+        "pfr": 0.18800925925925926
+      },
+      "historical_interval_rates": {
+        "folds": 0.7542129629629629,
+        "vpip": 0.4477314814814815,
+        "pfr": 0.19722222222222222
+      }
+    },
+    {
+      "name": "jongwon",
+      "observed": {
+        "matches": 20,
+        "hands": 2000,
+        "folds": 1741,
+        "vpip": 337,
+        "pfr": 248
+      },
+      "simulated": {
+        "matches": 160,
+        "hands": 16000,
+        "folds": 14095,
+        "vpip": 2777,
+        "pfr": 2156
+      },
+      "observed_rates": {
+        "folds": 0.8705,
+        "vpip": 0.1685,
+        "pfr": 0.124
+      },
+      "simulated_rates": {
+        "folds": 0.8809375,
+        "vpip": 0.1735625,
+        "pfr": 0.13475
+      },
+      "historical_interval_rates": {
+        "folds": 0.878125,
+        "vpip": 0.174375,
+        "pfr": 0.1345625
+      }
+    },
+    {
+      "name": "tungbot",
+      "observed": {
+        "matches": 4,
+        "hands": 400,
+        "folds": 335,
+        "vpip": 102,
+        "pfr": 64
+      },
+      "simulated": {
+        "matches": 32,
+        "hands": 3200,
+        "folds": 2602,
+        "vpip": 912,
+        "pfr": 552
+      },
+      "observed_rates": {
+        "folds": 0.8375,
+        "vpip": 0.255,
+        "pfr": 0.16
+      },
+      "simulated_rates": {
+        "folds": 0.813125,
+        "vpip": 0.285,
+        "pfr": 0.1725
+      },
+      "historical_interval_rates": {
+        "folds": 0.8278125,
+        "vpip": 0.2646875,
+        "pfr": 0.1625
+      }
+    },
+    {
+      "name": "merch where",
+      "observed": {
+        "matches": 10,
+        "hands": 1000,
+        "folds": 609,
+        "vpip": 893,
+        "pfr": 442
+      },
+      "simulated": {
+        "matches": 80,
+        "hands": 8000,
+        "folds": 4622,
+        "vpip": 6893,
+        "pfr": 3188
+      },
+      "observed_rates": {
+        "folds": 0.609,
+        "vpip": 0.893,
+        "pfr": 0.442
+      },
+      "simulated_rates": {
+        "folds": 0.57775,
+        "vpip": 0.861625,
+        "pfr": 0.3985
+      },
+      "historical_interval_rates": {
+        "folds": 0.5745,
+        "vpip": 0.889375,
+        "pfr": 0.4385
+      }
+    },
+    {
+      "name": "RaiseYourEdge",
+      "observed": {
+        "matches": 2,
+        "hands": 200,
+        "folds": 167,
+        "vpip": 37,
+        "pfr": 32
+      },
+      "simulated": {
+        "matches": 16,
+        "hands": 1600,
+        "folds": 1359,
+        "vpip": 362,
+        "pfr": 289
+      },
+      "observed_rates": {
+        "folds": 0.835,
+        "vpip": 0.185,
+        "pfr": 0.16
+      },
+      "simulated_rates": {
+        "folds": 0.849375,
+        "vpip": 0.22625,
+        "pfr": 0.180625
+      },
+      "historical_interval_rates": {
+        "folds": 0.85125,
+        "vpip": 0.22875,
+        "pfr": 0.18875
+      }
+    },
+    {
+      "name": "Messi",
+      "observed": {
+        "matches": 5,
+        "hands": 500,
+        "folds": 483,
+        "vpip": 71,
+        "pfr": 0
+      },
+      "simulated": {
+        "matches": 40,
+        "hands": 4000,
+        "folds": 3803,
+        "vpip": 668,
+        "pfr": 8
+      },
+      "observed_rates": {
+        "folds": 0.966,
+        "vpip": 0.142,
+        "pfr": 0.0
+      },
+      "simulated_rates": {
+        "folds": 0.95075,
+        "vpip": 0.167,
+        "pfr": 0.002
+      },
+      "historical_interval_rates": {
+        "folds": 0.94825,
+        "vpip": 0.1685,
+        "pfr": 0.0035
+      }
+    },
+    {
+      "name": "preflop-warrior",
+      "observed": {
+        "matches": 20,
+        "hands": 2000,
+        "folds": 1726,
+        "vpip": 515,
+        "pfr": 244
+      },
+      "simulated": {
+        "matches": 160,
+        "hands": 16000,
+        "folds": 12915,
+        "vpip": 6851,
+        "pfr": 1845
+      },
+      "observed_rates": {
+        "folds": 0.863,
+        "vpip": 0.2575,
+        "pfr": 0.122
+      },
+      "simulated_rates": {
+        "folds": 0.8071875,
+        "vpip": 0.4281875,
+        "pfr": 0.1153125
+      },
+      "historical_interval_rates": {
+        "folds": 0.8571875,
+        "vpip": 0.258125,
+        "pfr": 0.129875
+      }
+    },
+    {
+      "name": "polygamous lavender marriage",
+      "observed": {
+        "matches": 13,
+        "hands": 1300,
+        "folds": 1150,
+        "vpip": 246,
+        "pfr": 180
+      },
+      "simulated": {
+        "matches": 104,
+        "hands": 10400,
+        "folds": 9341,
+        "vpip": 1849,
+        "pfr": 1050
+      },
+      "observed_rates": {
+        "folds": 0.8846153846153846,
+        "vpip": 0.18923076923076923,
+        "pfr": 0.13846153846153847
+      },
+      "simulated_rates": {
+        "folds": 0.8981730769230769,
+        "vpip": 0.17778846153846153,
+        "pfr": 0.10096153846153846
+      },
+      "historical_interval_rates": {
+        "folds": 0.8947115384615385,
+        "vpip": 0.16807692307692307,
+        "pfr": 0.10798076923076923
+      }
+    },
+    {
+      "name": "idc",
+      "observed": {
+        "matches": 11,
+        "hands": 1100,
+        "folds": 978,
+        "vpip": 164,
+        "pfr": 122
+      },
+      "simulated": {
+        "matches": 88,
+        "hands": 8800,
+        "folds": 7357,
+        "vpip": 2102,
+        "pfr": 1275
+      },
+      "observed_rates": {
+        "folds": 0.889090909090909,
+        "vpip": 0.14909090909090908,
+        "pfr": 0.11090909090909092
+      },
+      "simulated_rates": {
+        "folds": 0.8360227272727273,
+        "vpip": 0.23886363636363636,
+        "pfr": 0.14488636363636365
+      },
+      "historical_interval_rates": {
+        "folds": 0.8897727272727273,
+        "vpip": 0.15988636363636363,
+        "pfr": 0.10568181818181818
+      }
+    },
+    {
+      "name": "poke-bowl",
+      "observed": {
+        "matches": 1,
+        "hands": 100,
+        "folds": 79,
+        "vpip": 24,
+        "pfr": 16
+      },
+      "simulated": {
+        "matches": 8,
+        "hands": 800,
+        "folds": 618,
+        "vpip": 280,
+        "pfr": 156
+      },
+      "observed_rates": {
+        "folds": 0.79,
+        "vpip": 0.24,
+        "pfr": 0.16
+      },
+      "simulated_rates": {
+        "folds": 0.7725,
+        "vpip": 0.35,
+        "pfr": 0.195
+      },
+      "historical_interval_rates": {
+        "folds": 0.795,
+        "vpip": 0.35125,
+        "pfr": 0.18625
+      }
+    },
+    {
+      "name": "guaguanco 5",
+      "observed": {
+        "matches": 22,
+        "hands": 2200,
+        "folds": 1911,
+        "vpip": 393,
+        "pfr": 318
+      },
+      "simulated": {
+        "matches": 176,
+        "hands": 17600,
+        "folds": 15101,
+        "vpip": 3461,
+        "pfr": 2731
+      },
+      "observed_rates": {
+        "folds": 0.8686363636363637,
+        "vpip": 0.17863636363636365,
+        "pfr": 0.14454545454545453
+      },
+      "simulated_rates": {
+        "folds": 0.8580113636363637,
+        "vpip": 0.19664772727272728,
+        "pfr": 0.15517045454545456
+      },
+      "historical_interval_rates": {
+        "folds": 0.8585795454545454,
+        "vpip": 0.19340909090909092,
+        "pfr": 0.15323863636363635
+      }
+    },
+    {
+      "name": "finian sucks",
+      "observed": {
+        "matches": 1,
+        "hands": 100,
+        "folds": 96,
+        "vpip": 5,
+        "pfr": 3
+      },
+      "simulated": {
+        "matches": 8,
+        "hands": 800,
+        "folds": 769,
+        "vpip": 57,
+        "pfr": 23
+      },
+      "observed_rates": {
+        "folds": 0.96,
+        "vpip": 0.05,
+        "pfr": 0.03
+      },
+      "simulated_rates": {
+        "folds": 0.96125,
+        "vpip": 0.07125,
+        "pfr": 0.02875
+      },
+      "historical_interval_rates": {
+        "folds": 0.95875,
+        "vpip": 0.06,
+        "pfr": 0.03125
+      }
+    },
+    {
+      "name": "luck is all u need",
+      "observed": {
+        "matches": 23,
+        "hands": 2300,
+        "folds": 2010,
+        "vpip": 555,
+        "pfr": 217
+      },
+      "simulated": {
+        "matches": 184,
+        "hands": 18400,
+        "folds": 16049,
+        "vpip": 4749,
+        "pfr": 1688
+      },
+      "observed_rates": {
+        "folds": 0.8739130434782608,
+        "vpip": 0.24130434782608695,
+        "pfr": 0.09434782608695652
+      },
+      "simulated_rates": {
+        "folds": 0.8722282608695652,
+        "vpip": 0.2580978260869565,
+        "pfr": 0.09173913043478261
+      },
+      "historical_interval_rates": {
+        "folds": 0.8820108695652173,
+        "vpip": 0.24858695652173912,
+        "pfr": 0.0958695652173913
+      }
+    },
+    {
+      "name": "Halliday",
+      "observed": {
+        "matches": 43,
+        "hands": 4300,
+        "folds": 3857,
+        "vpip": 672,
+        "pfr": 422
+      },
+      "simulated": {
+        "matches": 344,
+        "hands": 34400,
+        "folds": 30662,
+        "vpip": 5594,
+        "pfr": 3611
+      },
+      "observed_rates": {
+        "folds": 0.8969767441860466,
+        "vpip": 0.15627906976744185,
+        "pfr": 0.09813953488372093
+      },
+      "simulated_rates": {
+        "folds": 0.8913372093023256,
+        "vpip": 0.16261627906976744,
+        "pfr": 0.10497093023255814
+      },
+      "historical_interval_rates": {
+        "folds": 0.8854651162790698,
+        "vpip": 0.16526162790697674,
+        "pfr": 0.11
+      }
+    },
+    {
+      "name": "love-of-da-game",
+      "observed": {
+        "matches": 14,
+        "hands": 1400,
+        "folds": 1208,
+        "vpip": 265,
+        "pfr": 196
+      },
+      "simulated": {
+        "matches": 112,
+        "hands": 11200,
+        "folds": 9565,
+        "vpip": 2369,
+        "pfr": 1679
+      },
+      "observed_rates": {
+        "folds": 0.8628571428571429,
+        "vpip": 0.18928571428571428,
+        "pfr": 0.14
+      },
+      "simulated_rates": {
+        "folds": 0.8540178571428572,
+        "vpip": 0.21151785714285715,
+        "pfr": 0.14991071428571429
+      },
+      "historical_interval_rates": {
+        "folds": 0.8622321428571429,
+        "vpip": 0.20276785714285714,
+        "pfr": 0.15071428571428572
+      }
+    },
+    {
+      "name": "radishv2",
+      "observed": {
+        "matches": 1,
+        "hands": 100,
+        "folds": 86,
+        "vpip": 30,
+        "pfr": 20
+      },
+      "simulated": {
+        "matches": 8,
+        "hands": 800,
+        "folds": 643,
+        "vpip": 275,
+        "pfr": 173
+      },
+      "observed_rates": {
+        "folds": 0.86,
+        "vpip": 0.3,
+        "pfr": 0.2
+      },
+      "simulated_rates": {
+        "folds": 0.80375,
+        "vpip": 0.34375,
+        "pfr": 0.21625
+      },
+      "historical_interval_rates": {
+        "folds": 0.785,
+        "vpip": 0.35625,
+        "pfr": 0.215
+      }
+    },
+    {
+      "name": "RiverForge",
+      "observed": {
+        "matches": 7,
+        "hands": 700,
+        "folds": 622,
+        "vpip": 97,
+        "pfr": 56
+      },
+      "simulated": {
+        "matches": 56,
+        "hands": 5600,
+        "folds": 4977,
+        "vpip": 744,
+        "pfr": 503
+      },
+      "observed_rates": {
+        "folds": 0.8885714285714286,
+        "vpip": 0.13857142857142857,
+        "pfr": 0.08
+      },
+      "simulated_rates": {
+        "folds": 0.88875,
+        "vpip": 0.13285714285714287,
+        "pfr": 0.08982142857142857
+      },
+      "historical_interval_rates": {
+        "folds": 0.8857142857142857,
+        "vpip": 0.14125,
+        "pfr": 0.09285714285714286
+      }
+    },
+    {
+      "name": "best-bot",
+      "observed": {
+        "matches": 17,
+        "hands": 1700,
+        "folds": 1479,
+        "vpip": 321,
+        "pfr": 254
+      },
+      "simulated": {
+        "matches": 136,
+        "hands": 13600,
+        "folds": 11687,
+        "vpip": 2717,
+        "pfr": 1971
+      },
+      "observed_rates": {
+        "folds": 0.87,
+        "vpip": 0.1888235294117647,
+        "pfr": 0.14941176470588236
+      },
+      "simulated_rates": {
+        "folds": 0.8593382352941177,
+        "vpip": 0.19977941176470587,
+        "pfr": 0.1449264705882353
+      },
+      "historical_interval_rates": {
+        "folds": 0.8601470588235294,
+        "vpip": 0.20066176470588235,
+        "pfr": 0.14279411764705882
+      }
+    },
+    {
+      "name": "netanyahu",
+      "observed": {
+        "matches": 13,
+        "hands": 1300,
+        "folds": 1051,
+        "vpip": 322,
+        "pfr": 227
+      },
+      "simulated": {
+        "matches": 104,
+        "hands": 10400,
+        "folds": 8452,
+        "vpip": 2727,
+        "pfr": 1796
+      },
+      "observed_rates": {
+        "folds": 0.8084615384615385,
+        "vpip": 0.24769230769230768,
+        "pfr": 0.17461538461538462
+      },
+      "simulated_rates": {
+        "folds": 0.8126923076923077,
+        "vpip": 0.26221153846153844,
+        "pfr": 0.1726923076923077
+      },
+      "historical_interval_rates": {
+        "folds": 0.8142307692307692,
+        "vpip": 0.25490384615384615,
+        "pfr": 0.1776923076923077
+      }
+    },
+    {
+      "name": "Phil_Ivey_GOAT",
+      "observed": {
+        "matches": 13,
+        "hands": 1300,
+        "folds": 1203,
+        "vpip": 127,
+        "pfr": 98
+      },
+      "simulated": {
+        "matches": 104,
+        "hands": 10400,
+        "folds": 9627,
+        "vpip": 973,
+        "pfr": 676
+      },
+      "observed_rates": {
+        "folds": 0.9253846153846154,
+        "vpip": 0.09769230769230769,
+        "pfr": 0.07538461538461538
+      },
+      "simulated_rates": {
+        "folds": 0.9256730769230769,
+        "vpip": 0.09355769230769231,
+        "pfr": 0.065
+      },
+      "historical_interval_rates": {
+        "folds": 0.9173076923076923,
+        "vpip": 0.10923076923076923,
+        "pfr": 0.07788461538461539
+      }
+    },
+    {
+      "name": "dan_negreanu_on_ket",
+      "observed": {
+        "matches": 1,
+        "hands": 100,
+        "folds": 79,
+        "vpip": 24,
+        "pfr": 16
+      },
+      "simulated": {
+        "matches": 8,
+        "hands": 800,
+        "folds": 645,
+        "vpip": 228,
+        "pfr": 147
+      },
+      "observed_rates": {
+        "folds": 0.79,
+        "vpip": 0.24,
+        "pfr": 0.16
+      },
+      "simulated_rates": {
+        "folds": 0.80625,
+        "vpip": 0.285,
+        "pfr": 0.18375
+      },
+      "historical_interval_rates": {
+        "folds": 0.81875,
+        "vpip": 0.2525,
+        "pfr": 0.1725
+      }
+    },
+    {
+      "name": "MAC Projects Team Testing Bot 2",
+      "observed": {
+        "matches": 4,
+        "hands": 400,
+        "folds": 332,
+        "vpip": 87,
+        "pfr": 70
+      },
+      "simulated": {
+        "matches": 32,
+        "hands": 3200,
+        "folds": 2652,
+        "vpip": 816,
+        "pfr": 584
+      },
+      "observed_rates": {
+        "folds": 0.83,
+        "vpip": 0.2175,
+        "pfr": 0.175
+      },
+      "simulated_rates": {
+        "folds": 0.82875,
+        "vpip": 0.255,
+        "pfr": 0.1825
+      },
+      "historical_interval_rates": {
+        "folds": 0.8275,
+        "vpip": 0.2496875,
+        "pfr": 0.1821875
+      }
+    },
+    {
+      "name": "yep",
+      "observed": {
+        "matches": 8,
+        "hands": 800,
+        "folds": 703,
+        "vpip": 142,
+        "pfr": 104
+      },
+      "simulated": {
+        "matches": 64,
+        "hands": 6400,
+        "folds": 5604,
+        "vpip": 1249,
+        "pfr": 859
+      },
+      "observed_rates": {
+        "folds": 0.87875,
+        "vpip": 0.1775,
+        "pfr": 0.13
+      },
+      "simulated_rates": {
+        "folds": 0.875625,
+        "vpip": 0.19515625,
+        "pfr": 0.13421875
+      },
+      "historical_interval_rates": {
+        "folds": 0.8728125,
+        "vpip": 0.19171875,
+        "pfr": 0.136875
+      }
+    },
+    {
+      "name": "axiom",
+      "observed": {
+        "matches": 1,
+        "hands": 100,
+        "folds": 88,
+        "vpip": 23,
+        "pfr": 13
+      },
+      "simulated": {
+        "matches": 8,
+        "hands": 800,
+        "folds": 687,
+        "vpip": 194,
+        "pfr": 117
+      },
+      "observed_rates": {
+        "folds": 0.88,
+        "vpip": 0.23,
+        "pfr": 0.13
+      },
+      "simulated_rates": {
+        "folds": 0.85875,
+        "vpip": 0.2425,
+        "pfr": 0.14625
+      },
+      "historical_interval_rates": {
+        "folds": 0.8475,
+        "vpip": 0.23375,
+        "pfr": 0.15125
+      }
+    },
+    {
+      "name": "testQ",
+      "observed": {
+        "matches": 12,
+        "hands": 1200,
+        "folds": 952,
+        "vpip": 566,
+        "pfr": 30
+      },
+      "simulated": {
+        "matches": 96,
+        "hands": 9600,
+        "folds": 8003,
+        "vpip": 2238,
+        "pfr": 1530
+      },
+      "observed_rates": {
+        "folds": 0.7933333333333333,
+        "vpip": 0.4716666666666667,
+        "pfr": 0.025
+      },
+      "simulated_rates": {
+        "folds": 0.8336458333333333,
+        "vpip": 0.233125,
+        "pfr": 0.159375
+      },
+      "historical_interval_rates": {
+        "folds": 0.8185416666666666,
+        "vpip": 0.4482291666666667,
+        "pfr": 0.0290625
+      }
+    },
+    {
+      "name": "larp larp sahur",
+      "observed": {
+        "matches": 22,
+        "hands": 2200,
+        "folds": 1911,
+        "vpip": 427,
+        "pfr": 253
+      },
+      "simulated": {
+        "matches": 176,
+        "hands": 17600,
+        "folds": 15429,
+        "vpip": 3356,
+        "pfr": 2147
+      },
+      "observed_rates": {
+        "folds": 0.8686363636363637,
+        "vpip": 0.1940909090909091,
+        "pfr": 0.115
+      },
+      "simulated_rates": {
+        "folds": 0.8766477272727272,
+        "vpip": 0.19068181818181817,
+        "pfr": 0.12198863636363637
+      },
+      "historical_interval_rates": {
+        "folds": 0.8730681818181818,
+        "vpip": 0.1955681818181818,
+        "pfr": 0.11994318181818182
+      }
+    },
+    {
+      "name": "zinger box",
+      "observed": {
+        "matches": 5,
+        "hands": 500,
+        "folds": 385,
+        "vpip": 231,
+        "pfr": 121
+      },
+      "simulated": {
+        "matches": 40,
+        "hands": 4000,
+        "folds": 3128,
+        "vpip": 1784,
+        "pfr": 855
+      },
+      "observed_rates": {
+        "folds": 0.77,
+        "vpip": 0.462,
+        "pfr": 0.242
+      },
+      "simulated_rates": {
+        "folds": 0.782,
+        "vpip": 0.446,
+        "pfr": 0.21375
+      },
+      "historical_interval_rates": {
+        "folds": 0.77475,
+        "vpip": 0.4285,
+        "pfr": 0.2075
+      }
+    },
+    {
+      "name": "Gladiator_v3",
+      "observed": {
+        "matches": 4,
+        "hands": 400,
+        "folds": 330,
+        "vpip": 143,
+        "pfr": 56
+      },
+      "simulated": {
+        "matches": 32,
+        "hands": 3200,
+        "folds": 2714,
+        "vpip": 993,
+        "pfr": 378
+      },
+      "observed_rates": {
+        "folds": 0.825,
+        "vpip": 0.3575,
+        "pfr": 0.14
+      },
+      "simulated_rates": {
+        "folds": 0.848125,
+        "vpip": 0.3103125,
+        "pfr": 0.118125
+      },
+      "historical_interval_rates": {
+        "folds": 0.84875,
+        "vpip": 0.3165625,
+        "pfr": 0.120625
+      }
+    },
+    {
+      "name": "Allen Iverson 2.0",
+      "observed": {
+        "matches": 9,
+        "hands": 900,
+        "folds": 818,
+        "vpip": 102,
+        "pfr": 73
+      },
+      "simulated": {
+        "matches": 72,
+        "hands": 7200,
+        "folds": 6459,
+        "vpip": 898,
+        "pfr": 637
+      },
+      "observed_rates": {
+        "folds": 0.9088888888888889,
+        "vpip": 0.11333333333333333,
+        "pfr": 0.0811111111111111
+      },
+      "simulated_rates": {
+        "folds": 0.8970833333333333,
+        "vpip": 0.12472222222222222,
+        "pfr": 0.08847222222222222
+      },
+      "historical_interval_rates": {
+        "folds": 0.8897222222222222,
+        "vpip": 0.13180555555555556,
+        "pfr": 0.09847222222222222
+      }
+    },
+    {
+      "name": "MAC Projects Team Testing Bot 3",
+      "observed": {
+        "matches": 2,
+        "hands": 200,
+        "folds": 163,
+        "vpip": 51,
+        "pfr": 44
+      },
+      "simulated": {
+        "matches": 16,
+        "hands": 1600,
+        "folds": 1274,
+        "vpip": 452,
+        "pfr": 389
+      },
+      "observed_rates": {
+        "folds": 0.815,
+        "vpip": 0.255,
+        "pfr": 0.22
+      },
+      "simulated_rates": {
+        "folds": 0.79625,
+        "vpip": 0.2825,
+        "pfr": 0.243125
+      },
+      "historical_interval_rates": {
+        "folds": 0.7975,
+        "vpip": 0.288125,
+        "pfr": 0.254375
+      }
+    }
+  ],
+  "caveats": [
+    "Fresh decks and eight duplicate games per observed table, not reconstructed replay actions.",
+    "All replicas use newest available intervals; opponents may have changed during Halliday's observed interval.",
+    "Similar marginal action rates do not prove comparable conditional policies or winnings.",
+    "Real source hashes/deployment state are unknown; observed Halliday cannot be identified with current bot/."
+  ]
+}

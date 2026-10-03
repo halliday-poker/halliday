@@ -45,7 +45,7 @@ class WorkerSelectionTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "CUDA requested"):
                 harness.compute_plan(options(device="cuda"))
 
-    def test_one_worker_per_selected_gpu(self):
+    def test_default_one_worker_per_gpu_and_explicit_shared_workers(self):
         backend = Mock()
         backend.Driver.return_value.devices.return_value = [dict(index=i, name="V100") for i in range(4)]
         with patch.object(harness, "gpu_module", return_value=backend):
@@ -53,9 +53,23 @@ class WorkerSelectionTests(unittest.TestCase):
             self.assertEqual(plan["workers"], 2)
             self.assertEqual([d["index"] for d in plan["devices"]], [3, 1])
             self.assertEqual(harness.compute_plan(options(gpu_workers=3))["workers"], 3)
-            for args in (options(gpu_workers=5), options(gpu_devices="1,1"), options(gpu_devices="9")):
+            shared=harness.compute_plan(options(gpu_workers=12))
+            self.assertEqual(shared['workers'],12)
+            self.assertEqual(len(shared['devices']),4)
+            for args in (options(gpu_workers=0), options(gpu_devices="1,1"), options(gpu_devices="9")):
                 with self.assertRaises(ValueError):
                     harness.compute_plan(args)
+
+    def test_shared_workers_each_receive_a_device_and_complete_startup(self):
+        context,devices,ready=Mock(),Mock(),Mock()
+        context.Queue.side_effect=[devices,ready]
+        ready.get.side_effect=[dict(device=f'cuda:{i%2}') for i in range(6)]
+        plan=dict(requested='cuda',device='cuda',workers=6,devices=[dict(index=0),dict(index=1)],batch_size=128)
+        with patch.object(harness.mp,'get_context',return_value=context):
+            pool,selected=harness.worker_pool(plan,options())
+        self.assertEqual([call.args[0] for call in devices.put.call_args_list],[0,1,0,1,0,1])
+        self.assertEqual(ready.get.call_count,6)
+        self.assertEqual(len(selected['worker_startup']),6)
 
     def test_gates_and_incompatible_bots_are_not_marked_accelerated(self):
         with patch.object(harness, "gpu_module", side_effect=AssertionError("CUDA touched")):

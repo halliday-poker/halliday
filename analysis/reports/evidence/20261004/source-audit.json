@@ -1,0 +1,16 @@
+{
+  "actions_sha256": "10331deef87e5cacb4e09ac79c5ebe2d4aeb4ff477b153d20cdb7de8fbd01d9a",
+  "rows": 1674234,
+  "hands": 158752,
+  "matches_with_actions": 1809,
+  "metadata_matches": 1812,
+  "orphan_actions": [],
+  "metadata_without_actions": [
+    "j9705dg90tzhpamk8gybbqywpd8fjakk",
+    "j97ba4wtgjvpgjyzakyghh9cy98fk543",
+    "j97bmvz0kb7jacgwnnzk3nvgcs8fj655"
+  ],
+  "name_conflicts": [],
+  "chip_conflicts": [],
+  "missing_collected_state": []
+}

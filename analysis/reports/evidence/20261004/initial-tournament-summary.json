@@ -1,0 +1,111 @@
+{
+  "args": {
+    "bots": [
+      "snapshots/analysis_baseline_20261004",
+      "analysis/candidates/mixed_65"
+    ],
+    "pool": "sparring/competitors/from_data/pool.txt",
+    "repeats": 20,
+    "rounds": 4,
+    "deals": 100,
+    "seed": "four-round-confirm-20261004",
+    "device": "cuda",
+    "workers": 15,
+    "gpu_workers": 4,
+    "gpu_devices": "3",
+    "gpu_batch_size": 128,
+    "output": "analysis/results/refresh-20261004/four-round-confirm.json"
+  },
+  "compute": {
+    "requested": "cuda",
+    "device": "cuda",
+    "workers": 4,
+    "devices": [
+      {
+        "index": 3,
+        "name": "Tesla V100-SXM2-16GB",
+        "architecture": "sm_70"
+      }
+    ],
+    "batch_size": 128,
+    "worker_startup": [
+      {
+        "device": "cuda:3",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:3",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:3",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:3",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      }
+    ]
+  },
+  "elapsed_s": 1355.331164370058,
+  "commit": "98ed281+dirty",
+  "summary": [
+    {
+      "bot": "snapshots/analysis_baseline_20261004",
+      "hash": "8015e4b3",
+      "mean_rank": [
+        17.925,
+        5.838277192712535
+      ],
+      "placement": [
+        14.775,
+        0.9090231599157185
+      ],
+      "strictly_top_three": 3,
+      "repeats": 20
+    },
+    {
+      "bot": "analysis/candidates/mixed_65",
+      "hash": "f1abf214",
+      "mean_rank": [
+        13.15,
+        5.628369325404819
+      ],
+      "placement": [
+        16.225,
+        1.2567732073595625
+      ],
+      "strictly_top_three": 8,
+      "repeats": 20
+    }
+  ],
+  "bad_games": [],
+  "assumptions": [
+    "All observed external display identities are entrants, excluding house:call.",
+    "Balanced tables nearest five; initial seeded order breaks exact regrouping ties.",
+    "Final ranks use cumulative placement only. Prize ties need playoffs and remain unresolved.",
+    "Pairing by event seed persists; regrouping can produce different opponents after round one."
+  ],
+  "games": 12160,
+  "events": 40
+}

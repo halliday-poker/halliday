@@ -86,3 +86,45 @@ Local artifacts, intentionally ignored by Git:
 - [Run log](results/competitors-latest-cuda.log)
 - [Full CUDA-enabled test log](results/gpu-harness-full-cuda-tests.log)
 - Small comparison: [GPU](results/20261003-221801.json) and [CPU](results/20261003-222229.json)
+
+
+## October 4 shared-worker extension
+
+The refreshed model adds CPU inference work, so profiling and scheduling were
+revisited. CUDA ranking accounted for about 18.6 seconds across the learned
+400-table field run, compared with 863 seconds elapsed on two workers. CPU
+range sampling, game logic and replica inference dominate. Shared GPU workers
+therefore expose more CPU parallelism without changing equity kernels.
+
+`--gpu-workers` now permits multiple processes per device. Its default remains
+one per device. An eight-worker/four-V100 smoke completed all 40 games without
+failures, with two distinct worker PIDs and nonzero ranking work on each GPU
+(`harness/results/20261004-014651.json`). A later strategy screen ran sixteen
+workers across all four V100s. Each process has its own CUDA context; four
+workers per device exceed the original 1 GiB free-memory budget and were used
+only after the hardware had been freed for this task. Explicit shared-worker
+counts require enough free VRAM and CPU cores; NVLink does not pool their memory.
+
+After the model, scheduling, behavior counters, resource launcher and four-round
+scoring changes, **132 repository tests passed with CUDA enabled** in 49.3 seconds after the
+latest main integration. The final log is
+`analysis/results/refresh-20261004/final-tests.log`. Additional
+actual restricted subprocess checks are recorded separately; GPU benchmark
+clocks remain unsuitable proof of CPU submission compliance. These workloads
+and worker counts differ from October 3, so no exact speedup factor is claimed.
+
+
+A later profile found repeated feature-column cleaning in replica inference.
+Cleaning the full small row matrix once gives bit-for-bit equal features on all
+1,147,147 replay decisions in both float32 and float64. All seven behavior tests
+passed again. A nonexclusive microbenchmark over 1,148 single-row calls took
+0.678 s before and 0.174 s after; this is a feature-construction measurement,
+not a game throughput claim. Existing running workers retain loaded modules;
+subsequent pools use the equivalent optimized code. No model weights or
+candidate decisions were intentionally changed.
+
+`analysis/results/refresh-20261004/gpu-concurrency.txt` records sixteen concurrent
+CUDA worker contexts, four per V100, each using 308 MiB. Total device use was
+1,236 MiB per device with 14,909 MiB free. Low instantaneous GPU utilization is
+consistent with CPU-bound simulation and does not mean CUDA work is absent;
+per-game batch/ranking counters record the actual work.

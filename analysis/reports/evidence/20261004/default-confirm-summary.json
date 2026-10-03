@@ -1,0 +1,244 @@
+{
+  "purpose": "cpu-default-stress",
+  "units": {
+    "mbb": "bb/100 after multiplying harness mbb/hand by 0.1",
+    "game_pts": "per game",
+    "round_pts": "per duplicate set"
+  },
+  "inference": "Paired complete duplicate tables; seed blocks retained. Intervals exclude opponent model error. Tuning results cannot confirm selected performance.",
+  "comparisons": 1,
+  "summary": [
+    {
+      "bot": "snapshots/analysis_baseline_20261004",
+      "hash": "8015e4b3",
+      "tables": 128,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            289.85572916666666,
+            40.84160939151479
+          ],
+          "family_adjusted_mean_ci": [
+            289.85572916666666,
+            40.84085891735806
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.788932291666667,
+            0.10699768879768347
+          ],
+          "family_adjusted_mean_ci": [
+            3.788932291666667,
+            0.10699572269004302
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            4.08984375,
+            0.16678939915639804
+          ],
+          "family_adjusted_mean_ci": [
+            4.08984375,
+            0.16678633436204865
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            0.0,
+            0.0
+          ],
+          "family_adjusted_mean_ci": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    {
+      "bot": "analysis/candidates/mixed_65",
+      "hash": "f1abf214",
+      "tables": 128,
+      "metrics": {
+        "mbb": {
+          "mean_ci95": [
+            289.08333333333337,
+            40.4138895579052
+          ],
+          "family_adjusted_mean_ci": [
+            289.08333333333337,
+            40.41314694320079
+          ]
+        },
+        "delta_mbb": {
+          "mean_ci95": [
+            -0.7723958333333345,
+            2.9899378719620024
+          ],
+          "family_adjusted_mean_ci": [
+            -0.7723958333333345,
+            2.989882931151967
+          ]
+        },
+        "game_pts": {
+          "mean_ci95": [
+            3.7859375,
+            0.10542733480547281
+          ],
+          "family_adjusted_mean_ci": [
+            3.7859375,
+            0.1054253975534555
+          ]
+        },
+        "delta_game_pts": {
+          "mean_ci95": [
+            -0.00299479166666667,
+            0.02131465135409332
+          ],
+          "family_adjusted_mean_ci": [
+            -0.00299479166666667,
+            0.021314259692372856
+          ]
+        },
+        "round_pts": {
+          "mean_ci95": [
+            4.09765625,
+            0.1645157657634422
+          ],
+          "family_adjusted_mean_ci": [
+            4.09765625,
+            0.16451274274763997
+          ]
+        },
+        "delta_round_pts": {
+          "mean_ci95": [
+            0.0078125,
+            0.047362255923586026
+          ],
+          "family_adjusted_mean_ci": [
+            0.0078125,
+            0.0473613856310191
+          ]
+        }
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "file": "harness/results/20261004-041016.json",
+      "sha256": "5b5d5b4ec2832b7bfc4e18f88057fec9f27d64cb10d17742e3c38b0faee3f9de",
+      "seed": "mixed65-default-confirm-20261004",
+      "args": {
+        "cmd": "run",
+        "bots": [
+          "snapshots/analysis_baseline_20261004",
+          "analysis/candidates/mixed_65"
+        ],
+        "tables": 128,
+        "seed": "mixed65-default-confirm-20261004",
+        "pool": "harness/pools/default.txt",
+        "add": [],
+        "sizes": "4,5,5,6",
+        "tables_json": null,
+        "deals": 100,
+        "time_ms": 30000,
+        "increment_ms": 100,
+        "workers": 4,
+        "device": "cpu",
+        "gpu_devices": null,
+        "gpu_workers": null,
+        "gpu_batch_size": 128,
+        "league": 3,
+        "no_league": true,
+        "max_tables": 1600,
+        "no_extend": false,
+        "max_bank": 50,
+        "label": "cpu-default-stress"
+      },
+      "tables": 128,
+      "games": 1268,
+      "summary": [
+        {
+          "bot": "snapshots/analysis_baseline_20261004",
+          "hash": "8015e4b3",
+          "mbb": [
+            2898.5572916666665,
+            408.4160939151478
+          ],
+          "game_pts": [
+            3.788932291666667,
+            0.10699768879768347
+          ],
+          "round_pts": [
+            4.08984375,
+            0.16678939915639804
+          ],
+          "won_pct": 39.84375,
+          "bad_games": 0,
+          "max_ms": 102.3,
+          "bank_pct": 14.461500000000003
+        },
+        {
+          "bot": "analysis/candidates/mixed_65",
+          "hash": "f1abf214",
+          "mbb": [
+            2890.8333333333335,
+            404.138895579052
+          ],
+          "game_pts": [
+            3.7859375,
+            0.10542733480547281
+          ],
+          "round_pts": [
+            4.09765625,
+            0.1645157657634422
+          ],
+          "won_pct": 41.40625,
+          "bad_games": 0,
+          "max_ms": 98.39,
+          "bank_pct": 13.20075,
+          "vs_baseline": {
+            "d_mbb": [
+              -7.723958333333344,
+              29.899378719620028
+            ],
+            "d_round_pts": [
+              0.0078125,
+              0.047362255923586026
+            ],
+            "call": "inconclusive"
+          }
+        }
+      ],
+      "compute": {
+        "requested": "cpu",
+        "device": "cpu",
+        "workers": 4,
+        "devices": [],
+        "gpu_usage": {}
+      },
+      "failures": 0,
+      "player_verdicts": 6412
+    }
+  ]
+}
