@@ -1,0 +1,1460 @@
+{
+  "interval": {
+    "point": [
+      46.2792,
+      49.4009,
+      48.58005,
+      45.6392,
+      -0.82085,
+      -0.64,
+      2.94085,
+      -0.18085,
+      3.1217
+    ],
+    "low": [
+      42.94429936311326,
+      45.88958802003354,
+      45.07371004225783,
+      42.23667824981315,
+      -2.025106036420554,
+      -1.7657353143590278,
+      1.7317861398681624,
+      -1.3225276092206038,
+      1.856564093144162
+    ],
+    "high": [
+      49.81126830204516,
+      52.888751977218256,
+      52.159806665268654,
+      49.15636722556071,
+      0.4483257811087217,
+      0.5209139128373764,
+      4.145024945069184,
+      0.9545225303177898,
+      4.36885098678933
+    ]
+  },
+  "return_keys": [
+    "main",
+    "calibration",
+    "groups_calibration",
+    "groups_main",
+    "calibration_group_gain",
+    "main_group_gain",
+    "calibration_base_gain",
+    "interaction",
+    "calibration_gain"
+  ],
+  "placements": {
+    "points": [
+      3.5306122448979593,
+      3.565704330512693,
+      3.5507715281234447,
+      3.5174216027874565
+    ],
+    "wins": [
+      0.24041811846689895,
+      0.2533598805375809,
+      0.25186660029865604,
+      0.2573419611747138
+    ],
+    "delta": [
+      -0.014932802389248382,
+      -0.013190642110502738,
+      0.03334992533598805
+    ],
+    "low": [
+      -0.05002488800398208,
+      -0.04952712792434047,
+      0.003484320557491289
+    ],
+    "high": [
+      0.020905923344947737,
+      0.023643603782976606,
+      0.06470881035340965
+    ]
+  },
+  "by_size": {
+    "4": {
+      "point": [
+        44.09308510638298,
+        48.4813829787234,
+        45.91803675048356,
+        43.49008704061895,
+        -2.5633462282398454,
+        -0.6029980657640233,
+        2.4279497098646035,
+        -1.960348162475822,
+        4.388297872340425
+      ],
+      "low": [
+        38.1435747098646,
+        41.86800652804642,
+        39.038152804642166,
+        37.00715667311412,
+        -5.337354932301741,
+        -3.465443665377176,
+        0.1597860251450677,
+        -4.446838733075435,
+        1.7137088974854933
+      ],
+      "high": [
+        50.310523452611214,
+        55.52305971953578,
+        53.03435082205028,
+        50.09216634429399,
+        0.3092722437137325,
+        2.169082446808506,
+        4.777000725338489,
+        0.5595200676982586,
+        7.106026353965182
+      ]
+    },
+    "5": {
+      "point": [
+        46.80754901960784,
+        48.83343137254902,
+        47.97401960784314,
+        44.855294117647055,
+        -0.8594117647058823,
+        -1.9522549019607842,
+        3.1187254901960784,
+        1.092843137254902,
+        2.0258823529411765
+      ],
+      "low": [
+        41.99841911764706,
+        44.007735294117644,
+        43.20997794117647,
+        40.0682181372549,
+        -2.6432401960784313,
+        -3.582857843137255,
+        1.467436274509804,
+        -0.5315759803921568,
+        0.4062622549019608
+      ],
+      "high": [
+        51.649767156862744,
+        53.7265294117647,
+        52.84450980392156,
+        49.67491911764706,
+        0.8948872549019595,
+        -0.34162990196078485,
+        4.817830882352938,
+        2.663725490196077,
+        3.729955882352939
+      ]
+    },
+    "6": {
+      "point": [
+        46.92408192090395,
+        51.09427966101695,
+        51.6152895480226,
+        48.62023305084746,
+        0.5210098870056498,
+        1.6961511299435028,
+        2.9950564971751414,
+        -1.1751412429378532,
+        4.170197740112994
+      ],
+      "low": [
+        40.197228107344635,
+        43.9060248940678,
+        44.418816207627124,
+        41.47616084039548,
+        -1.5895259533898305,
+        -0.3579007768361582,
+        0.5290121822033899,
+        -3.3537385240112996,
+        1.5900026483050849
+      ],
+      "high": [
+        54.098313912429376,
+        58.37237376412429,
+        58.92727754237288,
+        55.91003266242938,
+        2.649589512711864,
+        3.7274938206214676,
+        5.407503531073446,
+        0.9668079096045198,
+        6.805362817796609
+      ]
+    }
+  },
+  "phases": [
+    [
+      {
+        "hands": 250000,
+        "chips": 233847,
+        "actions": 335350,
+        "folds": 207729,
+        "flags": 382
+      },
+      {
+        "hands": 250000,
+        "chips": 243726,
+        "actions": 332266,
+        "folds": 209061,
+        "flags": 359
+      },
+      {
+        "hands": 250000,
+        "chips": 228310,
+        "actions": 331592,
+        "folds": 209376,
+        "flags": 352
+      },
+      {
+        "hands": 250000,
+        "chips": 219701,
+        "actions": 331388,
+        "folds": 209718,
+        "flags": 398
+      }
+    ],
+    [
+      {
+        "hands": 250000,
+        "chips": 253941,
+        "actions": 335342,
+        "folds": 207654,
+        "flags": 125
+      },
+      {
+        "hands": 250000,
+        "chips": 254833,
+        "actions": 332282,
+        "folds": 209019,
+        "flags": 129
+      },
+      {
+        "hands": 250000,
+        "chips": 237636,
+        "actions": 331868,
+        "folds": 209352,
+        "flags": 126
+      },
+      {
+        "hands": 250000,
+        "chips": 241608,
+        "actions": 331270,
+        "folds": 209521,
+        "flags": 158
+      }
+    ],
+    [
+      {
+        "hands": 250000,
+        "chips": 252826,
+        "actions": 335650,
+        "folds": 207548,
+        "flags": 126
+      },
+      {
+        "hands": 250000,
+        "chips": 251803,
+        "actions": 332806,
+        "folds": 208932,
+        "flags": 118
+      },
+      {
+        "hands": 250000,
+        "chips": 229909,
+        "actions": 332558,
+        "folds": 209107,
+        "flags": 138
+      },
+      {
+        "hands": 250000,
+        "chips": 237063,
+        "actions": 332137,
+        "folds": 209505,
+        "flags": 175
+      }
+    ],
+    [
+      {
+        "hands": 250000,
+        "chips": 235012,
+        "actions": 335662,
+        "folds": 207625,
+        "flags": 372
+      },
+      {
+        "hands": 250000,
+        "chips": 231199,
+        "actions": 332938,
+        "folds": 208916,
+        "flags": 357
+      },
+      {
+        "hands": 250000,
+        "chips": 228361,
+        "actions": 332582,
+        "folds": 209127,
+        "flags": 353
+      },
+      {
+        "hands": 250000,
+        "chips": 218212,
+        "actions": 332084,
+        "folds": 209537,
+        "flags": 410
+      }
+    ]
+  ],
+  "summaries": [
+    {
+      "games": 10000,
+      "chips": 925584,
+      "hands": 1000000,
+      "actions": 1330596,
+      "folds": 835884,
+      "bad_calls": 118,
+      "missed_calls": 1373,
+      "certain_folds": 0,
+      "allin_luck": -4039.495848083525,
+      "ev_audited": 115562,
+      "negative_games": 3991,
+      "negative_games_with_flags": 478
+    },
+    {
+      "games": 10000,
+      "chips": 988018,
+      "hands": 1000000,
+      "actions": 1330762,
+      "folds": 835546,
+      "bad_calls": 80,
+      "missed_calls": 458,
+      "certain_folds": 0,
+      "allin_luck": -1369.325659702701,
+      "ev_audited": 115531,
+      "negative_games": 3959,
+      "negative_games_with_flags": 199
+    },
+    {
+      "games": 10000,
+      "chips": 971601,
+      "hands": 1000000,
+      "actions": 1333151,
+      "folds": 835092,
+      "bad_calls": 98,
+      "missed_calls": 459,
+      "certain_folds": 0,
+      "allin_luck": -6330.691483467297,
+      "ev_audited": 116521,
+      "negative_games": 3975,
+      "negative_games_with_flags": 210
+    },
+    {
+      "games": 10000,
+      "chips": 912784,
+      "hands": 1000000,
+      "actions": 1333266,
+      "folds": 835205,
+      "bad_calls": 162,
+      "missed_calls": 1329,
+      "certain_folds": 1,
+      "allin_luck": -14432.804132628893,
+      "ev_audited": 116534,
+      "negative_games": 4015,
+      "negative_games_with_flags": 481
+    }
+  ],
+  "streets": [
+    {
+      "preflop": {
+        "actions": 1023426,
+        "faced_bet": 1015425,
+        "facing_folds": 787580,
+        "terminal_folds": 10373,
+        "terminal_calls": 6883,
+        "raise": 161360,
+        "fold": 787580,
+        "call": 68469,
+        "check": 6017
+      },
+      "flop": {
+        "actions": 168538,
+        "faced_bet": 71549,
+        "facing_folds": 28494,
+        "terminal_folds": 666,
+        "terminal_calls": 914,
+        "raise": 53117,
+        "call": 40625,
+        "check": 46302,
+        "fold": 28494
+      },
+      "turn": {
+        "actions": 89085,
+        "faced_bet": 35096,
+        "facing_folds": 12317,
+        "terminal_folds": 561,
+        "terminal_calls": 1570,
+        "raise": 31030,
+        "call": 20832,
+        "check": 24906,
+        "fold": 12317
+      },
+      "river": {
+        "actions": 49547,
+        "faced_bet": 18430,
+        "facing_folds": 7493,
+        "terminal_folds": 6752,
+        "terminal_calls": 9047,
+        "check": 14548,
+        "call": 9752,
+        "fold": 7493,
+        "raise": 17754
+      }
+    },
+    {
+      "preflop": {
+        "actions": 1023447,
+        "faced_bet": 1015436,
+        "facing_folds": 786413,
+        "terminal_folds": 9195,
+        "terminal_calls": 8099,
+        "raise": 161229,
+        "fold": 786413,
+        "call": 69773,
+        "check": 6032
+      },
+      "flop": {
+        "actions": 168622,
+        "faced_bet": 71603,
+        "facing_folds": 28509,
+        "terminal_folds": 653,
+        "terminal_calls": 909,
+        "raise": 53196,
+        "call": 40649,
+        "check": 46268,
+        "fold": 28509
+      },
+      "turn": {
+        "actions": 89114,
+        "faced_bet": 35042,
+        "facing_folds": 12270,
+        "terminal_folds": 568,
+        "terminal_calls": 1582,
+        "raise": 31063,
+        "call": 20813,
+        "check": 24968,
+        "fold": 12270
+      },
+      "river": {
+        "actions": 49579,
+        "faced_bet": 18408,
+        "facing_folds": 8354,
+        "terminal_folds": 7516,
+        "terminal_calls": 8250,
+        "check": 14565,
+        "call": 8884,
+        "fold": 8354,
+        "raise": 17776
+      }
+    },
+    {
+      "preflop": {
+        "actions": 1023429,
+        "faced_bet": 1015386,
+        "facing_folds": 786371,
+        "terminal_folds": 9180,
+        "terminal_calls": 8061,
+        "raise": 161284,
+        "fold": 786371,
+        "call": 69747,
+        "check": 6027
+      },
+      "flop": {
+        "actions": 168918,
+        "faced_bet": 71906,
+        "facing_folds": 27991,
+        "terminal_folds": 661,
+        "terminal_calls": 945,
+        "raise": 52558,
+        "call": 41398,
+        "check": 46971,
+        "fold": 27991
+      },
+      "turn": {
+        "actions": 90389,
+        "faced_bet": 35598,
+        "facing_folds": 12338,
+        "terminal_folds": 583,
+        "terminal_calls": 1604,
+        "raise": 31504,
+        "call": 21282,
+        "check": 25265,
+        "fold": 12338
+      },
+      "river": {
+        "actions": 50415,
+        "faced_bet": 18775,
+        "facing_folds": 8392,
+        "terminal_folds": 7590,
+        "terminal_calls": 8532,
+        "check": 14759,
+        "call": 9173,
+        "fold": 8392,
+        "raise": 18091
+      }
+    },
+    {
+      "preflop": {
+        "actions": 1023317,
+        "faced_bet": 1015299,
+        "facing_folds": 787460,
+        "terminal_folds": 10345,
+        "terminal_calls": 6830,
+        "raise": 161292,
+        "fold": 787460,
+        "call": 68566,
+        "check": 5999
+      },
+      "flop": {
+        "actions": 168962,
+        "faced_bet": 71857,
+        "facing_folds": 27955,
+        "terminal_folds": 672,
+        "terminal_calls": 945,
+        "raise": 52534,
+        "call": 41402,
+        "check": 47071,
+        "fold": 27955
+      },
+      "turn": {
+        "actions": 90490,
+        "faced_bet": 35649,
+        "facing_folds": 12341,
+        "terminal_folds": 589,
+        "terminal_calls": 1590,
+        "raise": 31528,
+        "call": 21294,
+        "check": 25327,
+        "fold": 12341
+      },
+      "river": {
+        "actions": 50497,
+        "faced_bet": 18832,
+        "facing_folds": 7449,
+        "terminal_folds": 6725,
+        "terminal_calls": 9452,
+        "check": 14785,
+        "call": 10179,
+        "fold": 7449,
+        "raise": 18084
+      }
+    }
+  ],
+  "classifications": [
+    {
+      "raise_not_flagged": 258142,
+      "fold_not_flagged": 830056,
+      "call_not_flagged": 132068,
+      "check_not_flagged": 91773,
+      "hindsight_losing_call_only": 5735,
+      "hindsight_missed_call_only": 4323,
+      "failed_semibluff": 1878,
+      "failed_air_bet": 3241,
+      "possible_nonterminal_bad_call": 29,
+      "probable_bad_terminal_call": 118,
+      "range_sensitive_shove_call_review": 1728,
+      "probable_missed_terminal_call": 1373,
+      "possible_nonterminal_overfold": 132
+    },
+    {
+      "raise_not_flagged": 258131,
+      "fold_not_flagged": 830527,
+      "call_not_flagged": 132749,
+      "check_not_flagged": 91833,
+      "hindsight_losing_call_only": 5536,
+      "hindsight_missed_call_only": 4435,
+      "failed_semibluff": 1898,
+      "failed_air_bet": 3235,
+      "possible_nonterminal_bad_call": 27,
+      "probable_bad_terminal_call": 80,
+      "range_sensitive_shove_call_review": 1727,
+      "probable_missed_terminal_call": 458,
+      "possible_nonterminal_overfold": 126
+    },
+    {
+      "raise_not_flagged": 258407,
+      "fold_not_flagged": 830059,
+      "call_not_flagged": 133978,
+      "check_not_flagged": 93022,
+      "hindsight_losing_call_only": 5753,
+      "hindsight_missed_call_only": 4470,
+      "failed_semibluff": 1884,
+      "failed_air_bet": 3146,
+      "possible_nonterminal_bad_call": 39,
+      "range_sensitive_shove_call_review": 1732,
+      "probable_missed_terminal_call": 459,
+      "probable_bad_terminal_call": 98,
+      "possible_nonterminal_overfold": 104
+    },
+    {
+      "raise_not_flagged": 258414,
+      "fold_not_flagged": 829438,
+      "call_not_flagged": 133514,
+      "check_not_flagged": 93182,
+      "hindsight_losing_call_only": 6014,
+      "hindsight_missed_call_only": 4353,
+      "failed_semibluff": 1888,
+      "failed_air_bet": 3136,
+      "possible_nonterminal_bad_call": 39,
+      "probable_bad_terminal_call": 162,
+      "range_sensitive_shove_call_review": 1712,
+      "probable_missed_terminal_call": 1329,
+      "possible_nonterminal_overfold": 84,
+      "certain_avoidable_fold": 1
+    }
+  ],
+  "loss_categories": [
+    {
+      "non_losing_hand": {
+        "hands": 620231,
+        "chips": 3751114
+      },
+      "blind_only_fold": {
+        "hands": 284575,
+        "chips": -419083
+      },
+      "other_showdown_loss": {
+        "hands": 10582,
+        "chips": -712607
+      },
+      "preflop_invest_then_fold": {
+        "hands": 29291,
+        "chips": -168846
+      },
+      "postflop_invest_then_fold": {
+        "hands": 45116,
+        "chips": -473018
+      },
+      "failed_semibluff_hand": {
+        "hands": 1622,
+        "chips": -77199
+      },
+      "failed_air_bet_hand": {
+        "hands": 3010,
+        "chips": -127693
+      },
+      "profitable_allin_lost_runout": {
+        "hands": 2153,
+        "chips": -430600
+      },
+      "other_losing_allin": {
+        "hands": 1961,
+        "chips": -392200
+      },
+      "probable_bad_terminal_call": {
+        "hands": 86,
+        "chips": -10257
+      },
+      "probable_missed_terminal_call": {
+        "hands": 1373,
+        "chips": -14027
+      }
+    },
+    {
+      "non_losing_hand": {
+        "hands": 620529,
+        "chips": 3907122
+      },
+      "blind_only_fold": {
+        "hands": 284508,
+        "chips": -418872
+      },
+      "other_showdown_loss": {
+        "hands": 10101,
+        "chips": -673397
+      },
+      "preflop_invest_then_fold": {
+        "hands": 29121,
+        "chips": -166819
+      },
+      "postflop_invest_then_fold": {
+        "hands": 45861,
+        "chips": -499123
+      },
+      "failed_semibluff_hand": {
+        "hands": 1643,
+        "chips": -76831
+      },
+      "failed_air_bet_hand": {
+        "hands": 3004,
+        "chips": -127785
+      },
+      "profitable_allin_lost_runout": {
+        "hands": 2482,
+        "chips": -496400
+      },
+      "other_losing_allin": {
+        "hands": 2236,
+        "chips": -447200
+      },
+      "probable_bad_terminal_call": {
+        "hands": 57,
+        "chips": -6470
+      },
+      "probable_missed_terminal_call": {
+        "hands": 458,
+        "chips": -6207
+      }
+    },
+    {
+      "non_losing_hand": {
+        "hands": 620700,
+        "chips": 3919515
+      },
+      "blind_only_fold": {
+        "hands": 284509,
+        "chips": -418886
+      },
+      "other_showdown_loss": {
+        "hands": 10298,
+        "chips": -688278
+      },
+      "preflop_invest_then_fold": {
+        "hands": 29074,
+        "chips": -166495
+      },
+      "postflop_invest_then_fold": {
+        "hands": 45555,
+        "chips": -499457
+      },
+      "failed_semibluff_hand": {
+        "hands": 1636,
+        "chips": -79352
+      },
+      "failed_air_bet_hand": {
+        "hands": 2926,
+        "chips": -125215
+      },
+      "other_losing_allin": {
+        "hands": 2277,
+        "chips": -455400
+      },
+      "profitable_allin_lost_runout": {
+        "hands": 2495,
+        "chips": -499000
+      },
+      "probable_missed_terminal_call": {
+        "hands": 459,
+        "chips": -7631
+      },
+      "probable_bad_terminal_call": {
+        "hands": 71,
+        "chips": -8200
+      }
+    },
+    {
+      "non_losing_hand": {
+        "hands": 620413,
+        "chips": 3777018
+      },
+      "blind_only_fold": {
+        "hands": 284613,
+        "chips": -419087
+      },
+      "other_showdown_loss": {
+        "hands": 10904,
+        "chips": -737574
+      },
+      "preflop_invest_then_fold": {
+        "hands": 29222,
+        "chips": -168515
+      },
+      "postflop_invest_then_fold": {
+        "hands": 44671,
+        "chips": -471166
+      },
+      "failed_semibluff_hand": {
+        "hands": 1638,
+        "chips": -80220
+      },
+      "failed_air_bet_hand": {
+        "hands": 2914,
+        "chips": -125007
+      },
+      "other_losing_allin": {
+        "hands": 2004,
+        "chips": -400800
+      },
+      "probable_bad_terminal_call": {
+        "hands": 118,
+        "chips": -14340
+      },
+      "profitable_allin_lost_runout": {
+        "hands": 2173,
+        "chips": -434600
+      },
+      "probable_missed_terminal_call": {
+        "hands": 1330,
+        "chips": -12925
+      }
+    }
+  ],
+  "negative_game_loss_categories": [
+    {
+      "blind_only_fold": {
+        "hands": 114514,
+        "chips": -168858
+      },
+      "non_losing_hand": {
+        "hands": 242708,
+        "chips": 798898
+      },
+      "preflop_invest_then_fold": {
+        "hands": 12058,
+        "chips": -70495
+      },
+      "other_showdown_loss": {
+        "hands": 5449,
+        "chips": -457749
+      },
+      "postflop_invest_then_fold": {
+        "hands": 19414,
+        "chips": -217495
+      },
+      "failed_air_bet_hand": {
+        "hands": 1416,
+        "chips": -71041
+      },
+      "profitable_allin_lost_runout": {
+        "hands": 1008,
+        "chips": -201600
+      },
+      "failed_semibluff_hand": {
+        "hands": 775,
+        "chips": -42804
+      },
+      "other_losing_allin": {
+        "hands": 1192,
+        "chips": -238400
+      },
+      "probable_missed_terminal_call": {
+        "hands": 518,
+        "chips": -6735
+      },
+      "probable_bad_terminal_call": {
+        "hands": 48,
+        "chips": -6220
+      }
+    },
+    {
+      "blind_only_fold": {
+        "hands": 113576,
+        "chips": -167420
+      },
+      "non_losing_hand": {
+        "hands": 240860,
+        "chips": 836908
+      },
+      "preflop_invest_then_fold": {
+        "hands": 11864,
+        "chips": -68777
+      },
+      "other_showdown_loss": {
+        "hands": 5125,
+        "chips": -428697
+      },
+      "postflop_invest_then_fold": {
+        "hands": 19574,
+        "chips": -228602
+      },
+      "failed_air_bet_hand": {
+        "hands": 1374,
+        "chips": -70408
+      },
+      "profitable_allin_lost_runout": {
+        "hands": 1212,
+        "chips": -242400
+      },
+      "failed_semibluff_hand": {
+        "hands": 771,
+        "chips": -41825
+      },
+      "other_losing_allin": {
+        "hands": 1340,
+        "chips": -268000
+      },
+      "probable_bad_terminal_call": {
+        "hands": 33,
+        "chips": -4214
+      },
+      "probable_missed_terminal_call": {
+        "hands": 171,
+        "chips": -3166
+      }
+    },
+    {
+      "non_losing_hand": {
+        "hands": 241755,
+        "chips": 840416
+      },
+      "other_showdown_loss": {
+        "hands": 5220,
+        "chips": -436717
+      },
+      "blind_only_fold": {
+        "hands": 114215,
+        "chips": -168305
+      },
+      "postflop_invest_then_fold": {
+        "hands": 19475,
+        "chips": -228205
+      },
+      "preflop_invest_then_fold": {
+        "hands": 11926,
+        "chips": -68894
+      },
+      "failed_air_bet_hand": {
+        "hands": 1349,
+        "chips": -68582
+      },
+      "other_losing_allin": {
+        "hands": 1384,
+        "chips": -276800
+      },
+      "failed_semibluff_hand": {
+        "hands": 779,
+        "chips": -43560
+      },
+      "profitable_allin_lost_runout": {
+        "hands": 1183,
+        "chips": -236600
+      },
+      "probable_bad_terminal_call": {
+        "hands": 41,
+        "chips": -5415
+      },
+      "probable_missed_terminal_call": {
+        "hands": 173,
+        "chips": -3751
+      }
+    },
+    {
+      "non_losing_hand": {
+        "hands": 244020,
+        "chips": 815644
+      },
+      "other_showdown_loss": {
+        "hands": 5618,
+        "chips": -473140
+      },
+      "blind_only_fold": {
+        "hands": 115387,
+        "chips": -170068
+      },
+      "postflop_invest_then_fold": {
+        "hands": 19336,
+        "chips": -216242
+      },
+      "preflop_invest_then_fold": {
+        "hands": 12136,
+        "chips": -70756
+      },
+      "failed_air_bet_hand": {
+        "hands": 1375,
+        "chips": -68952
+      },
+      "profitable_allin_lost_runout": {
+        "hands": 1027,
+        "chips": -205400
+      },
+      "other_losing_allin": {
+        "hands": 1242,
+        "chips": -248400
+      },
+      "probable_missed_terminal_call": {
+        "hands": 489,
+        "chips": -5665
+      },
+      "failed_semibluff_hand": {
+        "hands": 795,
+        "chips": -44901
+      },
+      "probable_bad_terminal_call": {
+        "hands": 75,
+        "chips": -9933
+      }
+    }
+  ],
+  "flag_streets": [
+    {
+      "river": {
+        "probable_bad_terminal_call": 110,
+        "probable_missed_terminal_call": 33
+      },
+      "preflop": {
+        "probable_missed_terminal_call": 1299
+      },
+      "flop": {
+        "probable_missed_terminal_call": 30,
+        "probable_bad_terminal_call": 3
+      },
+      "turn": {
+        "probable_missed_terminal_call": 11,
+        "probable_bad_terminal_call": 5
+      }
+    },
+    {
+      "river": {
+        "probable_bad_terminal_call": 72,
+        "probable_missed_terminal_call": 49
+      },
+      "preflop": {
+        "probable_missed_terminal_call": 375
+      },
+      "flop": {
+        "probable_bad_terminal_call": 3,
+        "probable_missed_terminal_call": 27
+      },
+      "turn": {
+        "probable_missed_terminal_call": 7,
+        "probable_bad_terminal_call": 5
+      }
+    },
+    {
+      "preflop": {
+        "probable_missed_terminal_call": 366,
+        "probable_bad_terminal_call": 1
+      },
+      "river": {
+        "probable_bad_terminal_call": 85,
+        "probable_missed_terminal_call": 59
+      },
+      "flop": {
+        "probable_bad_terminal_call": 3,
+        "probable_missed_terminal_call": 26
+      },
+      "turn": {
+        "probable_missed_terminal_call": 8,
+        "probable_bad_terminal_call": 9
+      }
+    },
+    {
+      "river": {
+        "probable_bad_terminal_call": 148,
+        "probable_missed_terminal_call": 30,
+        "certain_avoidable_fold": 1
+      },
+      "preflop": {
+        "probable_missed_terminal_call": 1266
+      },
+      "flop": {
+        "probable_bad_terminal_call": 6,
+        "probable_missed_terminal_call": 24
+      },
+      "turn": {
+        "probable_missed_terminal_call": 9,
+        "probable_bad_terminal_call": 8
+      }
+    }
+  ],
+  "flag_contexts": [
+    {
+      "tracked range estimate": 1473,
+      "no accepted equity estimate": 13,
+      "uniform range estimate": 5
+    },
+    {
+      "tracked range estimate": 527,
+      "no accepted equity estimate": 2,
+      "accepted conservative sparse estimate": 4,
+      "uniform range estimate": 5
+    },
+    {
+      "tracked range estimate": 534,
+      "accepted conservative sparse estimate": 7,
+      "no accepted equity estimate": 9,
+      "uniform range estimate": 7
+    },
+    {
+      "tracked range estimate": 1478,
+      "no accepted equity estimate": 7,
+      "uniform range estimate": 7
+    }
+  ],
+  "group_phases": {
+    "2": {
+      "0": {
+        "observations": 399915,
+        "classified": 50031,
+        "weight_sum": 6938.712800000052,
+        "drift_detected": 0
+      },
+      "10": {
+        "observations": 401496,
+        "classified": 155591,
+        "weight_sum": 47517.974600001326,
+        "drift_detected": 0
+      },
+      "20": {
+        "observations": 401620,
+        "classified": 198061,
+        "weight_sum": 77717.40890000114,
+        "drift_detected": 0
+      },
+      "30": {
+        "observations": 401428,
+        "classified": 223047,
+        "weight_sum": 98985.08939999911,
+        "drift_detected": 761
+      },
+      "40": {
+        "observations": 401589,
+        "classified": 237895,
+        "weight_sum": 114232.00319999905,
+        "drift_detected": 1788
+      },
+      "50": {
+        "observations": 401500,
+        "classified": 249154,
+        "weight_sum": 126328.18749999708,
+        "drift_detected": 2507
+      },
+      "60": {
+        "observations": 401936,
+        "classified": 257054,
+        "weight_sum": 135261.44149999748,
+        "drift_detected": 2906
+      },
+      "70": {
+        "observations": 401650,
+        "classified": 262402,
+        "weight_sum": 141790.13239999837,
+        "drift_detected": 3329
+      },
+      "80": {
+        "observations": 401461,
+        "classified": 267262,
+        "weight_sum": 147618.32739999762,
+        "drift_detected": 3690
+      },
+      "90": {
+        "observations": 401687,
+        "classified": 270962,
+        "weight_sum": 152630.25230000427,
+        "drift_detected": 4029
+      }
+    },
+    "3": {
+      "0": {
+        "observations": 399915,
+        "classified": 50060,
+        "weight_sum": 6938.97580000006,
+        "drift_detected": 0
+      },
+      "10": {
+        "observations": 401478,
+        "classified": 155477,
+        "weight_sum": 47547.48110000114,
+        "drift_detected": 0
+      },
+      "20": {
+        "observations": 401625,
+        "classified": 198043,
+        "weight_sum": 77701.91630000125,
+        "drift_detected": 0
+      },
+      "30": {
+        "observations": 401395,
+        "classified": 222891,
+        "weight_sum": 98899.04419999929,
+        "drift_detected": 786
+      },
+      "40": {
+        "observations": 401625,
+        "classified": 237646,
+        "weight_sum": 114162.91919999906,
+        "drift_detected": 1816
+      },
+      "50": {
+        "observations": 401508,
+        "classified": 249235,
+        "weight_sum": 126176.46239999763,
+        "drift_detected": 2522
+      },
+      "60": {
+        "observations": 401886,
+        "classified": 256892,
+        "weight_sum": 135012.1710999982,
+        "drift_detected": 2909
+      },
+      "70": {
+        "observations": 401619,
+        "classified": 262134,
+        "weight_sum": 141528.55439999988,
+        "drift_detected": 3315
+      },
+      "80": {
+        "observations": 401462,
+        "classified": 266977,
+        "weight_sum": 147336.29749999908,
+        "drift_detected": 3703
+      },
+      "90": {
+        "observations": 401587,
+        "classified": 270809,
+        "weight_sum": 152317.8117000016,
+        "drift_detected": 4081
+      }
+    }
+  },
+  "group_use": {
+    "2": {
+      "decisions": 1333151,
+      "selective_passive_1": 1048562,
+      "active_pressure_2": 1885145
+    },
+    "3": {
+      "decisions": 1333266,
+      "selective_passive_1": 1046786,
+      "active_pressure_2": 1885825
+    }
+  },
+  "first_group_hands": {
+    "2": {
+      "7": 1609,
+      "18": 753,
+      "22": 551,
+      "14": 953,
+      "16": 814,
+      "37": 226,
+      "5": 2130,
+      "12": 1226,
+      "24": 490,
+      "4": 5646,
+      "13": 1213,
+      "17": 870,
+      "28": 385,
+      "10": 1795,
+      "23": 486,
+      "21": 527,
+      "89": 44,
+      "9": 1447,
+      "15": 979,
+      "25": 443,
+      "8": 1416,
+      "11": 2038,
+      "71": 57,
+      "19": 673,
+      "35": 276,
+      "20": 630,
+      "66": 72,
+      "41": 182,
+      "52": 127,
+      "73": 54,
+      "45": 161,
+      "6": 1614,
+      "58": 103,
+      "33": 299,
+      "56": 98,
+      "54": 107,
+      "27": 388,
+      "61": 85,
+      "59": 102,
+      "32": 280,
+      "74": 71,
+      "48": 154,
+      "38": 199,
+      "44": 186,
+      "36": 240,
+      "26": 413,
+      "77": 54,
+      "83": 46,
+      "90": 42,
+      "88": 69,
+      "30": 333,
+      "60": 95,
+      "57": 83,
+      "67": 79,
+      "40": 212,
+      "98": 31,
+      "34": 262,
+      "72": 71,
+      "92": 35,
+      "31": 330,
+      "29": 378,
+      "43": 158,
+      "46": 164,
+      "62": 69,
+      "39": 216,
+      "63": 71,
+      "70": 78,
+      "55": 99,
+      "53": 118,
+      "51": 148,
+      "91": 32,
+      "69": 73,
+      "50": 128,
+      "86": 42,
+      "79": 36,
+      "47": 146,
+      "49": 148,
+      "65": 78,
+      "97": 36,
+      "78": 47,
+      "42": 162,
+      "87": 29,
+      "93": 35,
+      "96": 23,
+      "75": 55,
+      "68": 70,
+      "81": 45,
+      "94": 28,
+      "84": 34,
+      "82": 55,
+      "80": 52,
+      "64": 65,
+      "95": 26,
+      "85": 43,
+      "76": 55,
+      "99": 32
+    },
+    "3": {
+      "7": 1607,
+      "18": 753,
+      "22": 561,
+      "14": 953,
+      "16": 813,
+      "37": 220,
+      "5": 2133,
+      "12": 1218,
+      "24": 492,
+      "4": 5649,
+      "13": 1217,
+      "17": 872,
+      "28": 384,
+      "10": 1794,
+      "23": 471,
+      "21": 529,
+      "89": 44,
+      "9": 1452,
+      "15": 970,
+      "25": 439,
+      "8": 1415,
+      "11": 2036,
+      "71": 56,
+      "19": 679,
+      "35": 279,
+      "20": 636,
+      "66": 71,
+      "41": 177,
+      "52": 130,
+      "73": 58,
+      "45": 159,
+      "6": 1615,
+      "58": 106,
+      "33": 295,
+      "56": 97,
+      "54": 104,
+      "27": 391,
+      "61": 82,
+      "59": 108,
+      "70": 77,
+      "32": 284,
+      "68": 69,
+      "48": 156,
+      "38": 201,
+      "44": 184,
+      "36": 238,
+      "26": 415,
+      "77": 55,
+      "83": 41,
+      "90": 36,
+      "88": 65,
+      "30": 338,
+      "60": 89,
+      "57": 83,
+      "67": 81,
+      "40": 205,
+      "98": 31,
+      "34": 256,
+      "72": 71,
+      "31": 327,
+      "29": 372,
+      "43": 160,
+      "46": 162,
+      "62": 72,
+      "92": 32,
+      "39": 218,
+      "63": 74,
+      "55": 101,
+      "53": 121,
+      "51": 154,
+      "91": 29,
+      "69": 71,
+      "50": 130,
+      "86": 39,
+      "79": 37,
+      "47": 142,
+      "49": 143,
+      "80": 57,
+      "65": 74,
+      "78": 53,
+      "97": 37,
+      "42": 165,
+      "87": 30,
+      "93": 33,
+      "96": 32,
+      "75": 51,
+      "81": 42,
+      "94": 25,
+      "84": 38,
+      "82": 58,
+      "74": 68,
+      "85": 39,
+      "64": 66,
+      "95": 28,
+      "76": 57,
+      "99": 28
+    }
+  },
+  "duplicate_tables": 2009,
+  "compute": {
+    "requested": "cpu",
+    "device": "cpu",
+    "workers": 16,
+    "devices": [],
+    "gpu_usage": {}
+  },
+  "simulation_wall_seconds": 4615.93136602093,
+  "audit_gpu": {
+    "cuda:0": {
+      "batches": 387687,
+      "ranked_hands": 3133280175,
+      "gpu_seconds": 82.08377164672129
+    },
+    "cuda:1": {
+      "batches": 388700,
+      "ranked_hands": 3132050009,
+      "gpu_seconds": 81.77212554169819
+    },
+    "cuda:2": {
+      "batches": 388475,
+      "ranked_hands": 3136955357,
+      "gpu_seconds": 81.77807683427818
+    },
+    "cuda:3": {
+      "batches": 389425,
+      "ranked_hands": 3143032137,
+      "gpu_seconds": 81.58040429186076
+    }
+  },
+  "audit_code_sha256": {
+    "analysis/audit_pattern_simulation.py": "ec233b9c34f32080782340a4b1181ed12b562837bfdc0172da4aa7b38832872f",
+    "analysis/halliday_performance.py": "088a10b71d5704eb9095b5bffe3de74816a1224a774d7591d0e278194d8935fe",
+    "analysis/halliday_report.py": "8426ea7868706a3b0308c3336d32a1e8e3c395f60bb01185ac00c303108a4ff3",
+    "bot/ranges.py": "bd32fe3949c06f06009a74fac3e332238fc84e430c455cbc049bbc453151d4cd",
+    "bot/params.py": "ca941d5a47e90df533decc885be4868d19e5aa941a3ad764c238444fa14358c3",
+    "bot/engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "vendor/macpoker-src/macpoker/evaluator.py": "6b232f208e7e61c393dfe4dd044b4fe05e87b8d36a1a551b168502b6cb69a5f7",
+    "harness/gpu_equity.py": "03e201a339751fed3878814ebd8eae7da3cf3e82c2353538d072eb69b4158879",
+    "harness/gpu_rank.cu": "b88f31baf667f7c2285cd0e845da2249b3a16a4d1cde3ecea5701590288a42c6",
+    "sparring/competitors/from_data_groups/bots.json": "5f99043130d208d78b9de6e6b2fe91d77a1b2171f4180fdab26a326f6d69f272"
+  }
+}

@@ -1,0 +1,874 @@
+{
+  "preflop": {
+    "Allen Iverson": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 202,
+      "validation_nll_gain": -7.778540988135004e-10,
+      "test_nll_gain": -1.3858974218085423e-09
+    },
+    "Allen Iverson 2.0": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1427,
+      "validation_nll_gain": -4.375078813298656e-09,
+      "test_nll_gain": -4.096305811391269e-09
+    },
+    "Althaf Productions v1": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2348,
+      "validation_nll_gain": 1.1486306739834595e-09,
+      "test_nll_gain": 2.9512272684813617e-09
+    },
+    "Bad Goy": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 307,
+      "validation_nll_gain": 1.2434244078098092e-09,
+      "test_nll_gain": -2.379711373199782e-09
+    },
+    "BigBaller": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 411,
+      "validation_nll_gain": -3.820943642767013e-09,
+      "test_nll_gain": -6.419787293807227e-10
+    },
+    "Bluey": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 104,
+      "validation_nll_gain": 5.690246095414525e-09,
+      "test_nll_gain": -8.703736524500757e-10
+    },
+    "China #1": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 206,
+      "validation_nll_gain": 1.6553937196558584e-09,
+      "test_nll_gain": -5.086060606284978e-09
+    },
+    "Gladiator": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2,
+      "validation_nll_gain": 1.3654511545752035e-08,
+      "test_nll_gain": 1.1058548612944214e-08
+    },
+    "Gladiator_v3": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 230,
+      "validation_nll_gain": 4.975599471698492e-09,
+      "test_nll_gain": 7.165714975119384e-10
+    },
+    "Gladiators": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 617,
+      "validation_nll_gain": 1.0411373868657969e-09,
+      "test_nll_gain": 1.8338913193923906e-09
+    },
+    "Halliday": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 0,
+      "validation_nll_gain": null,
+      "test_nll_gain": null
+    },
+    "Invokerv2": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 506,
+      "validation_nll_gain": 1.1770764303825399e-09,
+      "test_nll_gain": 4.749893476783012e-09
+    },
+    "Jason_idea": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 0,
+      "validation_nll_gain": null,
+      "test_nll_gain": null
+    },
+    "MAC Projects Team Testing Bot": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 936,
+      "validation_nll_gain": 1.1311656214920438e-09,
+      "test_nll_gain": 6.715421326427806e-10
+    },
+    "MAC Projects Team Testing Bot 2": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2173,
+      "validation_nll_gain": 1.731513507528847e-09,
+      "test_nll_gain": -5.22024297386406e-10
+    },
+    "MAC Projects Team Testing Bot 3": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2381,
+      "validation_nll_gain": 1.1112748149752575e-09,
+      "test_nll_gain": 1.816823341016994e-09
+    },
+    "McSmart Meal": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1323,
+      "validation_nll_gain": 1.1219528629416666e-09,
+      "test_nll_gain": 3.4309768241285755e-09
+    },
+    "Messi": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2913,
+      "validation_nll_gain": -2.0211445815813402e-09,
+      "test_nll_gain": 4.200344539523827e-11
+    },
+    "Phil_Ivey_GOAT": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1214,
+      "validation_nll_gain": -4.023352717098395e-09,
+      "test_nll_gain": -4.497125765500839e-09
+    },
+    "Pookie Bot": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 0,
+      "validation_nll_gain": null,
+      "test_nll_gain": null
+    },
+    "Pot-Committed-GPT": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 411,
+      "validation_nll_gain": -3.6767553959174052e-09,
+      "test_nll_gain": 6.556750373265091e-10
+    },
+    "RaiseYourEdge": {
+      "coefficients": [
+        0.24339184165000916,
+        -0.007401537150144577,
+        0.2683999836444855,
+        -0.5043907165527344
+      ],
+      "enabled": false,
+      "validation_actions": 544,
+      "validation_nll_gain": -0.0004533452447503805,
+      "test_nll_gain": 0.0033870621118694544
+    },
+    "RiverForge": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1503,
+      "validation_nll_gain": -2.881538060197843e-09,
+      "test_nll_gain": -3.9969297566971265e-09
+    },
+    "Sus bot": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 0,
+      "validation_nll_gain": null,
+      "test_nll_gain": -8.617145591667886e-09
+    },
+    "Tester67": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1933,
+      "validation_nll_gain": -3.0835778536646305e-09,
+      "test_nll_gain": -2.105199995270724e-09
+    },
+    "Thanos": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 540,
+      "validation_nll_gain": 2.168443682454366e-10,
+      "test_nll_gain": -2.6990812462100745e-09
+    },
+    "Tilted_Towers_2": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1319,
+      "validation_nll_gain": -2.7229978436464377e-09,
+      "test_nll_gain": -3.067374832202223e-09
+    },
+    "Versatile Devourer": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 630,
+      "validation_nll_gain": 2.1315951310784876e-09,
+      "test_nll_gain": 4.542819377361281e-09
+    },
+    "axiom": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 613,
+      "validation_nll_gain": 1.8414707276824045e-09,
+      "test_nll_gain": -7.002227421646045e-09
+    },
+    "best-bot": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2457,
+      "validation_nll_gain": -3.566678025069865e-10,
+      "test_nll_gain": -2.067439676672969e-11
+    },
+    "catherine": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 207,
+      "validation_nll_gain": 7.322758981753265e-09,
+      "test_nll_gain": null
+    },
+    "dan_negreanu_on_ket": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 105,
+      "validation_nll_gain": 5.573807357925941e-09,
+      "test_nll_gain": -3.0975852320201176e-09
+    },
+    "data": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2,
+      "validation_nll_gain": -1.779429915351946e-08,
+      "test_nll_gain": 9.252442797792267e-10
+    },
+    "finian sucks": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2535,
+      "validation_nll_gain": 8.497883334863198e-10,
+      "test_nll_gain": -1.1017441716853804e-09
+    },
+    "fold-a2": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 418,
+      "validation_nll_gain": -2.753797040016785e-09,
+      "test_nll_gain": -3.736753271327925e-09
+    },
+    "fullhouse": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 525,
+      "validation_nll_gain": 1.0346767409801124e-09,
+      "test_nll_gain": 1.5204288812795695e-09
+    },
+    "g5-veil-dot": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2,
+      "validation_nll_gain": 5.402199784731998e-09,
+      "test_nll_gain": null
+    },
+    "guaguanco 5": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 204,
+      "validation_nll_gain": -4.748156917352209e-09,
+      "test_nll_gain": 1.408868478975497e-09
+    },
+    "idc": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 0,
+      "validation_nll_gain": null,
+      "test_nll_gain": 1.0518667912081054e-08
+    },
+    "jewhunter": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2,
+      "validation_nll_gain": -7.551170799757756e-09,
+      "test_nll_gain": -1.1445474575163795e-10
+    },
+    "jongwon": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 0,
+      "validation_nll_gain": null,
+      "test_nll_gain": null
+    },
+    "krestrel": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 210,
+      "validation_nll_gain": -3.1034190602273274e-09,
+      "test_nll_gain": -1.4805450458925032e-09
+    },
+    "kurimanju": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2278,
+      "validation_nll_gain": 3.175967881157372e-09,
+      "test_nll_gain": 1.9717261024277637e-09
+    },
+    "larp larp sahur": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 105,
+      "validation_nll_gain": 7.641470198856542e-09,
+      "test_nll_gain": 3.2766200709261886e-10
+    },
+    "let it go": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 529,
+      "validation_nll_gain": -9.058388202953581e-10,
+      "test_nll_gain": -6.489381750591089e-09
+    },
+    "love-of-da-game": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 306,
+      "validation_nll_gain": 5.511629458672893e-10,
+      "test_nll_gain": 1.5662459657339308e-10
+    },
+    "luck is all u need": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2040,
+      "validation_nll_gain": 1.5094205082054415e-09,
+      "test_nll_gain": 8.830091556941644e-10
+    },
+    "merch where": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 112,
+      "validation_nll_gain": -2.7895918727802164e-09,
+      "test_nll_gain": null
+    },
+    "netanyahu": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 2303,
+      "validation_nll_gain": -1.174157483059371e-09,
+      "test_nll_gain": -1.5079237733932824e-09
+    },
+    "orcabot": {
+      "coefficients": [
+        -0.6871917247772217,
+        -0.023209095001220703,
+        -0.3890667259693146,
+        1.0994731187820435
+      ],
+      "enabled": true,
+      "validation_actions": 643,
+      "validation_nll_gain": 0.01332332007586956,
+      "test_nll_gain": 0.01921991817653179
+    },
+    "percy-perc-filet": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1497,
+      "validation_nll_gain": 4.414750027036929e-11,
+      "test_nll_gain": 1.561264658130533e-09
+    },
+    "pocket-nuts": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 839,
+      "validation_nll_gain": -6.83045057972355e-13,
+      "test_nll_gain": 1.8170386077429754e-09
+    },
+    "poke-bowl": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 930,
+      "validation_nll_gain": 3.6452854963792514e-10,
+      "test_nll_gain": 2.0371833823741212e-09
+    },
+    "polygamous lavender marriage": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 415,
+      "validation_nll_gain": 5.042100678630109e-09,
+      "test_nll_gain": 1.470094585133606e-09
+    },
+    "preflop-warrior": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 104,
+      "validation_nll_gain": 9.52434960617771e-10,
+      "test_nll_gain": -3.831764989382056e-09
+    },
+    "radishv2": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1983,
+      "validation_nll_gain": 7.308097646361097e-10,
+      "test_nll_gain": 9.602379538070741e-10
+    },
+    "regrets": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 0,
+      "validation_nll_gain": null,
+      "test_nll_gain": 3.0977388299040177e-09
+    },
+    "renbot": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 515,
+      "validation_nll_gain": 1.8523475388329475e-09,
+      "test_nll_gain": -1.6693642019102077e-08
+    },
+    "samith pai is lowkey leng": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 101,
+      "validation_nll_gain": -2.840819028154272e-09,
+      "test_nll_gain": null
+    },
+    "testQ": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 0,
+      "validation_nll_gain": null,
+      "test_nll_gain": null
+    },
+    "the GOON": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 519,
+      "validation_nll_gain": -2.861694118266333e-09,
+      "test_nll_gain": -2.451496115827482e-09
+    },
+    "the big dog": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1141,
+      "validation_nll_gain": -1.051794129394463e-09,
+      "test_nll_gain": -1.6194072215703217e-09
+    },
+    "the notorious": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 419,
+      "validation_nll_gain": 6.598026767691745e-09,
+      "test_nll_gain": 3.834633967831752e-09
+    },
+    "tripi tropi": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 303,
+      "validation_nll_gain": -6.0722720265095426e-09,
+      "test_nll_gain": -3.783826852926913e-09
+    },
+    "tungbot": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1629,
+      "validation_nll_gain": 1.4519967701384835e-09,
+      "test_nll_gain": 2.2007915194270235e-09
+    },
+    "tutududu": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1035,
+      "validation_nll_gain": -1.1661726302503992e-09,
+      "test_nll_gain": -4.40567951951136e-09
+    },
+    "wicked wing combo": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 430,
+      "validation_nll_gain": 2.5989475712606995e-09,
+      "test_nll_gain": 9.98333928166083e-10
+    },
+    "wicked wings combo": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 119,
+      "validation_nll_gain": -2.0531434895629015e-09,
+      "test_nll_gain": -4.550701753918251e-09
+    },
+    "yep": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 417,
+      "validation_nll_gain": 7.759413458571554e-10,
+      "test_nll_gain": -4.313971009510993e-09
+    },
+    "zinger box": {
+      "coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "enabled": false,
+      "validation_actions": 1174,
+      "validation_nll_gain": 4.2436348421210725e-09,
+      "test_nll_gain": 3.334760864239947e-09
+    }
+  },
+  "sizing_weight": 0.75,
+  "validation_sizing_mse": {
+    "0": 559.6707510594599,
+    "0.25": 506.0784454277903,
+    "0.5": 472.3206634778258,
+    "0.75": 458.39740520956633,
+    "1": 464.30867062301206
+  },
+  "comparisons": {
+    "validation": {
+      "actions": 71247,
+      "static_nll": 0.26292863488197327,
+      "adjusted_nll": 0.2628083825111389,
+      "raises": 13585,
+      "static_size_mse": 559.6707510594599,
+      "adjusted_size_mse": 458.39740520956633
+    },
+    "test": {
+      "actions": 69606,
+      "static_nll": 0.26318252086639404,
+      "adjusted_nll": 0.26293814182281494,
+      "raises": 13754,
+      "static_size_mse": 555.6015436917043,
+      "adjusted_size_mse": 446.20955366705596
+    }
+  },
+  "epochs": {
+    "static": 97,
+    "history": 99
+  }
+}

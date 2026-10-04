@@ -1,0 +1,4352 @@
+{
+  "source_sha256": "0d095948334a0464ddc27e138feb8c3ea5fcf5964cc965636187518f9951e44c",
+  "selected": {
+    "groups": 2,
+    "temperature": 1.0,
+    "threshold": 0.7,
+    "validation_accuracy": 0.8431372549019608,
+    "validation_coverage": 0.23943661971830985,
+    "utility": 0.0812018779342723
+  },
+  "selection_grid": [
+    {
+      "groups": 2,
+      "temperature": 0.5,
+      "threshold": 0.6,
+      "validation_accuracy": 0.8301886792452831,
+      "validation_coverage": 0.24882629107981222,
+      "utility": 0.07181220657276996
+    },
+    {
+      "groups": 2,
+      "temperature": 0.5,
+      "threshold": 0.7,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.06572769953051644,
+      "utility": 0.05772769953051644
+    },
+    {
+      "groups": 2,
+      "temperature": 0.5,
+      "threshold": 0.8,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.03755868544600939,
+      "utility": 0.02955868544600939
+    },
+    {
+      "groups": 2,
+      "temperature": 1.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.7166666666666667,
+      "validation_coverage": 0.5633802816901409,
+      "utility": -0.08311737089201879
+    },
+    {
+      "groups": 2,
+      "temperature": 1.0,
+      "threshold": 0.7,
+      "validation_accuracy": 0.8431372549019608,
+      "validation_coverage": 0.23943661971830985,
+      "utility": 0.0812018779342723
+    },
+    {
+      "groups": 2,
+      "temperature": 1.0,
+      "threshold": 0.8,
+      "validation_accuracy": 0.9473684210526315,
+      "validation_coverage": 0.0892018779342723,
+      "utility": 0.06242253521126761
+    },
+    {
+      "groups": 2,
+      "temperature": 1.5,
+      "threshold": 0.6,
+      "validation_accuracy": 0.7162162162162162,
+      "validation_coverage": 0.6948356807511737,
+      "utility": -0.10189671361502348
+    },
+    {
+      "groups": 2,
+      "temperature": 1.5,
+      "threshold": 0.7,
+      "validation_accuracy": 0.7792207792207793,
+      "validation_coverage": 0.3615023474178404,
+      "utility": 0.03425352112676056
+    },
+    {
+      "groups": 2,
+      "temperature": 1.5,
+      "threshold": 0.8,
+      "validation_accuracy": 0.8292682926829268,
+      "validation_coverage": 0.19248826291079812,
+      "utility": 0.05303286384976526
+    },
+    {
+      "groups": 2,
+      "temperature": 2.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.7073170731707317,
+      "validation_coverage": 0.7699530516431925,
+      "utility": -0.13945539906103288
+    },
+    {
+      "groups": 2,
+      "temperature": 2.0,
+      "threshold": 0.7,
+      "validation_accuracy": 0.7368421052631579,
+      "validation_coverage": 0.5352112676056338,
+      "utility": -0.03616901408450704
+    },
+    {
+      "groups": 2,
+      "temperature": 2.0,
+      "threshold": 0.8,
+      "validation_accuracy": 0.8125,
+      "validation_coverage": 0.3004694835680751,
+      "utility": 0.06711737089201877
+    },
+    {
+      "groups": 3,
+      "temperature": 0.5,
+      "threshold": 0.6,
+      "validation_accuracy": 0.3333333333333333,
+      "validation_coverage": 0.014084507042253521,
+      "utility": -0.03547417840375587
+    },
+    {
+      "groups": 3,
+      "temperature": 0.5,
+      "threshold": 0.7,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.012
+    },
+    {
+      "groups": 3,
+      "temperature": 0.5,
+      "threshold": 0.8,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.012
+    },
+    {
+      "groups": 3,
+      "temperature": 1.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.5135135135135135,
+      "validation_coverage": 0.17370892018779344,
+      "utility": -0.1763192488262911
+    },
+    {
+      "groups": 3,
+      "temperature": 1.0,
+      "threshold": 0.7,
+      "validation_accuracy": 0.6153846153846154,
+      "validation_coverage": 0.06103286384976526,
+      "utility": -0.044863849765258215
+    },
+    {
+      "groups": 3,
+      "temperature": 1.0,
+      "threshold": 0.8,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.004694835680751174,
+      "utility": -0.0073051643192488264
+    },
+    {
+      "groups": 3,
+      "temperature": 1.5,
+      "threshold": 0.6,
+      "validation_accuracy": 0.5072463768115942,
+      "validation_coverage": 0.323943661971831,
+      "utility": -0.32655399061032864
+    },
+    {
+      "groups": 3,
+      "temperature": 1.5,
+      "threshold": 0.7,
+      "validation_accuracy": 0.5333333333333333,
+      "validation_coverage": 0.14084507042253522,
+      "utility": -0.1340657276995305
+    },
+    {
+      "groups": 3,
+      "temperature": 1.5,
+      "threshold": 0.8,
+      "validation_accuracy": 0.5833333333333334,
+      "validation_coverage": 0.056338028169014086,
+      "utility": -0.04955868544600939
+    },
+    {
+      "groups": 3,
+      "temperature": 2.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.5473684210526316,
+      "validation_coverage": 0.4460093896713615,
+      "utility": -0.3735023474178404
+    },
+    {
+      "groups": 3,
+      "temperature": 2.0,
+      "threshold": 0.7,
+      "validation_accuracy": 0.5272727272727272,
+      "validation_coverage": 0.25821596244131456,
+      "utility": -0.2420469483568075
+    },
+    {
+      "groups": 3,
+      "temperature": 2.0,
+      "threshold": 0.8,
+      "validation_accuracy": 0.5357142857142857,
+      "validation_coverage": 0.13145539906103287,
+      "utility": -0.12467605633802817
+    },
+    {
+      "groups": 4,
+      "temperature": 0.5,
+      "threshold": 0.6,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.009389671361502348,
+      "utility": -0.006610328638497653
+    },
+    {
+      "groups": 4,
+      "temperature": 0.5,
+      "threshold": 0.7,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.016
+    },
+    {
+      "groups": 4,
+      "temperature": 0.5,
+      "threshold": 0.8,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.016
+    },
+    {
+      "groups": 4,
+      "temperature": 1.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.7142857142857143,
+      "validation_coverage": 0.13145539906103287,
+      "utility": -0.034779342723004696
+    },
+    {
+      "groups": 4,
+      "temperature": 1.0,
+      "threshold": 0.7,
+      "validation_accuracy": 0.8,
+      "validation_coverage": 0.046948356807511735,
+      "utility": -0.006610328638497653
+    },
+    {
+      "groups": 4,
+      "temperature": 1.0,
+      "threshold": 0.8,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.018779342723004695,
+      "utility": 0.002779342723004695
+    },
+    {
+      "groups": 4,
+      "temperature": 1.5,
+      "threshold": 0.6,
+      "validation_accuracy": 0.6481481481481481,
+      "validation_coverage": 0.2535211267605634,
+      "utility": -0.11928638497652583
+    },
+    {
+      "groups": 4,
+      "temperature": 1.5,
+      "threshold": 0.7,
+      "validation_accuracy": 0.6666666666666666,
+      "validation_coverage": 0.14084507042253522,
+      "utility": -0.06294835680751174
+    },
+    {
+      "groups": 4,
+      "temperature": 1.5,
+      "threshold": 0.8,
+      "validation_accuracy": 0.6153846153846154,
+      "validation_coverage": 0.06103286384976526,
+      "utility": -0.04886384976525822
+    },
+    {
+      "groups": 4,
+      "temperature": 2.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.5921052631578947,
+      "validation_coverage": 0.3568075117370892,
+      "utility": -0.24135211267605633
+    },
+    {
+      "groups": 4,
+      "temperature": 2.0,
+      "threshold": 0.7,
+      "validation_accuracy": 0.64,
+      "validation_coverage": 0.2347417840375587,
+      "utility": -0.11928638497652583
+    },
+    {
+      "groups": 4,
+      "temperature": 2.0,
+      "threshold": 0.8,
+      "validation_accuracy": 0.64,
+      "validation_coverage": 0.11737089201877934,
+      "utility": -0.06764319248826292
+    },
+    {
+      "groups": 5,
+      "temperature": 0.5,
+      "threshold": 0.6,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.009389671361502348,
+      "utility": -0.010610328638497653
+    },
+    {
+      "groups": 5,
+      "temperature": 0.5,
+      "threshold": 0.7,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.02
+    },
+    {
+      "groups": 5,
+      "temperature": 0.5,
+      "threshold": 0.8,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.02
+    },
+    {
+      "groups": 5,
+      "temperature": 1.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.8,
+      "validation_coverage": 0.09389671361502347,
+      "utility": -0.0012206572769953052
+    },
+    {
+      "groups": 5,
+      "temperature": 1.0,
+      "threshold": 0.7,
+      "validation_accuracy": 0.8571428571428571,
+      "validation_coverage": 0.03286384976525822,
+      "utility": -0.005915492957746479
+    },
+    {
+      "groups": 5,
+      "temperature": 1.0,
+      "threshold": 0.8,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.018779342723004695,
+      "utility": -0.0012206572769953052
+    },
+    {
+      "groups": 5,
+      "temperature": 1.5,
+      "threshold": 0.6,
+      "validation_accuracy": 0.7272727272727273,
+      "validation_coverage": 0.15492957746478872,
+      "utility": -0.03408450704225352
+    },
+    {
+      "groups": 5,
+      "temperature": 1.5,
+      "threshold": 0.7,
+      "validation_accuracy": 0.7894736842105263,
+      "validation_coverage": 0.0892018779342723,
+      "utility": -0.005915492957746479
+    },
+    {
+      "groups": 5,
+      "temperature": 1.5,
+      "threshold": 0.8,
+      "validation_accuracy": 0.7777777777777778,
+      "validation_coverage": 0.04225352112676056,
+      "utility": -0.015305164319248827
+    },
+    {
+      "groups": 5,
+      "temperature": 2.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.5510204081632653,
+      "validation_coverage": 0.2300469483568075,
+      "utility": -0.20309859154929577
+    },
+    {
+      "groups": 5,
+      "temperature": 2.0,
+      "threshold": 0.7,
+      "validation_accuracy": 0.71875,
+      "validation_coverage": 0.15023474178403756,
+      "utility": -0.03877934272300469
+    },
+    {
+      "groups": 5,
+      "temperature": 2.0,
+      "threshold": 0.8,
+      "validation_accuracy": 0.7647058823529411,
+      "validation_coverage": 0.07981220657276995,
+      "utility": -0.015305164319248827
+    },
+    {
+      "groups": 6,
+      "temperature": 0.5,
+      "threshold": 0.6,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.024
+    },
+    {
+      "groups": 6,
+      "temperature": 0.5,
+      "threshold": 0.7,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.024
+    },
+    {
+      "groups": 6,
+      "temperature": 0.5,
+      "threshold": 0.8,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.024
+    },
+    {
+      "groups": 6,
+      "temperature": 1.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.8333333333333334,
+      "validation_coverage": 0.028169014084507043,
+      "utility": -0.014610328638497653
+    },
+    {
+      "groups": 6,
+      "temperature": 1.0,
+      "threshold": 0.7,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.023474178403755867,
+      "utility": -0.0005258215962441332
+    },
+    {
+      "groups": 6,
+      "temperature": 1.0,
+      "threshold": 0.8,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.014084507042253521,
+      "utility": -0.009915492957746479
+    },
+    {
+      "groups": 6,
+      "temperature": 1.5,
+      "threshold": 0.6,
+      "validation_accuracy": 0.5454545454545454,
+      "validation_coverage": 0.051643192488262914,
+      "utility": -0.06625352112676056
+    },
+    {
+      "groups": 6,
+      "temperature": 1.5,
+      "threshold": 0.7,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.023474178403755867,
+      "utility": -0.0005258215962441332
+    },
+    {
+      "groups": 6,
+      "temperature": 1.5,
+      "threshold": 0.8,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.023474178403755867,
+      "utility": -0.0005258215962441332
+    },
+    {
+      "groups": 6,
+      "temperature": 2.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.4,
+      "validation_coverage": 0.14084507042253522,
+      "utility": -0.22118309859154928
+    },
+    {
+      "groups": 6,
+      "temperature": 2.0,
+      "threshold": 0.7,
+      "validation_accuracy": 0.5,
+      "validation_coverage": 0.046948356807511735,
+      "utility": -0.07094835680751174
+    },
+    {
+      "groups": 6,
+      "temperature": 2.0,
+      "threshold": 0.8,
+      "validation_accuracy": 0.8333333333333334,
+      "validation_coverage": 0.028169014084507043,
+      "utility": -0.014610328638497653
+    },
+    {
+      "groups": 7,
+      "temperature": 0.5,
+      "threshold": 0.6,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.028
+    },
+    {
+      "groups": 7,
+      "temperature": 0.5,
+      "threshold": 0.7,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.028
+    },
+    {
+      "groups": 7,
+      "temperature": 0.5,
+      "threshold": 0.8,
+      "validation_accuracy": 0.0,
+      "validation_coverage": 0.0,
+      "utility": -0.028
+    },
+    {
+      "groups": 7,
+      "temperature": 1.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.8333333333333334,
+      "validation_coverage": 0.028169014084507043,
+      "utility": -0.018610328638497653
+    },
+    {
+      "groups": 7,
+      "temperature": 1.0,
+      "threshold": 0.7,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.023474178403755867,
+      "utility": -0.004525821596244133
+    },
+    {
+      "groups": 7,
+      "temperature": 1.0,
+      "threshold": 0.8,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.014084507042253521,
+      "utility": -0.01391549295774648
+    },
+    {
+      "groups": 7,
+      "temperature": 1.5,
+      "threshold": 0.6,
+      "validation_accuracy": 0.5454545454545454,
+      "validation_coverage": 0.051643192488262914,
+      "utility": -0.07025352112676056
+    },
+    {
+      "groups": 7,
+      "temperature": 1.5,
+      "threshold": 0.7,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.023474178403755867,
+      "utility": -0.004525821596244133
+    },
+    {
+      "groups": 7,
+      "temperature": 1.5,
+      "threshold": 0.8,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.023474178403755867,
+      "utility": -0.004525821596244133
+    },
+    {
+      "groups": 7,
+      "temperature": 2.0,
+      "threshold": 0.6,
+      "validation_accuracy": 0.52,
+      "validation_coverage": 0.11737089201877934,
+      "utility": -0.135981220657277
+    },
+    {
+      "groups": 7,
+      "temperature": 2.0,
+      "threshold": 0.7,
+      "validation_accuracy": 0.7,
+      "validation_coverage": 0.046948356807511735,
+      "utility": -0.03738967136150235
+    },
+    {
+      "groups": 7,
+      "temperature": 2.0,
+      "threshold": 0.8,
+      "validation_accuracy": 1.0,
+      "validation_coverage": 0.023474178403755867,
+      "utility": -0.004525821596244133
+    }
+  ],
+  "validation_groups": [
+    {
+      "name": "selective_passive_1",
+      "prior": 0.47619047619047616,
+      "mean": [
+        0.20038203502272214,
+        0.11513345266285437,
+        0.04153467331311072,
+        0.005,
+        0.44850288915772174,
+        0.3724075612946884,
+        0.06849037384422535,
+        0.2178498009147588,
+        0.14342999273086024
+      ],
+      "concentration": [
+        26.638313966563643,
+        29.84185675994735,
+        58.19157830343541,
+        4.945936878182246,
+        6.529220441055398,
+        10.88666420963309,
+        22.03145380620475,
+        4.89748542756738,
+        3.0
+      ],
+      "range_prior": {
+        "range_prior_vpip": 0.26948472084617364,
+        "range_prior_pfr": 0.15432999138365894,
+        "range_prior_threebet": 0.05930030316607797,
+        "range_bluff_floor": 0.3434222595663531
+      },
+      "counter": {
+        "range_prior_vpip": 0.26948472084617364,
+        "range_prior_pfr": 0.15432999138365894,
+        "range_prior_threebet": 0.05930030316607797,
+        "range_bluff_floor": 0.3434222595663531,
+        "bluff_frequency": 0.7289163081014476,
+        "value_threshold": 0.6329188315168717,
+        "raise_threshold": 0.8589256866886392,
+        "cbet_pot_fraction": 0.9917764880447294,
+        "late_pot_fraction": 0.9917764880447294,
+        "call_margin_flop": 0.06840877830862617,
+        "range_call_margin_flop": 0.028408778308626162,
+        "call_margin_turn": 0.05840877830862616,
+        "range_call_margin_turn": 0.028408778308626162,
+        "call_margin_river": 0.038408778308626164,
+        "range_call_margin_river": 0.05840877830862616
+      },
+      "adaptive": 0.10344827586206896,
+      "contexts": {
+        "short": {
+          "mean": [
+            0.21099179082673783,
+            0.12396459047204143,
+            0.045933042803362835,
+            0.005,
+            0.44270400757373074,
+            0.36553847753305097,
+            0.06529620867462567,
+            0.21271052454504902,
+            0.14196515264470946
+          ],
+          "concentration": [
+            17.554442142789167,
+            18.054005161691876,
+            19.557937230746653,
+            4.632373088170934,
+            6.510016642957976,
+            10.795115264905395,
+            19.142833636771226,
+            4.796194804119697,
+            3.0
+          ]
+        },
+        "tournament": {
+          "mean": [
+            0.22143454034953666,
+            0.13135329763790277,
+            0.046801446485966826,
+            0.005,
+            0.4602207717192589,
+            0.37257217549305005,
+            0.06423156971154673,
+            0.21499590759942896,
+            0.1377529088299096
+          ],
+          "concentration": [
+            18.08497864716291,
+            20.80661728200735,
+            23.009489872249766,
+            5.822165814421446,
+            6.56177777846322,
+            10.888799248486206,
+            20.3996691822115,
+            4.841463440917951,
+            3.0
+          ]
+        },
+        "full": {
+          "mean": [
+            0.1953630694223705,
+            0.11105306399490153,
+            0.03815088839924073,
+            0.005,
+            0.4445442089363713,
+            0.3713889551181832,
+            0.06289657400800758,
+            0.207545020787059,
+            0.10036447372062629
+          ],
+          "concentration": [
+            26.11519000037606,
+            28.88598630975405,
+            53.56125090234031,
+            3.1578071779047603,
+            6.516332470956079,
+            10.873391636183026,
+            20.277420880113016,
+            4.692544916882831,
+            3.0
+          ]
+        }
+      },
+      "members": [
+        "Allen Iverson",
+        "Allen Iverson 2.0",
+        "BigBaller",
+        "Gladiator",
+        "Messi",
+        "Phil_Ivey_GOAT",
+        "Pot-Committed-GPT",
+        "RiverForge",
+        "Tester67",
+        "Thanos",
+        "Tilted_Towers_2",
+        "dan_negreanu_on_ket",
+        "finian sucks",
+        "fold-a2",
+        "kurimanju",
+        "let it go",
+        "love-of-da-game",
+        "percy-perc-filet",
+        "preflop-warrior",
+        "radishv2",
+        "regrets",
+        "samith pai is lowkey leng",
+        "testQ",
+        "the GOON",
+        "the big dog",
+        "the notorious",
+        "tripi tropi",
+        "tutududu",
+        "yep"
+      ],
+      "style": {
+        "vpip": 0.1906896551724138,
+        "pfr": 0.18241379310344827,
+        "threebet": 0.03586206896551724,
+        "limp": 0.16551724137931034,
+        "aggression": 0.3741379310344828,
+        "cbet": 0.3068965517241379,
+        "bluff": 0.3344827586206897,
+        "stickiness": 0.5682758620689655,
+        "size": 0.6139655172413792,
+        "adaptive": 0.10344827586206896
+      },
+      "parameter_variance": {
+        "vpip": 0.01108268910107281,
+        "pfr": 0.011679219925846094,
+        "threebet": 0.0007466403760984229,
+        "limp": 0.05641493543679091,
+        "aggression": 0.08171755634119282,
+        "cbet": 0.07865080954217854,
+        "bluff": 0.05429551726126326,
+        "stickiness": 0.12985513337230592,
+        "size": 0.03345554343285917,
+        "adaptive": 0.17544691845058902
+      },
+      "counter_reliability": 0.538139114283863
+    },
+    {
+      "name": "active_pressure_2",
+      "prior": 0.5238095238095238,
+      "mean": [
+        0.2917449046510417,
+        0.1934142087042763,
+        0.08887209395382856,
+        0.015964292803507387,
+        0.5579069971741627,
+        0.5907275091147577,
+        0.1535121162873608,
+        0.4744975440550986,
+        0.17814623323060716
+      ],
+      "concentration": [
+        22.944071800185682,
+        30.784853483548208,
+        12.131094006087283,
+        18.26730911476395,
+        31.069811917765648,
+        9.251590172356119,
+        10.329926671756615,
+        5.505154968739278,
+        3.080593273548983
+      ],
+      "range_prior": {
+        "range_prior_vpip": 0.3175123852113415,
+        "range_prior_pfr": 0.19632724572138568,
+        "range_prior_threebet": 0.08494777613896605,
+        "range_bluff_floor": 0.38365177653744775
+      },
+      "counter": {
+        "range_prior_vpip": 0.3175123852113415,
+        "range_prior_pfr": 0.19632724572138568,
+        "range_prior_threebet": 0.08494777613896605,
+        "range_bluff_floor": 0.38365177653744775,
+        "bluff_frequency": 0.8716042784491752,
+        "value_threshold": 0.6335204728090369,
+        "raise_threshold": 0.8414431203583569,
+        "cbet_pot_fraction": 0.9621919853897973,
+        "late_pot_fraction": 0.9621919853897973,
+        "call_margin_flop": 0.059447676938869876,
+        "range_call_margin_flop": 0.019447676938869875,
+        "call_margin_turn": 0.04944767693886987,
+        "range_call_margin_turn": 0.019447676938869875,
+        "call_margin_river": 0.029447676938869877,
+        "range_call_margin_river": 0.04944767693886987
+      },
+      "adaptive": 0.0625,
+      "contexts": {
+        "short": {
+          "mean": [
+            0.31366009680297435,
+            0.20835610117084244,
+            0.08876624677744356,
+            0.014654144000830227,
+            0.5557595153136033,
+            0.579379582365005,
+            0.15288668599674024,
+            0.4642152745117418,
+            0.17794119789045135
+          ],
+          "concentration": [
+            13.974789059578672,
+            15.197103941411704,
+            12.11697844062561,
+            16.70963751214973,
+            19.78398786376597,
+            9.333442385889844,
+            10.292103979466416,
+            5.488714751147108,
+            3.076913613133036
+          ]
+        },
+        "tournament": {
+          "mean": [
+            0.3127239103785523,
+            0.2051764904340167,
+            0.08949350603414333,
+            0.016767333752693944,
+            0.5690118201850335,
+            0.5747597729050002,
+            0.14268266613681155,
+            0.4814683179314805,
+            0.1589999029384013
+          ],
+          "concentration": [
+            18.82334107005906,
+            23.676226533000406,
+            12.213890978180608,
+            15.77304559740994,
+            24.507459428409508,
+            9.363636972470665,
+            9.665384444489376,
+            5.513162883141404,
+            3.0
+          ]
+        },
+        "full": {
+          "mean": [
+            0.2766151936084971,
+            0.18217727330575,
+            0.07584311987688991,
+            0.010064167891332368,
+            0.5509341823387325,
+            0.584241313562307,
+            0.14135463212832924,
+            0.45748677403117466,
+            0.14867396121007534
+          ],
+          "concentration": [
+            22.187313422723296,
+            29.35530801141365,
+            10.366271878326739,
+            11.219275036130767,
+            31.168490371491345,
+            9.299712008881004,
+            9.582482772633417,
+            5.474970609721328,
+            3.0
+          ]
+        }
+      },
+      "members": [
+        "Althaf Productions v1",
+        "Bad Goy",
+        "China #1",
+        "Gladiator_v3",
+        "Gladiators",
+        "Invokerv2",
+        "MAC Projects Team Testing Bot",
+        "MAC Projects Team Testing Bot 2",
+        "MAC Projects Team Testing Bot 3",
+        "McSmart Meal",
+        "RaiseYourEdge",
+        "Versatile Devourer",
+        "axiom",
+        "best-bot",
+        "catherine",
+        "fullhouse",
+        "g5-veil-dot",
+        "guaguanco 5",
+        "krestrel",
+        "larp larp sahur",
+        "luck is all u need",
+        "merch where",
+        "netanyahu",
+        "orcabot",
+        "pocket-nuts",
+        "poke-bowl",
+        "polygamous lavender marriage",
+        "renbot",
+        "tungbot",
+        "wicked wing combo",
+        "wicked wings combo",
+        "zinger box"
+      ],
+      "style": {
+        "vpip": 0.28375,
+        "pfr": 0.2828125,
+        "threebet": 0.047812499999999994,
+        "limp": 0.19062500000000002,
+        "aggression": 0.44062500000000004,
+        "cbet": 0.53125,
+        "bluff": 0.790625,
+        "stickiness": 0.285625,
+        "size": 0.7296874999999999,
+        "adaptive": 0.0625
+      },
+      "parameter_variance": {
+        "vpip": 0.027834698265050167,
+        "pfr": 0.02744367171387263,
+        "threebet": 0.0006845779987109811,
+        "limp": 0.025048522418478263,
+        "aggression": 0.08910744974568005,
+        "cbet": 0.06945558371655519,
+        "bluff": 0.11096719751602564,
+        "stickiness": 0.04630366508152174,
+        "size": 0.15042495850317034,
+        "adaptive": 0.14749216137123744
+      },
+      "counter_reliability": 0.5576785102496515
+    }
+  ],
+  "groups": [
+    {
+      "name": "selective_passive_1",
+      "prior": 0.47619047619047616,
+      "mean": [
+        0.20133055752177773,
+        0.11608940596439252,
+        0.04150941615472246,
+        0.005,
+        0.4466477224129384,
+        0.3761187309896296,
+        0.06623351750824734,
+        0.2088914788178449,
+        0.11880994556621334
+      ],
+      "concentration": [
+        28.332009748002,
+        29.936229722383743,
+        60.86686531593615,
+        3.8394007720241943,
+        6.523781647511508,
+        11.109222739689272,
+        25.86992703172038,
+        5.099232416871268,
+        3.1075795387774896
+      ],
+      "range_prior": {
+        "range_prior_vpip": 0.26999515790369377,
+        "range_prior_pfr": 0.1548444272466454,
+        "range_prior_threebet": 0.05928671130123358,
+        "range_bluff_floor": 0.3434222595663531
+      },
+      "counter": {
+        "range_prior_vpip": 0.26999515790369377,
+        "range_prior_pfr": 0.1548444272466454,
+        "range_prior_threebet": 0.05928671130123358,
+        "range_bluff_floor": 0.3434222595663531,
+        "bluff_frequency": 0.7264204636292311,
+        "value_threshold": 0.6329188315168717,
+        "raise_threshold": 0.8589256866886392,
+        "cbet_pot_fraction": 0.992255690183395,
+        "late_pot_fraction": 0.992255690183395,
+        "call_margin_flop": 0.06840877830862617,
+        "range_call_margin_flop": 0.028408778308626162,
+        "call_margin_turn": 0.05840877830862616,
+        "range_call_margin_turn": 0.028408778308626162,
+        "call_margin_river": 0.038408778308626164,
+        "range_call_margin_river": 0.05840877830862616
+      },
+      "adaptive": 0.10344827586206896,
+      "contexts": {
+        "short": {
+          "mean": [
+            0.21368105876264235,
+            0.12535751881441473,
+            0.04555436764368234,
+            0.005,
+            0.4403160475794421,
+            0.3700275728984865,
+            0.06207874240780072,
+            0.2020839131676972,
+            0.1173525430244074
+          ],
+          "concentration": [
+            16.971461315300466,
+            17.692064282629488,
+            19.62622156583957,
+            3.738508772508337,
+            6.501994236546875,
+            11.029428283131644,
+            18.79172729143524,
+            4.951238565210924,
+            3.063903413491346
+          ]
+        },
+        "tournament": {
+          "mean": [
+            0.22354027381582617,
+            0.13280245049999448,
+            0.04680098657108159,
+            0.005,
+            0.45963943305298527,
+            0.3756831790128531,
+            0.061286958478222076,
+            0.2070442039400945,
+            0.11268243932262889
+          ],
+          "concentration": [
+            17.772514790817663,
+            20.720104772080877,
+            23.031594718125437,
+            4.728546685092675,
+            6.560844156599429,
+            11.103644106799079,
+            20.57379702839451,
+            5.0594115606086705,
+            3.0
+          ]
+        },
+        "full": {
+          "mean": [
+            0.19618799979451862,
+            0.11205414702885962,
+            0.03869377625453985,
+            0.005,
+            0.4447428686838902,
+            0.37251406329922393,
+            0.062043144058000835,
+            0.19781213975240597,
+            0.07715928644032796
+          ],
+          "concentration": [
+            27.766828289105323,
+            28.997210679068115,
+            56.83976317604289,
+            3.0,
+            6.517483708653264,
+            11.062463955520855,
+            24.28290926405077,
+            4.856625069680907,
+            3.0
+          ]
+        }
+      },
+      "members": [
+        "Allen Iverson",
+        "Allen Iverson 2.0",
+        "BigBaller",
+        "Gladiator",
+        "Messi",
+        "Phil_Ivey_GOAT",
+        "Pot-Committed-GPT",
+        "RiverForge",
+        "Tester67",
+        "Thanos",
+        "Tilted_Towers_2",
+        "dan_negreanu_on_ket",
+        "finian sucks",
+        "fold-a2",
+        "kurimanju",
+        "let it go",
+        "love-of-da-game",
+        "percy-perc-filet",
+        "preflop-warrior",
+        "radishv2",
+        "regrets",
+        "samith pai is lowkey leng",
+        "testQ",
+        "the GOON",
+        "the big dog",
+        "the notorious",
+        "tripi tropi",
+        "tutududu",
+        "yep"
+      ],
+      "style": {
+        "vpip": 0.1906896551724138,
+        "pfr": 0.18241379310344827,
+        "threebet": 0.03586206896551724,
+        "limp": 0.16551724137931034,
+        "aggression": 0.3741379310344828,
+        "cbet": 0.3068965517241379,
+        "bluff": 0.3344827586206897,
+        "stickiness": 0.5682758620689655,
+        "size": 0.6139655172413792,
+        "adaptive": 0.10344827586206896
+      },
+      "parameter_variance": {
+        "vpip": 0.01108268910107281,
+        "pfr": 0.011679219925846094,
+        "threebet": 0.0007466403760984229,
+        "limp": 0.05641493543679091,
+        "aggression": 0.08171755634119282,
+        "cbet": 0.07865080954217854,
+        "bluff": 0.05429551726126326,
+        "stickiness": 0.12985513337230592,
+        "size": 0.03345554343285917,
+        "adaptive": 0.17544691845058902
+      },
+      "counter_reliability": 0.538139114283863
+    },
+    {
+      "name": "active_pressure_2",
+      "prior": 0.5238095238095238,
+      "mean": [
+        0.2937977401017474,
+        0.1965512775952771,
+        0.09044241793690114,
+        0.015736375570667958,
+        0.5538797205179026,
+        0.5952281260197646,
+        0.14660516857297015,
+        0.47250739680935777,
+        0.152047923818167
+      ],
+      "concentration": [
+        23.73953777956016,
+        31.41388749654287,
+        12.777304090471599,
+        18.74623788242882,
+        33.977188961054296,
+        9.552358623181936,
+        11.505101997261729,
+        6.105536309666337,
+        4.253652373093512
+      ],
+      "range_prior": {
+        "range_prior_vpip": 0.31865720742727877,
+        "range_prior_pfr": 0.19807672162706955,
+        "range_prior_threebet": 0.08582351207845526,
+        "range_bluff_floor": 0.38365177653744775
+      },
+      "counter": {
+        "range_prior_vpip": 0.31865720742727877,
+        "range_prior_pfr": 0.19807672162706955,
+        "range_prior_threebet": 0.08582351207845526,
+        "range_bluff_floor": 0.38365177653744775,
+        "bluff_frequency": 0.8659894643341094,
+        "value_threshold": 0.6335204728090369,
+        "raise_threshold": 0.8414431203583569,
+        "cbet_pot_fraction": 0.9632700296998901,
+        "late_pot_fraction": 0.9632700296998901,
+        "call_margin_flop": 0.059447676938869876,
+        "range_call_margin_flop": 0.019447676938869875,
+        "call_margin_turn": 0.04944767693886987,
+        "range_call_margin_turn": 0.019447676938869875,
+        "call_margin_river": 0.029447676938869877,
+        "range_call_margin_river": 0.04944767693886987
+      },
+      "adaptive": 0.0625,
+      "contexts": {
+        "short": {
+          "mean": [
+            0.31970275433404216,
+            0.21226419785601686,
+            0.09337654847113065,
+            0.013935891272531541,
+            0.5526146665883289,
+            0.5840866741016586,
+            0.15004202056241406,
+            0.4527641784572652,
+            0.15336095716645656
+          ],
+          "concentration": [
+            13.751493439927703,
+            15.933284210880366,
+            13.17838113917691,
+            16.518951817239202,
+            20.639716024994225,
+            9.639859760355101,
+            11.746715947158775,
+            6.063475691270158,
+            4.290815693792631
+          ]
+        },
+        "tournament": {
+          "mean": [
+            0.31256456870052124,
+            0.20759610039530374,
+            0.09168512586937637,
+            0.0168753225065081,
+            0.5673010316824313,
+            0.5783758782216507,
+            0.1368095633572972,
+            0.48057043003829647,
+            0.13526651531321968
+          ],
+          "concentration": [
+            19.637378126731967,
+            24.776813379664663,
+            12.94752642182501,
+            16.55652514410138,
+            25.440270807509144,
+            9.680495267073894,
+            10.803506007873949,
+            6.1163220123605395,
+            3.766308062914135
+          ]
+        },
+        "full": {
+          "mean": [
+            0.279179728388236,
+            0.1860522759056235,
+            0.07803693654519948,
+            0.01037736069053387,
+            0.5472696287845957,
+            0.591198790483872,
+            0.14022745386146715,
+            0.4553322211302496,
+            0.127962403497561
+          ],
+          "concentration": [
+            22.995229030881728,
+            30.0834048453582,
+            11.049682831837902,
+            12.092565381960439,
+            34.07183186407499,
+            9.585258768847089,
+            11.050486217606984,
+            6.070204011282444,
+            3.5470227652413913
+          ]
+        }
+      },
+      "members": [
+        "Althaf Productions v1",
+        "Bad Goy",
+        "China #1",
+        "Gladiator_v3",
+        "Gladiators",
+        "Invokerv2",
+        "MAC Projects Team Testing Bot",
+        "MAC Projects Team Testing Bot 2",
+        "MAC Projects Team Testing Bot 3",
+        "McSmart Meal",
+        "RaiseYourEdge",
+        "Versatile Devourer",
+        "axiom",
+        "best-bot",
+        "catherine",
+        "fullhouse",
+        "g5-veil-dot",
+        "guaguanco 5",
+        "krestrel",
+        "larp larp sahur",
+        "luck is all u need",
+        "merch where",
+        "netanyahu",
+        "orcabot",
+        "pocket-nuts",
+        "poke-bowl",
+        "polygamous lavender marriage",
+        "renbot",
+        "tungbot",
+        "wicked wing combo",
+        "wicked wings combo",
+        "zinger box"
+      ],
+      "style": {
+        "vpip": 0.28375,
+        "pfr": 0.2828125,
+        "threebet": 0.047812499999999994,
+        "limp": 0.19062500000000002,
+        "aggression": 0.44062500000000004,
+        "cbet": 0.53125,
+        "bluff": 0.790625,
+        "stickiness": 0.285625,
+        "size": 0.7296874999999999,
+        "adaptive": 0.0625
+      },
+      "parameter_variance": {
+        "vpip": 0.027834698265050167,
+        "pfr": 0.02744367171387263,
+        "threebet": 0.0006845779987109811,
+        "limp": 0.025048522418478263,
+        "aggression": 0.08910744974568005,
+        "cbet": 0.06945558371655519,
+        "bluff": 0.11096719751602564,
+        "stickiness": 0.04630366508152174,
+        "size": 0.15042495850317034,
+        "adaptive": 0.14749216137123744
+      },
+      "counter_reliability": 0.5576785102496515
+    }
+  ],
+  "opponents": [
+    {
+      "bot": "Allen Iverson",
+      "group": 0,
+      "training_games": 9,
+      "newest_games": 14,
+      "reliable_label": true,
+      "posterior": [
+        0.9995984436148488,
+        0.00040155638515102453
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0013692309148609638,
+        "pfr": 0.0008532966603524983,
+        "threebet": 0.00034076577867381275,
+        "shove": 7.142858066799818e-06,
+        "fold": 0.007334399502724409,
+        "bet": 0.0380982831120491,
+        "raise": 0.023763010278344154,
+        "large": 0.07857276499271393,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.00010197881828316615,
+        "pfr": 0.00010197881828316615,
+        "threebet": 2.081939799331103e-05,
+        "limp": 0.0011822463768115946,
+        "aggression": 0.022219035674470453,
+        "cbet": 0.008217697881828318,
+        "bluff": 0.01062015050167224,
+        "stickiness": 0.0013386220735785972,
+        "size": 0.053006669732441475,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "Allen Iverson 2.0",
+      "group": 0,
+      "training_games": 55,
+      "newest_games": 85,
+      "reliable_label": true,
+      "posterior": [
+        0.9947731441503161,
+        0.00522685584968392
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0008913723868317902,
+        "pfr": 0.0007762464811094105,
+        "threebet": 0.0005127652548253536,
+        "shove": 3.4453769330866635e-06,
+        "fold": 0.014908830635249615,
+        "bet": 0.03905476629734039,
+        "raise": 0.02057948336005211,
+        "large": 0.05032599717378616,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.00016929319955406914,
+        "pfr": 0.00014849498327759202,
+        "threebet": 0.0,
+        "limp": 0.0033247212931995546,
+        "aggression": 0.010766889632107023,
+        "cbet": 0.00308458751393534,
+        "bluff": 0.004689938684503902,
+        "stickiness": 8.809253065774796e-05,
+        "size": 0.038206669732441474,
+        "adaptive": 0.0033333333333333322
+      }
+    },
+    {
+      "bot": "Althaf Productions v1",
+      "group": 1,
+      "training_games": 48,
+      "newest_games": 92,
+      "reliable_label": true,
+      "posterior": [
+        0.04201752738050779,
+        0.9579824726194923
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.002376779681071639,
+        "pfr": 0.0011367773404344916,
+        "threebet": 0.0008006913703866303,
+        "shove": 3.0195888029993512e-05,
+        "fold": 0.03624485060572624,
+        "bet": 0.010900499299168587,
+        "raise": 0.015660028904676437,
+        "large": 0.026781056076288223,
+        "weak_show": 0.11324041336774826
+      },
+      "parameter_variances": {
+        "vpip": 7.098662207357856e-05,
+        "pfr": 7.098662207357856e-05,
+        "threebet": 2.1862876254180613e-05,
+        "limp": 0.0010110089186176148,
+        "aggression": 0.006777480490523969,
+        "cbet": 0.0018222965440356743,
+        "bluff": 0.0,
+        "stickiness": 0.0024197279821627647,
+        "size": 0.07135793617614271,
+        "adaptive": 0.01966555183946488
+      }
+    },
+    {
+      "bot": "Bad Goy",
+      "group": 1,
+      "training_games": 2,
+      "newest_games": 7,
+      "reliable_label": true,
+      "posterior": [
+        0.25825762228159843,
+        0.7417423777184016
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.003595237620174885,
+        "pfr": 0.0010142857208848,
+        "threebet": 0.0010092449374496937,
+        "shove": 0.0,
+        "fold": 0.0071974582970142365,
+        "bet": 0.03281419724225998,
+        "raise": 0.017621897161006927,
+        "large": 0.046677116304636,
+        "weak_show": 0.015625
+      },
+      "parameter_variances": {
+        "vpip": 0.001423209587513935,
+        "pfr": 0.0011692430323299884,
+        "threebet": 0.000123273132664437,
+        "limp": 0.00605515607580825,
+        "aggression": 0.014598968784838353,
+        "cbet": 0.01688057413600892,
+        "bluff": 0.018167530657748048,
+        "stickiness": 0.00600205574136009,
+        "size": 3.7959866220735786e-05,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "BigBaller",
+      "group": 0,
+      "training_games": 13,
+      "newest_games": 20,
+      "reliable_label": true,
+      "posterior": [
+        0.5059008517023134,
+        0.49409914829768664
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.001446315785869956,
+        "pfr": 0.0010765790939331055,
+        "threebet": 0.0009164612856693566,
+        "shove": 1.6842104741954245e-05,
+        "fold": 0.006715123541653156,
+        "bet": 0.016884833574295044,
+        "raise": 0.0017709846142679453,
+        "large": 0.009324931539595127,
+        "weak_show": 0.0625
+      },
+      "parameter_variances": {
+        "vpip": 0.000505351170568562,
+        "pfr": 0.0005052073578595319,
+        "threebet": 1.2792642140468251e-05,
+        "limp": 0.0014952898550724641,
+        "aggression": 0.011045039018952065,
+        "cbet": 0.00029573578595317726,
+        "bluff": 0.01443913043478261,
+        "stickiness": 0.02765716276477146,
+        "size": 0.0011531426978818287,
+        "adaptive": 0.1962095875139354
+      }
+    },
+    {
+      "bot": "Bluey",
+      "group": 1,
+      "training_games": 1,
+      "newest_games": 3,
+      "reliable_label": false,
+      "posterior": [
+        0.21204213366504188,
+        0.7879578663349581
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0009333338239230216,
+        "pfr": 0.0004333334509283304,
+        "threebet": 0.0007225756999105215,
+        "shove": 0.0,
+        "fold": 0.006367657799273729,
+        "bet": 0.008483107201755047,
+        "raise": 0.03238288685679436,
+        "large": 0.01675637625157833,
+        "weak_show": 0.055555559694767
+      },
+      "parameter_variances": {
+        "vpip": 0.0014741627647714604,
+        "pfr": 0.0013732396878483831,
+        "threebet": 6.98717948717948e-05,
+        "limp": 0.0031666387959866224,
+        "aggression": 0.031240691192865107,
+        "cbet": 0.03109395206243033,
+        "bluff": 0.0064250557413600895,
+        "stickiness": 0.1262969855072464,
+        "size": 0.0005273567447045709,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "China #1",
+      "group": 1,
+      "training_games": 2,
+      "newest_games": 6,
+      "reliable_label": true,
+      "posterior": [
+        0.0039010697367282557,
+        0.9960989302632718
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.002360000042244792,
+        "pfr": 0.003136666491627693,
+        "threebet": 0.0026358268223702908,
+        "shove": 0.0010400000028312206,
+        "fold": 0.03166521340608597,
+        "bet": 0.0017935786163434386,
+        "raise": 0.01905157044529915,
+        "large": 0.012155138887465,
+        "weak_show": 0.5
+      },
+      "parameter_variances": {
+        "vpip": 0.0010989253065774801,
+        "pfr": 0.000836534002229654,
+        "threebet": 0.000660428093645485,
+        "limp": 0.003519370122630993,
+        "aggression": 0.015489938684503903,
+        "cbet": 0.04847547380156077,
+        "bluff": 0.005677146042363432,
+        "stickiness": 0.012906381270903013,
+        "size": 0.030093481326644366,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "Gladiator",
+      "group": 0,
+      "training_games": 7,
+      "newest_games": 8,
+      "reliable_label": true,
+      "posterior": [
+        0.5635830543615498,
+        0.4364169456384503
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.06031429022550583,
+        "pfr": 0.0011839286889880896,
+        "threebet": 0.001731051248498261,
+        "shove": 2.1428570107673295e-05,
+        "fold": 0.023257097229361534,
+        "bet": 0.020476872101426125,
+        "raise": 0.019868284463882446,
+        "large": 0.11497630923986435,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.024315968784838347,
+        "pfr": 0.000946411371237458,
+        "threebet": 0.0005483835005574136,
+        "limp": 0.006576672240802677,
+        "aggression": 0.028021627647714608,
+        "cbet": 0.015431995540691195,
+        "bluff": 0.03388517279821628,
+        "stickiness": 0.07262253177257526,
+        "size": 0.01475158862876254,
+        "adaptive": 0.162530657748049
+      }
+    },
+    {
+      "bot": "Gladiator_v3",
+      "group": 1,
+      "training_games": 9,
+      "newest_games": 15,
+      "reliable_label": true,
+      "posterior": [
+        0.05702653714935707,
+        0.942973462850643
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.007082856725901365,
+        "pfr": 0.007098095025867224,
+        "threebet": 0.0003332195046823472,
+        "shove": 5.5238087952602655e-05,
+        "fold": 0.031174292787909508,
+        "bet": 0.025739390403032303,
+        "raise": 0.00279193720780313,
+        "large": 0.015033726580440998,
+        "weak_show": 0.02499999850988388
+      },
+      "parameter_variances": {
+        "vpip": 0.0,
+        "pfr": 0.0003061137123745821,
+        "threebet": 1.2931995540691195e-05,
+        "limp": 0.002769537346711261,
+        "aggression": 0.019810590858416945,
+        "cbet": 0.010900334448160538,
+        "bluff": 0.0016403567447045692,
+        "stickiness": 0.012172463768115944,
+        "size": 0.00175750808249721,
+        "adaptive": 0.05065774804905239
+      }
+    },
+    {
+      "bot": "Gladiators",
+      "group": 1,
+      "training_games": 14,
+      "newest_games": 28,
+      "reliable_label": true,
+      "posterior": [
+        0.05218854749361561,
+        0.9478114525063844
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.002944312058389187,
+        "pfr": 0.0021887565962970257,
+        "threebet": 0.005360648036003113,
+        "shove": 5.50264521734789e-05,
+        "fold": 0.027215031906962395,
+        "bet": 0.019056638702750206,
+        "raise": 0.00579640781506896,
+        "large": 0.022785140201449394,
+        "weak_show": 0.00390625
+      },
+      "parameter_variances": {
+        "vpip": 0.00022039687848383503,
+        "pfr": 0.00022039687848383503,
+        "threebet": 6.565886287625417e-05,
+        "limp": 0.0010876254180602009,
+        "aggression": 0.00876619286510591,
+        "cbet": 0.010342112597547382,
+        "bluff": 0.0012845875139353387,
+        "stickiness": 0.002950015607580825,
+        "size": 0.004656554069119288,
+        "adaptive": 0.06531772575250837
+      }
+    },
+    {
+      "bot": "Invokerv2",
+      "group": 1,
+      "training_games": 9,
+      "newest_games": 15,
+      "reliable_label": true,
+      "posterior": [
+        0.014098416600704246,
+        0.9859015833992958
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0256695244461298,
+        "pfr": 0.014406667090952396,
+        "threebet": 0.0013716229004785419,
+        "shove": 3.523809209582396e-05,
+        "fold": 0.06730525195598602,
+        "bet": 0.012973548844456673,
+        "raise": 0.008121560327708721,
+        "large": 0.03502817824482918,
+        "weak_show": 0.07500000298023224
+      },
+      "parameter_variances": {
+        "vpip": 0.00018432107023411403,
+        "pfr": 0.00017967781493868483,
+        "threebet": 8.532441471571908e-05,
+        "limp": 0.0005354236343366777,
+        "aggression": 0.0,
+        "cbet": 0.007338350055741357,
+        "bluff": 0.0,
+        "stickiness": 0.010922152731326644,
+        "size": 0.03180765301003345,
+        "adaptive": 0.03232998885172798
+      }
+    },
+    {
+      "bot": "Jason_idea",
+      "group": 1,
+      "training_games": 1,
+      "newest_games": 1,
+      "reliable_label": false,
+      "posterior": [
+        0.005912180112839715,
+        0.9940878198871602
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": null,
+        "pfr": null,
+        "threebet": null,
+        "shove": null,
+        "fold": null,
+        "bet": null,
+        "raise": null,
+        "large": null,
+        "weak_show": null
+      },
+      "parameter_variances": {
+        "vpip": 0.1002066889632107,
+        "pfr": 0.1002066889632107,
+        "threebet": 0.16229457748049053,
+        "limp": 0.012655072463768118,
+        "aggression": 0.04826086956521739,
+        "cbet": 0.0077217391304347845,
+        "bluff": 0.0,
+        "stickiness": 0.02364782608695653,
+        "size": 0.0001737391304347829,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "MAC Projects Team Testing Bot",
+      "group": 1,
+      "training_games": 34,
+      "newest_games": 51,
+      "reliable_label": true,
+      "posterior": [
+        0.03521221761959748,
+        0.9647877823804025
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0030172551050782204,
+        "pfr": 0.0028774901293218136,
+        "threebet": 0.0022112857550382614,
+        "shove": 6.235293403733522e-05,
+        "fold": 0.03302130103111267,
+        "bet": 0.01600096933543682,
+        "raise": 0.019246451556682587,
+        "large": 0.019808506593108177,
+        "weak_show": 0.0016666663577780128
+      },
+      "parameter_variances": {
+        "vpip": 0.00013157079152731325,
+        "pfr": 0.00013157079152731325,
+        "threebet": 7.538015607580827e-05,
+        "limp": 0.0006214046822742479,
+        "aggression": 0.05081301560758083,
+        "cbet": 0.007052842809364547,
+        "bluff": 0.0014146042363433662,
+        "stickiness": 0.00611283835005574,
+        "size": 6.751393534002242e-06,
+        "adaptive": 0.24972129319955405
+      }
+    },
+    {
+      "bot": "MAC Projects Team Testing Bot 2",
+      "group": 1,
+      "training_games": 32,
+      "newest_games": 63,
+      "reliable_label": true,
+      "posterior": [
+        0.020455905921359912,
+        0.9795440940786402
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.006209677085280418,
+        "pfr": 0.005544700659811497,
+        "threebet": 0.003240483347326517,
+        "shove": 0.002508192090317607,
+        "fold": 0.033808283507823944,
+        "bet": 0.023369306698441505,
+        "raise": 0.03688749670982361,
+        "large": 0.012986438348889351,
+        "weak_show": 0.046991657465696335
+      },
+      "parameter_variances": {
+        "vpip": 0.00017458193979933114,
+        "pfr": 0.00017458193979933114,
+        "threebet": 0.0001024035674470457,
+        "limp": 0.0008891861761426978,
+        "aggression": 0.007650473801560756,
+        "cbet": 0.002170875139353399,
+        "bluff": 4.972129319955401e-05,
+        "stickiness": 0.0036388528428093645,
+        "size": 1.1949554069119307e-05,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "MAC Projects Team Testing Bot 3",
+      "group": 1,
+      "training_games": 46,
+      "newest_games": 84,
+      "reliable_label": true,
+      "posterior": [
+        0.017097084801574017,
+        0.9829029151984259
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0053003448992967606,
+        "pfr": 0.004940605256706476,
+        "threebet": 0.0038984704297035933,
+        "shove": 0.0014452666509896517,
+        "fold": 0.03966710343956947,
+        "bet": 0.01702272519469261,
+        "raise": 0.02906349115073681,
+        "large": 0.012546151876449585,
+        "weak_show": 0.039247311651706696
+      },
+      "parameter_variances": {
+        "vpip": 2.3059085841694556e-05,
+        "pfr": 2.3059085841694556e-05,
+        "threebet": 3.466109253065775e-05,
+        "limp": 0.0003795707915273131,
+        "aggression": 0.011747380156075809,
+        "cbet": 0.003074247491638796,
+        "bluff": 0.0,
+        "stickiness": 0.006920624303232999,
+        "size": 2.3468227424749205e-05,
+        "adaptive": 0.1946376811594203
+      }
+    },
+    {
+      "bot": "McSmart Meal",
+      "group": 1,
+      "training_games": 47,
+      "newest_games": 79,
+      "reliable_label": true,
+      "posterior": [
+        0.22811497686706217,
+        0.7718850231329378
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.008895359002053738,
+        "pfr": 0.008327363058924675,
+        "threebet": 0.0008443238912150264,
+        "shove": 2.499188440197031e-06,
+        "fold": 0.0121391536667943,
+        "bet": 0.009419362060725689,
+        "raise": 0.0023366506211459637,
+        "large": 0.021809710189700127,
+        "weak_show": 0.029181189835071564
+      },
+      "parameter_variances": {
+        "vpip": 0.0018969130434782603,
+        "pfr": 0.0018969130434782603,
+        "threebet": 5.6654403567447055e-05,
+        "limp": 0.0003945373467112596,
+        "aggression": 0.010427982162764778,
+        "cbet": 0.002649804905239688,
+        "bluff": 0.0020328595317725753,
+        "stickiness": 0.010125060200668898,
+        "size": 1.1605351170568583e-06,
+        "adaptive": 0.21070234113712374
+      }
+    },
+    {
+      "bot": "Messi",
+      "group": 0,
+      "training_games": 58,
+      "newest_games": 98,
+      "reliable_label": true,
+      "posterior": [
+        0.9988552873604735,
+        0.0011447126395266662
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0017520409310236573,
+        "pfr": 2.525773197703529e-05,
+        "threebet": 8.428670844295993e-05,
+        "shove": 0.0,
+        "fold": 0.013502025045454502,
+        "bet": 0.02236177772283554,
+        "raise": 0.0006327775190584362,
+        "large": 0.0,
+        "weak_show": 0.03125
+      },
+      "parameter_variances": {
+        "vpip": 4.098550724637679e-05,
+        "pfr": 2.401226309921962e-05,
+        "threebet": 0.0,
+        "limp": 0.18798492196209587,
+        "aggression": 0.00965841694537347,
+        "cbet": 0.02161438127090301,
+        "bluff": 0.0009635172798216279,
+        "stickiness": 6.253734671125976e-05,
+        "size": 1.0915273132664457e-05,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "Phil_Ivey_GOAT",
+      "group": 0,
+      "training_games": 27,
+      "newest_games": 47,
+      "reliable_label": true,
+      "posterior": [
+        0.7195112666743846,
+        0.28048873332561547
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.001623589196242392,
+        "pfr": 0.00097761326469481,
+        "threebet": 0.0001955097686732188,
+        "shove": 0.0,
+        "fold": 0.0720384269952774,
+        "bet": 0.05975077301263809,
+        "raise": 0.03852372616529465,
+        "large": 0.029678363353013992,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 2.2674470457079154e-05,
+        "pfr": 2.2674470457079154e-05,
+        "threebet": 6.644370122630994e-07,
+        "limp": 0.001092530657748049,
+        "aggression": 0.007457748049052403,
+        "cbet": 0.00043266443701226316,
+        "bluff": 0.008480351170568562,
+        "stickiness": 0.011603356744704573,
+        "size": 1.8617614269788208e-05,
+        "adaptive": 0.1683835005574136
+      }
+    },
+    {
+      "bot": "Pookie Bot",
+      "group": 1,
+      "training_games": 0,
+      "newest_games": 0,
+      "reliable_label": false,
+      "posterior": [
+        0.3040693042871255,
+        0.6959306957128745
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": null,
+        "pfr": null,
+        "threebet": null,
+        "shove": null,
+        "fold": null,
+        "bet": null,
+        "raise": null,
+        "large": null,
+        "weak_show": null
+      },
+      "parameter_variances": {
+        "vpip": 0.02598625975473802,
+        "pfr": 0.02598625975473802,
+        "threebet": 0.028931326644370127,
+        "limp": 0.0030996655518394666,
+        "aggression": 0.04608182831661092,
+        "cbet": 0.10571627647714604,
+        "bluff": 0.03294144370122631,
+        "stickiness": 0.0042107146042363415,
+        "size": 0.00040848829431438193,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "Pot-Committed-GPT",
+      "group": 0,
+      "training_games": 12,
+      "newest_games": 21,
+      "reliable_label": true,
+      "posterior": [
+        0.7705363019448896,
+        0.2294636980551104
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0020847616251558065,
+        "pfr": 0.001844761660322547,
+        "threebet": 0.0005374064203351736,
+        "shove": 9.047618732438423e-06,
+        "fold": 0.04809277877211571,
+        "bet": 0.013677497394382954,
+        "raise": 0.013348989188671112,
+        "large": 0.09763071686029434,
+        "weak_show": null
+      },
+      "parameter_variances": {
+        "vpip": 0.0009474905239687851,
+        "pfr": 0.0008773366778149389,
+        "threebet": 4.9888517279821615e-06,
+        "limp": 0.004980490523968785,
+        "aggression": 0.007919620958751396,
+        "cbet": 0.0060416945373467125,
+        "bluff": 0.0010149386845039019,
+        "stickiness": 0.003865079152731327,
+        "size": 0.003723405518394649,
+        "adaptive": 0.05952062430323299
+      }
+    },
+    {
+      "bot": "RaiseYourEdge",
+      "group": 1,
+      "training_games": 25,
+      "newest_games": 42,
+      "reliable_label": true,
+      "posterior": [
+        0.1640473447737823,
+        0.8359526552262178
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0023412310983985662,
+        "pfr": 0.0025096978060901165,
+        "threebet": 0.0007925535901449621,
+        "shove": 3.066202043555677e-05,
+        "fold": 0.024768073111772537,
+        "bet": 0.02727643959224224,
+        "raise": 0.009378582239151001,
+        "large": 0.057453859597444534,
+        "weak_show": 0.1666666716337204
+      },
+      "parameter_variances": {
+        "vpip": 0.0007614269788182832,
+        "pfr": 0.0007614269788182832,
+        "threebet": 1.4799331103678936e-05,
+        "limp": 0.0022578316610925306,
+        "aggression": 0.08605785953177258,
+        "cbet": 0.0036721293199554073,
+        "bluff": 0.02390398550724638,
+        "stickiness": 0.0007260590858416946,
+        "size": 0.01785267865105909,
+        "adaptive": 0.08217391304347826
+      }
+    },
+    {
+      "bot": "RiverForge",
+      "group": 0,
+      "training_games": 58,
+      "newest_games": 93,
+      "reliable_label": true,
+      "posterior": [
+        0.9358162453542461,
+        0.06418375464575381
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0013846656074747443,
+        "pfr": 0.0012597007444128394,
+        "threebet": 0.0004928709822706878,
+        "shove": 7.035996986815007e-06,
+        "fold": 0.03977587819099426,
+        "bet": 0.02064398117363453,
+        "raise": 0.0014381237560883164,
+        "large": 0.0,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.00015607580824972118,
+        "pfr": 0.00015607580824972118,
+        "threebet": 0.0,
+        "limp": 0.0006542642140468229,
+        "aggression": 0.012355072463768116,
+        "cbet": 0.0012090022296544038,
+        "bluff": 0.0033774804905239695,
+        "stickiness": 0.014644025641025644,
+        "size": 0.0029369687848383496,
+        "adaptive": 0.15851727982162767
+      }
+    },
+    {
+      "bot": "Sus bot",
+      "group": 0,
+      "training_games": 1,
+      "newest_games": 2,
+      "reliable_label": false,
+      "posterior": [
+        0.7881935589136129,
+        0.21180644108638721
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0071999989449977875,
+        "pfr": 0.004050000570714474,
+        "threebet": 0.0002582644810900092,
+        "shove": 0.0,
+        "fold": 0.0,
+        "bet": null,
+        "raise": 0.0,
+        "large": null,
+        "weak_show": null
+      },
+      "parameter_variances": {
+        "vpip": 3.174470457079155e-05,
+        "pfr": 3.174470457079155e-05,
+        "threebet": 0.0,
+        "limp": 0.0015356744704570794,
+        "aggression": 0.02518559085841695,
+        "cbet": 0.05299941471571907,
+        "bluff": 0.05811535674470457,
+        "stickiness": 0.006222457079152731,
+        "size": 7.03299888517281e-05,
+        "adaptive": 0.0033333333333333327
+      }
+    },
+    {
+      "bot": "Tester67",
+      "group": 0,
+      "training_games": 61,
+      "newest_games": 97,
+      "reliable_label": true,
+      "posterior": [
+        0.7048039361971349,
+        0.2951960638028652
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0028968642000108957,
+        "pfr": 0.0028088055551052094,
+        "threebet": 0.0012284006224945188,
+        "shove": 2.1542095055337995e-05,
+        "fold": 0.024800121784210205,
+        "bet": 0.042929574847221375,
+        "raise": 0.005631870124489069,
+        "large": 0.0332244411110878,
+        "weak_show": 0.0016447370871901512
+      },
+      "parameter_variances": {
+        "vpip": 4.790523968784838e-05,
+        "pfr": 4.790523968784838e-05,
+        "threebet": 2.2865105908584142e-06,
+        "limp": 0.0002841694537346713,
+        "aggression": 0.007657079152731333,
+        "cbet": 0.002965886287625417,
+        "bluff": 0.002568115942028985,
+        "stickiness": 0.01358646488294314,
+        "size": 6.505016722408012e-05,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "Thanos",
+      "group": 0,
+      "training_games": 10,
+      "newest_games": 18,
+      "reliable_label": true,
+      "posterior": [
+        0.8520250715384105,
+        0.14797492846158955
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.003895751666277647,
+        "pfr": 0.0027428101748228073,
+        "threebet": 0.0017031917814165354,
+        "shove": 4.967319910065271e-05,
+        "fold": 0.008867788128554821,
+        "bet": 0.01736552268266678,
+        "raise": 0.002551743295043707,
+        "large": 0.010191158391535282,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.0010505016722408029,
+        "pfr": 0.001179460423634337,
+        "threebet": 7.72028985507247e-05,
+        "limp": 0.004723829431438128,
+        "aggression": 0.01940409698996656,
+        "cbet": 0.00465381828316611,
+        "bluff": 0.012037095875139354,
+        "stickiness": 0.00043154849498327797,
+        "size": 0.0215297488851728,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "Tilted_Towers_2",
+      "group": 0,
+      "training_games": 40,
+      "newest_games": 70,
+      "reliable_label": true,
+      "posterior": [
+        0.9990259966878293,
+        0.0009740033121706274
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0013024637009948492,
+        "pfr": 0.0009573500719852746,
+        "threebet": 0.0006449595093727112,
+        "shove": 0.0,
+        "fold": 0.015640636906027794,
+        "bet": 0.05480038747191429,
+        "raise": 0.015263962559401989,
+        "large": 0.07870545238256454,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.00017063433667781496,
+        "pfr": 0.00017258751393534,
+        "threebet": 0.0,
+        "limp": 0.002621070234113713,
+        "aggression": 0.00036778149386845044,
+        "cbet": 8.333333333333334e-06,
+        "bluff": 0.0020032329988851744,
+        "stickiness": 0.00019359085841694557,
+        "size": 0.019293472408026754,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "Versatile Devourer",
+      "group": 1,
+      "training_games": 10,
+      "newest_games": 21,
+      "reliable_label": true,
+      "posterior": [
+        0.017701101864608847,
+        0.9822988981353913
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.001959047745913267,
+        "pfr": 0.0020261905156075954,
+        "threebet": 0.0034168590791523457,
+        "shove": 0.0014147621113806963,
+        "fold": 0.07592587172985077,
+        "bet": 0.04468373581767082,
+        "raise": 0.04651925712823868,
+        "large": 0.03517938405275345,
+        "weak_show": 0.125
+      },
+      "parameter_variances": {
+        "vpip": 0.00013972240802675594,
+        "pfr": 0.00013918729096989977,
+        "threebet": 0.00010832107023411371,
+        "limp": 0.0015044314381270907,
+        "aggression": 0.04672271460423635,
+        "cbet": 0.013145903010033445,
+        "bluff": 0.003100222965440355,
+        "stickiness": 0.005645952062430324,
+        "size": 0.01833249136008919,
+        "adaptive": 0.09030100334448161
+      }
+    },
+    {
+      "bot": "axiom",
+      "group": 1,
+      "training_games": 25,
+      "newest_games": 37,
+      "reliable_label": true,
+      "posterior": [
+        0.32384178717002476,
+        0.6761582128299752
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0020114118233323097,
+        "pfr": 0.0023588589392602444,
+        "threebet": 0.0011140941642224789,
+        "shove": 2.7027022042602766e-06,
+        "fold": 0.02106110006570816,
+        "bet": 0.020525548607110977,
+        "raise": 0.0059693343937397,
+        "large": 0.01848808117210865,
+        "weak_show": 0.006535947788506746
+      },
+      "parameter_variances": {
+        "vpip": 6.818283166109265e-06,
+        "pfr": 1.1615384615384634e-05,
+        "threebet": 0.00010128316610925306,
+        "limp": 0.0006047658862876252,
+        "aggression": 0.006348132664437014,
+        "cbet": 0.0026336677814938693,
+        "bluff": 0.004723383500557414,
+        "stickiness": 0.007393761426978818,
+        "size": 0.0001938249721293203,
+        "adaptive": 0.2489520624303233
+      }
+    },
+    {
+      "bot": "best-bot",
+      "group": 1,
+      "training_games": 46,
+      "newest_games": 87,
+      "reliable_label": true,
+      "posterior": [
+        0.11460852170011696,
+        0.8853914782998831
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.001329778111539781,
+        "pfr": 0.0017615341348573565,
+        "threebet": 0.001658166409470141,
+        "shove": 8.446940228168387e-06,
+        "fold": 0.029625169932842255,
+        "bet": 0.021898208186030388,
+        "raise": 0.015587661415338516,
+        "large": 0.019802995026111603,
+        "weak_show": 0.038461532443761826
+      },
+      "parameter_variances": {
+        "vpip": 7.729484726637736e-34,
+        "pfr": 7.729484726637736e-34,
+        "threebet": 4.916387959866218e-05,
+        "limp": 0.00024247491638796005,
+        "aggression": 0.006046711259754742,
+        "cbet": 0.00244804905239688,
+        "bluff": 0.0026985507246376794,
+        "stickiness": 0.04551504570791527,
+        "size": 0.004843701226309923,
+        "adaptive": 0.0506577480490524
+      }
+    },
+    {
+      "bot": "catherine",
+      "group": 1,
+      "training_games": 5,
+      "newest_games": 7,
+      "reliable_label": true,
+      "posterior": [
+        0.4759827895267984,
+        0.5240172104732016
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0011333333095535636,
+        "pfr": 0.0005809524445794523,
+        "threebet": 0.001171314506791532,
+        "shove": 0.0,
+        "fold": 0.019488850608468056,
+        "bet": 0.0155415004119277,
+        "raise": 0.004634128883481026,
+        "large": 0.04080749675631523,
+        "weak_show": null
+      },
+      "parameter_variances": {
+        "vpip": 0.00038405685618729085,
+        "pfr": 0.0003760802675585282,
+        "threebet": 4.964437012263097e-05,
+        "limp": 0.002129765886287626,
+        "aggression": 0.008268979933110364,
+        "cbet": 0.0012223801560758067,
+        "bluff": 0.020585590858416946,
+        "stickiness": 0.01693529096989967,
+        "size": 0.0054789197324414726,
+        "adaptive": 0.1946376811594203
+      }
+    },
+    {
+      "bot": "dan_negreanu_on_ket",
+      "group": 0,
+      "training_games": 12,
+      "newest_games": 16,
+      "reliable_label": true,
+      "posterior": [
+        0.5603389463024853,
+        0.4396610536975148
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.001172916847281158,
+        "pfr": 0.0020329165272414684,
+        "threebet": 0.001584920333698392,
+        "shove": 6.249998932617018e-06,
+        "fold": 0.012857920490205288,
+        "bet": 0.014192483387887478,
+        "raise": 0.0027706041000783443,
+        "large": 0.015814024955034256,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.0001877491638795988,
+        "pfr": 0.0001877491638795988,
+        "threebet": 6.474470457079156e-05,
+        "limp": 0.0011921962095875142,
+        "aggression": 0.01695373467112598,
+        "cbet": 0.008214353400222965,
+        "bluff": 0.010127396878483836,
+        "stickiness": 0.0122752497212932,
+        "size": 0.006554694537346712,
+        "adaptive": 0.18812709030100336
+      }
+    },
+    {
+      "bot": "data",
+      "group": 1,
+      "training_games": 1,
+      "newest_games": 3,
+      "reliable_label": false,
+      "posterior": [
+        0.0011540008401837974,
+        0.9988459991598162
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.007899997755885124,
+        "pfr": 0.013433331623673439,
+        "threebet": 0.0036062891595065594,
+        "shove": 3.333333370392211e-05,
+        "fold": 0.0065901074558496475,
+        "bet": 0.0013747402699664235,
+        "raise": 0.007625294383615255,
+        "large": 0.007736976258456707,
+        "weak_show": null
+      },
+      "parameter_variances": {
+        "vpip": 0.0068870055741360086,
+        "pfr": 0.007314527313266444,
+        "threebet": 6.243032329988844e-06,
+        "limp": 0.007216722408026756,
+        "aggression": 0.04384515050167224,
+        "cbet": 0.01090958751393534,
+        "bluff": 0.020424303232998885,
+        "stickiness": 0.017552297658862875,
+        "size": 0.04613145039018952,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "finian sucks",
+      "group": 0,
+      "training_games": 63,
+      "newest_games": 122,
+      "reliable_label": true,
+      "posterior": [
+        0.9004642055674849,
+        0.09953579443251521
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.000603061867877841,
+        "pfr": 0.00031583794043399394,
+        "threebet": 0.0012011780636385083,
+        "shove": 1.0872510756598786e-05,
+        "fold": 0.07915351539850235,
+        "bet": 0.09249856323003769,
+        "raise": 0.020373709499835968,
+        "large": 0.0,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.0,
+        "pfr": 3.979821627647714e-05,
+        "threebet": 3.979821627647714e-05,
+        "limp": 0.021155072463768115,
+        "aggression": 0.023660284280936455,
+        "cbet": 0.00013099219620958758,
+        "bluff": 0.005631438127090303,
+        "stickiness": 0.005232013377926422,
+        "size": 1.776923076923054e-05,
+        "adaptive": 0.24948717948717947
+      }
+    },
+    {
+      "bot": "fold-a2",
+      "group": 0,
+      "training_games": 13,
+      "newest_games": 20,
+      "reliable_label": true,
+      "posterior": [
+        0.9951748164634394,
+        0.0048251835365605575
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.010813419707119465,
+        "pfr": 0.0,
+        "threebet": 0.0,
+        "shove": 0.0,
+        "fold": 0.009693151339888573,
+        "bet": 0.0,
+        "raise": 0.0,
+        "large": null,
+        "weak_show": null
+      },
+      "parameter_variances": {
+        "vpip": 1.5441471571906355e-05,
+        "pfr": 6.644370122630993e-07,
+        "threebet": 0.0,
+        "limp": 4.830927954148585e-35,
+        "aggression": 0.0,
+        "cbet": 0.0,
+        "bluff": 0.0,
+        "stickiness": 1.1999999999999975e-05,
+        "size": 0.0,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "fullhouse",
+      "group": 1,
+      "training_games": 12,
+      "newest_games": 21,
+      "reliable_label": true,
+      "posterior": [
+        0.07116946508021407,
+        0.9288305349197861
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.004976190626621246,
+        "pfr": 0.0024147622752934694,
+        "threebet": 0.0020581516437232494,
+        "shove": 0.00010619046952342615,
+        "fold": 0.06037423759698868,
+        "bet": 0.023470669984817505,
+        "raise": 0.022240161895751953,
+        "large": 0.030170243233442307,
+        "weak_show": 0.11388889700174332
+      },
+      "parameter_variances": {
+        "vpip": 0.0011217346711259754,
+        "pfr": 0.0011341092530657748,
+        "threebet": 4.818729096989967e-05,
+        "limp": 0.0029434503901895194,
+        "aggression": 0.011083918617614269,
+        "cbet": 0.014169453734671125,
+        "bluff": 0.007661538461538458,
+        "stickiness": 0.030426314381270914,
+        "size": 0.1365409765886288,
+        "adaptive": 0.21461538461538457
+      }
+    },
+    {
+      "bot": "g5-veil-dot",
+      "group": 1,
+      "training_games": 2,
+      "newest_games": 2,
+      "reliable_label": true,
+      "posterior": [
+        0.0007452587161657596,
+        0.9992547412838342
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0001999996165977791,
+        "pfr": 0.004999999422580004,
+        "threebet": 0.0015631851274520159,
+        "shove": 0.0017999999690800905,
+        "fold": 0.020248444750905037,
+        "bet": 0.006988762877881527,
+        "raise": 7.668050238862634e-05,
+        "large": 0.10330578684806824,
+        "weak_show": null
+      },
+      "parameter_variances": {
+        "vpip": 0.013137046822742474,
+        "pfr": 0.014069711259754735,
+        "threebet": 0.003789520624303233,
+        "limp": 0.03782973801560759,
+        "aggression": 0.013802982162764772,
+        "cbet": 0.003346571906354517,
+        "bluff": 0.01485649386845039,
+        "stickiness": 1.2367175562620377e-32,
+        "size": 0.10895102424749165,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "guaguanco 5",
+      "group": 1,
+      "training_games": 7,
+      "newest_games": 11,
+      "reliable_label": true,
+      "posterior": [
+        0.1289732076302707,
+        0.8710267923697292
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0013363638427108526,
+        "pfr": 0.0009290908346883953,
+        "threebet": 0.0008964594453573227,
+        "shove": 9.09090886125341e-06,
+        "fold": 0.025708332657814026,
+        "bet": 0.04645000025629997,
+        "raise": 0.0013888891553506255,
+        "large": 0.031835660338401794,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.0005663277591973244,
+        "pfr": 0.0003924403567447044,
+        "threebet": 0.0001871337792642141,
+        "limp": 0.0029960702341137136,
+        "aggression": 0.03131602564102565,
+        "cbet": 0.011874470457079154,
+        "bluff": 0.0035146042363433643,
+        "stickiness": 0.004089560758082497,
+        "size": 0.0004250624303233006,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "idc",
+      "group": 0,
+      "training_games": 0,
+      "newest_games": 0,
+      "reliable_label": false,
+      "posterior": [
+        0.5685215013138084,
+        0.4314784986861916
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": null,
+        "pfr": null,
+        "threebet": null,
+        "shove": null,
+        "fold": null,
+        "bet": null,
+        "raise": null,
+        "large": null,
+        "weak_show": null
+      },
+      "parameter_variances": {
+        "vpip": 0.000491344481605351,
+        "pfr": 0.000491344481605351,
+        "threebet": 0.0005975072463768117,
+        "limp": 0.0059258361204013385,
+        "aggression": 0.009455518394648836,
+        "cbet": 0.00768851727982163,
+        "bluff": 0.0022630992196209588,
+        "stickiness": 0.05068011594202898,
+        "size": 0.0008008570234113708,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "jewhunter",
+      "group": 1,
+      "training_games": 0,
+      "newest_games": 1,
+      "reliable_label": false,
+      "posterior": [
+        0.375086421911915,
+        0.624913578088085
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": null,
+        "pfr": null,
+        "threebet": null,
+        "shove": null,
+        "fold": null,
+        "bet": null,
+        "raise": null,
+        "large": null,
+        "weak_show": null
+      },
+      "parameter_variances": {
+        "vpip": 0.0033048784838350053,
+        "pfr": 0.004252257525083612,
+        "threebet": 0.005008695652173913,
+        "limp": 0.03844289297658863,
+        "aggression": 0.008257413600891864,
+        "cbet": 0.06440565774804906,
+        "bluff": 0.08580423634336677,
+        "stickiness": 0.014580935340022293,
+        "size": 0.011921421125975476,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "jongwon",
+      "group": 1,
+      "training_games": 0,
+      "newest_games": 0,
+      "reliable_label": false,
+      "posterior": [
+        0.13893370956321358,
+        0.8610662904367864
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": null,
+        "pfr": null,
+        "threebet": null,
+        "shove": null,
+        "fold": null,
+        "bet": null,
+        "raise": null,
+        "large": null,
+        "weak_show": null
+      },
+      "parameter_variances": {
+        "vpip": 0.000430082497212932,
+        "pfr": 0.000430082497212932,
+        "threebet": 3.299888517279822e-05,
+        "limp": 0.0011800167224080274,
+        "aggression": 0.012687040133779262,
+        "cbet": 0.013533416945373467,
+        "bluff": 0.007674581939799332,
+        "stickiness": 0.01582463768115942,
+        "size": 2.0816889632107062e-05,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "krestrel",
+      "group": 1,
+      "training_games": 7,
+      "newest_games": 11,
+      "reliable_label": true,
+      "posterior": [
+        0.00020809186430252032,
+        0.9997919081356975
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.02218545414507389,
+        "pfr": 0.019500000402331352,
+        "threebet": 0.023827621713280678,
+        "shove": 0.013205453753471375,
+        "fold": 0.017833339050412178,
+        "bet": 0.012559114024043083,
+        "raise": 0.015909770503640175,
+        "large": 0.03911673277616501,
+        "weak_show": 0.040740739554166794
+      },
+      "parameter_variances": {
+        "vpip": 0.010140266443701227,
+        "pfr": 0.010406314381270905,
+        "threebet": 0.0010253467112597548,
+        "limp": 0.002872463768115941,
+        "aggression": 0.01345091973244147,
+        "cbet": 0.007171125975473801,
+        "bluff": 0.0,
+        "stickiness": 0.01726178260869565,
+        "size": 0.0698289286510591,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "kurimanju",
+      "group": 0,
+      "training_games": 48,
+      "newest_games": 89,
+      "reliable_label": true,
+      "posterior": [
+        0.21616878039712928,
+        0.7838312196028708
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0022488506510853767,
+        "pfr": 0.002710086992010474,
+        "threebet": 0.0011263969354331493,
+        "shove": 5.7073546486208215e-05,
+        "fold": 0.010679482482373714,
+        "bet": 0.007693890016525984,
+        "raise": 0.0017754841828718781,
+        "large": 0.028280721977353096,
+        "weak_show": 0.05082099512219429
+      },
+      "parameter_variances": {
+        "vpip": 0.00025486176142697843,
+        "pfr": 0.00025486176142697843,
+        "threebet": 7.641471571906354e-05,
+        "limp": 0.0006180602006688961,
+        "aggression": 0.001222826086956522,
+        "cbet": 0.0026658584169453724,
+        "bluff": 0.0016743311036789296,
+        "stickiness": 0.007726336677814939,
+        "size": 2.4556856187289927e-06,
+        "adaptive": 0.16645484949832778
+      }
+    },
+    {
+      "bot": "larp larp sahur",
+      "group": 1,
+      "training_games": 14,
+      "newest_games": 19,
+      "reliable_label": true,
+      "posterior": [
+        0.09054140705056586,
+        0.9094585929494341
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0026923976838588715,
+        "pfr": 0.0016666667070239782,
+        "threebet": 0.0011387295089662075,
+        "shove": 7.017542520770803e-05,
+        "fold": 0.020451320335268974,
+        "bet": 0.008339613676071167,
+        "raise": 0.0027123885229229927,
+        "large": 0.0050298613496124744,
+        "weak_show": 0.001133787096478045
+      },
+      "parameter_variances": {
+        "vpip": 0.0003258015607580825,
+        "pfr": 0.00032554738015607576,
+        "threebet": 2.740133779264215e-05,
+        "limp": 0.0022879319955406907,
+        "aggression": 0.0009544035674470464,
+        "cbet": 0.004095066889632107,
+        "bluff": 0.0022741360089186193,
+        "stickiness": 0.019502229654403565,
+        "size": 0.0015765284280936447,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "let it go",
+      "group": 0,
+      "training_games": 20,
+      "newest_games": 32,
+      "reliable_label": true,
+      "posterior": [
+        0.9986552070645599,
+        0.0013447929354400677
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0011353829177096486,
+        "pfr": 5.0705646572168916e-05,
+        "threebet": 0.00013475684681907296,
+        "shove": 0.0,
+        "fold": 0.012308605015277863,
+        "bet": 0.019973378628492355,
+        "raise": 0.0006377552053891122,
+        "large": 0.0,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.0006421137123745821,
+        "pfr": 0.0,
+        "threebet": 0.0,
+        "limp": 4.830927954148585e-35,
+        "aggression": 0.009997324414715719,
+        "cbet": 0.0014083333333333335,
+        "bluff": 0.002143227424749164,
+        "stickiness": 6.095317725752509e-05,
+        "size": 1.4077480490523994e-06,
+        "adaptive": 0.0033333333333333335
+      }
+    },
+    {
+      "bot": "love-of-da-game",
+      "group": 0,
+      "training_games": 6,
+      "newest_games": 13,
+      "reliable_label": true,
+      "posterior": [
+        0.2239287907738225,
+        0.7760712092261776
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0038807690143585205,
+        "pfr": 0.0024192307610064745,
+        "threebet": 0.0014608196215704083,
+        "shove": 7.692308827245142e-06,
+        "fold": 0.05017044395208359,
+        "bet": 0.05835847929120064,
+        "raise": 0.004178333096206188,
+        "large": 0.02053099311888218,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.00013564771460423627,
+        "pfr": 0.00013992865105908579,
+        "threebet": 0.00017579821627647718,
+        "limp": 0.001511594202898551,
+        "aggression": 0.04200610367892976,
+        "cbet": 0.022875808249721297,
+        "bluff": 0.008330518394648826,
+        "stickiness": 0.019986448160535117,
+        "size": 0.0001377748049052397,
+        "adaptive": 0.01966555183946488
+      }
+    },
+    {
+      "bot": "luck is all u need",
+      "group": 1,
+      "training_games": 48,
+      "newest_games": 87,
+      "reliable_label": true,
+      "posterior": [
+        0.14281880408829592,
+        0.857181195911704
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.004667522385716438,
+        "pfr": 0.0019357126438990235,
+        "threebet": 0.002329409820958972,
+        "shove": 1.149425429503026e-06,
+        "fold": 0.018718523904681206,
+        "bet": 0.00993578415364027,
+        "raise": 0.013162299990653992,
+        "large": 0.0275651216506958,
+        "weak_show": 0.08493787050247192
+      },
+      "parameter_variances": {
+        "vpip": 0.0008905507246376812,
+        "pfr": 0.0008905507246376812,
+        "threebet": 3.973244147157189e-06,
+        "limp": 0.005239102564102566,
+        "aggression": 0.005722296544035676,
+        "cbet": 0.0025354236343366784,
+        "bluff": 0.0011875975473801556,
+        "stickiness": 0.0012959152731326644,
+        "size": 1.3371237458194002e-05,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "merch where",
+      "group": 1,
+      "training_games": 5,
+      "newest_games": 6,
+      "reliable_label": true,
+      "posterior": [
+        0.005810070688648835,
+        0.9941899293113512
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.004189999774098396,
+        "pfr": 0.004936666693538427,
+        "threebet": 0.006278348155319691,
+        "shove": 0.0002799999783746898,
+        "fold": 0.036651380360126495,
+        "bet": 0.03679206594824791,
+        "raise": 0.002427436411380768,
+        "large": 0.0017650483641773462,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 3.3858416945373504e-05,
+        "pfr": 3.3858416945373504e-05,
+        "threebet": 0.002169627647714604,
+        "limp": 0.0017865105908584167,
+        "aggression": 0.004371544035674472,
+        "cbet": 0.030860535117056862,
+        "bluff": 0.005248049052396874,
+        "stickiness": 0.06359153177257525,
+        "size": 0.11816561287625418,
+        "adaptive": 0.22826086956521738
+      }
+    },
+    {
+      "bot": "netanyahu",
+      "group": 1,
+      "training_games": 50,
+      "newest_games": 89,
+      "reliable_label": true,
+      "posterior": [
+        0.07664990647748175,
+        0.9233500935225183
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0019645558204501867,
+        "pfr": 0.002425817074254155,
+        "threebet": 0.0013182959519326687,
+        "shove": 2.9417771656881087e-05,
+        "fold": 0.024964135140180588,
+        "bet": 0.02847101539373398,
+        "raise": 0.005782559048384428,
+        "large": 0.0289666298776865,
+        "weak_show": 0.06372549384832382
+      },
+      "parameter_variances": {
+        "vpip": 7.729484726637736e-34,
+        "pfr": 7.729484726637736e-34,
+        "threebet": 0.0,
+        "limp": 0.00023901895206243046,
+        "aggression": 0.0037052396878483854,
+        "cbet": 0.00440356744704571,
+        "bluff": 0.002039548494983276,
+        "stickiness": 0.018307357859531775,
+        "size": 5.635172798216286e-06,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "orcabot",
+      "group": 1,
+      "training_games": 39,
+      "newest_games": 53,
+      "reliable_label": true,
+      "posterior": [
+        0.006654637508988617,
+        0.9933453624910115
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.011174600571393967,
+        "pfr": 0.011244773864746094,
+        "threebet": 0.015687907114624977,
+        "shove": 0.0014591439394280314,
+        "fold": 0.022319963201880455,
+        "bet": 0.011882802471518517,
+        "raise": 0.00891245249658823,
+        "large": 0.01741175167262554,
+        "weak_show": 0.07367787510156631
+      },
+      "parameter_variances": {
+        "vpip": 0.0015793266443701222,
+        "pfr": 0.0016152463768115942,
+        "threebet": 7.69186176142698e-05,
+        "limp": 0.000737346711259756,
+        "aggression": 0.013011677814938685,
+        "cbet": 0.002692614269788185,
+        "bluff": 0.0021532608695652186,
+        "stickiness": 0.008828605351170568,
+        "size": 0.004207438963210702,
+        "adaptive": 0.0033333333333333322
+      }
+    },
+    {
+      "bot": "percy-perc-filet",
+      "group": 0,
+      "training_games": 59,
+      "newest_games": 90,
+      "reliable_label": true,
+      "posterior": [
+        0.39279557073275484,
+        0.6072044292672452
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0053091635927557945,
+        "pfr": 0.005438264925032854,
+        "threebet": 0.0036743595264852047,
+        "shove": 6.292133548413403e-06,
+        "fold": 0.010784628801047802,
+        "bet": 0.009017594158649445,
+        "raise": 0.0018750253366306424,
+        "large": 0.008548599667847157,
+        "weak_show": 0.014085300266742706
+      },
+      "parameter_variances": {
+        "vpip": 0.0006713667781493869,
+        "pfr": 0.0006648149386845039,
+        "threebet": 0.0,
+        "limp": 0.00047658862876254204,
+        "aggression": 0.006617028985507247,
+        "cbet": 0.0008832497212931998,
+        "bluff": 0.0014597547380156084,
+        "stickiness": 0.04337103567447047,
+        "size": 4.865942028985515e-06,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "pocket-nuts",
+      "group": 1,
+      "training_games": 17,
+      "newest_games": 32,
+      "reliable_label": true,
+      "posterior": [
+        0.1320736449060073,
+        0.8679263550939927
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0011770161800086498,
+        "pfr": 0.0007248991751112044,
+        "threebet": 0.0025099609047174454,
+        "shove": 2.2177417122293264e-05,
+        "fold": 0.042619235813617706,
+        "bet": 0.02680414356291294,
+        "raise": 0.007247899193316698,
+        "large": 0.024926789104938507,
+        "weak_show": 0.13042327761650085
+      },
+      "parameter_variances": {
+        "vpip": 0.0002838026755852844,
+        "pfr": 0.00028391861761426987,
+        "threebet": 0.00018974804905239683,
+        "limp": 0.0012056577480490526,
+        "aggression": 0.007009448160535115,
+        "cbet": 0.014320484949832775,
+        "bluff": 0.006085256410256409,
+        "stickiness": 0.013277791527313267,
+        "size": 0.0033777756410256423,
+        "adaptive": 0.0385284280936455
+      }
+    },
+    {
+      "bot": "poke-bowl",
+      "group": 1,
+      "training_games": 26,
+      "newest_games": 50,
+      "reliable_label": true,
+      "posterior": [
+        0.04489803710361719,
+        0.9551019628963827
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.004216325934976339,
+        "pfr": 0.003383673494681716,
+        "threebet": 0.0009469445212744176,
+        "shove": 5.4040814575273544e-05,
+        "fold": 0.0230097696185112,
+        "bet": 0.021349824965000153,
+        "raise": 0.0019659230019897223,
+        "large": 0.02049112878739834,
+        "weak_show": 0.08985606580972672
+      },
+      "parameter_variances": {
+        "vpip": 0.0007789018952062435,
+        "pfr": 0.0007789018952062435,
+        "threebet": 0.00012853846153846156,
+        "limp": 0.0011641861761426979,
+        "aggression": 0.0169314381270903,
+        "cbet": 0.011469453734671127,
+        "bluff": 0.00022898550724637632,
+        "stickiness": 0.004227273132664438,
+        "size": 4.1109253065774864e-07,
+        "adaptive": 0.15851727982162767
+      }
+    },
+    {
+      "bot": "polygamous lavender marriage",
+      "group": 1,
+      "training_games": 16,
+      "newest_games": 23,
+      "reliable_label": true,
+      "posterior": [
+        0.05668487865200838,
+        0.9433151213479916
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.002211857819929719,
+        "pfr": 0.0013905138475820422,
+        "threebet": 0.0006501785246655345,
+        "shove": 4.3873515096493065e-05,
+        "fold": 0.03321441262960434,
+        "bet": 0.02266213297843933,
+        "raise": 0.01605168916285038,
+        "large": 0.023974508047103882,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 5.87513935340023e-05,
+        "pfr": 5.839018952062436e-05,
+        "threebet": 2.44938684503902e-05,
+        "limp": 0.0002591694537346711,
+        "aggression": 0.010751923076923079,
+        "cbet": 0.01279428651059086,
+        "bluff": 0.005370568561872908,
+        "stickiness": 0.0013413366778149388,
+        "size": 0.0005986897993311034,
+        "adaptive": 0.24761426978818282
+      }
+    },
+    {
+      "bot": "preflop-warrior",
+      "group": 0,
+      "training_games": 2,
+      "newest_games": 5,
+      "reliable_label": true,
+      "posterior": [
+        0.8720092893301519,
+        0.12799071066984816
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0003700000233948231,
+        "pfr": 0.0005200000014156103,
+        "threebet": 0.00012164311192464083,
+        "shove": 0.0,
+        "fold": 0.001249218825250864,
+        "bet": 0.04649854823946953,
+        "raise": 0.0,
+        "large": 0.0,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.00022954738015607578,
+        "pfr": 0.00027189632107023413,
+        "threebet": 0.00018927090301003346,
+        "limp": 0.0007140189520624305,
+        "aggression": 0.045326086956521745,
+        "cbet": 0.001644370122630993,
+        "bluff": 0.012393394648829431,
+        "stickiness": 0.010545965440356745,
+        "size": 9.98826644370123e-05,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "radishv2",
+      "group": 0,
+      "training_games": 46,
+      "newest_games": 76,
+      "reliable_label": true,
+      "posterior": [
+        0.2266519331269938,
+        0.7733480668730062
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0024907193146646023,
+        "pfr": 0.0026191403158009052,
+        "threebet": 0.0009341901750303805,
+        "shove": 4.90526290377602e-05,
+        "fold": 0.01070217415690422,
+        "bet": 0.0071879164315760136,
+        "raise": 0.0017476972425356507,
+        "large": 0.03657073900103569,
+        "weak_show": 0.0069444440305233
+      },
+      "parameter_variances": {
+        "vpip": 3.549163879598661e-05,
+        "pfr": 3.549163879598661e-05,
+        "threebet": 0.0,
+        "limp": 0.00026585841694537336,
+        "aggression": 0.009714018952062432,
+        "cbet": 0.0021344481605351166,
+        "bluff": 0.0034413600891861768,
+        "stickiness": 0.004720066889632106,
+        "size": 4.309921962096035e-06,
+        "adaptive": 0.10340022296544034
+      }
+    },
+    {
+      "bot": "regrets",
+      "group": 0,
+      "training_games": 3,
+      "newest_games": 6,
+      "reliable_label": true,
+      "posterior": [
+        0.839472399254295,
+        0.16052760074570513
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.001999999862164259,
+        "pfr": 0.0013866665540263057,
+        "threebet": 0.0006199144409038126,
+        "shove": 0.0,
+        "fold": 0.1559382975101471,
+        "bet": 0.031718701124191284,
+        "raise": 0.0,
+        "large": 0.016326533630490303,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.001563259754738016,
+        "pfr": 0.0015840758082497216,
+        "threebet": 0.0001454804905239688,
+        "limp": 0.005475919732441472,
+        "aggression": 0.002773244147157191,
+        "cbet": 0.00022575250836120403,
+        "bluff": 0.0031821627647714607,
+        "stickiness": 0.012891192865105908,
+        "size": 1.3473801560758106e-05,
+        "adaptive": 0.152329988851728
+      }
+    },
+    {
+      "bot": "renbot",
+      "group": 1,
+      "training_games": 5,
+      "newest_games": 10,
+      "reliable_label": true,
+      "posterior": [
+        0.0031293460301836037,
+        0.9968706539698164
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0010677777463570237,
+        "pfr": 0.0011288888053968549,
+        "threebet": 0.001357357599772513,
+        "shove": 4.888888724963181e-05,
+        "fold": 0.01242014765739441,
+        "bet": 0.001958233769983053,
+        "raise": 0.04308801889419556,
+        "large": 0.013475126586854458,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.001281333333333333,
+        "pfr": 0.001217590858416945,
+        "threebet": 8.63366778149387e-05,
+        "limp": 0.004205657748049054,
+        "aggression": 0.0,
+        "cbet": 0.0,
+        "bluff": 0.0,
+        "stickiness": 0.05337069788182833,
+        "size": 0.08366011594202896,
+        "adaptive": 0.05658862876254181
+      }
+    },
+    {
+      "bot": "samith pai is lowkey leng",
+      "group": 0,
+      "training_games": 3,
+      "newest_games": 4,
+      "reliable_label": true,
+      "posterior": [
+        0.736329185811729,
+        0.2636708141882709
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0026916672941297293,
+        "pfr": 0.0010916667524725199,
+        "threebet": 0.0016005189390853047,
+        "shove": 3.333333370392211e-05,
+        "fold": 0.09244003891944885,
+        "bet": 0.012559737078845501,
+        "raise": 0.0007837223238311708,
+        "large": 0.032631803303956985,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.0010380055741360087,
+        "pfr": 0.00100143143812709,
+        "threebet": 0.00011630323299888516,
+        "limp": 0.002691722408026756,
+        "aggression": 0.01324690635451505,
+        "cbet": 0.013048244147157188,
+        "bluff": 0.011837764771460426,
+        "stickiness": 2.2515050167224115e-05,
+        "size": 0.00531275668896321,
+        "adaptive": 0.0
+      }
+    },
+    {
+      "bot": "testQ",
+      "group": 0,
+      "training_games": 4,
+      "newest_games": 4,
+      "reliable_label": true,
+      "posterior": [
+        0.3263417446614035,
+        0.6736582553385965
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0012916671112179756,
+        "pfr": 0.0016666665906086564,
+        "threebet": 0.0005864197737537324,
+        "shove": 2.4999995730468072e-05,
+        "fold": 0.019102387130260468,
+        "bet": 0.007967164739966393,
+        "raise": 0.002585034118965268,
+        "large": 0.0050036548636853695,
+        "weak_show": 0.5
+      },
+      "parameter_variances": {
+        "vpip": 0.00022734782608695666,
+        "pfr": 0.0003717848383500558,
+        "threebet": 0.00013795317725752513,
+        "limp": 0.0009659698996655522,
+        "aggression": 0.04403299888517281,
+        "cbet": 0.03901279264214047,
+        "bluff": 0.018327759197324416,
+        "stickiness": 0.03984800334448161,
+        "size": 0.03842204570791527,
+        "adaptive": 0.08490523968784837
+      }
+    },
+    {
+      "bot": "the GOON",
+      "group": 0,
+      "training_games": 7,
+      "newest_games": 15,
+      "reliable_label": true,
+      "posterior": [
+        0.8091608779219133,
+        0.19083912207808676
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0009838094701990485,
+        "pfr": 0.0005666667711921036,
+        "threebet": 0.0006423670565709472,
+        "shove": 0.0,
+        "fold": 0.01582622155547142,
+        "bet": 0.022775491699576378,
+        "raise": 0.007666087709367275,
+        "large": 0.044556282460689545,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.0006521025641025646,
+        "pfr": 0.0008216276477146049,
+        "threebet": 2.4329988851727983e-05,
+        "limp": 0.0014744704570791526,
+        "aggression": 0.06765841694537346,
+        "cbet": 0.0,
+        "bluff": 0.027486371237458198,
+        "stickiness": 0.032522604236343365,
+        "size": 1.2888517279821647e-05,
+        "adaptive": 0.07102564102564102
+      }
+    },
+    {
+      "bot": "the big dog",
+      "group": 0,
+      "training_games": 26,
+      "newest_games": 44,
+      "reliable_label": true,
+      "posterior": [
+        0.5871632256027216,
+        0.4128367743972784
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0016673889476805925,
+        "pfr": 0.001774365664459765,
+        "threebet": 0.0011693694395944476,
+        "shove": 4.159619129495695e-05,
+        "fold": 0.023493358865380287,
+        "bet": 0.02442549541592598,
+        "raise": 0.018417619168758392,
+        "large": 0.020321505144238472,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.0007837447045707914,
+        "pfr": 0.0007837447045707914,
+        "threebet": 5.1433667781493886e-05,
+        "limp": 0.002332107023411371,
+        "aggression": 0.007848383500557419,
+        "cbet": 0.005090189520624305,
+        "bluff": 0.0031911928651059086,
+        "stickiness": 0.006273590858416947,
+        "size": 0.0020816343366778147,
+        "adaptive": 0.24146042363433665
+      }
+    },
+    {
+      "bot": "the notorious",
+      "group": 0,
+      "training_games": 20,
+      "newest_games": 29,
+      "reliable_label": true,
+      "posterior": [
+        0.5524721853219048,
+        0.44752781467809516
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0017142855795100331,
+        "pfr": 0.001640147645957768,
+        "threebet": 0.002877358580008149,
+        "shove": 1.4778326658415608e-05,
+        "fold": 0.015413581393659115,
+        "bet": 0.02175763249397278,
+        "raise": 0.005303175188601017,
+        "large": 0.04553070291876793,
+        "weak_show": 0.125
+      },
+      "parameter_variances": {
+        "vpip": 0.0005352006688963209,
+        "pfr": 0.0005176577480490521,
+        "threebet": 3.249052396878481e-05,
+        "limp": 0.003653595317725753,
+        "aggression": 0.002422965440356745,
+        "cbet": 0.0060462374581939805,
+        "bluff": 0.003418366778149388,
+        "stickiness": 0.005192654403567447,
+        "size": 0.14354131995540692,
+        "adaptive": 0.17948717948717952
+      }
+    },
+    {
+      "bot": "tripi tropi",
+      "group": 0,
+      "training_games": 19,
+      "newest_games": 30,
+      "reliable_label": true,
+      "posterior": [
+        0.5751593987638541,
+        0.4248406012361458
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0010074712336063385,
+        "pfr": 0.0006988506647758186,
+        "threebet": 0.001129949581809342,
+        "shove": 3.954022758989595e-05,
+        "fold": 0.05126253142952919,
+        "bet": 0.024190882220864296,
+        "raise": 0.009176847524940968,
+        "large": 0.022929055616259575,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 5.321739130434788e-05,
+        "pfr": 4.996544035674475e-05,
+        "threebet": 3.3333333333333325e-07,
+        "limp": 0.0006257246376811595,
+        "aggression": 0.002497212931995542,
+        "cbet": 0.007896989966555185,
+        "bluff": 0.004849804905239688,
+        "stickiness": 0.01106359420289855,
+        "size": 0.0034605908584169442,
+        "adaptive": 0.17028985507246375
+      }
+    },
+    {
+      "bot": "tungbot",
+      "group": 1,
+      "training_games": 54,
+      "newest_games": 88,
+      "reliable_label": true,
+      "posterior": [
+        0.030349651795658305,
+        0.9696503482043416
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.005742476787418127,
+        "pfr": 0.0024321707896888256,
+        "threebet": 0.004772237502038479,
+        "shove": 0.003871982218697667,
+        "fold": 0.023848479613661766,
+        "bet": 0.029106033965945244,
+        "raise": 0.01075073517858982,
+        "large": 0.04289494454860687,
+        "weak_show": 0.012570149265229702
+      },
+      "parameter_variances": {
+        "vpip": 7.729484726637736e-34,
+        "pfr": 7.729484726637736e-34,
+        "threebet": 0.0001123065774804905,
+        "limp": 0.0002062430323299889,
+        "aggression": 0.013719732441471575,
+        "cbet": 0.0024130156075808265,
+        "bluff": 0.000135869565217391,
+        "stickiness": 0.0031804804905239685,
+        "size": 6.0824972129320076e-06,
+        "adaptive": 0.1847380156075808
+      }
+    },
+    {
+      "bot": "tutududu",
+      "group": 0,
+      "training_games": 35,
+      "newest_games": 63,
+      "reliable_label": true,
+      "posterior": [
+        0.9771835888824025,
+        0.022816411117597322
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.001705273985862732,
+        "pfr": 0.0013296977849677205,
+        "threebet": 0.0009580780752003193,
+        "shove": 3.1234003472491167e-06,
+        "fold": 0.01503115426748991,
+        "bet": 0.018046364188194275,
+        "raise": 0.003523965599015355,
+        "large": 0.0006577413878403604,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 7.729484726637736e-34,
+        "pfr": 7.729484726637736e-34,
+        "threebet": 1.914269788182832e-05,
+        "limp": 0.00030200668896321076,
+        "aggression": 0.006217948717948719,
+        "cbet": 0.0018020903010033437,
+        "bluff": 0.001376811594202898,
+        "stickiness": 0.001511494983277591,
+        "size": 0.003972487179487178,
+        "adaptive": 0.006644370122630991
+      }
+    },
+    {
+      "bot": "wicked wing combo",
+      "group": 1,
+      "training_games": 2,
+      "newest_games": 9,
+      "reliable_label": true,
+      "posterior": [
+        0.3884586523349949,
+        0.6115413476650051
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0024194444995373487,
+        "pfr": 0.0008749996777623892,
+        "threebet": 0.000423314340878278,
+        "shove": 0.0,
+        "fold": 0.017268061637878418,
+        "bet": 0.016663357615470886,
+        "raise": 0.005158038344234228,
+        "large": 0.03230719268321991,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.00016073132664437025,
+        "pfr": 0.00016073132664437025,
+        "threebet": 7.182162764771462e-05,
+        "limp": 0.0006494983277591976,
+        "aggression": 0.012476477146042365,
+        "cbet": 0.010349052396878488,
+        "bluff": 0.010890301003344484,
+        "stickiness": 0.019090848383500558,
+        "size": 4.1006410256410014e-05,
+        "adaptive": 0.04765886287625417
+      }
+    },
+    {
+      "bot": "wicked wings combo",
+      "group": 1,
+      "training_games": 11,
+      "newest_games": 13,
+      "reliable_label": true,
+      "posterior": [
+        0.21258416363943386,
+        0.7874158363605661
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.001560256234370172,
+        "pfr": 0.00043974354048259556,
+        "threebet": 0.0005467876908369362,
+        "shove": 7.692308827245142e-06,
+        "fold": 0.01659245230257511,
+        "bet": 0.01810370944440365,
+        "raise": 0.00288996659219265,
+        "large": 0.035978082567453384,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 8.458862876254185e-05,
+        "pfr": 8.458862876254185e-05,
+        "threebet": 4.145373467112598e-05,
+        "limp": 0.0006993032329988853,
+        "aggression": 0.0234317447045708,
+        "cbet": 0.014717140468227426,
+        "bluff": 0.0041374303232998896,
+        "stickiness": 0.008952253065774806,
+        "size": 3.720039018952034e-05,
+        "adaptive": 0.029197324414715713
+      }
+    },
+    {
+      "bot": "yep",
+      "group": 0,
+      "training_games": 12,
+      "newest_games": 20,
+      "reliable_label": true,
+      "posterior": [
+        0.1594614905544823,
+        0.8405385094455177
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.0017673686379566789,
+        "pfr": 0.0010947368573397398,
+        "threebet": 0.0008744795341044664,
+        "shove": 7.473683217540383e-05,
+        "fold": 0.040319424122571945,
+        "bet": 0.021532976999878883,
+        "raise": 0.01763148233294487,
+        "large": 0.03370855748653412,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 0.000257819397993311,
+        "pfr": 0.0002587056856187291,
+        "threebet": 8.49052396878484e-06,
+        "limp": 0.0021407748049052404,
+        "aggression": 0.012637792642140471,
+        "cbet": 0.010217279821627645,
+        "bluff": 0.011101978818283167,
+        "stickiness": 0.009836343366778149,
+        "size": 0.06775518701226309,
+        "adaptive": 0.01319955406911929
+      }
+    },
+    {
+      "bot": "zinger box",
+      "group": 1,
+      "training_games": 36,
+      "newest_games": 54,
+      "reliable_label": true,
+      "posterior": [
+        0.27606787849224607,
+        0.723932121507754
+      ],
+      "newest_between_game_rate_variance": {
+        "vpip": 0.002341159852221608,
+        "pfr": 0.00252704368904233,
+        "threebet": 0.0008884345879778266,
+        "shove": 5.345911631593481e-06,
+        "fold": 0.007546800654381514,
+        "bet": 0.006444594822824001,
+        "raise": 0.0013246031012386084,
+        "large": 0.02410813234746456,
+        "weak_show": 0.0
+      },
+      "parameter_variances": {
+        "vpip": 1.333333333333336e-06,
+        "pfr": 1.333333333333336e-06,
+        "threebet": 1.5022296544035682e-05,
+        "limp": 4.1778149386845036e-05,
+        "aggression": 0.007984698996655517,
+        "cbet": 0.0027873745819398,
+        "bluff": 0.0027006410256410263,
+        "stickiness": 0.005799521739130433,
+        "size": 9.8985507246377e-06,
+        "adaptive": 0.14594202898550726
+      }
+    }
+  ],
+  "evaluation": [
+    {
+      "split": "validation",
+      "hands": 5,
+      "prefixes": 71,
+      "classified": 12,
+      "coverage": 0.16901408450704225,
+      "accuracy": 0.8333333333333334,
+      "all_accuracy": 0.6056338028169014,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 31,
+          "correct": 17
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 28,
+          "correct": 16
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 7,
+          "correct": 5
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 3,
+          "correct": 3
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 2,
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "split": "validation",
+      "hands": 10,
+      "prefixes": 71,
+      "classified": 17,
+      "coverage": 0.23943661971830985,
+      "accuracy": 0.8235294117647058,
+      "all_accuracy": 0.6197183098591549,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 30,
+          "correct": 15
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 24,
+          "correct": 15
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 10,
+          "correct": 8
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 4,
+          "correct": 3
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 3,
+          "correct": 3
+        }
+      ]
+    },
+    {
+      "split": "validation",
+      "hands": 15,
+      "prefixes": 71,
+      "classified": 19,
+      "coverage": 0.2676056338028169,
+      "accuracy": 0.7894736842105263,
+      "all_accuracy": 0.6901408450704225,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 29,
+          "correct": 17
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 23,
+          "correct": 17
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 8,
+          "correct": 5
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 8,
+          "correct": 7
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 3,
+          "correct": 3
+        }
+      ]
+    },
+    {
+      "split": "validation",
+      "hands": 20,
+      "prefixes": 71,
+      "classified": 22,
+      "coverage": 0.30985915492957744,
+      "accuracy": 0.8636363636363636,
+      "all_accuracy": 0.704225352112676,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 32,
+          "correct": 19
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 17,
+          "correct": 12
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 15,
+          "correct": 12
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 4,
+          "correct": 4
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 3,
+          "correct": 3
+        }
+      ]
+    },
+    {
+      "split": "validation",
+      "hands": 30,
+      "prefixes": 71,
+      "classified": 23,
+      "coverage": 0.323943661971831,
+      "accuracy": 0.9130434782608695,
+      "all_accuracy": 0.7323943661971831,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 27,
+          "correct": 16
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 21,
+          "correct": 15
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 14,
+          "correct": 12
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 5,
+          "correct": 5
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 4,
+          "correct": 4
+        }
+      ]
+    },
+    {
+      "split": "validation",
+      "hands": 50,
+      "prefixes": 71,
+      "classified": 34,
+      "coverage": 0.4788732394366197,
+      "accuracy": 0.8823529411764706,
+      "all_accuracy": 0.7887323943661971,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 20,
+          "correct": 11
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 17,
+          "correct": 15
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 19,
+          "correct": 15
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 11,
+          "correct": 11
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 4,
+          "correct": 4
+        }
+      ]
+    },
+    {
+      "split": "validation",
+      "hands": 75,
+      "prefixes": 71,
+      "classified": 36,
+      "coverage": 0.5070422535211268,
+      "accuracy": 0.9166666666666666,
+      "all_accuracy": 0.8169014084507042,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 15,
+          "correct": 9
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 20,
+          "correct": 16
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 15,
+          "correct": 13
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 14,
+          "correct": 13
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 7,
+          "correct": 7
+        }
+      ]
+    },
+    {
+      "split": "validation",
+      "hands": 100,
+      "prefixes": 71,
+      "classified": 42,
+      "coverage": 0.5915492957746479,
+      "accuracy": 0.9523809523809523,
+      "all_accuracy": 0.8028169014084507,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 11,
+          "correct": 4
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 18,
+          "correct": 13
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 15,
+          "correct": 13
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 18,
+          "correct": 18
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 9,
+          "correct": 9
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "hands": 5,
+      "prefixes": 95,
+      "classified": 12,
+      "coverage": 0.12631578947368421,
+      "accuracy": 0.9166666666666666,
+      "all_accuracy": 0.5473684210526316,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 41,
+          "correct": 16
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 42,
+          "correct": 25
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 10,
+          "correct": 9
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 1,
+          "correct": 1
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 1,
+          "correct": 1
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "hands": 10,
+      "prefixes": 95,
+      "classified": 20,
+      "coverage": 0.21052631578947367,
+      "accuracy": 0.9,
+      "all_accuracy": 0.631578947368421,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 48,
+          "correct": 27
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 27,
+          "correct": 15
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 15,
+          "correct": 13
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 3,
+          "correct": 3
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 2,
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "hands": 15,
+      "prefixes": 95,
+      "classified": 27,
+      "coverage": 0.28421052631578947,
+      "accuracy": 0.8888888888888888,
+      "all_accuracy": 0.6105263157894737,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 38,
+          "correct": 15
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 30,
+          "correct": 19
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 17,
+          "correct": 14
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 8,
+          "correct": 8
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 2,
+          "correct": 2
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "hands": 20,
+      "prefixes": 95,
+      "classified": 32,
+      "coverage": 0.3368421052631579,
+      "accuracy": 0.84375,
+      "all_accuracy": 0.6526315789473685,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 43,
+          "correct": 19
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 20,
+          "correct": 16
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 20,
+          "correct": 15
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 9,
+          "correct": 9
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 3,
+          "correct": 3
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "hands": 30,
+      "prefixes": 95,
+      "classified": 35,
+      "coverage": 0.3684210526315789,
+      "accuracy": 0.9428571428571428,
+      "all_accuracy": 0.7473684210526316,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 32,
+          "correct": 20
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 28,
+          "correct": 18
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 19,
+          "correct": 17
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 11,
+          "correct": 11
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 5,
+          "correct": 5
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "hands": 50,
+      "prefixes": 95,
+      "classified": 38,
+      "coverage": 0.4,
+      "accuracy": 0.9736842105263158,
+      "all_accuracy": 0.8315789473684211,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 27,
+          "correct": 17
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 30,
+          "correct": 25
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 18,
+          "correct": 17
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 11,
+          "correct": 11
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 9,
+          "correct": 9
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "hands": 75,
+      "prefixes": 95,
+      "classified": 42,
+      "coverage": 0.4421052631578947,
+      "accuracy": 0.9523809523809523,
+      "all_accuracy": 0.8526315789473684,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 25,
+          "correct": 17
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 28,
+          "correct": 24
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 13,
+          "correct": 11
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 16,
+          "correct": 16
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 13,
+          "correct": 13
+        }
+      ]
+    },
+    {
+      "split": "test",
+      "hands": 100,
+      "prefixes": 95,
+      "classified": 53,
+      "coverage": 0.5578947368421052,
+      "accuracy": 0.9811320754716981,
+      "all_accuracy": 0.8631578947368421,
+      "calibration": [
+        {
+          "low": 0.5,
+          "high": 0.6,
+          "count": 23,
+          "correct": 13
+        },
+        {
+          "low": 0.6,
+          "high": 0.7,
+          "count": 19,
+          "correct": 17
+        },
+        {
+          "low": 0.7,
+          "high": 0.7999999999999999,
+          "count": 19,
+          "correct": 18
+        },
+        {
+          "low": 0.8,
+          "high": 0.9,
+          "count": 21,
+          "correct": 21
+        },
+        {
+          "low": 0.9,
+          "high": 1.0,
+          "count": 13,
+          "correct": 13
+        }
+      ]
+    }
+  ],
+  "features": [
+    "vpip",
+    "pfr",
+    "threebet",
+    "shove",
+    "fold",
+    "bet",
+    "raise",
+    "large",
+    "weak_show"
+  ],
+  "feature_weights": [
+    0.45,
+    0.45,
+    0.35,
+    0.65,
+    0.7,
+    0.5,
+    0.35,
+    0.3,
+    0.25
+  ],
+  "config": {
+    "temperature": 1.0,
+    "threshold": 0.7
+  },
+  "scope": "Group definitions and beta priors trained on training games; K/temperature/threshold selected on validation prefixes. Test uses only newest held-out games with >=200 training hands. Final priors refit on all newest data with discounted sparse historical support. Group labels are behavioral clusters, not recovered bot source or known true classes."
+}

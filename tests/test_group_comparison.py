@@ -9,6 +9,8 @@ from types import SimpleNamespace
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'vendor/macpoker-src'));sys.path.insert(0,str(ROOT))
 from analysis.report_opponent_groups import paired_tables,paired_interval,placement_interval
+from analysis.run_opponent_groups import group_source
+import runpy
 from bot.main import MyBot
 from bot.params import DEFAULT_PARAMS
 from harness import eval as harness
@@ -31,7 +33,7 @@ def fixture():
 class ComparisonTests(unittest.TestCase):
     def test_game_weighted_return_and_paired_improvement(self):
         tables=paired_tables(fixture());interval=paired_interval(tables,500)
-        self.assertEqual(interval['point'],[14,16,18,20,2,6,-2,-4])
+        self.assertEqual(interval['point'],[14,16,18,20,2,6,-2,-4,2])
         self.assertEqual(interval['low'][4],2)
         self.assertEqual(interval['high'][4],2)
         self.assertLess(interval['low'][0],interval['high'][0])
@@ -82,6 +84,15 @@ class ComparisonTests(unittest.TestCase):
             self.assertEqual({k:v for k,v in ga.items() if k!='counter'},{k:v for k,v in gb.items() if k!='counter'})
             for key in ga['counter']:
                 self.assertAlmostEqual(ga['counter'][key]-a.DEFAULT_PARAMS[key],gb['counter'][key]-b.DEFAULT_PARAMS[key])
+
+    def test_reexporting_priors_preserves_both_bases_without_compounding_offsets(self):
+        path=ROOT/'snapshots/opponent_groups_full/group_priors.py'
+        source=runpy.run_path(str(path))
+        fit=dict(source_sha256=source['INPUT_SHA256'],features=source['FEATURES'],config=source['CONFIG'],groups=source['GROUPS'])
+        original=deepcopy(fit)
+        for margin,name in ((.02,'main'),(.06,'full'),(.02,'main')):
+            self.assertEqual(group_source(fit,margin),(ROOT/f'snapshots/opponent_groups_{name}/group_priors.py').read_text())
+            self.assertEqual(fit,original)
 
 
 if __name__=='__main__':unittest.main()

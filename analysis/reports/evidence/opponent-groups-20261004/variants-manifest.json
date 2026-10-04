@@ -1,0 +1,61 @@
+{
+  "snapshots/main_6cfdf0f_opponent_groups": {
+    "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "a565ff304b1babbdeb5f8768212edd46391adf5850f9ba8751ade3517ee69746",
+    "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+    "params.py": "917b039c9c1f37292536e417b914de6c04d7fcee9ffe7bbf74a27d1279464713",
+    "preflop.py": "ae88ef4c17a6bce2fa0eeae4535abf5060ddca10f5164f30927ae7eda9b67fbb",
+    "ranges.py": "d54983af267e67dc164f5cad550726c0c272920ae526e830e96ede5e99a7e18e",
+    "strategy.py": "d02ded248b8de50d31dd8e134c884c491298debba50a5f9d6a14d87ee38ad418"
+  },
+  "snapshots/call_calibration_e186308_group_study": {
+    "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "b5aed9f35d43d0c2cfb07c5e508b7af4e61fb08e364aa7bd8ee4c39bb2b8a384",
+    "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+    "params.py": "00d6a99cb95fa2a555b6a32e1a8166e636070196e8add76e6063ba7664f983b5",
+    "preflop.py": "fdfa3281f20ec5b450a63418595da2688d630704ff814df7b96e47c07f9fbbe4",
+    "ranges.py": "d54983af267e67dc164f5cad550726c0c272920ae526e830e96ede5e99a7e18e",
+    "strategy.py": "d02ded248b8de50d31dd8e134c884c491298debba50a5f9d6a14d87ee38ad418"
+  },
+  "snapshots/opponent_groups_full": {
+    "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "groups.py": "3e000866c12ed94fc68674c11e7b07edacd3578168b005f677e1e189ce83b2e9",
+    "group_observer.py": "0afefd9184aeb7bfb1c4a4fcdfc2ea9a8c2c8e9a929a86403e8bf08199bd88a4",
+    "group_priors.py": "63f584431cdc7636aa38d3e041e7e0bc469fb0aca4c29bb24f797b0b8cbe1594",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "4b90aecb3b78c583272125c32062e0f4fcbf7d245b7a1ebe9af8120781bf4f6b",
+    "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+    "params.py": "d8a1f59315a8bd5274da36a41ed77a9369a7801ab877cf685138e8fc5f76e3f6",
+    "preflop.py": "fdfa3281f20ec5b450a63418595da2688d630704ff814df7b96e47c07f9fbbe4",
+    "ranges.py": "bd32fe3949c06f06009a74fac3e332238fc84e430c455cbc049bbc453151d4cd",
+    "strategy.py": "d02ded248b8de50d31dd8e134c884c491298debba50a5f9d6a14d87ee38ad418"
+  },
+  "snapshots/opponent_groups_half": {
+    "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "groups.py": "3e000866c12ed94fc68674c11e7b07edacd3578168b005f677e1e189ce83b2e9",
+    "group_observer.py": "0afefd9184aeb7bfb1c4a4fcdfc2ea9a8c2c8e9a929a86403e8bf08199bd88a4",
+    "group_priors.py": "63f584431cdc7636aa38d3e041e7e0bc469fb0aca4c29bb24f797b0b8cbe1594",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "4b90aecb3b78c583272125c32062e0f4fcbf7d245b7a1ebe9af8120781bf4f6b",
+    "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+    "params.py": "26b30364d04beb9dc978a57469db14fc888e679626f601b2c14149b3ebce46d0",
+    "preflop.py": "fdfa3281f20ec5b450a63418595da2688d630704ff814df7b96e47c07f9fbbe4",
+    "ranges.py": "bd32fe3949c06f06009a74fac3e332238fc84e430c455cbc049bbc453151d4cd",
+    "strategy.py": "d02ded248b8de50d31dd8e134c884c491298debba50a5f9d6a14d87ee38ad418"
+  },
+  "snapshots/opponent_groups_ranges": {
+    "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "groups.py": "3e000866c12ed94fc68674c11e7b07edacd3578168b005f677e1e189ce83b2e9",
+    "group_observer.py": "0afefd9184aeb7bfb1c4a4fcdfc2ea9a8c2c8e9a929a86403e8bf08199bd88a4",
+    "group_priors.py": "63f584431cdc7636aa38d3e041e7e0bc469fb0aca4c29bb24f797b0b8cbe1594",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "4b90aecb3b78c583272125c32062e0f4fcbf7d245b7a1ebe9af8120781bf4f6b",
+    "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+    "params.py": "173afbac8e15eb9fdd29a9490b699c027316a87d355b07afc85b6b9aec145132",
+    "preflop.py": "fdfa3281f20ec5b450a63418595da2688d630704ff814df7b96e47c07f9fbbe4",
+    "ranges.py": "bd32fe3949c06f06009a74fac3e332238fc84e430c455cbc049bbc453151d4cd",
+    "strategy.py": "d02ded248b8de50d31dd8e134c884c491298debba50a5f9d6a14d87ee38ad418"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "chosen_index": 2,
+  "selected": "snapshots/opponent_groups_full",
+  "pilot_chips": {
+    "0": 58319,
+    "1": 63444,
+    "2": 64599,
+    "3": 60019,
+    "4": 62748
+  },
+  "rule": "Choose full or half group strength by higher total paired pilot chips; full wins ties. Range-only is an ablation, not an eligible replacement for group counters."
+}

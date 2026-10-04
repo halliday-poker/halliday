@@ -1,0 +1,20 @@
+{
+  "exit_code": 0,
+  "wall_seconds": 1330.5418048029533,
+  "command": [
+    "/mnt/ssd/halliday2/.venv-estimators/bin/python",
+    "-B",
+    "-u",
+    "analysis/audit_pattern_simulation.py",
+    "--directory",
+    "/mnt/ssd/halliday2/analysis/results/opponent-groups-20261004",
+    "--trace-subdir",
+    "simulate-traces",
+    "--catalogue",
+    "sparring/competitors/from_data_groups/bots.json",
+    "--devices",
+    "0,1,2,3",
+    "--workers",
+    "8"
+  ]
+}

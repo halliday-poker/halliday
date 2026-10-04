@@ -1,7 +1,15 @@
 # Opponent-group experiment
 
 Branch: `feat/opponent-groups`, starting at main `6cfdf0f44b332933d88d440791e7151028061849`.
-This experiment is in progress; results below will be filled from completed checks.
+The experiment ran 10,000 matched games per policy (40,000 executions and
+4,000,000 hands). No player failed. Grouping did not establish an improvement
+over either base: -0.82 bb/100 on calibration (95% interval -2.03 to +0.45),
+and -0.64 on main (-1.77 to +0.52). Keep the group variants experimental.
+
+The [report](../analysis/reports/opponent-groups-20261004.md) contains return and
+placement comparisons, fold/call reviews, a SWOT analysis and figures. The
+171-test four-policy suite, eight focused report/reproduction checks, both
+restricted-process bot checks and all four V100 audit workers passed.
 
 The main-based candidate retains main's call behavior. An alternative on
 `feat/opponent-groups-call-calibration` starts from `feat/call-calibration` and

@@ -1,0 +1,35 @@
+{
+  "device": "cpu",
+  "workers": 16,
+  "measurements": {
+    "cpu": {
+      "device": "cpu",
+      "workers": 12,
+      "wall_seconds": 55.69956809503492,
+      "projected_seconds": 4495.380484761701,
+      "mean_game_seconds": 1.7974416666666666
+    },
+    "cuda": {
+      "device": "cuda",
+      "workers": 8,
+      "wall_seconds": 65.46141685603652,
+      "projected_seconds": 5142.587583522703,
+      "mean_game_seconds": 1.3703444444444446
+    },
+    "cpu-16": {
+      "device": "cpu",
+      "workers": 16,
+      "wall_seconds": 49.45180826098658,
+      "projected_seconds": 3996.2236415943203,
+      "mean_game_seconds": 2.1305111111111112
+    },
+    "cuda-12": {
+      "device": "cuda",
+      "workers": 12,
+      "wall_seconds": 54.759766761097126,
+      "projected_seconds": 4119.885766761096,
+      "mean_game_seconds": 1.6458
+    }
+  },
+  "scope": "Amortize measured worker time and startup/tail over 30,000 executions; projection, not a measured full-study speedup. CPU checks 12/16 workers; CUDA checks two/three workers per GPU with roughly 1 GiB available per device."
+}

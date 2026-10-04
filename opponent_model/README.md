@@ -1,96 +1,70 @@
 # Offline opponent estimates and behavior replicas
 
-The newest upload is documented in the [within-game study](../analysis/reports/within-game-patterns-20261004-r3.md),
-including reproduction commands and parameter trajectories for each bot/game.
-Its 65-opponent pool is `sparring/competitors/from_data/latest-pool.txt`.
-Shared model training uses historical intervals with separate epoch features;
-the simulation field instantiates only newest reliably dated ladder intervals.
-Earlier commands and results below refer to the first October 4 snapshot.
-The competitor builder now exports a shared `bots.json` parameter catalogue
-and pool entries selecting its records; it no longer generates one Python file
-per bot. See [catalogue usage](../sparring/competitors/README.md).
+The [opponent-group study](../analysis/reports/opponent-groups-20261004.md) uses
+69 refreshed opponents and compares grouping on main and call calibration.
+[Exact reproduction commands](../analysis/reports/opponent-groups-20261004-reproduce.md)
+cover refitting, simulation, action auditing and reporting.
 
-## Within-game analysis
+`analysis/run_opponent_groups.py --stage refit` prepares the frozen snapshot,
+trains static/progress/history/combined policies in parallel on four V100s,
+selects supported within-game patterns, refits the selected replicas, exports
+`sparring/competitors/from_data_groups/` and checks mathematical/runtime parity.
+The shared catalogue uses JSON records plus NumPy model weights; it does not
+create Python files for individual opponents. See
+[catalogue usage](../sparring/competitors/README.md).
 
-`python -B -m opponent_model.within_game` provides `prepare`, `train`, `windows`
-and `explain` stages, each accepting `--directory`. Run them after
-`analysis/run_refresh_models.py`. `train --devices 0,1,2,3 --epochs 100` compares
-static context, hand progress, preceding public history and both additions
-simultaneously on four GPUs. `windows --devices 0,1,2,3` distributes bots across
-the same devices to refit ten-hand windows and bootstrap pooled 20-hand phases.
+## Upload versions and sparse support
 
-Only a focal bot's newest reliably dated ladder interval enters this study;
-other seats retain the versions it actually encountered. Histories reset per
-match and use strictly earlier public actions/results, including hands with no
-action. Whole matches stay together in train/validation/test partitions. Sparse
-window fits shrink toward other games of the same interval; these descriptive
-fits are kept separate from the predictive experiment.
+For this experiment, **every trusted timestamped validation against house:call
+starts a new version, regardless of verdict**. This implements the requested
+version convention; validation is not proof that an upload was subsequently
+selected as a live tournament bot. Unknown-time events cannot establish a
+boundary. Newest-version observations, including validation games, receive
+weight one.
 
-`analysis/verify_within_game.py` reconciles source hashes, selected intervals,
-all hand/window denominators, chip totals and GPU allocation.
-`analysis/report_within_game.py` exports CSV trajectories, plots, corrected
-comparisons and explanations. Install `matplotlib==3.11.2` in the analysis
-environment for the report. The time/history models remain diagnostics; the
-shared executable catalogue retains the separately validated static workflow.
-The earlier [exact-main performance study](../analysis/reports/latest-analysis-20261004-r2.md)
-uses the preceding frozen upload.
+Sparse parameters borrow historical observations at no more than
+`0.1 ** version_age * 2 ** (-upload_gap_hours / 6)`, capped at each parameter's
+support target. Version and time penalties both matter. Newest submissions
+without replays remain explicitly `prior_only`; previous behavior is not
+misrepresented as observed newest behavior. Parameter-specific support,
+confidence intervals, 300 whole-match bootstrap variances/covariances and
+historical weights are retained. Sparse estimates can remain sparse after
+borrowing; the report does not imply otherwise.
 
-## October 4 refresh
+## Within-game patterns and groups
 
-The V100 analysis was validated with Python 3.12.14, NumPy 2.3.5 and PyTorch
-2.10.0+cu128. An isolated Linux environment can be prepared with:
+`opponent_model.within_game train` compares static context, hand progress,
+preceding public history and both additions using four parallel GPU jobs.
+Histories reset each game and use strictly earlier public observations. Whole
+matches remain together in deterministic train/validation/test partitions.
+Opponent parameters and neural replicas are refitted on all available newest
+observations after predictive model selection; old support remains discounted.
 
-```sh
-uv venv .venv-estimators --python 3.12
-uv pip install --python .venv-estimators/bin/python numpy==2.3.5
-uv pip install --python .venv-estimators/bin/python torch==2.10.0 --index-url https://download.pytorch.org/whl/cu128
-uv pip install --python .venv-estimators/bin/python vendor/macpoker-*.whl
-```
+`analysis/fit_opponent_groups.py` derives small behavioral groups from nine
+public statistics and estimates their variation. Runtime group constants use
+no opponent names or hidden cards. Public prefix checks measure early agreement
+with training-derived labels, not recovered source-code identities. Group model
+selection uses validation prefixes; the deployment constants then incorporate
+all newest observations. The report records limitations of the archive and its
+small four-to-six-seat evaluation subset.
 
-Use that interpreter for the commands below. The simulation harness uses a
-separate native CUDA kernel compiled for `sm_70` with CUDA toolkit 12.8; its
-workers do not import PyTorch. See [GPU validation](../harness/GPU_VALIDATION.md).
-The historical RTX configuration later in this document is a different setup.
+## V100 environment
 
-The current field uses successful-upload intervals and a compact public-context
-action/raise-size model. The original ten-parameter estimates below remain the
-interpretable scaffold and sparse-data fallback. See the [predictive comparison
-and provenance](../analysis/reports/opponent-refresh-20261004.md).
+The analysis uses Python 3.12, NumPy 2.3.5 and PyTorch 2.10.0+cu128. Set
+`OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 OPPONENT_CUDA_MEMORY_MIB=512` when fitting
+on the shared V100s. Matplotlib 3.11.2 generates static figures. The simulation
+harness has a native CUDA kernel targeting `sm_70`; its workers do not import
+PyTorch. See [GPU validation](../harness/GPU_VALIDATION.md).
 
-Validation against `house:call` marks an upload, not a confirmed deployment:
-passing uploads must still be selected as main. Failed validation and unknown
-play-time events cannot define intervals. `validation.py` tests this distinction;
-timestamp provenance distinguishes server milliseconds from collection-time
-seconds. Unknown-time games use the shared base interval. Segmentation is
-supported by whole-held-out-match predictions and a randomized-boundary control.
+The grouping submission uses only Python/NumPy and hard-coded priors. It does
+not load the replica catalogue, PyTorch, external model files or CUDA.
 
-Reproduce using a frozen directory with `source/{actions.jsonl,matches.json,state.json}`
-and `validation-meta.json` (public `tournament:replay` API responses keyed by ID):
+## Legacy estimator workflows
 
-```sh
-export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
-python -B -m opponent_model.fetch_validation --matches analysis/results/refresh-20261004/source/matches.json --output analysis/results/refresh-20261004/validation-meta.json
-python -B -m opponent_model --data-dir analysis/results/refresh-20261004/source --save-cache analysis/results/refresh-20261004/context-features.npz --output analysis/results/refresh-20261004/baseline-estimates.json --devices cuda:0 cuda:1 cuda:2 cuda:3 --bootstrap 1000 --permutations 4999 --batch-size 128 --memory-limit-mib 768
-python -B -m opponent_model.behavior prepare --directory analysis/results/refresh-20261004
-python -B -m opponent_model.behavior train --directory analysis/results/refresh-20261004 --epochs 100
-python -B -m opponent_model.behavior compare --directory analysis/results/refresh-20261004
-python -B -m opponent_model.behavior refit --directory analysis/results/refresh-20261004 --devices 0
-python -B -m opponent_model.refresh --directory analysis/results/refresh-20261004 --devices 1,2,3
-python sparring/competitors/build.py analysis/results/refresh-20261004/opponent-estimates.json --policy analysis/results/refresh-20261004/policy-refit-upload.npz
-```
-
-The four ablations train simultaneously on four distinct GPUs. They use a
-60/20/20 split by whole match, exclude team validation hands, and choose stopping
-and model only on validation data. The test split assesses interpolation to
-unseen matches from observed versions; it cannot validate future versions.
-Runtime replicas use NumPy, own cards and public game context only. They do not
-load PyTorch or hidden opponent cards. The candidate submission uses neither the
-replica model nor historical opponent profiles.
-
-Fresh feature caches have 37 raw context columns. Legacy caches remain readable
-for the original estimator, with extra fields explicitly missing; neural
-training refuses missing-context caches. The original report format remains
-supported by `build.py`, without `--policy`.
+The commands below describe the original scaffold estimator and an earlier
+hardware setup. For the current input, version convention and four-policy
+comparison, use the reproduction guide linked above. Statistical change points
+from the original estimator are distinct from the upload boundaries used here.
 
 ## Original scaffold estimator
 

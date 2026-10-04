@@ -1,0 +1,34 @@
+{
+  "main_commit": "6cfdf0f44b332933d88d440791e7151028061849",
+  "calibration_commit": "e186308ade4a05778d68a82b9fd636adb46e999b",
+  "variants": [
+    "snapshots/main_6cfdf0f_opponent_groups",
+    "snapshots/call_calibration_e186308_group_study",
+    "snapshots/opponent_groups_full",
+    "snapshots/opponent_groups_half",
+    "snapshots/opponent_groups_ranges"
+  ],
+  "pilot_games_per_variant": 600,
+  "final_games_per_variant": 10000,
+  "pilot_seed": "opponent-groups-pilot-20261004",
+  "final_seed": "opponent-groups-confirm-20261004",
+  "selection": "Choose full or half group strength by higher total paired pilot chips; full wins ties. Range-only is an ablation, not an eligible replacement for group counters.",
+  "primary_comparison": "Grouping versus call calibration; main is the original control.",
+  "pool": "sparring/competitors/from_data_groups/latest-pool.txt",
+  "rules": {
+    "deals": 100,
+    "sizes": [
+      4,
+      5,
+      5,
+      6
+    ],
+    "stack": 200,
+    "blinds": [
+      1,
+      2
+    ],
+    "bank_ms": 30000,
+    "increment_ms": 100
+  }
+}

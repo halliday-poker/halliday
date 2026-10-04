@@ -1,4 +1,4 @@
-"""Paired three-policy comparison, public classification and decision audit."""
+"""Paired four-policy comparison, public classification and decision audit."""
 import argparse
 from collections import Counter,defaultdict
 import csv
@@ -24,7 +24,7 @@ from harness.eval import score_set
 
 NAMES=('Main','Call calibration','Groups + calibration','Groups + main')
 RETURN_KEYS=('main','calibration','groups_calibration','groups_main',
-             'calibration_group_gain','main_group_gain','calibration_base_gain','interaction')
+             'calibration_group_gain','main_group_gain','calibration_base_gain','interaction','calibration_gain')
 STEM='opponent-groups-20261004'
 
 
@@ -50,7 +50,7 @@ def paired_tables(report):
         chips=[sum(group[c,g]['chips'][0] for g in range(n)) for c in range(4)]
         scores=[score_set([group[c,g] for g in range(n)],100,2,40000) for c in range(4)]
         values=chips+[chips[2]-chips[1],chips[3]-chips[0],chips[2]-chips[3],
-                      (chips[2]-chips[1])-(chips[3]-chips[0])]
+                      (chips[2]-chips[1])-(chips[3]-chips[0]),chips[1]-chips[0]]
         row=dict(table=t,games=n,**dict(zip(RETURN_KEYS,values)))
         for c,name in enumerate(RETURN_KEYS[:4]):
             row['points_'+name]=scores[c]['round_pts']
@@ -113,20 +113,26 @@ def summarize(run,output):
     runtime=json.loads((run/'fit/runtime-fit.json').read_text())
     selected=json.loads((run/'candidate-selection.json').read_text())
     backend=json.loads((run/'backend-selection.json').read_text())
+    elapsed=sum(json.loads((run/name).read_text())['wall_seconds'] for name in
+                ('simulate-three-execution.json','simulate-execution.json') if (run/name).exists())
     snapshot=json.loads((run/'input/snapshot-manifest.json').read_text())
     coverage=json.loads((run/'fit/runtime-verification.json').read_text())
     resources=json.loads((run/'selected-resources.json').read_text())
-    assert resources['passed']
+    main_resources=json.loads((run/'main-groups-resources.json').read_text())
+    assert resources['passed'] and main_resources['passed']
     tables=paired_tables(simulation)
     assert len(simulation['games'])==len(audits['games'])==40000
     assert sum(t['games'] for t in tables)==10000
     interval=paired_interval(tables)
     placements=placement_interval(tables)
+    by_size={n:paired_interval([t for t in tables if t['games']==n]) for n in (4,5,6)}
     summaries=[Counter() for _ in NAMES];streets=[defaultdict(Counter) for _ in NAMES]
+    phases=[[Counter() for _ in range(4)] for _ in NAMES]
     classified=[Counter() for _ in NAMES];game_rows=[];flags=[];seen=set();gpu=defaultdict(Counter)
     original={(g['cand_idx'],g['table'],g['game']):g for g in simulation['games']}
     loss=[defaultdict(Counter) for _ in NAMES];negative_loss=[defaultdict(Counter) for _ in NAMES]
     flag_streets=[defaultdict(Counter) for _ in NAMES]
+    flag_contexts=[Counter() for _ in NAMES]
     group_phases={c:defaultdict(Counter) for c in (2,3)}
     group_use={c:Counter() for c in (2,3)};first_group_hands={c:[] for c in (2,3)}
     for number,g in enumerate(audits['games'],1):
@@ -140,6 +146,7 @@ def summarize(run,output):
         s['negative_games_with_flags']+=g['chips']<0 and g['flags']>0
         classified[c].update(g['classifications'])
         for street,v in g['streets'].items():streets[c][street].update(v)
+        for phase,v in enumerate(g['phases']):phases[c][phase].update(v)
         for category,v in g['loss_categories'].items():loss[c][category].update(v)
         if g['chips']<0:
             for category,v in g['loss_categories'].items():negative_loss[c][category].update(v)
@@ -154,10 +161,17 @@ def summarize(run,output):
             d=row['diagnostic']
             if row['classification'] in BLUNDERS:
                 flag_streets[c][row['street']].update([row['classification']])
+                estimate=d.get('estimate') or {}
+                context=('no accepted equity estimate' if d.get('equity') is None else
+                         'accepted conservative sparse estimate' if estimate.get('method')=='monte_carlo' and estimate.get('samples',0)<128 else
+                         'tracked range estimate' if d.get('ranged') else 'uniform range estimate')
+                flag_contexts[c][context]+=1
                 flags.append(dict(variant=NAMES[c],id=row['id'],street=row['street'],action=row['action'],
                     hole=row['hole'],board=row['board'],pot=row['pot'],call=row['call'],
                     classification=row['classification'],public_ev_lower=row['public_ev_lower'],public_ev_upper=row['public_ev_upper'],
-                    hand_chips=row['hand_chips'],game_chips=row['match_chips'],groups=d.get('groups')))
+                    hand_chips=row['hand_chips'],game_chips=row['match_chips'],groups=d.get('groups'),
+                    bot_equity=d.get('equity'),bot_ranged=d.get('ranged'),equity_samples=estimate.get('samples'),
+                    equity_stop_reason=estimate.get('stop_reason'),estimate_context=context))
             if c in (2,3):
                 assert d.get('groups_available') is True,'Grouping disabled by malformed runtime events'
                 group_use[c]['decisions']+=1
@@ -185,6 +199,7 @@ def summarize(run,output):
     csv_file(output/(STEM+'-opponents.csv'),fit['opponents'])
     parameters=[]
     for name,b in runtime['bots'].items():
+        if name=='Halliday':continue
         for parameter,v in b['estimate']['parameters'].items():
             parameters.append(dict(bot=name,parameter=parameter,estimate=v['estimate'],variance=v['bootstrap_variance'],
                 low=v['confidence_interval'][0],high=v['confidence_interval'][1],
@@ -192,10 +207,13 @@ def summarize(run,output):
                 status=v['prior']['status'],older_versions=v['prior']['older_versions']))
     csv_file(output/(STEM+'-parameters.csv'),parameters)
     prefix_evaluation(run,output,fit)
-    summary=dict(interval=interval,return_keys=RETURN_KEYS,placements=placements,summaries=summaries,streets=streets,
-        classifications=classified,loss_categories=loss,negative_game_loss_categories=negative_loss,flag_streets=flag_streets,
+    summary=dict(interval=interval,return_keys=RETURN_KEYS,placements=placements,by_size=by_size,phases=phases,
+        summaries=summaries,streets=streets,
+        classifications=classified,loss_categories=loss,negative_game_loss_categories=negative_loss,
+        flag_streets=flag_streets,flag_contexts=flag_contexts,
         group_phases=group_phases,group_use=group_use,first_group_hands={c:Counter(v) for c,v in first_group_hands.items()},
-        duplicate_tables=len(tables),compute=simulation['compute'],audit_gpu=gpu,audit_code_sha256=audits['code_sha256'])
+        duplicate_tables=len(tables),compute=simulation['compute'],simulation_wall_seconds=elapsed,
+        audit_gpu=gpu,audit_code_sha256=audits['code_sha256'])
     plot(output,interval,fit,summaries,group_phases)
     ci=lambda i:f"{interval['point'][i]:+.2f} [{interval['low'][i]:+.2f}, {interval['high'][i]:+.2f}]"
     metric=lambda key:' | '.join(f"{s[key]:,}" for s in summaries)
@@ -207,12 +225,17 @@ def summarize(run,output):
         ('The primary interval supports an improvement over call calibration in this replica field.' if interval['low'][4]>0 else
          'The primary interval supports a regression versus call calibration in this replica field.' if interval['high'][4]<0 else
          'The primary interval does not establish an improvement over call calibration in this replica field.'),'',
+        ('Keep these grouping variants experimental; the point estimates alone do not justify replacing the baseline.'
+         if interval['low'][4]<=0 else 'The result supports further validation of grouping before a live deployment.'),'',
         '| Metric | Main | Call calibration | Groups + calibration | Groups + main |','| --- | ---: | ---: | ---: | ---: |',
         '| Net chips | '+metric('chips')+' |',
         '| bb/100 [95% paired-table bootstrap interval] | '+' | '.join(ci(i) for i in range(4))+' |',
         '| Mean duplicate-table placement points | '+' | '.join(f'{x:.3f}' for x in placements['points'])+' |',
         '| Outright first in duplicate table | '+' | '.join(f'{100*x:.2f}%' for x in placements['wins'])+' |',
         '| Folds per hand | '+' | '.join(f"{100*s['folds']/s['hands']:.2f}%" for s in summaries)+' |',
+        '| Flagged folds / all folds | '+' | '.join(f"{100*(s['missed_calls']+s['certain_folds'])/s['folds']:.3f}%" for s in summaries)+' |',
+        '| Missed-call flags / terminal folds | '+' | '.join(f"{100*s['missed_calls']/max(1,sum(v['terminal_folds'] for v in streets[c].values())):.2f}%" for c,s in enumerate(summaries))+' |',
+        '| Bad-call flags / terminal calls | '+' | '.join(f"{100*s['bad_calls']/max(1,sum(v['terminal_calls'] for v in streets[c].values())):.2f}%" for c,s in enumerate(summaries))+' |',
         '| Negative games | '+metric('negative_games')+' |',
         '| Probable missed terminal calls | '+metric('missed_calls')+' |',
         '| Probable bad terminal calls | '+metric('bad_calls')+' |',
@@ -222,11 +245,23 @@ def summarize(run,output):
         'Chip return weights games equally; placement points weight complete duplicate tables equally. Grouping versus calibration was the original primary comparison. '
         'The user requested grouping on main after the three-policy run started; that variant uses the same frozen settings and final seed without further tuning. '
         'The additional comparisons are descriptive, with individual 95% intervals rather than a familywise claim. Timed sampling can differ between runs and hardware. These are replica simulations, not live tournament results.','',
+        'Return intervals condition on this one refitted opponent field. They capture table/deal sampling variation, '
+        'but do not propagate opponent-parameter uncertainty or errors in recovering the real bots. Fitted variances reduce counter strength; '
+        'the simulation does not draw a new parameter set from each opponent\'s bootstrap distribution.','',
         f"With grouping on both bases, the calibration-based bot differs from the main-based bot by **{ci(6)} bb/100**. "
-        f"The difference between the two grouping improvements is **{ci(7)} bb/100**.",'',
+        f"The difference between the two grouping improvements is **{ci(7)} bb/100**. "
+        f"Without grouping, call calibration differs from main by **{ci(8)} bb/100**.",'',
         '| Placement-point change [95% paired-table interval] | Change |','| --- | ---: |',
         *[f"| {label} | {placements['delta'][i]:+.3f} [{placements['low'][i]:+.3f}, {placements['high'][i]:+.3f}] |"
           for i,label in enumerate(('Grouping added to calibration','Grouping added to main','Calibration base versus main base, both grouped'))],'',
+        '| Seats | Complete tables | Grouping gain on calibration, bb/100 [95% interval] | Grouping gain on main, bb/100 [95% interval] |',
+        '| ---: | ---: | ---: | ---: |',
+        *[f"| {n} | {sum(t['games']==n for t in tables)} | "+' | '.join(
+            f"{by_size[n]['point'][i]:+.2f} [{by_size[n]['low'][i]:+.2f}, {by_size[n]['high'][i]:+.2f}]" for i in (4,5))+' |' for n in (4,5,6)],'',
+        '| Hands within game | Main bb/100 | Calibration bb/100 | Groups + calibration bb/100 | Groups + main bb/100 |',
+        '| --- | ---: | ---: | ---: | ---: |',
+        *[f"| {i*25+1}–{(i+1)*25} | "+' | '.join(f"{100*phases[c][i]['chips']/(2*phases[c][i]['hands']):+.2f}" for c in range(4))+' |' for i in range(4)],'',
+        'These subgroup and phase summaries are descriptive. Later hands also have different histories and action paths; a late gain alone would not prove that classification caused it.','',
         'The previous call-calibration study reported main at 36.0671 and calibration at 37.76845 bb/100, a paired change of +1.70135 '
         '[+0.77688, +2.67168]. That study used 61 opponents; this refit uses 69. Raw returns across the two studies are not controlled comparisons. '
         '[Previous committed report](https://github.com/halliday-poker/halliday2/blob/e186308ade4a05778d68a82b9fd636adb46e999b/analysis/reports/call-calibration-20261004.md).','',
@@ -238,7 +273,12 @@ def summarize(run,output):
         'A compact beta-binomial classifier observes completed public hands, uses table-size-specific distributions, '
         'and assigns probabilities to behavioral groups. Group variance and sparse-fit uncertainty reduce the strength of the counter. '
         'Unknown opponents retain the baseline strategy. No opponent names, external model files, network calls or GPU are used by the submitted bot.','',
-        '| Group | Reliable training identities | Main counter |','| --- | ---: | --- |',
+        'Counter targets are bounded heuristics derived from the recovered styles. The pilot selects their overall strength; '
+        'it does not establish that each target is an optimal exploit. The baseline already learns individual opponent ranges, '
+        'so a coarse group prior can add little information or conflict with that existing adaptation. These are plausible explanations '
+        'for limited gains, not an identified causal attribution. The final comparison tests the complete grouping package; '
+        'separating range priors, bet sizing and private variation would require further ablations on a new evaluation seed.','',
+        '| Group | Reliable training identities | Counter targets on calibration base |','| --- | ---: | --- |',
         *[f"| {g['name']} | {len(g['members'])} | Bluff frequency target {g['counter']['bluff_frequency']:.2f}; "
           f"tracked bluff floor {g['counter']['range_bluff_floor']:.2f}; river call margin {g['counter']['range_call_margin_river']:.3f}; "
           f"late bet size {g['counter']['late_pot_fraction']:.2f} pot. |" for g in fit['groups']],'',
@@ -265,35 +305,65 @@ def summarize(run,output):
         'Older observations contribute only to sparse contexts, at maximum weight '
         '`0.1 ** version_age * 2 ** (-upload_gap_hours / 6)`, capped at each parameter\'s support target. '
         f"{sparse}/{len(parameters)} parameter estimates remain below target. Parameter uncertainty uses 300 whole-match bootstrap draws stratified by version; "
-        'the files retain covariance and between-game variation as well as point estimates. These quantify uncertainty within the replica model, not all possible changes in a new submission.','',
+        'the files retain covariance and between-game variation as well as point estimates. The parameter CSV covers the 69 opponents; '
+        'the underlying fit also retains Halliday as an archive identity, excluded from the simulated field. '
+        'These quantify uncertainty within the replica model, not all possible changes in a new submission.','',
         f"Newest submissions without replays: {', '.join(prior_only)}. Those opponents use discounted historical priors and remain explicitly uncertain. "
         'The classifier models the broader archive and conditions on table size; restricting training to four-to-six seats would omit most identities.','',
         '## Weaknesses and decision review','',
         *[f"**{NAMES[c]}:** {summaries[c]['missed_calls']:,} probable missed terminal calls, {summaries[c]['bad_calls']:,} probable bad terminal calls; "
-          f"{summaries[c]['negative_games_with_flags']:,} of {summaries[c]['negative_games']:,} negative games contain a flagged action."
+          f"{summaries[c]['negative_games_with_flags']:,} of {summaries[c]['negative_games']:,} negative games contain a flagged action.\n"
           for c in (2,3)],'',
+        f"Adding groups to calibration changed probable missed calls from {summaries[1]['missed_calls']:,} to {summaries[2]['missed_calls']:,}, "
+        f"and probable bad calls from {summaries[1]['bad_calls']:,} to {summaries[2]['bad_calls']:,}. "
+        f"On main, missed calls changed from {summaries[0]['missed_calls']:,} to {summaries[3]['missed_calls']:,}, "
+        f"while bad calls changed from {summaries[0]['bad_calls']:,} to {summaries[3]['bad_calls']:,}. "
+        'The grouped versions still miss preflop opportunities, and river calls account for most bad-call flags. '
+        'These counts favor targeted range/river reviews over indiscriminately reducing the overall fold rate; changed action paths prevent a causal interpretation of the count differences.','',
         'A losing game is not itself proof of a blunder. Every simulated hand was reconstructed to verify legality, payouts and zero-sum chips.','',
         'Terminal call/fold flags require agreement across tight/loose public-range models and applicable shover sensitivity, after a Monte Carlo margin and a 2-chip threshold. '
-        'These are model-based review candidates, not known optimal-action labels; there is no correction for multiple decision-level tests. Changed policies encounter different later decisions.','',
+        'A terminal call ends further betting: normally a closing river call or an all-in closure. A terminal fold declines that opportunity. '
+        'These are model-based review candidates, not known optimal-action labels; there is no correction for multiple decision-level tests. Changed policies encounter different later decisions. '
+        'The flagged-fold percentage is the share detected by this audit, not the true frequency of all unnecessary folds.','',
         '| Variant | Street | Missed terminal calls | Bad terminal calls |','| --- | --- | ---: | ---: |',
         *[f"| {NAMES[c]} | {street} | {flag_streets[c][street]['probable_missed_terminal_call']:,} | {flag_streets[c][street]['probable_bad_terminal_call']:,} |"
           for c in (2,3) for street in ('preflop','flop','turn','river')],'',
+        '| Bot estimate at flagged decision | Groups + calibration | Groups + main |','| --- | ---: | ---: |',
+        *[f"| {context} | {flag_contexts[2][context]:,} | {flag_contexts[3][context]:,} |"
+          for context in ('no accepted equity estimate','accepted conservative sparse estimate','tracked range estimate','uniform range estimate')],'',
+        'These diagnostics help distinguish missing equity, conservative sampling bounds and disagreement between the bot\'s range model and the audit. '
+        'They are review contexts, not a proven causal decomposition of the losses.','',
+        *[f"A guaranteed-profitable call was missed by **{row['variant']}** at `{row['id']}`: "
+          f"hole cards `{row['hole']}`, board `{row['board']}`, call {row['call']} into a {row['pot']}-chip pot. "
+          f"The audit's call EV was +{row['public_ev_lower']:.1f} chips. The bot had {row['equity_samples']} samples, "
+          f"stopped for `{row['equity_stop_reason']}`, and accepted no equity estimate. "
+          'This is a concrete fallback weakness: a deterministic check for guaranteed winners can avoid surrendering a known profitable call when sampling fails.\n'
+          for row in flags if row['classification']=='certain_avoidable_fold' and row['call']>0 and row['bot_equity'] is None],'',
         'The following ledger includes only games ending with negative chips. Categories classify losing hands; the final row retains profitable hands in those games. '
         'A category\'s chips are realized results, not an estimate of how many chips a strategy change would recover. Failed bluffs and lost all-ins can be correct decisions.','',
         '| Hand category in negative games | Groups + calibration: hands / chips | Groups + main: hands / chips |',
         '| --- | ---: | ---: |',
         *[f"| {category.replace('_',' ')} | "+' | '.join(f"{negative_loss[c][category]['hands']:,} / {negative_loss[c][category]['chips']:+,}" for c in (2,3))+' |'
           for category in sorted(set(negative_loss[2])|set(negative_loss[3]),key=lambda k:(k=='non_losing_hand',negative_loss[2][k]['chips']))],'',
+        'High-impact review examples below are ranked by the conservative public-model EV bound. The EV bounds compare a terminal call with folding at that decision, '
+        'not the realized cost of the entire hand. Full cards, state and classifications are in the blunder CSV.','',
+        '| Variant | Decision | Street / action | Classification | Public EV interval, chips | Game chips |',
+        '| --- | --- | --- | --- | ---: | ---: |',
+        *[f"| {row['variant']} | `{row['id']}` | {row['street']} / {row['action']} | {row['classification']} | "
+          f"[{row['public_ev_lower']:+.1f}, {row['public_ev_upper']:+.1f}] | {row['game_chips']:+,} |"
+          for name in NAMES[2:] for row in sorted((r for r in flags if r['variant']==name and r['public_ev_lower'] is not None),
+             key=lambda r:abs(r['public_ev_lower'] if r['action']=='fold' else r['public_ev_upper']),reverse=True)[:5]],'',
         '## SWOT','',
-        '- **Strengths:** compact public-event inference, uncertainty-weighted counters, retained call fixes, and measured resource compliance.',
-        '- **Weaknesses:** broad groups hide variation within a style; early classification covers only part of the field. Bluff and adaptation estimates remain indirect.',
-        '- **Opportunities:** collect more recent games at tournament table sizes, review high-cost call/fold cases, and test finer groups only when early identification supports them.',
+        '- **Strengths:** compact public-event inference, uncertainty-weighted counters, retained call fixes in the calibrated variant, and measured resource compliance.',
+        '- **Weaknesses:** broad groups hide variation within a style; early classification covers only part of the field. Cumulative group evidence can react slowly to mid-game changes. Bluff and adaptation estimates remain indirect.',
+        '- **Opportunities:** collect more recent games at tournament table sizes, review high-cost call/fold cases, test evidence-driven forgetting after supported drift, and test finer groups only when early identification supports them.',
         '- **Threats:** new uploads, strategic deception, sparse priors, and replica mismatch can invalidate the learned group signatures. No four-round regrouping or podium probability is simulated.','',
         '## Compute and reproduction','',
         f"Main `{plan['main_commit']}`; call calibration `{plan['calibration_commit']}`. The selected backend used {backend['workers']} {backend['device']} workers after matched throughput benchmarks. "
+        f"The simulation stages took {elapsed/60:.1f} minutes, including resumed-trace loading. "
         'All four V100s performed fitting and the separate decision audit. GPU batching was checked against main\'s CPU math on 48 fixed-sample cases.','',
-        f"The selected bot passed restricted subprocess games with one CPU, a 512 MiB address-space limit, read-only filesystems and a private network namespace. "
-        f"Maximum measured RSS was {max(g['resources']['RESOURCE_USAGE']['max_rss_kib'] for g in resources['games'])/1024:.1f} MiB. "
+        f"Both grouped variants passed restricted subprocess games with one CPU, a 512 MiB address-space limit, read-only filesystems and a private network namespace. "
+        f"Maximum measured RSS was {max(g['resources']['RESOURCE_USAGE']['max_rss_kib'] for g in resources['games']+main_resources['games'])/1024:.1f} MiB. "
         'Tests, smoke results, source hashes, model manifests and device work counters accompany the report.','',
         f"Input SHA-256: `{runtime['source_sha256']}`.",'',
         f'[Reproduction commands]({STEM}-reproduce.md) · [Paired tables]({STEM}-tables.csv) · [Game reviews]({STEM}-games.csv) · '
@@ -305,8 +375,13 @@ def summarize(run,output):
                  'study-extension.json','simulate-execution.json','audit-execution.json','selected-tests-execution.json','selected-tests.log',
                  'four-tests-execution.json','four-tests.log','smoke.log'):
         shutil.copyfile(run/name,evidence/name)
-    for name in ('runtime-fit.json','runtime-verification.json','prior-verification.json','snapshot-manifest.json','upload-selection.json'):
+    for name in ('runtime-fit.json','runtime-selection.json','recency-priors.json','runtime-verification.json',
+                 'prior-verification.json','snapshot-manifest.json','upload-selection.json'):
         shutil.copyfile(run/'fit'/name,evidence/name)
+    for name in ('simulate-three-execution.json','tests-execution.json','tests.log','main-groups-resources-execution.json',
+                 'selected-resources-execution.json','integration-four-execution.json','integration-four.json',
+                 'report-tests-execution.json','report-tests.log'):
+        if (run/name).exists():shutil.copyfile(run/name,evidence/name)
     (evidence/'comparison-summary.json').write_text(json.dumps(summary,indent=2)+'\n')
     paths=list(output.glob(STEM+'*'))+list(evidence.iterdir())
     hashes={str(p.relative_to(ROOT)):sha256(p.read_bytes()).hexdigest() for p in paths if p.is_file() and p.name!='artifact-hashes.json'}

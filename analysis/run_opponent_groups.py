@@ -69,6 +69,18 @@ def git_snapshot(ref,destination,gpu_hook=False):
     return record
 
 
+def group_source(fit,river_margin=.06):
+    """Export from the canonical fit, never from already shifted live priors."""
+    groups=[{k:v for k,v in g.items() if k not in ('members','style','parameter_variance','counter_reliability')}
+            for g in fit['groups']]
+    for group in groups:
+        group['counter']=dict(group['counter'])
+        group['counter']['range_call_margin_river']+=river_margin-.06
+    text='"""Generated public-behavior priors; regenerate with analysis/fit_opponent_groups.py."""\n'
+    text+=f'INPUT_SHA256 = {fit["source_sha256"]!r}\nFEATURES = {tuple(fit["features"])!r}\n'
+    return text+f'CONFIG = {fit["config"]!r}\nGROUPS = {pformat(groups,width=105,sort_dicts=False)}\n'
+
+
 def freeze_variants(run):
     if (run/'study-plan.json').exists():
         raise ValueError('Variants already frozen; reuse the recorded study or start another directory.')
@@ -89,10 +101,7 @@ def freeze_variants(run):
             if override:text+='\n# Selected opponent-group pilot variant.\nDEFAULT_PARAMS = MappingProxyType(dict(DEFAULT_PARAMS, **'+repr(override)+'))\n'
             (source/'params.py').write_text(text)
             fit=json.loads((run/'groups-fit.json').read_text())
-            priors=[{k:v for k,v in group.items() if k not in ('members','style','parameter_variance','counter_reliability')}
-                    for group in fit['groups']]
-            header=(source/'group_priors.py').read_text().split('GROUPS = ')[0]
-            (source/'group_priors.py').write_text(header+'GROUPS = '+pformat(priors,width=105,sort_dicts=False)+'\n')
+            (source/'group_priors.py').write_text(group_source(fit))
             install_snapshot(source,target)
         variants.append(str(target.relative_to(ROOT)))
     manifest={v:{str(p.relative_to(ROOT/v)):sha256(p.read_bytes()).hexdigest() for p in (ROOT/v).glob('*.py')} for v in variants}
@@ -104,6 +113,10 @@ def freeze_variants(run):
         primary_comparison='Grouping versus call calibration; main is the original control.',
         pool='sparring/competitors/from_data_groups/latest-pool.txt',
         rules=dict(deals=100,sizes=[4,5,5,6],stack=200,blinds=[1,2],bank_ms=30000,increment_ms=100)))
+    # Group fitting exports targets on the common calibrated reference. Keep
+    # this checkout's submitted bot on its own base after freezing variants.
+    margin=runpy.run_path(str(ROOT/'bot/params.py'))['DEFAULT_PARAMS']['range_call_margin_river']
+    (ROOT/'bot/group_priors.py').write_text(group_source(fit,margin))
 
 
 def extend_comparison(run):
@@ -253,7 +266,6 @@ def main():
             evaluate(run,'cpu-check',['bot'],120,'opponent-groups-cpu-check-20261004','cpu',12)
         elif args.stage=='simulate-four':
             extension=extend_comparison(run)
-            for p in (ROOT/extension['variants'][3]).glob('*.py'):shutil.copyfile(p,ROOT/'bot'/p.name)
             command(run,'four-tests',['-m','unittest','discover','-s','tests'])
             if not (run/'selected-tests.log').exists():
                 for suffix in ('.log','-execution.json'):

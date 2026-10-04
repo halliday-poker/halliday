@@ -1,0 +1,315 @@
+{
+  "bot": "snapshots/opponent_groups_main",
+  "hash": "012ddbad",
+  "sources": {
+    "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "group_observer.py": "0afefd9184aeb7bfb1c4a4fcdfc2ea9a8c2c8e9a929a86403e8bf08199bd88a4",
+    "group_priors.py": "74c2f6db426e4d863d1a146a5df3441134da6f4ffed1c716f554e6ac6093c15e",
+    "groups.py": "3e000866c12ed94fc68674c11e7b07edacd3578168b005f677e1e189ce83b2e9",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "4b90aecb3b78c583272125c32062e0f4fcbf7d245b7a1ebe9af8120781bf4f6b",
+    "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+    "params.py": "ca941d5a47e90df533decc885be4868d19e5aa941a3ad764c238444fa14358c3",
+    "preflop.py": "fdfa3281f20ec5b450a63418595da2688d630704ff814df7b96e47c07f9fbbe4",
+    "ranges.py": "bd32fe3949c06f06009a74fac3e332238fc84e430c455cbc049bbc453151d4cd",
+    "strategy.py": "d02ded248b8de50d31dd8e134c884c491298debba50a5f9d6a14d87ee38ad418"
+  },
+  "passed": true,
+  "games": [
+    {
+      "seed": "cpu-resource-0-0",
+      "opponents": [
+        "house:call",
+        "house:random",
+        "sparring/station.py",
+        "sparring/tag.py"
+      ],
+      "verdicts": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ],
+      "chips": [
+        1294,
+        -2844,
+        401,
+        -83,
+        1232
+      ],
+      "think_ms": 2337.5910914037377,
+      "max_ms": 145.52212390117347,
+      "resources": {
+        "RESOURCE_SETUP": {
+          "cpu_affinity": [
+            0
+          ],
+          "address_space_limit": 536870912,
+          "tmp_bytes": 67108864,
+          "tmp_initially_empty": true,
+          "readonly": {
+            "/": true,
+            "/mnt/ssd/halliday2/snapshots/opponent_groups_main": true,
+            "/home": true,
+            "/mnt": true
+          },
+          "network": "private network namespace; no configured external interfaces"
+        },
+        "RESOURCE_USAGE": {
+          "max_rss_kib": 37592,
+          "user_s": 2.294846,
+          "system_s": 0.011941
+        }
+      },
+      "stderr": "RESOURCE_SETUP {\"cpu_affinity\": [0], \"address_space_limit\": 536870912, \"tmp_bytes\": 67108864, \"tmp_initially_empty\": true, \"readonly\": {\"/\": true, \"/mnt/ssd/halliday2/snapshots/opponent_groups_main\": true, \"/home\": true, \"/mnt\": true}, \"network\": \"private network namespace; no configured external interfaces\"}\nRESOURCE_USAGE {\"max_rss_kib\": 37592, \"user_s\": 2.294846, \"system_s\": 0.011941}"
+    },
+    {
+      "seed": "cpu-resource-0-1",
+      "opponents": [
+        "house:allin",
+        "house:checkfold",
+        "sparring/maniac.py",
+        "sparring/nit.py"
+      ],
+      "verdicts": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ],
+      "chips": [
+        -1019,
+        961,
+        -60,
+        216,
+        -98
+      ],
+      "think_ms": 476.17170633748174,
+      "max_ms": 140.50575601868331,
+      "resources": {
+        "RESOURCE_SETUP": {
+          "cpu_affinity": [
+            0
+          ],
+          "address_space_limit": 536870912,
+          "tmp_bytes": 67108864,
+          "tmp_initially_empty": true,
+          "readonly": {
+            "/": true,
+            "/mnt/ssd/halliday2/snapshots/opponent_groups_main": true,
+            "/home": true,
+            "/mnt": true
+          },
+          "network": "private network namespace; no configured external interfaces"
+        },
+        "RESOURCE_USAGE": {
+          "max_rss_kib": 39216,
+          "user_s": 0.415472,
+          "system_s": 0.025511
+        }
+      },
+      "stderr": "RESOURCE_SETUP {\"cpu_affinity\": [0], \"address_space_limit\": 536870912, \"tmp_bytes\": 67108864, \"tmp_initially_empty\": true, \"readonly\": {\"/\": true, \"/mnt/ssd/halliday2/snapshots/opponent_groups_main\": true, \"/home\": true, \"/mnt\": true}, \"network\": \"private network namespace; no configured external interfaces\"}\nRESOURCE_USAGE {\"max_rss_kib\": 39216, \"user_s\": 0.415472, \"system_s\": 0.025511}"
+    },
+    {
+      "seed": "cpu-resource-0-2",
+      "opponents": [
+        "fitted:sparring/competitors/from_data_groups/bots.json@allen_iverson",
+        "fitted:sparring/competitors/from_data_groups/bots.json@allen_iverson_2_0",
+        "fitted:sparring/competitors/from_data_groups/bots.json@althaf_productions_v1",
+        "fitted:sparring/competitors/from_data_groups/bots.json@axiom",
+        "fitted:sparring/competitors/from_data_groups/bots.json@bad_goy"
+      ],
+      "verdicts": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ],
+      "chips": [
+        59,
+        -211,
+        -221,
+        -93,
+        384,
+        82
+      ],
+      "think_ms": 754.2668061796576,
+      "max_ms": 137.26173399481922,
+      "resources": {
+        "RESOURCE_SETUP": {
+          "cpu_affinity": [
+            0
+          ],
+          "address_space_limit": 536870912,
+          "tmp_bytes": 67108864,
+          "tmp_initially_empty": true,
+          "readonly": {
+            "/": true,
+            "/mnt/ssd/halliday2/snapshots/opponent_groups_main": true,
+            "/home": true,
+            "/mnt": true
+          },
+          "network": "private network namespace; no configured external interfaces"
+        },
+        "RESOURCE_USAGE": {
+          "max_rss_kib": 37784,
+          "user_s": 0.7034549999999999,
+          "system_s": 0.023318
+        }
+      },
+      "stderr": "RESOURCE_SETUP {\"cpu_affinity\": [0], \"address_space_limit\": 536870912, \"tmp_bytes\": 67108864, \"tmp_initially_empty\": true, \"readonly\": {\"/\": true, \"/mnt/ssd/halliday2/snapshots/opponent_groups_main\": true, \"/home\": true, \"/mnt\": true}, \"network\": \"private network namespace; no configured external interfaces\"}\nRESOURCE_USAGE {\"max_rss_kib\": 37784, \"user_s\": 0.7034549999999999, \"system_s\": 0.023318}"
+    },
+    {
+      "seed": "cpu-resource-1-0",
+      "opponents": [
+        "house:call",
+        "house:random",
+        "sparring/station.py",
+        "sparring/tag.py"
+      ],
+      "verdicts": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ],
+      "chips": [
+        856,
+        -1708,
+        -600,
+        80,
+        1372
+      ],
+      "think_ms": 2142.689922475256,
+      "max_ms": 144.43872100673616,
+      "resources": {
+        "RESOURCE_SETUP": {
+          "cpu_affinity": [
+            0
+          ],
+          "address_space_limit": 536870912,
+          "tmp_bytes": 67108864,
+          "tmp_initially_empty": true,
+          "readonly": {
+            "/": true,
+            "/mnt/ssd/halliday2/snapshots/opponent_groups_main": true,
+            "/home": true,
+            "/mnt": true
+          },
+          "network": "private network namespace; no configured external interfaces"
+        },
+        "RESOURCE_USAGE": {
+          "max_rss_kib": 39984,
+          "user_s": 2.078802,
+          "system_s": 0.036118
+        }
+      },
+      "stderr": "RESOURCE_SETUP {\"cpu_affinity\": [0], \"address_space_limit\": 536870912, \"tmp_bytes\": 67108864, \"tmp_initially_empty\": true, \"readonly\": {\"/\": true, \"/mnt/ssd/halliday2/snapshots/opponent_groups_main\": true, \"/home\": true, \"/mnt\": true}, \"network\": \"private network namespace; no configured external interfaces\"}\nRESOURCE_USAGE {\"max_rss_kib\": 39984, \"user_s\": 2.078802, \"system_s\": 0.036118}"
+    },
+    {
+      "seed": "cpu-resource-1-1",
+      "opponents": [
+        "house:allin",
+        "house:checkfold",
+        "sparring/maniac.py",
+        "sparring/nit.py"
+      ],
+      "verdicts": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ],
+      "chips": [
+        804,
+        -1676,
+        -60,
+        1034,
+        -102
+      ],
+      "think_ms": 612.5338549027219,
+      "max_ms": 142.52634497825056,
+      "resources": {
+        "RESOURCE_SETUP": {
+          "cpu_affinity": [
+            0
+          ],
+          "address_space_limit": 536870912,
+          "tmp_bytes": 67108864,
+          "tmp_initially_empty": true,
+          "readonly": {
+            "/": true,
+            "/mnt/ssd/halliday2/snapshots/opponent_groups_main": true,
+            "/home": true,
+            "/mnt": true
+          },
+          "network": "private network namespace; no configured external interfaces"
+        },
+        "RESOURCE_USAGE": {
+          "max_rss_kib": 39236,
+          "user_s": 0.56145,
+          "system_s": 0.015927
+        }
+      },
+      "stderr": "RESOURCE_SETUP {\"cpu_affinity\": [0], \"address_space_limit\": 536870912, \"tmp_bytes\": 67108864, \"tmp_initially_empty\": true, \"readonly\": {\"/\": true, \"/mnt/ssd/halliday2/snapshots/opponent_groups_main\": true, \"/home\": true, \"/mnt\": true}, \"network\": \"private network namespace; no configured external interfaces\"}\nRESOURCE_USAGE {\"max_rss_kib\": 39236, \"user_s\": 0.56145, \"system_s\": 0.015927}"
+    },
+    {
+      "seed": "cpu-resource-1-2",
+      "opponents": [
+        "fitted:sparring/competitors/from_data_groups/bots.json@allen_iverson",
+        "fitted:sparring/competitors/from_data_groups/bots.json@allen_iverson_2_0",
+        "fitted:sparring/competitors/from_data_groups/bots.json@althaf_productions_v1",
+        "fitted:sparring/competitors/from_data_groups/bots.json@axiom",
+        "fitted:sparring/competitors/from_data_groups/bots.json@bad_goy"
+      ],
+      "verdicts": [
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK",
+        "OK"
+      ],
+      "chips": [
+        -14,
+        -257,
+        17,
+        -218,
+        385,
+        87
+      ],
+      "think_ms": 482.3800182202831,
+      "max_ms": 140.75440191663802,
+      "resources": {
+        "RESOURCE_SETUP": {
+          "cpu_affinity": [
+            0
+          ],
+          "address_space_limit": 536870912,
+          "tmp_bytes": 67108864,
+          "tmp_initially_empty": true,
+          "readonly": {
+            "/": true,
+            "/mnt/ssd/halliday2/snapshots/opponent_groups_main": true,
+            "/home": true,
+            "/mnt": true
+          },
+          "network": "private network namespace; no configured external interfaces"
+        },
+        "RESOURCE_USAGE": {
+          "max_rss_kib": 38000,
+          "user_s": 0.439446,
+          "system_s": 0.012093999999999999
+        }
+      },
+      "stderr": "RESOURCE_SETUP {\"cpu_affinity\": [0], \"address_space_limit\": 536870912, \"tmp_bytes\": 67108864, \"tmp_initially_empty\": true, \"readonly\": {\"/\": true, \"/mnt/ssd/halliday2/snapshots/opponent_groups_main\": true, \"/home\": true, \"/mnt\": true}, \"network\": \"private network namespace; no configured external interfaces\"}\nRESOURCE_USAGE {\"max_rss_kib\": 38000, \"user_s\": 0.439446, \"system_s\": 0.012093999999999999}"
+    }
+  ],
+  "scope": "Actual SDK protocol and clocks; one CPU affinity, 512MiB virtual-memory ceiling, read-only chroot, fresh 64MiB tmpfs, private network namespace. Cooperative-code resource validation, not a hardened judge replica."
+}

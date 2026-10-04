@@ -1,0 +1,68 @@
+{
+  "coverage": {
+    "actions": 347616,
+    "hands": 247234,
+    "bot_games": 2538,
+    "validation_games": 67
+  },
+  "all_latest_observations_used": true,
+  "upload_games_included": true,
+  "prior_verification": {
+    "passed": true,
+    "prior_contributions_checked": 1225,
+    "rule": "Newest weight 1; older maximum 0.1^age * 2^(-gap_hours/6), with parameter target cap"
+  },
+  "excluded": {
+    "Artificial Incompetence": "No validation upload with a trusted server timestamp",
+    "Invoker": "No validation upload with a trusted server timestamp",
+    "LF5": "No validation upload with a trusted server timestamp",
+    "MAC Projects Team": "No validation upload with a trusted server timestamp",
+    "Nice Hand, Sir": "No validation upload with a trusted server timestamp",
+    "Tilted_towers_1": "No validation upload with a trusted server timestamp",
+    "Who me?": "No validation upload with a trusted server timestamp",
+    "alo": "No validation upload with a trusted server timestamp",
+    "big dog": "No validation upload with a trusted server timestamp",
+    "biji satu": "No validation upload with a trusted server timestamp",
+    "diddy blud": "No validation upload with a trusted server timestamp",
+    "dudududu": "No validation upload with a trusted server timestamp",
+    "elaine": "No validation upload with a trusted server timestamp",
+    "fufufafa": "No validation upload with a trusted server timestamp",
+    "goatbot": "No validation upload with a trusted server timestamp",
+    "guaguanco": "No validation upload with a trusted server timestamp",
+    "guaguanco 2": "No validation upload with a trusted server timestamp",
+    "guaguanco 3": "No validation upload with a trusted server timestamp",
+    "guaguanco 4": "No validation upload with a trusted server timestamp",
+    "house:call": "House bot",
+    "kingfisher": "No validation upload with a trusted server timestamp",
+    "lil-fruit": "No validation upload with a trusted server timestamp",
+    "lil-fruit 2.2": "No validation upload with a trusted server timestamp",
+    "lil-fruit x": "No validation upload with a trusted server timestamp",
+    "poke-bowl-one": "No validation upload with a trusted server timestamp",
+    "pressure": "No validation upload with a trusted server timestamp",
+    "radishv0": "No validation upload with a trusted server timestamp",
+    "radishv1": "No validation upload with a trusted server timestamp",
+    "scaffold": "No validation upload with a trusted server timestamp",
+    "test1": "No validation upload with a trusted server timestamp"
+  },
+  "runtime_policy_parity": {
+    "static": {
+      "actions": 8259,
+      "max_probability_error": 1.3113021850585938e-06
+    },
+    "history": {
+      "actions": 8259,
+      "max_probability_error": 1.6987323760986328e-06
+    }
+  },
+  "main_gpu_fixed_sample_parity_cases": 48,
+  "gpu": {
+    "device": "cuda:0",
+    "gpu": "Tesla V100-SXM2-16GB",
+    "batches": 96,
+    "ranked_hands": 27648,
+    "gpu_seconds": 0.003356155357323587,
+    "batch_size": 128,
+    "device_buffer_bytes": 36864
+  },
+  "limitation": "Fixed-sample parity does not imply bit-identical timed decisions or tournament CPU clock compliance."
+}

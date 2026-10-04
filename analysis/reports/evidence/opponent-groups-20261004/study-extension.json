@@ -1,0 +1,37 @@
+{
+  "variants": [
+    "snapshots/main_6cfdf0f_opponent_groups",
+    "snapshots/call_calibration_e186308_group_study",
+    "snapshots/opponent_groups_full",
+    "snapshots/opponent_groups_main"
+  ],
+  "games_per_variant": 10000,
+  "total_games": 40000,
+  "seed": "opponent-groups-confirm-20261004",
+  "reason": "User requested grouping on both main and call-calibration bases; same fitted groups, strength, counters and private sizing mixture.",
+  "selection": "Use the already selected grouping strength on both bases; no tuning against final results.",
+  "main_group_changes": {
+    "terminal_range_calls": false,
+    "partial_terminal_equity": false,
+    "range_call_margin_river": 0.02,
+    "counter_river_offset": -0.039999999999999994
+  },
+  "comparisons": [
+    "groups+calibration minus calibration",
+    "groups+main minus main",
+    "groups+calibration minus groups+main"
+  ],
+  "files": {
+    "engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "groups.py": "3e000866c12ed94fc68674c11e7b07edacd3578168b005f677e1e189ce83b2e9",
+    "group_observer.py": "0afefd9184aeb7bfb1c4a4fcdfc2ea9a8c2c8e9a929a86403e8bf08199bd88a4",
+    "group_priors.py": "74c2f6db426e4d863d1a146a5df3441134da6f4ffed1c716f554e6ac6093c15e",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "4b90aecb3b78c583272125c32062e0f4fcbf7d245b7a1ebe9af8120781bf4f6b",
+    "opponents.py": "7ce00e35a7a0ba63465e66968378db13a432f423c0b5cd474537b1f0bb586214",
+    "params.py": "ca941d5a47e90df533decc885be4868d19e5aa941a3ad764c238444fa14358c3",
+    "preflop.py": "fdfa3281f20ec5b450a63418595da2688d630704ff814df7b96e47c07f9fbbe4",
+    "ranges.py": "bd32fe3949c06f06009a74fac3e332238fc84e430c455cbc049bbc453151d4cd",
+    "strategy.py": "d02ded248b8de50d31dd8e134c884c491298debba50a5f9d6a14d87ee38ad418"
+  }
+}

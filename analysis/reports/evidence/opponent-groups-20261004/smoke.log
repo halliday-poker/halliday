@@ -1,0 +1,21 @@
+running: macpoker play /mnt/ssd/halliday2/bot/main.py house:call house:random /mnt/ssd/halliday2/sparring/station.py /mnt/ssd/halliday2/sparring/tag.py --subprocess --deals 100 --seed smoke
+
+500 hands (5 games x 100 hands, same decks, seats shifted each game)
+bot                                chips    mbb/hand  verdict
+/mnt/ssd/halliday2/bot/main.py     +7391      7391.0  OK
+/mnt/ssd/halliday2/sparring/tag.py     +4336      4336.0  OK
+/mnt/ssd/halliday2/sparring/station.py     +1294      1294.0  OK
+house:call                         -6415     -6415.0  OK
+house:random                       -6606     -6606.0  OK
+ 
+running: macpoker play /mnt/ssd/halliday2/bot/main.py house:allin house:checkfold /mnt/ssd/halliday2/sparring/maniac.py /mnt/ssd/halliday2/sparring/nit.py --subprocess --deals 100 --seed smoke
+
+500 hands (5 games x 100 hands, same decks, seats shifted each game)
+bot                                chips    mbb/hand  verdict
+/mnt/ssd/halliday2/bot/main.py     +4947      4947.0  OK
+/mnt/ssd/halliday2/sparring/maniac.py      +213       213.0  OK
+house:checkfold                     -300      -300.0  OK
+/mnt/ssd/halliday2/sparring/nit.py      -462      -462.0  OK
+house:allin                        -4398     -4398.0  OK
+ 
+SMOKE PASS

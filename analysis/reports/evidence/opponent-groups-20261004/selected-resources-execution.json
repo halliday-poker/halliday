@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "wall_seconds": 8.774817651021294,
+  "command": [
+    "/mnt/ssd/halliday2/.venv-estimators/bin/python",
+    "-B",
+    "-u",
+    "harness/resource_check.py",
+    "bot",
+    "--repeats",
+    "2",
+    "--output",
+    "/mnt/ssd/halliday2/analysis/results/opponent-groups-20261004/selected-resources.json"
+  ]
+}

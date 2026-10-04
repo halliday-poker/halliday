@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "variants": [
+    "snapshots/opponent_groups_full",
+    "snapshots/opponent_groups_main"
+  ],
+  "counts": {
+    "0": {
+      "games": 24,
+      "decisions": 3181,
+      "opponent_classifications": 12360,
+      "weighted_counter_reads": 7216
+    },
+    "1": {
+      "games": 24,
+      "decisions": 3181,
+      "opponent_classifications": 12351,
+      "weighted_counter_reads": 7208
+    }
+  }
+}
