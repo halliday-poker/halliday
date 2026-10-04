@@ -1,0 +1,511 @@
+{
+  "interval": {
+    "point": [
+      36.0671,
+      37.76845,
+      1.70135
+    ],
+    "low": [
+      33.41412800971977,
+      35.132895682915446,
+      0.7768840548751927
+    ],
+    "high": [
+      38.72231145809274,
+      40.50695015748166,
+      2.6716846592389727
+    ]
+  },
+  "summaries": [
+    {
+      "chips": 721342,
+      "hands": 1000000,
+      "actions": 1324308,
+      "folds": 825263,
+      "facing_decisions": 1123053,
+      "bad_calls": 116,
+      "missed_calls": 840,
+      "certain_folds": 0,
+      "allin_actual": 419050,
+      "allin_expected": 414537.8653245565,
+      "allin_luck": 4512.1346754435735,
+      "ev_audited": 102896,
+      "vpip_hands": 221577,
+      "pfr_hands": 161529,
+      "games": 10000,
+      "negative_games": 3996,
+      "negative_games_with_flags": 314
+    },
+    {
+      "chips": 755369,
+      "hands": 1000000,
+      "actions": 1324299,
+      "folds": 825326,
+      "facing_decisions": 1122995,
+      "bad_calls": 76,
+      "missed_calls": 316,
+      "certain_folds": 0,
+      "allin_actual": 437996,
+      "allin_expected": 442236.67143675627,
+      "allin_luck": -4240.671436756734,
+      "ev_audited": 102991,
+      "vpip_hands": 221763,
+      "pfr_hands": 161515,
+      "games": 10000,
+      "negative_games": 3968,
+      "negative_games_with_flags": 167
+    }
+  ],
+  "classifications": [
+    {
+      "fold_not_flagged": 821447,
+      "raise_not_flagged": 265451,
+      "call_not_flagged": 125642,
+      "check_not_flagged": 96637,
+      "hindsight_losing_call_only": 5245,
+      "hindsight_missed_call_only": 2876,
+      "probable_bad_terminal_call": 116,
+      "probable_missed_terminal_call": 840,
+      "failed_air_bet": 3081,
+      "failed_semibluff": 1936,
+      "possible_nonterminal_overfold": 100,
+      "range_sensitive_shove_call_review": 917,
+      "possible_nonterminal_bad_call": 20
+    },
+    {
+      "fold_not_flagged": 821850,
+      "raise_not_flagged": 265437,
+      "call_not_flagged": 125878,
+      "check_not_flagged": 96677,
+      "hindsight_losing_call_only": 4934,
+      "hindsight_missed_call_only": 3067,
+      "probable_bad_terminal_call": 76,
+      "probable_missed_terminal_call": 316,
+      "failed_air_bet": 3095,
+      "failed_semibluff": 1936,
+      "possible_nonterminal_overfold": 93,
+      "range_sensitive_shove_call_review": 917,
+      "possible_nonterminal_bad_call": 23
+    }
+  ],
+  "streets": [
+    {
+      "preflop": {
+        "actions": 1013486,
+        "faced_bet": 1004778,
+        "facing_folds": 777954,
+        "terminal_folds": 5607,
+        "terminal_calls": 3573,
+        "fold": 777954,
+        "raise": 162871,
+        "call": 66062,
+        "check": 6599
+      },
+      "flop": {
+        "actions": 171958,
+        "faced_bet": 69014,
+        "facing_folds": 27981,
+        "terminal_folds": 893,
+        "terminal_calls": 849,
+        "check": 48603,
+        "call": 38746,
+        "raise": 56628,
+        "fold": 27981
+      },
+      "turn": {
+        "actions": 89540,
+        "faced_bet": 32381,
+        "facing_folds": 12115,
+        "terminal_folds": 584,
+        "terminal_calls": 1316,
+        "call": 18455,
+        "raise": 32806,
+        "check": 26164,
+        "fold": 12115
+      },
+      "river": {
+        "actions": 49324,
+        "faced_bet": 16880,
+        "facing_folds": 7213,
+        "terminal_folds": 6322,
+        "terminal_calls": 8007,
+        "call": 8677,
+        "check": 15271,
+        "fold": 7213,
+        "raise": 18163
+      }
+    },
+    {
+      "preflop": {
+        "actions": 1013463,
+        "faced_bet": 1004742,
+        "facing_folds": 777214,
+        "terminal_folds": 4942,
+        "terminal_calls": 4310,
+        "fold": 777214,
+        "raise": 162852,
+        "call": 66776,
+        "check": 6621
+      },
+      "flop": {
+        "actions": 171913,
+        "faced_bet": 68990,
+        "facing_folds": 27963,
+        "terminal_folds": 892,
+        "terminal_calls": 839,
+        "check": 48548,
+        "call": 38742,
+        "raise": 56660,
+        "fold": 27963
+      },
+      "turn": {
+        "actions": 89524,
+        "faced_bet": 32361,
+        "facing_folds": 12073,
+        "terminal_folds": 585,
+        "terminal_calls": 1314,
+        "call": 18465,
+        "raise": 32802,
+        "check": 26184,
+        "fold": 12073
+      },
+      "river": {
+        "actions": 49399,
+        "faced_bet": 16902,
+        "facing_folds": 8076,
+        "terminal_folds": 7114,
+        "terminal_calls": 7250,
+        "call": 7845,
+        "check": 15324,
+        "fold": 8076,
+        "raise": 18154
+      }
+    }
+  ],
+  "fallbacks": [
+    {
+      "sparse_estimates": 51,
+      "accepted_bounds": 0,
+      "calls": 0
+    },
+    {
+      "sparse_estimates": 36,
+      "accepted_bounds": 0,
+      "calls": 0
+    }
+  ],
+  "duplicate_tables": 1990,
+  "prior_only_opponents": [
+    "poke-bowl",
+    "yep"
+  ],
+  "cohorts": [
+    {
+      "prior_only_opponent_present": false,
+      "games": 8673,
+      "tables": 1732,
+      "interval": {
+        "point": [
+          37.12487028709789,
+          38.8550674507091,
+          1.7301971636112072
+        ],
+        "low": [
+          34.15942652352753,
+          35.8907053867035,
+          0.7149017916269403
+        ],
+        "high": [
+          40.063598505302735,
+          41.89141984743441,
+          2.816715187880028
+        ]
+      }
+    },
+    {
+      "prior_only_opponent_present": true,
+      "games": 1327,
+      "tables": 258,
+      "interval": {
+        "point": [
+          29.153730218538055,
+          30.666541070082893,
+          1.512810851544838
+        ],
+        "low": [
+          23.18186091940999,
+          24.354601715964254,
+          -0.255465815176559
+        ],
+        "high": [
+          35.128973589389226,
+          37.04601025889808,
+          3.220864520958083
+        ]
+      }
+    }
+  ],
+  "placement": [
+    {
+      "bot": "snapshots/main_6cfdf0f_call_study",
+      "hash": "bb2090c7",
+      "mbb": [
+        362.40481574539365,
+        26.82886579238739
+      ],
+      "game_pts": [
+        3.3151172529313233,
+        0.02856715425313246
+      ],
+      "round_pts": [
+        3.6374371859296484,
+        0.057648661125572584
+      ],
+      "won_pct": 27.537688442211056,
+      "bad_games": 0,
+      "max_ms": 116.33,
+      "bank_pct": 7.754999999999999
+    },
+    {
+      "bot": "snapshots/call_calibration_river",
+      "hash": "7ddc0188",
+      "mbb": [
+        379.86222780569517,
+        27.79932231146452
+      ],
+      "game_pts": [
+        3.32356365159129,
+        0.028829538137783106
+      ],
+      "round_pts": [
+        3.65678391959799,
+        0.058121680790111034
+      ],
+      "won_pct": 28.79396984924623,
+      "bad_games": 0,
+      "max_ms": 116.82,
+      "bank_pct": 7.847999999999999,
+      "vs_baseline": {
+        "d_mbb": [
+          17.457412060301507,
+          9.410346197553586
+        ],
+        "d_round_pts": [
+          0.01934673366834171,
+          0.020863917610541103
+        ],
+        "call": "BETTER"
+      }
+    }
+  ],
+  "paired_placement_change": [
+    0.01934673366834171,
+    -0.0015171839421993932,
+    0.04021065127888281
+  ],
+  "audit_devices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "audit_workers": 12,
+  "audit_gpu_work": {
+    "cuda:0": {
+      "batches": 168266,
+      "ranked_hands": 1247118525,
+      "gpu_seconds": 98.0947036134312
+    },
+    "cuda:2": {
+      "batches": 168343,
+      "ranked_hands": 1241943201,
+      "gpu_seconds": 97.84042477852199
+    },
+    "cuda:3": {
+      "batches": 168879,
+      "ranked_hands": 1242729303,
+      "gpu_seconds": 98.13349734235089
+    },
+    "cuda:1": {
+      "batches": 168256,
+      "ranked_hands": 1238011297,
+      "gpu_seconds": 98.16776446125004
+    }
+  },
+  "audit_code_sha256": {
+    "analysis/audit_pattern_simulation.py": "2d2883ec6e7207c5523520bfed96202673f929ac9109b71931be81d078ec2990",
+    "analysis/halliday_performance.py": "088a10b71d5704eb9095b5bffe3de74816a1224a774d7591d0e278194d8935fe",
+    "analysis/halliday_report.py": "8426ea7868706a3b0308c3336d32a1e8e3c395f60bb01185ac00c303108a4ff3",
+    "bot/ranges.py": "d54983af267e67dc164f5cad550726c0c272920ae526e830e96ede5e99a7e18e",
+    "bot/params.py": "00d6a99cb95fa2a555b6a32e1a8166e636070196e8add76e6063ba7664f983b5",
+    "bot/engine.py": "a711f62d4f5037908a6d266433631a4f030c838a4650ed5cead15a2757f9ed4a",
+    "vendor/macpoker-src/macpoker/evaluator.py": "6b232f208e7e61c393dfe4dd044b4fe05e87b8d36a1a551b168502b6cb69a5f7",
+    "harness/gpu_equity.py": "03e201a339751fed3878814ebd8eae7da3cf3e82c2353538d072eb69b4158879",
+    "harness/gpu_rank.cu": "b88f31baf667f7c2285cd0e845da2249b3a16a4d1cde3ecea5701590288a42c6",
+    "sparring/competitors/from_data_patterns/bots.json": "182ffaeb92f13d671a1def281e16d6eed8ab6e2fc1f1533155ae7e8b90d4fb7c"
+  },
+  "simulation_compute": {
+    "requested": "cuda",
+    "device": "cuda",
+    "workers": 12,
+    "devices": [
+      {
+        "index": 0,
+        "name": "Tesla V100-SXM2-16GB",
+        "architecture": "sm_70"
+      },
+      {
+        "index": 1,
+        "name": "Tesla V100-SXM2-16GB",
+        "architecture": "sm_70"
+      },
+      {
+        "index": 2,
+        "name": "Tesla V100-SXM2-16GB",
+        "architecture": "sm_70"
+      },
+      {
+        "index": 3,
+        "name": "Tesla V100-SXM2-16GB",
+        "architecture": "sm_70"
+      }
+    ],
+    "batch_size": 128,
+    "worker_startup": [
+      {
+        "device": "cuda:0",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:0",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:0",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:1",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:1",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:1",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:2",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:2",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:2",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:3",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:3",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      },
+      {
+        "device": "cuda:3",
+        "gpu": "Tesla V100-SXM2-16GB",
+        "batches": 0,
+        "ranked_hands": 0,
+        "gpu_seconds": 0.0,
+        "batch_size": 128,
+        "device_buffer_bytes": 36864
+      }
+    ],
+    "gpu_usage": {
+      "cuda:2": {
+        "games": 5022,
+        "batches": 1013115,
+        "ranked_hands": 298861939,
+        "gpu_seconds": 304.3715000860393
+      },
+      "cuda:3": {
+        "games": 4988,
+        "batches": 1010607,
+        "ranked_hands": 297995745,
+        "gpu_seconds": 307.29708362929523
+      },
+      "cuda:0": {
+        "games": 5001,
+        "batches": 1008950,
+        "ranked_hands": 297383593,
+        "gpu_seconds": 308.0233604736859
+      },
+      "cuda:1": {
+        "games": 4989,
+        "batches": 1008254,
+        "ranked_hands": 297473096,
+        "gpu_seconds": 305.4246435245732
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "exit_code": 0,
+  "wall_seconds": 16.12540948507376,
+  "command": [
+    "/mnt/ssd/halliday2/.venv-estimators/bin/python",
+    "-B",
+    "-u",
+    "harness/eval.py",
+    "run",
+    "bot",
+    "--no-league",
+    "--no-extend",
+    "--games",
+    "120",
+    "--deals",
+    "100",
+    "--sizes",
+    "4,5,5,6",
+    "--seed",
+    "call-calibration-cpu-check-20261004",
+    "--pool",
+    "sparring/competitors/from_data_patterns/latest-pool.txt",
+    "--device",
+    "cpu",
+    "--workers",
+    "12",
+    "--gpu-devices",
+    "0,1,2,3",
+    "--gpu-workers",
+    "12"
+  ]
+}

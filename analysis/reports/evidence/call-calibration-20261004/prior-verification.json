@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "prior_contributions_checked": 446,
+  "rule": "Newest weight 1; older maximum 0.1^age * 2^(-gap_hours/6), with parameter target cap"
+}

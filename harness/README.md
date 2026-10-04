@@ -123,7 +123,7 @@ the final draw is constrained to leave a reachable remaining budget. This mode
 disables automatic gate extension. `--sizes 4,5,5,6` weights table draws 1:2:1.
 
 ```sh
-OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv-estimators/bin/python -B harness/eval.py run snapshots/main_6cfdf0f_call_study --no-league --no-extend --pool sparring/competitors/from_data_patterns/latest-pool.txt --games 30000 --deals 100 --sizes 4,5,5,6 --seed newest-pattern-field-r4-20261004 --device cuda --gpu-devices 0,1,2,3 --gpu-workers 12 --trace-dir analysis/results/call-calibration-20261004-r2/simulate-traces --resume
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 .venv-estimators/bin/python -B harness/eval.py run snapshots/main_6cfdf0f_call_study snapshots/call_calibration_river --no-league --no-extend --pool sparring/competitors/from_data_patterns/latest-pool.txt --games 10000 --deals 100 --sizes 4,5,5,6 --seed call-calibration-confirm-20261004 --device cuda --gpu-devices 0,1,2,3 --gpu-workers 12 --trace-dir analysis/results/call-calibration-20261004-r2/simulate-traces --resume
 ```
 
 `--trace-dir` writes one atomically completed gzip JSON file per game, containing
@@ -159,11 +159,13 @@ stickiness, size`, plus an `adaptive` flag that adjusts to opponents' aggression
 
 ### Fitted competitors
 
-`sparring/competitors/from_data/latest-pool.txt` contains 65 reliably dated latest
-external identities. The general `pool.txt` has 88 entries excluding Halliday.
-All fitted opponents are records in `from_data/bots.json`, loaded through one
-shared implementation with specs such as
-`fitted:sparring/competitors/from_data/bots.json@halliday`. These specs work in
+`sparring/competitors/from_data_patterns/latest-pool.txt` contains 61 external
+identities from the refreshed snapshot. Two newest submissions have no replay
+and use explicitly marked, discounted historical priors. The catalogue has 62
+records including Halliday; both pool files exclude Halliday.
+All fitted opponents are records in `from_data_patterns/bots.json`, loaded
+through one shared implementation with specs such as
+`fitted:sparring/competitors/from_data_patterns/bots.json@halliday`. These specs work in
 candidate arguments, pools, and explicit tables. The builder updates the JSON
 catalogue and pools instead of generating per-opponent Python files.
 See [the competitor documentation](../sparring/competitors/README.md) for

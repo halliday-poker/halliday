@@ -1,0 +1,11 @@
+{
+  "pilot_chips": {
+    "0": 37310,
+    "1": 39221,
+    "2": 40849
+  },
+  "chosen_index": 2,
+  "selected": "snapshots/call_calibration_river",
+  "rule": "Choose river only if its paired pilot chip mean exceeds core; otherwise core. Final seed is held out.",
+  "final_seed": "call-calibration-confirm-20261004"
+}

@@ -1,0 +1,12 @@
+{
+  "exit_code": 0,
+  "wall_seconds": 9.161141698015854,
+  "command": [
+    "/mnt/ssd/halliday2/.venv-estimators/bin/python",
+    "-B",
+    "-u",
+    "analysis/verify_runtime_patterns.py",
+    "--directory",
+    "/mnt/ssd/halliday2/analysis/results/feat-call-calibration/analysis/results/call-calibration-20261004-r2/fit"
+  ]
+}

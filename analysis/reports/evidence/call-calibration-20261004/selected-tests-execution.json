@@ -1,0 +1,14 @@
+{
+  "exit_code": 0,
+  "wall_seconds": 14.402819062932394,
+  "command": [
+    "/mnt/ssd/halliday2/.venv-estimators/bin/python",
+    "-B",
+    "-u",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests"
+  ]
+}

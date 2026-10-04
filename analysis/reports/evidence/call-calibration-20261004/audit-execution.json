@@ -1,0 +1,18 @@
+{
+  "exit_code": 0,
+  "wall_seconds": 267.77649556996766,
+  "command": [
+    "/mnt/ssd/halliday2/.venv-estimators/bin/python",
+    "-B",
+    "-u",
+    "analysis/audit_pattern_simulation.py",
+    "--directory",
+    "/mnt/ssd/halliday2/analysis/results/feat-call-calibration/analysis/results/call-calibration-20261004-r2",
+    "--trace-subdir",
+    "simulate-traces",
+    "--devices",
+    "0,1,2,3",
+    "--workers",
+    "12"
+  ]
+}

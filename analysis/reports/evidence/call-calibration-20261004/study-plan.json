@@ -1,0 +1,15 @@
+{
+  "baseline": "6cfdf0f44b332933d88d440791e7151028061849",
+  "variants": [
+    "snapshots/main_6cfdf0f_call_study",
+    "snapshots/call_calibration_core",
+    "snapshots/call_calibration_river"
+  ],
+  "pilot_games_per_variant": 500,
+  "final_games_per_variant": 10000,
+  "pilot_seed": "call-calibration-pilot-20261004",
+  "final_seed": "call-calibration-confirm-20261004",
+  "selection": "Choose river only if its paired pilot chip mean exceeds core; otherwise core. Final seed is held out.",
+  "interpretation": "Learned newest-upload replicas; table-cluster paired intervals; timed sampling is hardware-dependent.",
+  "pool": "sparring/competitors/from_data_patterns/latest-pool.txt"
+}

@@ -1,0 +1,17 @@
+{
+  "timing": {
+    "cpu": 11.872656521969475,
+    "cuda": 12.854015334043652
+  },
+  "mean_game_seconds": {
+    "cpu": 1.0936083333333333,
+    "cuda": 0.9837666666666666
+  },
+  "projected_20000_game_seconds": {
+    "cpu": 1823.6171287441919,
+    "cuda": 1642.627459778488
+  },
+  "device": "cuda",
+  "workers": 12,
+  "selection": "Amortize measured per-game worker time over 20,000 executions, retaining observed startup/tail overhead. Projection is approximate."
+}

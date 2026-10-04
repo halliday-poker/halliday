@@ -7,6 +7,7 @@ from hashlib import sha256
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import sys
 
@@ -75,6 +76,10 @@ def report(run, output):
     backend = json.loads((run/'backend-selection.json').read_text())
     snapshot = json.loads((run/'fit/snapshot-manifest.json').read_text())
     tables = paired_tables(simulation)
+    if simulation['compute']['device'] == 'cuda':
+        usage = simulation['compute']['gpu_usage']
+        assert set(usage) == {'cuda:0','cuda:1','cuda:2','cuda:3'}
+        assert all(v['ranked_hands'] > 0 for v in usage.values())
     assert len(simulation['games']) == len(audits['games']) == 20000
     assert sum(t['games'] for t in tables) == 10000
     interval = paired_interval(tables)
@@ -151,8 +156,34 @@ def report(run, output):
                                 tables=len(cohort), interval=paired_interval(cohort)))
     plot(output/stem, tables, interval, summaries, streets)
     baseline, candidate = summaries
+    placement = simulation['summary']
+    round_delta, round_half = placement[1]['vs_baseline']['d_round_pts']
+    cpu_check = json.loads((run/'cpu-check.json').read_text()) if (run/'cpu-check.json').exists() else None
+    test_log = (run/'selected-tests.log').read_text()
+    assert test_log.rstrip().endswith('OK')
+    test_count = int(re.search(r'Ran (\d+) tests', test_log).group(1))
+    elapsed = json.loads((run/'simulate-execution.json').read_text())['wall_seconds']
+    cpu_note = ('The separate CPU check played 120 games with no player failures; maximum candidate bank use was '
+                f"{cpu_check['summary'][0]['bank_pct']:.2f}% and maximum action time was {cpu_check['summary'][0]['max_ms']:.2f} ms."
+                if cpu_check else 'The final comparison used CPU clocks directly.')
+    if cpu_check:
+        assert len(cpu_check['games']) == 120
+        assert all(all(v == 'OK' for v in g['verdicts']) for g in cpu_check['games'])
     pct = lambda n, d: f'{100*n/d:.2f}%'
     ci = lambda i: f"{interval['point'][i]:+.2f} [{interval['low'][i]:+.2f}, {interval['high'][i]:+.2f}]"
+    terminal_folds = [sum(v['terminal_folds'] for v in s.values()) for s in streets]
+    terminal_calls = [sum(v['terminal_calls'] for v in s.values()) for s in streets]
+    street_rows = [
+        f"| {street.title()} | {pct(streets[0][street]['facing_folds'], streets[0][street]['faced_bet'])} | "
+        f"{pct(streets[1][street]['facing_folds'], streets[1][street]['faced_bet'])} |"
+        for street in ('preflop', 'flop', 'turn', 'river')]
+    flagged_streets = Counter((int(r['variant']), r['street'], r['classification']) for r in flag_rows)
+    flagged = lambda c, street, kind: flagged_streets[c, street, f'probable_{kind}_terminal_call']
+    flagged_street_rows = [
+        f"| {street.title()} | {flagged(0,street,'missed'):,} | {flagged(1,street,'missed'):,} | "
+        f"{flagged(0,street,'bad'):,} | {flagged(1,street,'bad'):,} |"
+        for street in ('preflop', 'flop', 'turn', 'river')]
+    pilot = selection['pilot_chips']
     lines = ['# Call calibration: main versus corrected bot — 4 October 2026', '',
         f"The held-out comparison played **10,000 games per version** (2,000,000 hands total) against {len(fit['bots'])-1} refreshed opponent replicas. "
         f"The corrected bot changed return by **{ci(2)} bb/100** (paired 95% table-bootstrap interval).", '',
@@ -163,11 +194,20 @@ def report(run, output):
         f'| bb/100 [95% interval] | {ci(0)} | {ci(1)} |',
         f"| Folds / hands | {pct(baseline['folds'],baseline['hands'])} | {pct(candidate['folds'],candidate['hands'])} |",
         f"| Negative games | {baseline['negative_games']:,} | {candidate['negative_games']:,} |",
+        f"| Mean game placement points | {placement[0]['game_pts'][0]:.3f} | {placement[1]['game_pts'][0]:.3f} |",
+        f"| Mean duplicate-table placement points | {placement[0]['round_pts'][0]:.3f} | {placement[1]['round_pts'][0]:.3f} |",
+        f"| Duplicate tables won outright | {placement[0]['won_pct']:.2f}% | {placement[1]['won_pct']:.2f}% |",
         f"| Probable missed terminal calls | {baseline['missed_calls']:,} | {candidate['missed_calls']:,} |",
+        f"| Missed-call flags / terminal folds | {pct(baseline['missed_calls'], terminal_folds[0])} | {pct(candidate['missed_calls'], terminal_folds[1])} |",
         f"| Probable bad terminal calls | {baseline['bad_calls']:,} | {candidate['bad_calls']:,} |",
+        f"| Bad-call flags / terminal calls | {pct(baseline['bad_calls'], terminal_calls[0])} | {pct(candidate['bad_calls'], terminal_calls[1])} |",
         f"| Provably avoidable folds | {baseline['certain_folds']:,} | {candidate['certain_folds']:,} |",
         f"| All-in runout difference, chips | {baseline['allin_luck']:+,.1f} | {candidate['allin_luck']:+,.1f} |",
         '| Player failures | 0 | 0 |', '',
+        f"The paired change in duplicate-table placement points was {round_delta:+.4f}, with a 95% interval "
+        f"[{round_delta-round_half:+.4f}, {round_delta+round_half:+.4f}]. Points follow the tournament's rank and tie rules. "
+        'Placement means weight duplicate tables equally; chip return weights games equally. '
+        'This is a table-level comparison; it does not simulate four-round regrouping or establish a podium probability.', '',
         f'![Paired performance and decision diagnostics]({stem}-comparison.png)', '',
         '## Changes and selection', '',
         'Preflop: a tracked-range equity estimate can justify a hand outside QQ+/AK when calling ends all betting. '
@@ -176,15 +216,19 @@ def report(run, output):
         'The bound allocates a 1% error budget across sample counts; it permits calls but never a raise from a sparse estimate. '
         'This addresses the reviewed full-house fold after 104 winning samples without treating one or two winning samples as sufficient evidence.', '',
         f"The independent 500-game pilot compared main, these core fixes, and the fixes plus a tracked-range river call margin of 0.06 instead of 0.02. "
-        f"Pilot chip totals were {selection['pilot_chips']}; the predeclared selection rule chose {selection['selected']}. "
-        'The 10,000-game comparison used a different seed and did not select additional parameters.', '',
+        f"Pilot chip totals were {pilot['0']:+,} for main, {pilot['1']:+,} for the core fixes, and {pilot['2']:+,} with the tighter river margin; "
+        f"the predeclared selection rule chose `{selection['selected']}`. "
+        'The 10,000-game comparison used a different seed and did not select additional parameters. '
+        'It measures the combined policy change; it does not isolate each correction\'s contribution.', '',
         f"Sparse-estimate diagnostics: main {dict(fallbacks[0])}; corrected bot {dict(fallbacks[1])}. "
         'The regression test reproduces the earlier full-house failure. A rare event may not recur in this run.', '',
         '## Opponent refit and coverage', '',
         f"The frozen snapshot has {snapshot['rows']:,} records, {snapshot['matches_with_actions']:,} replays and {snapshot['metadata_matches']:,} metadata matches. "
         f"{len(snapshot['metadata_without_actions'])} metadata matches lack replays and are explicitly listed. "
         f"Coverage checks retained all {coverage['coverage']['actions']:,} newest-version actions, including {coverage['coverage']['validation_games']} upload games. "
-        'Every timestamped validation against house:call marks a new version regardless of verdict.', '',
+        'Every timestamped validation against house:call marks a new version regardless of verdict. Display names remain separate identities, as recorded in the input metadata.', '',
+        f"{sum(not name.startswith('house:') for name in fit['selection']['excluded'])} non-house identities lack a usable trusted upload boundary/data and remain excluded. "
+        'The exact reasons and identities are listed in upload-selection.json; they are not silently assigned a newest version.', '',
         'Sparse parameters borrow from earlier uploads at maximum weight 0.1^version_age × 2^(−upload_gap_hours/6), '
         f'only up to their effective support target. {sparse}/{len(parameters)} estimates remain below target. '
         'These targets and time discounts are modeling choices, not guarantees of replica accuracy. All newest observations retain weight one.', '',
@@ -203,18 +247,38 @@ def report(run, output):
         'Every terminal call/fold and heads-up postflop call/fold was audited. Probable terminal flags require agreement '
         'across tight/loose public-range models and the applicable wide-shover sensitivity, after a 95% Monte Carlo margin and a 2-chip threshold. '
         'Those margins exclude model error and have no multiple-testing correction; flags are review candidates, not known optimal-action labels.', '',
+        'Counts compare complete policies on the same initial deals. Changed actions can change later decisions and opponent learning, so the two versions need not encounter identical decision opportunities.', '',
+        '| Street | Main: fold when facing a bet | Corrected: fold when facing a bet |',
+        '| --- | ---: | ---: |', *street_rows, '',
+        '| Street | Main missed calls | Corrected missed calls | Main bad calls | Corrected bad calls |',
+        '| --- | ---: | ---: | ---: | ---: |', *flagged_street_rows, '',
+        f"The largest reduction in missed-call flags was preflop ({flagged(0,'preflop','missed'):,} to {flagged(1,'preflop','missed'):,}). "
+        f"On the river, bad-call flags fell from {flagged(0,'river','bad'):,} to {flagged(1,'river','bad'):,}, "
+        f"while missed-call flags rose from {flagged(0,'river','missed'):,} to {flagged(1,'river','missed'):,}. "
+        'The tighter river policy therefore merits further calibration. These are model-based counts of different encountered decisions, not a causal value estimate for each change.', '',
         f"Negative games with a terminal flag: main {baseline['negative_games_with_flags']:,}/{baseline['negative_games']:,}; "
         f"corrected {candidate['negative_games_with_flags']:,}/{candidate['negative_games']:,}. "
         'A losing game alone does not establish a strategic error. The all-in runout difference uses hidden cards retrospectively and does not remove all poker variance.', '',
         'The main remaining risks are miscalibrated opponent ranges, sparse/new submissions, and the tradeoff between reducing river overcalls and creating missed calls. '
         'The compressed audits retain street-level cases; the accompanying blunder CSV makes all probable/certain flags reviewable.', '',
+        '## SWOT', '',
+        f"- **Strengths:** the two reviewed terminal-call failures have regression coverage; all {len(simulation['games']):,} simulated games completed with legal actions and balanced payouts. "
+        + ('The held-out return interval supports an improvement against this replica field.' if interval['low'][2] > 0
+           else 'The paired study provides an explicit uncertainty interval for the return change.'),
+        f"- **Weaknesses:** the corrected policy still has {candidate['missed_calls']:,} probable missed terminal calls and "
+        f"{candidate['bad_calls']:,} probable bad terminal calls. Range calibration remains a source of error; these model-based flags require review.",
+        '- **Opportunities:** review the exported high-cost call/fold cases by street and opponent, then validate targeted range or sizing changes on a new held-out seed before accepting them.',
+        f"- **Threats:** {sparse}/{len(parameters)} fitted estimates remain below support targets, two newest submissions lack replays, and replicas cannot reproduce all hidden-state behavior. "
+        'Live upload changes, clock pressure and tournament regrouping can change performance.', '',
         '## Compute, verification and reproduction', '',
         f"Baseline main: `{plan['baseline']}`. The baseline snapshot contains identical strategy/parameters plus the same optional GPU batching hook. "
         'Fixed-sample CPU/CUDA parity passed 48 cases, and the fitted NumPy runtime matched its training models. '
         f"The 120-game backend check took {backend['timing']['cpu']:.2f}s on CPU versus {backend['timing']['cuda']:.2f}s on CUDA including startup. "
         f"Mean worker time per game was {backend['mean_game_seconds']['cpu']:.3f}s CPU versus {backend['mean_game_seconds']['cuda']:.3f}s CUDA. "
         f"Amortizing that measured work over the complete study selected {backend['workers']} {backend['device']} workers; this is an approximate throughput projection. "
-        'All four V100s performed fitting and the separate action audit. A separate 120-game CPU check is recorded when simulation uses CUDA.', '',
+        f"The final 20,000 executions took {elapsed/60:.2f} minutes. All four V100s performed simulation, fitting and the separate action audit. "
+        f"All {test_count} tests passed, including the reviewed-hand regression tests. A separate 120-game CPU check is recorded when simulation uses CUDA.", '',
+        cpu_note, '',
         f"Input actions SHA-256: `{fit['source_sha256']}`. Exact plans, model evidence, checks and code hashes accompany the report. "
         'Wall-clock sampling can change outcomes between reruns even with fixed seeds. Audits can replay the stored traces with fingerprint checks.', '',
         f'[Reproduction commands]({stem}-reproduce.md) · [Paired tables]({stem}-tables.csv) · '
@@ -232,6 +296,7 @@ def report(run, output):
     summary = dict(interval=interval, summaries=[dict(s) for s in summaries],
         classifications=[dict(s) for s in classifications], streets=streets, fallbacks=fallbacks,
         duplicate_tables=len(tables), prior_only_opponents=prior_only, cohorts=cohorts,
+        placement=placement, paired_placement_change=[round_delta,round_delta-round_half,round_delta+round_half],
         audit_devices=audits['devices'], audit_workers=audits['workers'], audit_gpu_work=gpu_work,
         audit_code_sha256=audits['code_sha256'], simulation_compute=simulation['compute'])
     (evidence/'comparison-summary.json').write_text(json.dumps(summary, indent=2)+'\n')
