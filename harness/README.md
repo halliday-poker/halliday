@@ -82,6 +82,33 @@ stickiness, size`, plus an `adaptive` flag that adjusts to opponents' aggression
 
 ## Reading the output
 
+### Refitted opponents and GPU workers
+
+The `competitor:` specs in `sparring/competitors/from_data_groups/latest-pool.txt`
+load named JSON parameter records through one shared implementation. Use `--pool`
+to select that field. Generated Python per opponent is unnecessary.
+
+```sh
+python harness/eval.py run bot --no-league --no-extend --games 10000 \
+  --deals 100 --sizes 4,5,5,6 \
+  --pool sparring/competitors/from_data_groups/latest-pool.txt \
+  --device auto --gpu-devices 0,1,2,3 --gpu-workers 8 --workers 16
+```
+
+`--games` is per candidate and preserves complete duplicate-seat sets. All
+candidates share tables, decks and seat rotations. `--device cpu` and
+`--device cuda` force a backend; `auto` checks CUDA availability and can fall
+back before games start. Benchmark both on a shared machine: GPU contexts and
+small batches can outweigh acceleration. GPU timing does not qualify a league
+promotion. The submitted bot uses CPU only.
+
+Use `--trace-dir PATH --resume` for audited experiments. A completed game is
+reused only when its source hashes, seed, opponents and settings match. Changing
+a frozen bot, catalogue or harness invalidates its traces. The four-policy
+[opponent-group study](../analysis/reports/opponent-groups-20261004-reproduce.md)
+includes explicit throughput selection, restricted-process checks and a
+separate decision audit using all four GPUs.
+
 | Column | Meaning |
 |---|---|
 | mbb/hand | Chip winnings per hand in milli big blinds, +- 95% CI over tables. Main metric, lowest noise. |
