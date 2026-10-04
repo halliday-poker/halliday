@@ -1,0 +1,13 @@
+test_constant_paired_effect_and_game_weighting (test_main_calibration_comparison.ArchivedControlTests.test_constant_paired_effect_and_game_weighting) ... ok
+test_different_seed_rejected (test_main_calibration_comparison.ArchivedControlTests.test_different_seed_rejected) ... ok
+test_duplicate_game_rejected (test_main_calibration_comparison.ArchivedControlTests.test_duplicate_game_rejected) ... ok
+test_failure_or_non_zero_sum_rejected (test_main_calibration_comparison.ArchivedControlTests.test_failure_or_non_zero_sum_rejected) ... ok
+test_missing_seat_rotation_rejected (test_main_calibration_comparison.ArchivedControlTests.test_missing_seat_rotation_rejected) ... ok
+test_reordered_opponents_rejected (test_main_calibration_comparison.ArchivedControlTests.test_reordered_opponents_rejected) ... ok
+test_tournament_placement_weights_tables_equally (test_main_calibration_comparison.ArchivedControlTests.test_tournament_placement_weights_tables_equally) ... ok
+test_unexpected_control_policy_rejected (test_main_calibration_comparison.ArchivedControlTests.test_unexpected_control_policy_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.012s
+
+OK

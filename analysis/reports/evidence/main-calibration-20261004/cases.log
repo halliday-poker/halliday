@@ -1,0 +1,28 @@
+{
+  "sparse_premium_fold": {
+    "id": "t000044-g2-c0:42:7",
+    "threshold": 0.31689883913764516,
+    "bot_equity": 0.15633347163856726,
+    "known_shover_seats": []
+  },
+  "river_range_fold": {
+    "id": "t001412-g3-c0:68:12",
+    "threshold": 0.4640399002493766,
+    "bot_equity": 0.4205729166666667,
+    "known_shover_seats": []
+  },
+  "uniform_river_call": {
+    "id": "t001602-g0-c0:98:13",
+    "threshold": 0.2914285714285714,
+    "bot_equity": 0.2955729166666667,
+    "known_shover_seats": [
+      1
+    ]
+  },
+  "tracked_river_call": {
+    "id": "t001454-g2-c0:83:11",
+    "threshold": 0.4565586034912718,
+    "bot_equity": 0.466796875,
+    "known_shover_seats": []
+  }
+}

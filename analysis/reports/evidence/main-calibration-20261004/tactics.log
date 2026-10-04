@@ -1,0 +1,28 @@
+1000/10000 public-event reviews
+2000/10000 public-event reviews
+3000/10000 public-event reviews
+4000/10000 public-event reviews
+5000/10000 public-event reviews
+6000/10000 public-event reviews
+7000/10000 public-event reviews
+8000/10000 public-event reviews
+9000/10000 public-event reviews
+10000/10000 public-event reviews
+{
+  "pure_air_overbets": 5174,
+  "pure_air_overbets_folded_to": 4165,
+  "additional_small_blind_opens": 18337,
+  "additional_small_blind_open_chips": -1900,
+  "additional_small_blind_fold_benchmark": -18337,
+  "additional_wide_threebet_calls": 4776,
+  "wide_threebet_call_chips": 29508,
+  "wide_threebet_calls_at_four_chances": 229,
+  "air_overbets_below_immediate_breakeven_estimate": 535,
+  "below_gate_folded_to": 391,
+  "preflop_shove_calls_with_players_behind": 1682,
+  "preflop_shove_calls_behind_chips": 125976,
+  "pure_air_distinct_hands": 5037,
+  "pure_air_distinct_hand_chips": 24882,
+  "below_gate_distinct_hands": 531,
+  "below_gate_distinct_hand_chips": 1297
+}

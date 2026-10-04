@@ -1,0 +1,13 @@
+{
+  "exit_code": 0,
+  "wall_seconds": 1.7585762080270797,
+  "command": [
+    "/mnt/ssd/halliday2/.venv-estimators/bin/python",
+    "-B",
+    "-u",
+    "analysis/review_main_tactics.py",
+    "--directory",
+    "/mnt/ssd/halliday2/analysis/results/main-calibration-20261004",
+    "--cases"
+  ]
+}

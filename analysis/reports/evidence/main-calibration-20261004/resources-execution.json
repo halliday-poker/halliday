@@ -1,0 +1,15 @@
+{
+  "exit_code": 0,
+  "wall_seconds": 7.704043800011277,
+  "command": [
+    "/mnt/ssd/halliday2/.venv-estimators/bin/python",
+    "-B",
+    "-u",
+    "harness/resource_check.py",
+    "snapshots/main_a707565_calibration_study",
+    "--repeats",
+    "2",
+    "--output",
+    "/mnt/ssd/halliday2/analysis/results/main-calibration-20261004/resources.json"
+  ]
+}

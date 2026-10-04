@@ -1,0 +1,892 @@
+{
+  "sparse_premium_fold": {
+    "decision": {
+      "id": "t000044-g2-c0:42:7",
+      "hand": 42,
+      "action_index": 7,
+      "street": "preflop",
+      "action": "fold",
+      "amount": 0,
+      "seat": 4,
+      "hole": [
+        "Ks",
+        "Kh"
+      ],
+      "board": [],
+      "pot": 430,
+      "call": 173,
+      "pot_odds": 0.28689883913764513,
+      "terminal_call": true,
+      "invested": 27,
+      "hand_chips": -27,
+      "match_chips": -355,
+      "made_category": "preflop",
+      "top_pair": false,
+      "draw": false,
+      "oracle": {
+        "equity": 0.6159261067708333,
+        "call_ev": 198.4034423828125,
+        "ev_se": 4.554726613702083,
+        "samples": 4096,
+        "exact": false,
+        "eligible_pot": 603
+      },
+      "public": {
+        "tight": {
+          "equity": 0.5914713541666667,
+          "call_ev": 183.6572265625,
+          "ev_se": 3.2398609798198987,
+          "samples": 8192,
+          "exact": false,
+          "eligible_pot": 603
+        },
+        "loose": {
+          "equity": 0.6133829752604166,
+          "call_ev": 196.86993408203125,
+          "ev_se": 3.225454966169452,
+          "samples": 8192,
+          "exact": false,
+          "eligible_pot": 603
+        }
+      },
+      "hindsight_final_equity": 0.0,
+      "guaranteed_profitable_call": false,
+      "classification": "probable_missed_terminal_call",
+      "tags": [
+        "positive_hidden_card_checkdown_ev",
+        "hindsight_profitable_terminal_call"
+      ],
+      "reason": "All tested public-range models give call EV above +2 chips after their 95% Monte Carlo margin; no future betting is required.",
+      "public_ev_lower": 177.307099042053,
+      "public_ev_upper": 203.19182581572338,
+      "ev_audited": true,
+      "diagnostic": {
+        "elapsed_ms": 47.100987983867526,
+        "equity": 0.15633347163856726,
+        "ranged": true,
+        "groups": null,
+        "groups_available": null,
+        "estimate": {
+          "equity": 0.5217391304347826,
+          "samples": 46,
+          "attempts": 52,
+          "method": "monte_carlo",
+          "stop_reason": "time_budget",
+          "standard_error": 0.07446511639805872
+        }
+      },
+      "broad_shovers": [],
+      "prior_hands": 42,
+      "prior_preflop_shoves": {}
+    },
+    "view": {
+      "type": "act",
+      "hand": 42,
+      "seat": 4,
+      "street": "preflop",
+      "board": [],
+      "hole": [
+        "Ks",
+        "Kh"
+      ],
+      "pot": 430,
+      "to_call": 173,
+      "min_raise_to": 200,
+      "max_raise_to": 200,
+      "can_raise": false,
+      "stacks": [
+        0,
+        199,
+        198,
+        0,
+        173
+      ],
+      "street_bets": [
+        200,
+        1,
+        2,
+        200,
+        27
+      ],
+      "folded": [
+        false,
+        true,
+        true,
+        false,
+        false
+      ],
+      "button": 0,
+      "history": [
+        [
+          "preflop",
+          3,
+          "raise",
+          9
+        ],
+        [
+          "preflop",
+          4,
+          "raise",
+          27
+        ],
+        [
+          "preflop",
+          0,
+          "raise",
+          200
+        ],
+        [
+          "preflop",
+          1,
+          "fold",
+          0
+        ],
+        [
+          "preflop",
+          2,
+          "fold",
+          0
+        ],
+        [
+          "preflop",
+          3,
+          "call",
+          191
+        ]
+      ],
+      "players": [
+        1,
+        2,
+        3,
+        4,
+        0
+      ],
+      "clock_ms": 33558
+    },
+    "profiles": {
+      "0": {
+        "hands": 43,
+        "vpip": 21,
+        "threebet_chances": 17,
+        "pfr": 14,
+        "threebets": 7,
+        "faced": 10,
+        "raise": 2,
+        "call": 4,
+        "fold": 4,
+        "faced_us": 2,
+        "call_us": 1,
+        "raise_us": 1,
+        "shoves": 1
+      },
+      "3": {
+        "hands": 43,
+        "vpip": 21,
+        "threebet_chances": 11,
+        "pfr": 12,
+        "faced": 8,
+        "fold": 8,
+        "faced_us": 2,
+        "fold_us": 2
+      }
+    },
+    "known_shover_seats": [],
+    "price": 0.28689883913764513,
+    "call_margin": 0.03,
+    "call_threshold": 0.31689883913764516,
+    "source_scope": "Read frozen source formulas and replayed public counters; no equity simulation or bot action rerun."
+  },
+  "river_range_fold": {
+    "decision": {
+      "id": "t001412-g3-c0:68:12",
+      "hand": 68,
+      "action_index": 12,
+      "street": "river",
+      "action": "fold",
+      "amount": 0,
+      "seat": 3,
+      "hole": [
+        "Jh",
+        "Js"
+      ],
+      "board": [
+        "Td",
+        "Ah",
+        "8d",
+        "6h",
+        "Jc"
+      ],
+      "pot": 247,
+      "call": 154,
+      "pot_odds": 0.38403990024937656,
+      "terminal_call": true,
+      "invested": 46,
+      "hand_chips": -46,
+      "match_chips": 182,
+      "made_category": "trips",
+      "top_pair": false,
+      "draw": false,
+      "oracle": {
+        "equity": 1.0,
+        "call_ev": 247.0,
+        "ev_se": 0.0,
+        "samples": 1,
+        "exact": true,
+        "eligible_pot": 401
+      },
+      "public": {
+        "tight": {
+          "equity": 0.7244873046875,
+          "call_ev": 136.5194091796875,
+          "ev_se": 1.979530087908288,
+          "samples": 8192,
+          "exact": false,
+          "eligible_pot": 401
+        },
+        "loose": {
+          "equity": 0.64599609375,
+          "call_ev": 105.04443359375,
+          "ev_se": 2.1188239959398705,
+          "samples": 8192,
+          "exact": false,
+          "eligible_pot": 401
+        }
+      },
+      "hindsight_final_equity": 1.0,
+      "guaranteed_profitable_call": false,
+      "classification": "probable_missed_terminal_call",
+      "tags": [
+        "positive_hidden_card_checkdown_ev",
+        "hindsight_profitable_terminal_call",
+        "would_share_recorded_final_board_against_then_live_hands"
+      ],
+      "reason": "All tested public-range models give call EV above +2 chips after their 95% Monte Carlo margin; no future betting is required.",
+      "public_ev_lower": 100.89153856170785,
+      "public_ev_upper": 140.39928815198775,
+      "ev_audited": true,
+      "diagnostic": {
+        "elapsed_ms": 24.982379050925374,
+        "equity": 0.4205729166666667,
+        "ranged": true,
+        "groups": null,
+        "groups_available": null,
+        "estimate": {
+          "equity": 0.4205729166666667,
+          "samples": 768,
+          "attempts": 768,
+          "method": "monte_carlo",
+          "stop_reason": "iteration_limit",
+          "standard_error": 0.01782470556097014
+        }
+      },
+      "broad_shovers": [],
+      "prior_hands": 68,
+      "prior_preflop_shoves": {
+        "orcabot": 2,
+        "RiverForge": 1
+      }
+    },
+    "view": {
+      "type": "act",
+      "hand": 68,
+      "seat": 3,
+      "street": "river",
+      "board": [
+        "Td",
+        "Ah",
+        "8d",
+        "6h",
+        "Jc"
+      ],
+      "hole": [
+        "Jh",
+        "Js"
+      ],
+      "pot": 247,
+      "to_call": 154,
+      "min_raise_to": 154,
+      "max_raise_to": 154,
+      "can_raise": false,
+      "stacks": [
+        200,
+        199,
+        0,
+        154
+      ],
+      "street_bets": [
+        0,
+        0,
+        154,
+        0
+      ],
+      "folded": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "button": 0,
+      "history": [
+        [
+          "preflop",
+          3,
+          "raise",
+          5
+        ],
+        [
+          "preflop",
+          0,
+          "fold",
+          0
+        ],
+        [
+          "preflop",
+          1,
+          "fold",
+          0
+        ],
+        [
+          "preflop",
+          2,
+          "raise",
+          15
+        ],
+        [
+          "preflop",
+          3,
+          "call",
+          10
+        ],
+        [
+          "flop",
+          2,
+          "check",
+          0
+        ],
+        [
+          "flop",
+          3,
+          "check",
+          0
+        ],
+        [
+          "turn",
+          2,
+          "check",
+          0
+        ],
+        [
+          "turn",
+          3,
+          "raise",
+          31
+        ],
+        [
+          "turn",
+          2,
+          "call",
+          31
+        ],
+        [
+          "river",
+          2,
+          "raise",
+          154
+        ]
+      ],
+      "players": [
+        1,
+        2,
+        3,
+        0
+      ],
+      "clock_ms": 35866
+    },
+    "profiles": {
+      "2": {
+        "hands": 69,
+        "vpip": 31,
+        "threebet_chances": 34,
+        "faced": 14,
+        "fold": 10,
+        "pfr": 15,
+        "threebets": 6,
+        "shoves": 2,
+        "faced_us": 5,
+        "fold_us": 3,
+        "raise": 2,
+        "raise_us": 1,
+        "call": 2,
+        "call_us": 1
+      }
+    },
+    "known_shover_seats": [],
+    "price": 0.38403990024937656,
+    "call_margin": 0.08,
+    "call_threshold": 0.4640399002493766,
+    "source_scope": "Read frozen source formulas and replayed public counters; no equity simulation or bot action rerun."
+  },
+  "uniform_river_call": {
+    "decision": {
+      "id": "t001602-g0-c0:98:13",
+      "hand": 98,
+      "action_index": 13,
+      "street": "river",
+      "action": "call",
+      "amount": 88,
+      "seat": 2,
+      "hole": [
+        "Kd",
+        "Qd"
+      ],
+      "board": [
+        "8s",
+        "Ah",
+        "Th",
+        "4h",
+        "7c"
+      ],
+      "pot": 312,
+      "call": 88,
+      "pot_odds": 0.22,
+      "terminal_call": true,
+      "invested": 112,
+      "hand_chips": -200,
+      "match_chips": 17,
+      "made_category": "high card",
+      "top_pair": false,
+      "draw": false,
+      "oracle": {
+        "equity": 0.0,
+        "call_ev": -88.0,
+        "ev_se": 0.0,
+        "samples": 1,
+        "exact": true,
+        "eligible_pot": 400
+      },
+      "public": {
+        "tight": {
+          "equity": 0.00189208984375,
+          "call_ev": -87.2431640625,
+          "ev_se": 0.18087737946631535,
+          "samples": 8192,
+          "exact": false,
+          "eligible_pot": 400
+        },
+        "loose": {
+          "equity": 0.06134033203125,
+          "call_ev": -63.4638671875,
+          "ev_se": 1.0224567501951853,
+          "samples": 8192,
+          "exact": false,
+          "eligible_pot": 400
+        }
+      },
+      "hindsight_final_equity": 0.0,
+      "guaranteed_profitable_call": false,
+      "classification": "probable_bad_terminal_call",
+      "tags": [
+        "hindsight_negative_terminal_call"
+      ],
+      "reason": "All tested public-range models give call EV below -2 chips after their 95% Monte Carlo margin; folding would end further investment.",
+      "public_ev_lower": -87.59768372625398,
+      "public_ev_upper": -61.459851957117436,
+      "ev_audited": true,
+      "diagnostic": {
+        "elapsed_ms": 18.195424927398562,
+        "equity": 0.2955729166666667,
+        "ranged": false,
+        "groups": null,
+        "groups_available": null,
+        "estimate": {
+          "equity": 0.2955729166666667,
+          "samples": 768,
+          "attempts": 768,
+          "method": "monte_carlo",
+          "stop_reason": "iteration_limit",
+          "standard_error": 0.01642443422041921
+        }
+      },
+      "broad_shovers": [],
+      "prior_hands": 98,
+      "prior_preflop_shoves": {
+        "Jason_idea": 47
+      }
+    },
+    "view": {
+      "type": "act",
+      "hand": 98,
+      "seat": 2,
+      "street": "river",
+      "board": [
+        "8s",
+        "Ah",
+        "Th",
+        "4h",
+        "7c"
+      ],
+      "hole": [
+        "Kd",
+        "Qd"
+      ],
+      "pot": 312,
+      "to_call": 88,
+      "min_raise_to": 88,
+      "max_raise_to": 88,
+      "can_raise": false,
+      "stacks": [
+        200,
+        0,
+        88,
+        200,
+        200,
+        200
+      ],
+      "street_bets": [
+        0,
+        88,
+        0,
+        0,
+        0,
+        0
+      ],
+      "folded": [
+        true,
+        false,
+        false,
+        true,
+        true,
+        true
+      ],
+      "button": 0,
+      "history": [
+        [
+          "preflop",
+          3,
+          "fold",
+          0
+        ],
+        [
+          "preflop",
+          4,
+          "fold",
+          0
+        ],
+        [
+          "preflop",
+          5,
+          "fold",
+          0
+        ],
+        [
+          "preflop",
+          0,
+          "fold",
+          0
+        ],
+        [
+          "preflop",
+          1,
+          "raise",
+          6
+        ],
+        [
+          "preflop",
+          2,
+          "raise",
+          18
+        ],
+        [
+          "preflop",
+          1,
+          "call",
+          12
+        ],
+        [
+          "flop",
+          1,
+          "raise",
+          27
+        ],
+        [
+          "flop",
+          2,
+          "call",
+          27
+        ],
+        [
+          "turn",
+          1,
+          "raise",
+          67
+        ],
+        [
+          "turn",
+          2,
+          "call",
+          67
+        ],
+        [
+          "river",
+          1,
+          "raise",
+          88
+        ]
+      ],
+      "players": [
+        4,
+        5,
+        0,
+        1,
+        2,
+        3
+      ],
+      "clock_ms": 38432
+    },
+    "profiles": {
+      "1": {
+        "hands": 99,
+        "shoves": 47,
+        "vpip": 71,
+        "pfr": 68,
+        "threebet_chances": 38,
+        "threebets": 22,
+        "faced": 11,
+        "fold": 7,
+        "faced_us": 2,
+        "fold_us": 2,
+        "raise": 3,
+        "call": 1
+      }
+    },
+    "known_shover_seats": [
+      1
+    ],
+    "price": 0.22,
+    "call_margin": 0.07142857142857142,
+    "call_threshold": 0.2914285714285714,
+    "source_scope": "Read frozen source formulas and replayed public counters; no equity simulation or bot action rerun."
+  },
+  "tracked_river_call": {
+    "decision": {
+      "id": "t001454-g2-c0:83:11",
+      "hand": 83,
+      "action_index": 11,
+      "street": "river",
+      "action": "call",
+      "amount": 151,
+      "seat": 0,
+      "hole": [
+        "5d",
+        "5h"
+      ],
+      "board": [
+        "9h",
+        "8d",
+        "3h",
+        "9s",
+        "3s"
+      ],
+      "pot": 250,
+      "call": 151,
+      "pot_odds": 0.3765586034912718,
+      "terminal_call": true,
+      "invested": 49,
+      "hand_chips": -200,
+      "match_chips": 233,
+      "made_category": "two pair",
+      "top_pair": false,
+      "draw": false,
+      "oracle": {
+        "equity": 0.0,
+        "call_ev": -151.0,
+        "ev_se": 0.0,
+        "samples": 1,
+        "exact": true,
+        "eligible_pot": 401
+      },
+      "public": {
+        "tight": {
+          "equity": 0.0560302734375,
+          "call_ev": -128.5318603515625,
+          "ev_se": 1.016627040156243,
+          "samples": 8192,
+          "exact": false,
+          "eligible_pot": 401
+        },
+        "loose": {
+          "equity": 0.2275390625,
+          "call_ev": -59.7568359375,
+          "ev_se": 1.8543289984762008,
+          "samples": 8192,
+          "exact": false,
+          "eligible_pot": 401
+        }
+      },
+      "hindsight_final_equity": 0.0,
+      "guaranteed_profitable_call": false,
+      "classification": "probable_bad_terminal_call",
+      "tags": [
+        "hindsight_negative_terminal_call"
+      ],
+      "reason": "All tested public-range models give call EV below -2 chips after their 95% Monte Carlo margin; folding would end further investment.",
+      "public_ev_lower": -130.52444935026872,
+      "public_ev_upper": -56.12235110048665,
+      "ev_audited": true,
+      "diagnostic": {
+        "elapsed_ms": 25.58156196027994,
+        "equity": 0.466796875,
+        "ranged": true,
+        "groups": null,
+        "groups_available": null,
+        "estimate": {
+          "equity": 0.466796875,
+          "samples": 768,
+          "attempts": 768,
+          "method": "monte_carlo",
+          "stop_reason": "iteration_limit",
+          "standard_error": 0.017978728195373602
+        }
+      },
+      "broad_shovers": [],
+      "prior_hands": 83,
+      "prior_preflop_shoves": {
+        "MAC Projects Team Testing Bot 2": 6,
+        "Althaf Productions v1": 1
+      }
+    },
+    "view": {
+      "type": "act",
+      "hand": 83,
+      "seat": 0,
+      "street": "river",
+      "board": [
+        "9h",
+        "8d",
+        "3h",
+        "9s",
+        "3s"
+      ],
+      "hole": [
+        "5d",
+        "5h"
+      ],
+      "pot": 250,
+      "to_call": 151,
+      "min_raise_to": 151,
+      "max_raise_to": 151,
+      "can_raise": false,
+      "stacks": [
+        151,
+        199,
+        0,
+        200,
+        200
+      ],
+      "street_bets": [
+        0,
+        0,
+        151,
+        0,
+        0
+      ],
+      "folded": [
+        false,
+        true,
+        false,
+        true,
+        true
+      ],
+      "button": 0,
+      "history": [
+        [
+          "preflop",
+          3,
+          "fold",
+          0
+        ],
+        [
+          "preflop",
+          4,
+          "fold",
+          0
+        ],
+        [
+          "preflop",
+          0,
+          "raise",
+          5
+        ],
+        [
+          "preflop",
+          1,
+          "fold",
+          0
+        ],
+        [
+          "preflop",
+          2,
+          "call",
+          3
+        ],
+        [
+          "flop",
+          2,
+          "raise",
+          11
+        ],
+        [
+          "flop",
+          0,
+          "call",
+          11
+        ],
+        [
+          "turn",
+          2,
+          "raise",
+          33
+        ],
+        [
+          "turn",
+          0,
+          "call",
+          33
+        ],
+        [
+          "river",
+          2,
+          "raise",
+          151
+        ]
+      ],
+      "players": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "clock_ms": 37615
+    },
+    "profiles": {
+      "2": {
+        "hands": 84,
+        "threebet_chances": 34,
+        "vpip": 25,
+        "faced": 6,
+        "fold": 4,
+        "pfr": 17,
+        "threebets": 1,
+        "shoves": 1,
+        "raise": 1,
+        "call": 1
+      }
+    },
+    "known_shover_seats": [],
+    "price": 0.3765586034912718,
+    "call_margin": 0.08,
+    "call_threshold": 0.4565586034912718,
+    "source_scope": "Read frozen source formulas and replayed public counters; no equity simulation or bot action rerun."
+  }
+}

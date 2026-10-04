@@ -1,0 +1,35 @@
+{
+  "main_commit": "a7075657eb270dd5463ee02f8fdf144bdb1e5a60",
+  "baseline": "snapshots/main_a707565_calibration_study",
+  "files": {
+    "BASELINE.md": "472e8c0aa60d7eaff16b02c1261b27ca29c38bd360bae9ee25320a0baee66c5e",
+    "EQUITY_ENGINE.md": "c090c2448a43f553c40140f89794ae83229b010f0225def64ea7ca28c62e783c",
+    "FIELD_EXPLOITS.md": "763102db1dfd43eda43aef3eda8c6aa7b447e4f00aff6e4f5584aecbd564acc1",
+    "RANGES.md": "b1560aee5a3a92efc9413d79151b5cef0c67fb42faaa4731bf64b62d8fc31da7",
+    "README.md": "61ca40c7fed6f23b668ffe341c2f05680808b44618de298c6f1c47655230cb7f",
+    "engine.py": "509c547fabf83ef065482fe36dd13954cf19bc278fa40d85c761ea905c9e4d0d",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "79598273a914a2a97d2dda2ffff7e2f10c897f6f7ce4c5417dcd77a9bc52a8a4",
+    "opponents.py": "0645d13f6a28c9d3f8f8d60ac9ed3f7576cc71689ff2dd1c8a1e8e7e09a6c9d7",
+    "params.py": "a19af9da09ac52f84c82d689e6dd8c1c88d64ab0e6b17fe2806d8a320cd86bdc",
+    "preflop.py": "d01855b7dd676dc5ae392b80ca3945864254034d7144a47d9781f9d88536ca7f",
+    "ranges.py": "261c57a082504b26e189380c8755b8a68b719ae49c06715bb4d3cadf229b714d",
+    "strategy.py": "662dd98ca4b9ba1760dadd76bffd40736cd8f836990571d6a625f153364ed171"
+  },
+  "scope": "Exact bot tree from the supplied Git commit; no analysis-branch engine modifications.",
+  "runtime_files": {
+    "BASELINE.md": "472e8c0aa60d7eaff16b02c1261b27ca29c38bd360bae9ee25320a0baee66c5e",
+    "EQUITY_ENGINE.md": "c090c2448a43f553c40140f89794ae83229b010f0225def64ea7ca28c62e783c",
+    "FIELD_EXPLOITS.md": "763102db1dfd43eda43aef3eda8c6aa7b447e4f00aff6e4f5584aecbd564acc1",
+    "RANGES.md": "b1560aee5a3a92efc9413d79151b5cef0c67fb42faaa4731bf64b62d8fc31da7",
+    "README.md": "61ca40c7fed6f23b668ffe341c2f05680808b44618de298c6f1c47655230cb7f",
+    "engine.py": "509c547fabf83ef065482fe36dd13954cf19bc278fa40d85c761ea905c9e4d0d",
+    "hand_ranks.py": "3849ff6949558d6282369c187846b492be93ae77376662d0501dbc1432311413",
+    "main.py": "79598273a914a2a97d2dda2ffff7e2f10c897f6f7ce4c5417dcd77a9bc52a8a4",
+    "opponents.py": "0645d13f6a28c9d3f8f8d60ac9ed3f7576cc71689ff2dd1c8a1e8e7e09a6c9d7",
+    "params.py": "a19af9da09ac52f84c82d689e6dd8c1c88d64ab0e6b17fe2806d8a320cd86bdc",
+    "preflop.py": "d01855b7dd676dc5ae392b80ca3945864254034d7144a47d9781f9d88536ca7f",
+    "ranges.py": "261c57a082504b26e189380c8755b8a68b719ae49c06715bb4d3cadf229b714d",
+    "strategy.py": "662dd98ca4b9ba1760dadd76bffd40736cd8f836990571d6a625f153364ed171"
+  }
+}

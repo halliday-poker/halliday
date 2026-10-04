@@ -1,0 +1,7 @@
+cpu-resource-0-0 ['OK', 'OK', 'OK', 'OK', 'OK'] 2191.5 ms
+cpu-resource-0-1 ['OK', 'OK', 'OK', 'OK', 'OK'] 480.6 ms
+cpu-resource-0-2 ['OK', 'OK', 'OK', 'OK', 'OK', 'OK'] 724.3 ms
+cpu-resource-1-0 ['OK', 'OK', 'OK', 'OK', 'OK'] 2127.5 ms
+cpu-resource-1-1 ['OK', 'OK', 'OK', 'OK', 'OK'] 584.7 ms
+cpu-resource-1-2 ['OK', 'OK', 'OK', 'OK', 'OK', 'OK'] 420.4 ms
+PASS
