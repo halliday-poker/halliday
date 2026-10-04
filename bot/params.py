@@ -113,19 +113,19 @@ DEFAULT_PARAMS = MappingProxyType({
     "range_temper": 0.8,
     "range_floor": 0.03,
     "range_preflop_softness": 0.25,
-    "range_postflop_softness": 0.08,
+    "range_postflop_softness": 0.12,
     # Each further preflop re-raise range is this share of the previous one.
     "range_4bet_ratio": 0.5,
     # Share of strong hands that check or just call instead of raising.
-    "range_slowplay": 0.25,
+    "range_slowplay": 0.17,
     # Postflop priors before showdowns: strength (share of combos beaten,
     # 1 = nuts) where betting and calling become likely; raises over a bet
     # need range_raise_shift more; each extra half-pot of size adds
     # range_size_slope / 2. Draws count as range_draw_bonus stronger.
     "range_bet_cut": 0.60,
-    "range_call_cut": 0.35,
+    "range_call_cut": 0.60,
     "range_raise_shift": 0.15,
-    "range_size_slope": 0.15,
+    "range_size_slope": 0.30,
     "range_draw_bonus": 0.20,
     # Prior: hands below the betting cutoff bet range_bluff_floor times as
     # often as hands above it. Ladder bettors are 44% air on flop c-bets but
