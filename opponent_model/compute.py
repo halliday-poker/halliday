@@ -1,6 +1,15 @@
 """Explicit CUDA backend; no silent CPU fallback."""
 
+import os
 import torch
+
+
+def memory_limit_mib():
+    """Leave space for the CUDA context when a shared GPU has only 1 GiB free."""
+    value = int(os.environ.get('OPPONENT_CUDA_MEMORY_MIB', '512'))
+    if value <= 0:
+        raise ValueError('OPPONENT_CUDA_MEMORY_MIB must be positive')
+    return value
 
 
 class Compute:

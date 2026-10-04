@@ -19,7 +19,7 @@ import torch
 from torch import nn
 
 from .behavior import Network
-from .compute import Compute
+from .compute import Compute, memory_limit_mib
 from .data import COL, load_cache, load_dataset
 from .fit import BotModel
 from .validation import match_split
@@ -202,7 +202,7 @@ def select(directory):
 def refit_one(job):
     directory,mode,device,epochs=job;directory=Path(directory);began=time.monotonic()
     torch.set_num_threads(1);torch.cuda.set_device(device);torch.manual_seed(SEED)
-    torch.cuda.set_per_process_memory_fraction(768*2**20/torch.cuda.get_device_properties(device).total_memory,device)
+    torch.cuda.set_per_process_memory_fraction(memory_limit_mib()*2**20/torch.cuda.get_device_properties(device).total_memory,device)
     meta,data=read(directory);gpu=f'cuda:{device}'
     t={key:torch.as_tensor(data[key],device=gpu) for key in ('y','size_y','bot','legal')}
     t['x']=torch.as_tensor(design(data,mode),device=gpu);t['epoch']=torch.zeros(len(data['y']),dtype=torch.long,device=gpu)
@@ -243,7 +243,7 @@ def refit(directory):
     bots=sorted(set(data['bot'].tolist()));shards=[]
     with np.load(directory/'runtime-predictions-static.npz') as a:probability=a['probability']
     def shard(device):
-        torch.cuda.set_device(device);compute=Compute(f'cuda:{device}',batch_size=128,memory_limit_mib=768,seed=72861)
+        torch.cuda.set_device(device);compute=Compute(f'cuda:{device}',batch_size=128,memory_limit_mib=memory_limit_mib(),seed=72861)
         result={}
         for b in bots[device::4]:
             bot=meta['bots'][b];mask=(data['bot']==b)&data['primary']

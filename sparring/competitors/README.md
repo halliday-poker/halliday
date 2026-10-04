@@ -1,6 +1,6 @@
 # Opponents reconstructed from match data
 
-`from_data_patterns/` contains JSON catalogue records and two shared NumPy
+`from_data_groups/` contains JSON catalogue records and two shared NumPy
 policy files. The harness loads every competitor through `competitor_base.py`
 and the `sparring/param.py` scaffold; no Python file is generated per opponent.
 `profiles.json` records input hashes, upload boundaries, fit parameters,
@@ -31,15 +31,15 @@ source code or guaranteed live behavior.
 
 ```sh
 python sparring/competitors/build.py \
-  analysis/results/call-calibration-20261004-r2/fit/runtime-fit.json \
-  --runtime-patterns --destination sparring/competitors/from_data_patterns
+  analysis/results/opponent-groups-20261004/fit/runtime-fit.json \
+  --runtime-patterns --destination sparring/competitors/from_data_groups
 python harness/eval.py run bot --no-league \
-  --pool sparring/competitors/from_data_patterns/latest-pool.txt
+  --pool sparring/competitors/from_data_groups/latest-pool.txt
 ```
 
 The policy files must match the hashes in the fit report. Changing a catalogue
 invalidates existing simulation trace identities; use a separate checkout for
 different fitting experiments.
 
-See the [call-calibration report](../../analysis/reports/call-calibration-20261004.md)
-and [reproduction commands](../../analysis/reports/call-calibration-20261004-reproduce.md).
+See the [opponent-group report](../../analysis/reports/opponent-groups-20261004.md)
+and [reproduction commands](../../analysis/reports/opponent-groups-20261004-reproduce.md).

@@ -30,12 +30,12 @@ def main():
     p.add_argument('bot')
     p.add_argument('--repeats',type=int,default=3)
     p.add_argument('--output',required=True)
+    p.add_argument('--pool',default='sparring/competitors/from_data_groups/latest-pool.txt')
     args=p.parse_args()
     bot=harness.resolve_path(args.bot)
     lineups=[['house:call','house:random','sparring/station.py','sparring/tag.py'],
              ['house:allin','house:checkfold','sparring/maniac.py','sparring/nit.py'],
-             ['fitted:sparring/competitors/from_data/bots.json@'+name for name in
-              ('catherine','jongwon','tungbot','pocket_nuts','alo','lil_fruit','guaguanco_5')]]
+             [spec for spec,_ in harness.read_pool(Path(args.pool),[])][:5]]
     rows=[]
     cpu=min(os.sched_getaffinity(0))
     for repeat in range(args.repeats):

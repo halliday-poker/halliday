@@ -9,9 +9,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'vendor/macpoker-src'))
 sys.path.insert(0, str(ROOT))
 from macpoker import GameState
-from bot.main import MyBot
-from bot.preflop import terminal_call
-from bot.strategy import decide
+from harness import eval as harness
+# Both main-based and calibrated grouping branches retain these regression
+# fixtures, but only the calibrated snapshot should take the rescued calls.
+module=harness._cached_module(harness.resolve_path('snapshots/opponent_groups_full'))[0]
+MyBot,terminal_call,decide=module.MyBot,module.terminal_call,module.decide
 
 
 def jacks(**updates):
@@ -70,7 +72,7 @@ class PartialEquityTests(unittest.TestCase):
         estimate = SimpleNamespace(equity=equity, samples=samples, method='monte_carlo',
                                    stop_reason='time_budget')
         with patch.object(bot, 'opponent_ranges', return_value=[{('Ks', 'Kc'): 1}]), \
-             patch('bot.main.estimate_equity', return_value=estimate):
+             patch.object(module,'estimate_equity', return_value=estimate):
             action = bot.act(state)
         return bot, action
 

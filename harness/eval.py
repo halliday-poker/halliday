@@ -322,6 +322,8 @@ class TimedTransport(InProcessTransport):
             estimate=getattr(bot,'last_estimate',None)
             self.trace.append(dict(view=dict(view),elapsed_ms=ms,
                 equity=getattr(bot,'last_equity',None),ranged=getattr(bot,'last_ranged',None),
+                groups=getattr(bot,'last_groups',None),
+                groups_available=getattr(bot,'_groups_available',None),
                 estimate=None if estimate is None else {key:getattr(estimate,key,None) for key in
                     ('equity','samples','attempts','method','stop_reason','standard_error')}))
         return action, ms

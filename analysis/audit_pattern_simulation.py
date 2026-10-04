@@ -106,11 +106,11 @@ def broad_shovers(row):
             and (row['prior_preflop_shoves'].get(row['seats'][seat], 0)+1) >= max(3, .25*hands)]
 
 
-def fingerprint():
+def fingerprint(catalogue=None):
     paths = [Path(__file__), ROOT/'analysis/halliday_performance.py', ROOT/'analysis/halliday_report.py',
              ROOT/'bot/ranges.py', ROOT/'bot/params.py', ROOT/'bot/engine.py',
              ROOT/'vendor/macpoker-src/macpoker/evaluator.py', ROOT/'harness/gpu_equity.py',
-             ROOT/'harness/gpu_rank.cu', ROOT/'sparring/competitors/from_data_patterns/bots.json']
+             ROOT/'harness/gpu_rank.cu', catalogue or ROOT/'sparring/competitors/from_data_patterns/bots.json']
     return {p.relative_to(ROOT).as_posix(): sha256(p.read_bytes()).hexdigest() for p in paths}
 
 
@@ -220,6 +220,7 @@ def main():
     p.add_argument('--trace-subdir', default='traces')
     p.add_argument('--output-subdir', default='audit')
     p.add_argument('--limit', type=int)
+    p.add_argument('--catalogue',type=Path,default=ROOT/'sparring/competitors/from_data_patterns/bots.json')
     args = p.parse_args()
     run = args.directory
     paths = sorted((run/args.trace_subdir).glob('*.json.gz'))
@@ -231,7 +232,8 @@ def main():
     assert paths
     output = run/args.output_subdir
     output.mkdir(parents=True, exist_ok=True)
-    catalog = json.loads((ROOT/'sparring/competitors/from_data_patterns/bots.json').read_text())
+    catalogue=args.catalogue.resolve()
+    catalog = json.loads(catalogue.read_text())
     names_by_id = {key: b['name'] for key, b in catalog['bots'].items()}
     devices = [int(x) for x in args.devices.split(',')]
     ctx = mp.get_context('spawn')
@@ -239,7 +241,7 @@ def main():
     for i in range(args.workers):
         queue.put(devices[i % len(devices)])
     started = time.monotonic()
-    hashes = fingerprint()
+    hashes = fingerprint(catalogue)
     summaries = []
     with ProcessPoolExecutor(args.workers, mp_context=ctx, initializer=performance.worker_init,
                              initargs=(queue,)) as pool:

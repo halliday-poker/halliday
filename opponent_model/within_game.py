@@ -134,7 +134,8 @@ def train_one(job):
     directory = Path(directory); began = time.monotonic()
     torch.set_num_threads(1); torch.manual_seed(SEED); torch.cuda.set_device(device)
     total = torch.cuda.get_device_properties(device).total_memory
-    torch.cuda.set_per_process_memory_fraction(768*2**20/total, device)
+    from .compute import memory_limit_mib
+    torch.cuda.set_per_process_memory_fraction(memory_limit_mib()*2**20/total, device)
     meta, data = read(directory)
     gpu = torch.device(f'cuda:{device}')
     tensors = {key: torch.as_tensor(data[key], device=gpu) for key in ('y', 'size_y', 'bot', 'legal')}

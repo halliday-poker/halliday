@@ -89,7 +89,10 @@ def scaffold_fit(rows,hands,ages,compute,gap_hours=None):
     values=np.column_stack(draws)
     values[:,1]=np.minimum(values[:,1],values[:,0]);values[:,2]=np.minimum(values[:,2],values[:,1])
     estimates={p:dict(estimate=float(values[0,j]),confidence_interval=np.quantile(values[1:,j],[.025,.975]).tolist(),
+                     bootstrap_variance=float(np.var(values[1:,j],ddof=1)),
+                     bootstrap_std=float(np.std(values[1:,j],ddof=1)),
                      prior=evidence[p]) for j,p in enumerate(PARAMETERS)}
     style={p:(int(values[0,j]) if p=='adaptive' else float(values[0,j])) for j,p in enumerate(PARAMETERS)}
     return dict(surrogate_style=style,parameters=estimates,prior=evidence,
+        bootstrap_covariance=dict(parameters=list(PARAMETERS),matrix=np.cov(values[1:],rowvar=False).tolist(),draws=300),
         interval_scope='Whole-match bootstrap stratified by version, conditional on tenfold age decay and fixed support targets; joint preflop bounds enforced.')
