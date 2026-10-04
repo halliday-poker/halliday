@@ -20,7 +20,8 @@ Wiring: [main.py](main.py). Parameters: the `range_*` block in [params.py](param
      re-raise uses a smaller share. Calls and limps play the top VPIP share, minus some of
      the hands that would have raised. Checks keep some strong hands (slow-plays).
    - Postflop, bets need strength above a cutoff, which rises with bet size and for raises.
-     Weak hands still bet at the player's bluff floor. Calls need a lower cutoff.
+     Weak hands still bet at the player's bluff floor. Calls have their own cutoff, starting
+     from the same prior.
 3. **Equity is computed against the tracked ranges.** Ranges still close to uniform are
    passed as random cards. A proven shover's range always stays random cards, because the
    shover rule depends on that.
@@ -51,21 +52,22 @@ All live in `DEFAULT_PARAMS`. **Bold** marks the ones most worth tuning first.
 | **`range_temper`** | 0.8 | **Narrow ranges harder per action** (1 = full Bayesian update, 0 = actions mean nothing) |
 | **`range_floor`** | 0.03 | **Keep unlikely hands more alive**: the most any action can cut a combo (about 16x at the defaults) |
 | `range_preflop_softness` | 0.25 | Blur preflop cutoffs (ramp width as a share of the range) |
-| `range_postflop_softness` | 0.08 | Blur postflop cutoffs (in strength units) |
+| `range_postflop_softness` | 0.12 | Blur postflop cutoffs (in strength units) |
 | `range_4bet_ratio` | 0.5 | Assume wider 4-bet / 5-bet ranges (each re-raise range vs the last) |
-| `range_slowplay` | 0.25 | Assume more strong hands check or just call |
+| `range_slowplay` | 0.17 | Assume more strong hands check or just call |
 | **`range_bet_cut`** | 0.60 | **Read bets as stronger** (prior, before showdowns) |
-| `range_call_cut` | 0.35 | Read calls as stronger |
+| `range_call_cut` | 0.60 | Read calls as stronger |
 | `range_raise_shift` | 0.15 | Read raises over a bet as stronger than bets |
-| `range_size_slope` | 0.15 | Make bet size matter more (overbets beyond 2x pot read as 2x) |
+| `range_size_slope` | 0.30 | Make bet size matter more (overbets beyond 2x pot read as 2x) |
 | `range_draw_bonus` | 0.20 | Treat draws as stronger hands when betting or calling |
 | **`range_bluff_floor`** | 0.30 | **Assume more bluffs** (prior: weak hands bet this often relative to strong ones; was 0.6 from the bugged "56% air" figure; big ladder turn/river bets are 12-15% air) |
+| `range_bluff_size_mult` | 3x up to 0.4 pot, 1x to 0.8, 0.55x to 1.3, 0.25x above | Assume more bluffs at that bet size (scales the bluff floor) |
 | `range_showdown_prior` | 6 | Learn from showdowns more slowly (the priors are worth this many shown samples) |
 | `range_showdown_weight_indirect` | 0.5 | Trust shown bets from earlier streets more |
 | `range_showdown_weight_passive` | 0.4 | Trust shown calls more |
 | `range_max_combos` | 400 | Pass more combos to the engine (more accurate, slower) |
 | `range_uniform_skip` | 0.90 | Use random cards for ranges that are this close to uniform (cheaper) |
-| **`range_call_margin_flop` / `_turn` / `_river`** | 0.03 / 0.03 / 0.02 | **Call less often against tracked ranges** |
+| **`range_call_margin_flop` / `_turn` / `_river`** | 0.03 / 0.03 / 0.06 | **Call less often against tracked ranges** |
 | `range_large_bet_margin` / `range_reraise_margin` | 0.02 / 0.03 | Extra caution against big bets / re-raises in range mode |
 | `range_preflop_call_margin` | 0.03 | Range-mode margin for the large-preflop-bet whitelist |
 
