@@ -186,7 +186,9 @@ def postflop_likelihood(kind, s, size, facing_raise, learned, p):
     raise_cut = bet_cut + p["range_raise_shift"]
     if kind == "raise":
         cut = min(0.98, (raise_cut if facing_raise else bet_cut) + shift)
-        return bluff_floor + (1 - bluff_floor) * _sig((s - cut) / soft)
+        # Small bets are bluffs far more often than big ones.
+        floor = min(1.0, bluff_floor * next(m for hi, m in p["range_bluff_size_mult"] if size <= hi))
+        return floor + (1 - floor) * _sig((s - cut) / soft)
     if kind == "call":
         floor = p["range_floor"]
         keep = 1 - (1 - p["range_slowplay"]) * _sig((s - raise_cut) / soft)

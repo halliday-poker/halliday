@@ -158,6 +158,25 @@ class PreflopTests(unittest.TestCase):
         self.assertEqual(decide(s, 0.55, shover).kind, "fold")  # someone else called
 
 
+class WideThreeBetCallTests(unittest.TestCase):
+    def threebet(self, hole):
+        # We open to 5 from seat 3; seat 5 3-bets to 15; the blinds fold.
+        return state(hole=hole, seat=3, pot=23, to_call=10, min_raise_to=25,
+                     street_bets=[0, 1, 2, 5, 0, 15],
+                     history=[["preflop", 3, "raise", 5], ["preflop", 4, "fold", 0],
+                              ["preflop", 5, "raise", 15], ["preflop", 0, "fold", 0],
+                              ["preflop", 1, "fold", 0], ["preflop", 2, "fold", 0]])
+
+    def test_calls_wider_against_a_frequent_threebettor(self):
+        s = self.threebet(["Ad", "Ts"])
+        self.assertEqual(decide(s, None).kind, "fold")
+        self.assertEqual(decide(s, None, {5: Counter(hands=10, threebet_chances=5, threebets=1)}).kind, "call")
+        self.assertEqual(decide(s, None, {5: Counter(hands=10, threebet_chances=5, threebets=0)}).kind, "fold")
+        self.assertEqual(decide(s, None, {5: Counter(hands=10, threebet_chances=3, threebets=3)}).kind, "fold")
+        self.assertEqual(decide(self.threebet(["9d", "4s"]), None,
+                                {5: Counter(hands=10, threebet_chances=5, threebets=3)}).kind, "fold")
+
+
 class OpponentTrackerTests(unittest.TestCase):
     def test_counts_shoves_and_responses_to_postflop_bets(self):
         t = OpponentTracker()

@@ -98,6 +98,15 @@ class Likelihoods(unittest.TestCase):
         self.assertGreater(small, large)
         self.assertGreater(small, raise_)
 
+    def test_bluff_floor_scales_with_bet_size(self):
+        # The field bluffs 55-60% of its bets up to 0.4 pot but ~10% above 1.3 pot.
+        learned = (P["range_bet_cut"], P["range_call_cut"], 0.3)
+        weak = lambda size: postflop_likelihood("raise", 0.1, size, False, learned, P)
+        self.assertAlmostEqual(weak(0.3), 0.9, delta=0.01)
+        self.assertAlmostEqual(weak(0.6), 0.3, delta=0.01)
+        self.assertAlmostEqual(weak(1.0), 0.165, delta=0.01)
+        self.assertAlmostEqual(weak(2.0), 0.075, delta=0.01)
+
     def test_checks_keep_slowplays(self):
         learned = (P["range_bet_cut"], P["range_call_cut"], 0.1)
         nuts = postflop_likelihood("check", 0.99, 0, False, learned, P)

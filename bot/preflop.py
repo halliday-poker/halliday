@@ -6,10 +6,10 @@ only widen calls against a proven shover.
 """
 
 if __package__:
-    from .opponents import is_shover, profile_of
+    from .opponents import frequent_threebettor, is_shover, profile_of
     from .params import margin
 else:
-    from opponents import is_shover, profile_of
+    from opponents import frequent_threebettor, is_shover, profile_of
     from params import margin
 
 RANKS = "23456789TJQKA"
@@ -56,6 +56,9 @@ OPEN_RANGES = {
     "small_blind": expand_range("22+,A2s+,K5s+,Q8s+,J8s+,T8s+,98s,87s,76s,65s,A5o+,K9o+,QTo+,JTo"),
     "heads_up": expand_range("22+,A2s+,K2s+,Q2s+,J4s+,T6s+,96s+,85s+,74s+,64s+,53s+,43s,A2o+,K2o+,Q7o+,J8o+,T8o+,98o,87o"),
 }
+# Facing a 3-bet over our open from a frequent 3-bettor (15%+ of chances),
+# callers with the top ~20% realise +10 to +21 bb (4-6 and 8 seats).
+CALL_THREE_BET_WIDE = expand_range("66+,A8s+,A5s,KTs+,QTs+,JTs,T9s,ATo+,KJo+,QJo")
 THREE_BET = expand_range("JJ+,AQs+,AKo")
 THREE_BET_LATE = expand_range("TT+,AJs+,KQs,AQo+")
 CALL_OPEN = expand_range("22+,ATs+,KJs+,QJs,JTs,T9s,AQo+")
@@ -182,5 +185,9 @@ def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
         if hand in FOUR_BET:
             return "raise", round(current * params["fourbet_multiplier"])
         if hand in CALL_THREE_BET and current <= bb * params["max_threebet_call_bb"]:
+            return "call", 0
+        if (params["wide_threebet_call"] and len(raises) == 2 and raises[0][1] == state.seat
+                and hand in CALL_THREE_BET_WIDE and current <= bb * params["max_threebet_call_bb"]
+                and frequent_threebettor(profile_of(state, raiser, opp_profiles), params)):
             return "call", 0
     return passive

@@ -70,6 +70,11 @@ DEFAULT_PARAMS = MappingProxyType({
     "limp_stab": True,
     # Open any two cards in the small blind when it is folded to us.
     "sb_steal_wide": True,
+    # Facing a 3-bet over our open, call CALL_THREE_BET_WIDE when the
+    # 3-bettor has 3-bet at least wide_call_min_rate of its chances.
+    "wide_threebet_call": True,
+    "wide_call_min_chances": 4,
+    "wide_call_min_rate": 0.15,
     # Size of every heads-up turn/river bet: value, barrels and stabs.
     "late_pot_fraction": 1.0,
     "barrel_bluffs": True,
@@ -127,6 +132,10 @@ DEFAULT_PARAMS = MappingProxyType({
     # 12-15% on big turn/river bets; replaying real river calls, 0.3 lifts
     # call EV from +0.19 to +0.36 pot (both halves). Showdowns update it.
     "range_bluff_floor": 0.30,
+    # The floor times this multiplier by bet size (up to each share of the
+    # pot): ladder bets at 4-6 seats are 55-60% bluffs up to 0.4 pot, 22-34%
+    # to 0.8, 14-22% to 1.3 and ~10% above (53k bets, both halves).
+    "range_bluff_size_mult": ((0.4, 3.0), (0.8, 1.0), (1.3, 0.55), (99.0, 0.25)),
     # Showdown learning: the priors above are worth range_showdown_prior
     # shown samples. A shown bet whose call ended the hand counts fully;
     # earlier bets that survived later streets count `indirect`, shown calls
