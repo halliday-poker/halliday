@@ -212,6 +212,8 @@ DEFAULT_PARAMS = MappingProxyType({
     # game's own swings per player.
     "endgame_enabled": False,
     "endgame_window": 30,
+    # Also reweigh bets, raises and shoves (by_points), not just calls.
+    "endgame_bets": True,
     "endgame_sigma": 27.0,
     "endgame_sigma_weight": 20,
     # A switch must gain this many expected points, both outright and over

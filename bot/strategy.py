@@ -215,7 +215,8 @@ def by_points(state, action, equity, opp_profiles, params, ranged, standings):
     Call/fold is already priced in points; this weighs check or call against
     the proposed bet, a pot-sized bet and all-in. Bolder actions than the
     proposal are only considered heads-up, where the fold estimate is ours."""
-    if not standings.active(state) or action.kind == "fold" or not state.can_raise:
+    if (not params["endgame_bets"] or not standings.active(state)
+            or action.kind == "fold" or not state.can_raise):
         return action
     villain = standings.favourite(state)
     if villain is None or state.stacks[villain] == 0:
