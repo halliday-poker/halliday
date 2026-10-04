@@ -17,11 +17,13 @@ from collections import Counter, defaultdict
 
 
 class OpponentTracker:
-    def __init__(self):
+    def __init__(self, big_raise=30):
         self.profiles = defaultdict(Counter)
+        self.big_raise = big_raise  # a preflop raise to this many chips or more
         self._start_stacks = []
         self._bets = []
         self._shoved = set()
+        self._big = set()
         self._me = None
         self._aggressor = None
         self._preflop_raises = 0
@@ -35,6 +37,7 @@ class OpponentTracker:
             self._start_stacks = list(stacks)
             self._bets = [0] * len(players)
             self._shoved = set()
+            self._big = set()
             self._me = info.get("seat")
             self._aggressor = None
             self._preflop_raises = 0
@@ -58,6 +61,9 @@ class OpponentTracker:
                         and player not in self._shoved):
                     self._shoved.add(player)
                     self.profiles[player]["shoves"] += 1
+                if kind == "raise" and amount >= self.big_raise and player not in self._big:
+                    self._big.add(player)
+                    self.profiles[player]["big_raises"] += 1
                 # Each stat counts at most once per player per hand. A 3-bet
                 # chance is acting when exactly one raise is in front.
                 if kind in ("call", "raise"):
@@ -114,6 +120,15 @@ def is_shover(profile, params):
         return False
     shoves = profile["shoves"]
     return shoves >= params["shover_min_shoves"] and shoves / profile["hands"] >= params["shover_min_rate"]
+
+
+def is_big_raiser(profile, params):
+    """Raises preflop to 15bb or more as often as a shover shoves, so its big
+    raises are near-random hands too."""
+    if not profile or profile["hands"] < params["shover_min_hands"]:
+        return False
+    big = profile["big_raises"]
+    return big >= params["shover_min_shoves"] and big / profile["hands"] >= params["shover_min_rate"]
 
 
 def is_station(profile, params):

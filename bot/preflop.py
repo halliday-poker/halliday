@@ -6,10 +6,10 @@ only widen calls against a proven shover.
 """
 
 if __package__:
-    from .opponents import frequent_threebettor, is_shover, profile_of
+    from .opponents import frequent_threebettor, is_big_raiser, is_shover, profile_of
     from .params import margin
 else:
-    from opponents import frequent_threebettor, is_shover, profile_of
+    from opponents import frequent_threebettor, is_big_raiser, is_shover, profile_of
     from params import margin
 
 RANKS = "23456789TJQKA"
@@ -148,25 +148,28 @@ def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
         if hand == "AA":
             return "raise", state.max_raise_to
         price = pot_odds(state)
-        # With tracked ranges and no future betting, the measured price can
-        # justify hands outside the default large-bet whitelist (e.g. JJ
-        # after a shove and two callers). Random-card estimates retain the
-        # original whitelist/shover safeguards.
-        if (params["terminal_range_calls"] and ranged and terminal_call(state)
+        # With tracked ranges, the measured price can justify hands outside
+        # the large-bet whitelist (e.g. JJ after a shove and two callers, or
+        # a wide hand against a 15bb raise from a loose raiser), even with
+        # betting still to come. Random-card estimates keep the whitelist
+        # and the shover/big-raiser safeguards.
+        if (params["terminal_range_calls"] and ranged
                 and equity is not None
                 and equity >= price + margin(params, "preflop_call_margin", ranged)):
             return "call", 0
         if hand in LARGE_CALL and equity is not None and equity >= price + margin(params, "preflop_call_margin", ranged):
             return "call", 0
-        # A proven shover's all-in is close to random cards, which is what
-        # the equity estimate assumes, so any hand beating the price calls.
+        # A proven shover's all-in, or a proven big raiser's 15bb+ raise, is
+        # close to random cards, which is what the equity estimate assumes,
+        # so any hand beating the price calls.
         # Not when someone else has already called the shove.
         shove = raises[-1]
         shover = shove[1]
         called = any(a[0] == "preflop" and a[2] == "call"
                      for a in state.history[state.history.index(shove) + 1:])
-        if (state.stacks[shover] == 0 and not called and equity is not None
-                and is_shover(profile_of(state, shover, opp_profiles), params)
+        prof = profile_of(state, shover, opp_profiles)
+        if (not called and equity is not None
+                and ((state.stacks[shover] == 0 and is_shover(prof, params)) or is_big_raiser(prof, params))
                 and equity >= price + params["shover_call_margin"]):
             in_pot = {a[1] for a in state.history if a[0] == "preflop" and a[2] in ("call", "raise")}
             behind = any(not f and s != state.seat and s not in in_pot for s, f in enumerate(state.folded))

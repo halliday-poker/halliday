@@ -9,14 +9,14 @@ from macpoker import Bot
 
 if __package__:
     from .engine import EquitySamplingError, EquityTimeout, estimate_equity
-    from .opponents import OpponentTracker, is_shover, profile_of
+    from .opponents import OpponentTracker, is_big_raiser, is_shover, profile_of
     from .params import DEFAULT_PARAMS
     from .preflop import terminal_call
     from .ranges import RangeTracker
     from .strategy import decide
 else:  # SDK loads main.py as a standalone module from the submission folder.
     from engine import EquitySamplingError, EquityTimeout, estimate_equity
-    from opponents import OpponentTracker, is_shover, profile_of
+    from opponents import OpponentTracker, is_big_raiser, is_shover, profile_of
     from params import DEFAULT_PARAMS
     from preflop import terminal_call
     from ranges import RangeTracker
@@ -27,7 +27,7 @@ class MyBot(Bot):
     def __init__(self):
         self.last_equity = None
         self.last_estimate = None
-        self.opponents = OpponentTracker()
+        self.opponents = OpponentTracker(DEFAULT_PARAMS["large_bet_bb"] * DEFAULT_PARAMS["big_blind"])
         self.ranges = RangeTracker(self.opponents.profiles, DEFAULT_PARAMS)
         self.last_ranged = False
 
@@ -60,8 +60,9 @@ class MyBot(Bot):
         except Exception:  # tracking is an enhancement; never let it cost the action
             return [None] * len(opponents)
         # A proven shover's range stays random cards: the shover rule's premise.
-        return [None if is_shover(profile_of(state, seat, self.opponents.profiles), p) else r
-                for seat, r in zip(opponents, ranges)]
+        profiles = [profile_of(state, seat, self.opponents.profiles) for seat in opponents]
+        return [None if is_shover(prof, p) or is_big_raiser(prof, p) else r
+                for prof, r in zip(profiles, ranges)]
 
     def act(self, state):
         self.last_equity = None

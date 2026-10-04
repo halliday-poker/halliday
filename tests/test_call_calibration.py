@@ -47,10 +47,12 @@ class TerminalCallTests(unittest.TestCase):
         self.assertEqual(decide(state, .400716, ranged=False).kind, 'fold')
         self.assertEqual(decide(state, None, ranged=True).kind, 'fold')
 
-    def test_wider_rule_requires_betting_to_end(self):
+    def test_range_call_also_applies_with_betting_to_come(self):
         state = jacks(stacks=[200, 200, 198, 200, 0, 200])
         self.assertFalse(terminal_call(state))
-        self.assertEqual(decide(state, .8, ranged=True).kind, 'fold')
+        self.assertEqual(decide(state, .8, ranged=True).kind, 'call')
+        self.assertEqual(decide(state, .26, ranged=True).kind, 'fold')
+        self.assertEqual(decide(state, .8, ranged=False).kind, 'fold')  # random cards: whitelist only
 
     def test_unanswered_action_is_not_terminal(self):
         state = jacks(stacks=[200, 0, 198, 200, 0, 200], street_bets=[0, 200, 2, 0, 200, 0])

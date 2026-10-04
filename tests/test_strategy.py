@@ -167,6 +167,19 @@ class PreflopTests(unittest.TestCase):
         s._m["hole"] = ["As", "Jd"]
         self.assertEqual(decide(s, 0.55, shover).kind, "call")
 
+    def test_proven_big_raiser_is_called_like_a_shover(self):
+        # Seat 3 raises to 30 (15bb, not all in) and everyone folds to us in the big blind.
+        folds = [["preflop", seat, "fold", 0] for seat in (4, 5, 0, 1)]
+        s = state(seat=2, hole=["Ks", "7d"], pot=33, to_call=28, min_raise_to=58,
+                  stacks=[200, 199, 198, 170, 200, 200], street_bets=[0, 1, 2, 30, 0, 0],
+                  folded=[True, True, False, False, True, True],
+                  history=[["preflop", 3, "raise", 30]] + folds)
+        raiser = {3: Counter(hands=10, big_raises=4)}
+        self.assertEqual(decide(s, 0.55, raiser).kind, "call")
+        self.assertEqual(decide(s, 0.40, raiser).kind, "fold")  # below price + margin
+        self.assertEqual(decide(s, 0.55).kind, "fold")  # unknown raiser: whitelist only
+        self.assertEqual(decide(s, 0.55, {3: Counter(hands=10, big_raises=2)}).kind, "fold")
+
 
 class WideThreeBetCallTests(unittest.TestCase):
     def threebet(self, hole):
@@ -201,6 +214,18 @@ class OpponentTrackerTests(unittest.TestCase):
         self.assertEqual((t.profiles[11]["faced"], t.profiles[11]["fold"]), (1, 1))
         self.assertEqual(t.profiles[12]["faced"], 0)  # bet into an unbet pot
         self.assertEqual(t.profiles[10]["hands"], 1)
+
+    def test_counts_big_preflop_raises_once_per_hand(self):
+        t = OpponentTracker(big_raise=30)
+        players = [10, 11, 12]
+        t.on_hand_start({"players": players, "stacks": [200, 200, 200]})
+        for seat, amount in ((0, 30), (1, 90), (0, 200)):
+            t.on_action({"seat": seat, "street": "preflop", "action": "raise", "amount": amount, "players": players})
+        self.assertEqual((t.profiles[10]["big_raises"], t.profiles[10]["shoves"]), (1, 1))
+        self.assertEqual((t.profiles[11]["big_raises"], t.profiles[11]["shoves"]), (1, 0))
+        t.on_hand_start({"players": players, "stacks": [200, 200, 200]})
+        t.on_action({"seat": 2, "street": "preflop", "action": "raise", "amount": 29, "players": players})
+        self.assertEqual(t.profiles[12]["big_raises"], 0)
 
     def test_counts_responses_to_our_own_bets(self):
         t = OpponentTracker()
