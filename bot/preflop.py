@@ -67,6 +67,9 @@ BB_DEFEND = expand_range("22+,A2s+,K5s+,Q8s+,J8s+,T8s+,97s+,86s+,75s+,65s,54s,A8
 FOUR_BET = expand_range("KK+,AKs")
 CALL_THREE_BET = expand_range("TT+,AQs+,AKo")
 LARGE_CALL = expand_range("QQ+,AKs,AKo")
+# Calling a proven shover while players are still to act: someone behind
+# also calls 46-72% of the time, so only the top ~10% stays clearly +EV.
+SHOVE_CALL_BEHIND = expand_range("77+,A9s+,KTs+,QJs,AJo+,KQo")
 
 
 def position(state, seat=None):
@@ -165,7 +168,10 @@ def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
         if (state.stacks[shover] == 0 and not called and equity is not None
                 and is_shover(profile_of(state, shover, opp_profiles), params)
                 and equity >= price + params["shover_call_margin"]):
-            return "call", 0
+            in_pot = {a[1] for a in state.history if a[0] == "preflop" and a[2] in ("call", "raise")}
+            behind = any(not f and s != state.seat and s not in in_pot for s, f in enumerate(state.folded))
+            if not behind or hand in SHOVE_CALL_BEHIND:
+                return "call", 0
         return passive
 
     raiser = raises[-1][1]

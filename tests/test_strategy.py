@@ -157,6 +157,16 @@ class PreflopTests(unittest.TestCase):
         s._m["history"] = [["preflop", 3, "raise", 200], ["preflop", 4, "call", 200]]
         self.assertEqual(decide(s, 0.55, shover).kind, "fold")  # someone else called
 
+    def test_proven_shover_with_players_behind_is_called_only_with_top_hands(self):
+        # Someone behind also calls 46-72% of the time, so only the top ~10% calls.
+        s = state(seat=4, hole=["As", "5d"], pot=203, to_call=200, can_raise=False,
+                  stacks=[200, 199, 198, 0, 200, 200], street_bets=[0, 1, 2, 200, 0, 0],
+                  history=[["preflop", 3, "raise", 200]])
+        shover = {3: Counter(hands=10, shoves=4)}
+        self.assertEqual(decide(s, 0.55, shover).kind, "fold")
+        s._m["hole"] = ["As", "Jd"]
+        self.assertEqual(decide(s, 0.55, shover).kind, "call")
+
 
 class WideThreeBetCallTests(unittest.TestCase):
     def threebet(self, hole):
@@ -455,6 +465,16 @@ class BotIntegrationTests(unittest.TestCase):
         with patch("bot.main.estimate_equity", return_value=result) as estimate:
             bot.act(s)
             self.assertEqual(estimate.call_args.args[-2:], (192, 10))
+
+    def test_preflop_all_in_is_priced_against_players_in_the_pot(self):
+        # Seat 3 shoves; seats 5, 0, 1 and 2 are still to act and mostly fold.
+        s = state(seat=4, hole=["Ks", "Kh"], pot=203, to_call=200, can_raise=False,
+                  stacks=[200, 199, 198, 0, 200, 200], street_bets=[0, 1, 2, 200, 0, 0],
+                  history=[["preflop", 3, "raise", 200]])
+        result = SimpleNamespace(equity=0.7, method="monte_carlo", samples=768)
+        with patch("bot.main.estimate_equity", return_value=result) as estimate:
+            self.assertEqual(MyBot().act(s).kind, "call")
+            self.assertEqual(len(estimate.call_args.args[2]), 1)
 
     def test_public_seed_one_observation_no_mutation_or_global_randomness(self):
         bot, s = MyBot(), postflop()

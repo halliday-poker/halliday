@@ -82,6 +82,14 @@ class MyBot(Bot):
         if needs_equity and state.clock_ms >= p["skip_equity_clock_ms"]:
             opponents = [s for s, folded in enumerate(state.folded)
                          if s != state.seat and not folded]
+            # Facing a preflop all-in, players still to act mostly fold: price
+            # the call against those already in the pot, not as a multiway hand.
+            if not state.board:
+                pre = [a for a in state.history if a[0] == "preflop"]
+                raisers = [a[1] for a in pre if a[2] == "raise"]
+                if raisers and state.stacks[raisers[-1]] == 0:
+                    in_pot = {a[1] for a in pre if a[2] in ("call", "raise")}
+                    opponents = [s for s in opponents if s in in_pot] or opponents
             low = state.clock_ms < p["low_clock_ms"]
             iterations = p["low_clock_iters"] if low else p["equity_iters"]
             budget = p["low_clock_budget_ms"] if low else p["equity_budget_ms"]
