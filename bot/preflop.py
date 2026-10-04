@@ -56,10 +56,6 @@ OPEN_RANGES = {
     "small_blind": expand_range("22+,A2s+,K5s+,Q8s+,J8s+,T8s+,98s,87s,76s,65s,A5o+,K9o+,QTo+,JTo"),
     "heads_up": expand_range("22+,A2s+,K2s+,Q2s+,J4s+,T6s+,96s+,85s+,74s+,64s+,53s+,43s,A2o+,K2o+,Q7o+,J8o+,T8o+,98o,87o"),
 }
-# Folded to the small blind: field steals with hands outside the SB range
-# beat folding by ~1.1 bb at 4-6 seats and 0.55 at 8 (FIELD_EXPLOITS.md).
-SB_STEAL = expand_range("22+,A2s+,A2o+,K2s+,K2o+,Q2s+,Q5o+,J5s+,J7o+,T6s+,T8o+,96s+,98o,85s+,87o,"
-                        "74s+,76o,63s+,65o,53s+,54o,43s")
 THREE_BET = expand_range("JJ+,AQs+,AKo")
 THREE_BET_LATE = expand_range("TT+,AJs+,KQs,AQo+")
 CALL_OPEN = expand_range("22+,ATs+,KJs+,QJs,JTs,T9s,AQo+")
@@ -104,6 +100,25 @@ def pot_odds(state):
     return state.to_call / max(1, state.pot + state.to_call - excess)
 
 
+def terminal_call(state):
+    """Whether calling closes betting now and leaves no later betting round.
+
+    Reconstruct closure from public actions; an all-in hero alone is not
+    enough when opponents can still raise or owe a response.
+    """
+    if state.to_call <= 0:
+        return False
+    opponents = [s for s, folded in enumerate(state.folded)
+                 if s != state.seat and not folded]
+    current = max(state.street_bets)
+    acted = {a[1] for a in state.history if a[0] == state.street}
+    closes = all(state.stacks[s] == 0 or
+                 (state.street_bets[s] == current and s in acted) for s in opponents)
+    remaining = sum(state.stacks[s] > 0 for s in opponents)
+    remaining += state.my_stack > state.to_call
+    return closes and (len(state.board) == 5 or remaining <= 1)
+
+
 def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
     """Return (kind, desired raise-to) for the legal-action wrapper."""
     hand, pos = hand_class(state.hole), position(state)
@@ -114,8 +129,10 @@ def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
     if not raises:
         limpers = sum(a[0] == "preflop" and a[2] == "call" for a in state.history)
         opening = OPEN_RANGES["cutoff" if pos == "big_blind" else pos]
+        # Folded to the small blind: field steals beat folding even with the
+        # hands outside a ~60% range (+0.85 bb at 4-6 seats), so open any two.
         if pos == "small_blind" and not limpers and params["sb_steal_wide"]:
-            opening = SB_STEAL
+            return "raise", round(bb * params["open_bb"])
         if hand in opening:
             return "raise", round(bb * (params["open_bb"] + params["limper_bb"] * limpers))
         return passive
@@ -125,6 +142,14 @@ def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
         if hand == "AA":
             return "raise", state.max_raise_to
         price = pot_odds(state)
+        # With tracked ranges and no future betting, the measured price can
+        # justify hands outside the default large-bet whitelist (e.g. JJ
+        # after a shove and two callers). Random-card estimates retain the
+        # original whitelist/shover safeguards.
+        if (params["terminal_range_calls"] and ranged and terminal_call(state)
+                and equity is not None
+                and equity >= price + margin(params, "preflop_call_margin", ranged)):
+            return "call", 0
         if hand in LARGE_CALL and equity is not None and equity >= price + margin(params, "preflop_call_margin", ranged):
             return "call", 0
         # A proven shover's all-in is close to random cards, which is what

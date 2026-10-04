@@ -16,6 +16,7 @@ DEFAULT_PARAMS = MappingProxyType({
     "max_threebet_call_bb": 16,
     "large_bet_bb": 15,
     "preflop_call_margin": 0.06,
+    "terminal_range_calls": True,
     "value_threshold": 0.64,
     "multiway_value_margin": 0.04,
     "raise_threshold": 0.85,
@@ -56,11 +57,18 @@ DEFAULT_PARAMS = MappingProxyType({
     "bluff_min_fold_any": 0.35,
     # Bluff turn/river when we did not bet the previous street.
     "stab": True,
+    # Also stab out of position after calling their bet (43% folds: off).
+    "stab_oop_after_call": False,
+    # Bet in position when the preflop raiser checks the flop to us.
+    "float_bet": True,
+    # In-position air and draws bet this share of the pot on the flop and
+    # after a bet and call (1.0 = pot, like value).
+    "overbet_bluff_fraction": 1.4,
     # Turn barrel after a called heads-up flop c-bet (FIELD_EXPLOITS.md).
     "turn_barrel": True,
     # Bet pot on a heads-up limped flop with non-value hands (bluff gates apply).
     "limp_stab": True,
-    # Open the small blind wide (preflop.SB_STEAL) when it is folded to us.
+    # Open any two cards in the small blind when it is folded to us.
     "sb_steal_wide": True,
     # Size of every heads-up turn/river bet: value, barrels and stabs.
     "late_pot_fraction": 1.0,
@@ -71,6 +79,9 @@ DEFAULT_PARAMS = MappingProxyType({
     "equity_iters": 768,
     "equity_budget_ms": 35,
     "equity_min_samples": 128,
+    "partial_terminal_equity": True,
+    "partial_min_samples": 32,
+    "partial_equity_alpha": 0.01,
     "low_clock_ms": 5000,
     "low_clock_iters": 192,
     "low_clock_budget_ms": 10,
@@ -132,7 +143,7 @@ DEFAULT_PARAMS = MappingProxyType({
     # tracked ranges; the originals compensate for random-card equity.
     "range_call_margin_flop": 0.03,
     "range_call_margin_turn": 0.03,
-    "range_call_margin_river": 0.02,
+    "range_call_margin_river": 0.06,
     "range_large_bet_margin": 0.02,
     "range_reraise_margin": 0.03,
     "range_preflop_call_margin": 0.03,

@@ -3,6 +3,7 @@ and tracked opponent ranges (ranges.py)."""
 
 from hashlib import blake2b
 import json
+from math import isfinite, log, sqrt
 
 from macpoker import Bot
 
@@ -10,12 +11,14 @@ if __package__:
     from .engine import EquitySamplingError, EquityTimeout, estimate_equity
     from .opponents import OpponentTracker, is_shover, profile_of
     from .params import DEFAULT_PARAMS
+    from .preflop import terminal_call
     from .ranges import RangeTracker
     from .strategy import decide
 else:  # SDK loads main.py as a standalone module from the submission folder.
     from engine import EquitySamplingError, EquityTimeout, estimate_equity
     from opponents import OpponentTracker, is_shover, profile_of
     from params import DEFAULT_PARAMS
+    from preflop import terminal_call
     from ranges import RangeTracker
     from strategy import decide
 
@@ -101,6 +104,21 @@ class MyBot(Bot):
                 if result.method == "exact" or result.samples >= p["equity_min_samples"]:
                     self.last_equity = result.equity
                     self.last_ranged = ranged
+                elif (p["partial_terminal_equity"] and terminal_call(state)
+                      and result.samples >= p["partial_min_samples"]
+                      and isfinite(result.equity)):
+                    # A bound for fractional showdown share in [0, 1]. Use
+                    # alpha/(n*(n+1)) at each sample count, so the union bound
+                    # remains conservative when the clock chooses when to stop.
+                    n = result.samples
+                    radius = sqrt(log(n * (n + 1) / p["partial_equity_alpha"]) / (2 * n))
+                    self.last_equity = max(0.0, result.equity - radius)
+                    self.last_ranged = ranged
+                    # A sparse estimate may rescue a call, never justify a
+                    # raise. Existing street/range margins still apply.
+                    action = decide(state, self.last_equity, self.opponents.profiles,
+                                    params=p, ranged=ranged)
+                    return state.call() if action.kind in ("call", "raise") else action
             except (EquityTimeout, EquitySamplingError):
                 pass
         return decide(state, self.last_equity, self.opponents.profiles, params=p,
