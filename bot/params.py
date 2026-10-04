@@ -16,6 +16,7 @@ DEFAULT_PARAMS = MappingProxyType({
     "max_threebet_call_bb": 16,
     "large_bet_bb": 15,
     "preflop_call_margin": 0.06,
+    "terminal_range_calls": True,
     "value_threshold": 0.64,
     "multiway_value_margin": 0.04,
     "raise_threshold": 0.85,
@@ -56,12 +57,24 @@ DEFAULT_PARAMS = MappingProxyType({
     "bluff_min_fold_any": 0.35,
     # Bluff turn/river when we did not bet the previous street.
     "stab": True,
+    # Also stab out of position after calling their bet (43% folds: off).
+    "stab_oop_after_call": False,
+    # Bet in position when the preflop raiser checks the flop to us.
+    "float_bet": True,
+    # In-position air and draws bet this share of the pot on the flop and
+    # after a bet and call (1.0 = pot, like value).
+    "overbet_bluff_fraction": 1.4,
     # Turn barrel after a called heads-up flop c-bet (FIELD_EXPLOITS.md).
     "turn_barrel": True,
     # Bet pot on a heads-up limped flop with non-value hands (bluff gates apply).
     "limp_stab": True,
-    # Open the small blind wide (preflop.SB_STEAL) when it is folded to us.
+    # Open any two cards in the small blind when it is folded to us.
     "sb_steal_wide": True,
+    # Facing a 3-bet over our open, call CALL_THREE_BET_WIDE when the
+    # 3-bettor has 3-bet at least wide_call_min_rate of its chances.
+    "wide_threebet_call": True,
+    "wide_call_min_chances": 4,
+    "wide_call_min_rate": 0.15,
     # Size of every heads-up turn/river bet: value, barrels and stabs.
     "late_pot_fraction": 1.0,
     "barrel_bluffs": True,
@@ -71,6 +84,9 @@ DEFAULT_PARAMS = MappingProxyType({
     "equity_iters": 768,
     "equity_budget_ms": 35,
     "equity_min_samples": 128,
+    "partial_terminal_equity": True,
+    "partial_min_samples": 32,
+    "partial_equity_alpha": 0.01,
     "low_clock_ms": 5000,
     "low_clock_iters": 192,
     "low_clock_budget_ms": 10,
@@ -116,6 +132,10 @@ DEFAULT_PARAMS = MappingProxyType({
     # 12-15% on big turn/river bets; replaying real river calls, 0.3 lifts
     # call EV from +0.19 to +0.36 pot (both halves). Showdowns update it.
     "range_bluff_floor": 0.30,
+    # The floor times this multiplier by bet size (up to each share of the
+    # pot): ladder bets at 4-6 seats are 55-60% bluffs up to 0.4 pot, 22-34%
+    # to 0.8, 14-22% to 1.3 and ~10% above (53k bets, both halves).
+    "range_bluff_size_mult": ((0.4, 3.0), (0.8, 1.0), (1.3, 0.55), (99.0, 0.25)),
     # Showdown learning: the priors above are worth range_showdown_prior
     # shown samples. A shown bet whose call ended the hand counts fully;
     # earlier bets that survived later streets count `indirect`, shown calls
@@ -132,7 +152,7 @@ DEFAULT_PARAMS = MappingProxyType({
     # tracked ranges; the originals compensate for random-card equity.
     "range_call_margin_flop": 0.03,
     "range_call_margin_turn": 0.03,
-    "range_call_margin_river": 0.02,
+    "range_call_margin_river": 0.06,
     "range_large_bet_margin": 0.02,
     "range_reraise_margin": 0.03,
     "range_preflop_call_margin": 0.03,

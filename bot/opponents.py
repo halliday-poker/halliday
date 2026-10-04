@@ -124,6 +124,13 @@ def is_station(profile, params):
             and profile["raise"] / faced <= params["station_max_raise"])
 
 
+def frequent_threebettor(profile, params):
+    """3-bets at least wide_call_min_rate of its chances this game, enough seen."""
+    if not profile or profile["threebet_chances"] < params["wide_call_min_chances"]:
+        return False
+    return profile["threebets"] / profile["threebet_chances"] >= params["wide_call_min_rate"]
+
+
 def fold_to_any(profile, params):
     """This game's fold rate to anyone's postflop bets, once there are enough."""
     if not profile or profile["faced"] < params["bluff_any_min_faced"]:

@@ -123,8 +123,10 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
     # folds ~78% to a pot bet here, but only ~half once it called our last bet.
     prev = {"turn": "flop", "river": "turn"}.get(street)
     prev_bettors = [a[1] for a in state.history if a[0] == prev and a[2] == "raise"]
+    # Out of position after calling their bet, a lead gets only 43% folds.
     stab_spot = (params["stab"] and villain is not None and prev is not None
-                 and state.seat not in prev_bettors)
+                 and state.seat not in prev_bettors
+                 and (not prev_bettors or params["stab_oop_after_call"] or in_position(state, villain)))
     # Heads-up turn/river bets are pot-sized, value and bluffs alike: the
     # field pays off big value bets (bettor EV rises with size up to pot).
     late_hu = villain is not None and street != "flop"
@@ -152,20 +154,31 @@ def decide(state, equity, opp_profiles=None, params=DEFAULT_PARAMS, ranged=False
         # c-bet still gets 65% folds (4-6 seats; 58% at 8).
         air_ok = villain is not None and in_position(state, villain)
         cbet_air_ok = air_ok or state.num_players <= params["oop_cbet_max_seats"]
+        # In position on the flop, or after a bet and call, the same responders
+        # fold 88-90% to a 1.4x pot bet but 71-83% to a pot bet (4-6 seats).
+        # Value keeps the pot size: the field does not read our sizes.
+        bluff_size = (params["overbet_bluff_fraction"]
+                      if air_ok and not own_pair and (street == "flop" or prev_bettors) else None)
         if can_bet and cbet_spot and not station and (made_or_draw or (bluff and cbet_air_ok)):
-            return bet(state, params["cbet_pot_fraction"])
-        # Barrel air and draws at the value size; weak pairs keep their
-        # showdown value and check.
+            return bet(state, bluff_size or params["cbet_pot_fraction"])
+        # Barrel air and draws (1.4x pot in position, else the value size);
+        # weak pairs keep their showdown value and check.
         if can_bet and barrel_spot and not station and bluff and (air_ok or made_or_draw) and (
                 params["barrel_weak_pairs"] if own_pair else params["barrel_bluffs"]):
-            return bet(state, params["late_pot_fraction"])
+            return bet(state, bluff_size or params["late_pot_fraction"])
         if can_bet and stab_spot and not own_pair and not station and bluff:
-            return bet(state, params["late_pot_fraction"])
+            return bet(state, bluff_size or params["late_pot_fraction"])
         # Heads-up limped flop: the field folds 87-89% to a pot bet when
         # checked to and 67-69% when we act first.
         limp_spot = params["limp_stab"] and villain is not None and street == "flop" and aggressor is None
         if can_bet and limp_spot and not station and bluff:
             return bet(state, params["cbet_pot_fraction"])
+        # Their preflop raise, checked to us on the flop in position: 76% folds
+        # to a pot bet at 4-6 seats (62% at 8). Pairs check, as in the stab.
+        float_spot = (params["float_bet"] and villain is not None and street == "flop"
+                      and aggressor == villain and air_ok)
+        if can_bet and float_spot and not own_pair and not station and bluff:
+            return bet(state, bluff_size or params["cbet_pot_fraction"])
         # Against a station, only the modest c-bet with a pair or draw.
         if can_bet and cbet_spot and equity >= params["cbet_equity"] and made_or_draw:
             return bet(state, params["size_dry"])
