@@ -42,8 +42,10 @@ validation results.
 
 Games are scored by finishing position, not chips. Near the end of a game,
 `standings.py` turns this game's public chip totals (from `hand_end`) into
-expected game points and reprices calls, bets and shoves in points. Off by
-default (`endgame_enabled`); see [BASELINE.md](BASELINE.md#finishing-position-play-standingspy-off-by-default).
+expected game points and prices calls in points (bets and shoves can be
+included with `endgame_bets`, off: it cost chips). About +0.06 to +0.10
+round points with no measurable chip cost; see
+[BASELINE.md](BASELINE.md#finishing-position-play-standingspy).
 
 ## Person A: equity engine
 

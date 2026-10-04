@@ -96,7 +96,7 @@ opponent configurations and compare paired table-level intervals. Range-aware
 bet responses and proper side-pot EV are useful future comparisons to this baseline.
 
 
-## Finishing-position play (`standings.py`, off by default)
+## Finishing-position play (`standings.py`)
 
 A game is scored by finishing position at the table, not by chips: final
 chips rank the bots and 1st gets n points down to 1 for last. Game points
@@ -127,6 +127,21 @@ every bot in `hand_end`, mapped to this game's player ids, plus `num_hands`
 from `hello`. No names, identities, earlier games, hidden cards or deck
 information are used, and totals never enter any random seed. Any error
 falls back to the chip-EV action.
+
+**Shipped setting: calls only** (`endgame_bets: False`). Paired results,
+same tables and cards, versus the feature off:
+
+| Variant | Pool | Tables | d mbb/hand | d round points |
+|---|---|---|---|---|
+| Calls + bets, 30 hands | fitted | 400 | **-94 +- 26** | +0.04 +- 0.07 |
+| Calls + bets, 15 hands | fitted | 400 | **-43 +- 16** | +0.08 +- 0.06 |
+| **Calls only, 30 hands** | fitted | 400 | +3.5 +- 12 | +0.04 +- 0.04 |
+| **Calls only, 30 hands** | fitted | 800 | -4.9 +- 11 | **+0.06 +- 0.03** |
+| **Calls only, 30 hands** | drifting | 400 | -10 +- 24 | **+0.10 +- 0.05** |
+
+Reweighing bets wins 1st more often but checks away too much value: this
+bot usually leads its table. Repricing calls alone gains round points at
+no measurable chip cost.
 
 Evaluate with the round-points gate: `python harness/eval.py run bot --metric round_pts`
 passes when round points are significantly better and mbb is not

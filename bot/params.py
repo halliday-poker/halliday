@@ -210,10 +210,11 @@ DEFAULT_PARAMS = MappingProxyType({
     # from the public hand_end chip changes. sigma is the per-hand chip swing
     # (27 measured on the fitted pool), worth sigma_weight hands of this
     # game's own swings per player.
-    "endgame_enabled": False,
+    "endgame_enabled": True,
     "endgame_window": 30,
     # Also reweigh bets, raises and shoves (by_points), not just calls.
-    "endgame_bets": True,
+    # Off: it cost 43-94 mbb/hand on the fitted pool (BASELINE.md).
+    "endgame_bets": False,
     "endgame_sigma": 27.0,
     "endgame_sigma_weight": 20,
     # A switch must gain this many expected points, both outright and over

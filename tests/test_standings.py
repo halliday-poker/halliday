@@ -18,7 +18,7 @@ from bot.preflop import pot_odds
 from bot.standings import Standings
 from bot.strategy import by_points, decide
 
-PARAMS = dict(DEFAULT_PARAMS, endgame_enabled=True)
+PARAMS = dict(DEFAULT_PARAMS, endgame_enabled=True, endgame_bets=True)
 
 
 def standings(totals, hand, me=0, num_hands=100, params=PARAMS):
@@ -142,6 +142,15 @@ class DecisionTests(unittest.TestCase):
         state = river(5, to_call=0, street_bets=[0, 0, 0, 0], pot=80, stacks=[160, 160, 200, 200],
                       history=[["preflop", 1, "raise", 6]], min_raise_to=2, max_raise_to=160)
         self.assertEqual(by_points(state, shove, 0.75, caller, PARAMS, False, early), shove)
+
+    def test_bets_untouched_when_only_calls_are_repriced(self):
+        state = river(99, to_call=0, street_bets=[0, 0, 0, 0], pot=80, stacks=[160, 160, 200, 200],
+                      history=[["preflop", 1, "raise", 6]], min_raise_to=2, max_raise_to=160)
+        s = standings({0: 150, 1: 100, 2: 0, 3: -250}, hand=99)
+        caller = {1: {"faced_us": 12, "fold_us": 1, "faced": 12, "fold": 1}}
+        shove = state.raise_to(160)
+        calls_only = dict(PARAMS, endgame_bets=False)
+        self.assertEqual(by_points(state, shove, 0.75, caller, calls_only, False, s), shove)
 
     def test_failures_fall_back_to_chip_ev(self):
         class Broken(Standings):
