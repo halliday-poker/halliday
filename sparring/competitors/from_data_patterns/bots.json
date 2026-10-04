@@ -1,0 +1,2175 @@
+{
+  "schema_version": 1,
+  "bots": {
+    "allen_iverson": {
+      "name": "Allen Iverson",
+      "style": {
+        "vpip": 0.11,
+        "pfr": 0.11,
+        "threebet": 0.03,
+        "limp": 0.05,
+        "aggression": 0.5,
+        "cbet": 0.1,
+        "bluff": 0.2,
+        "stickiness": 0.9500000000000001,
+        "size": 0.775,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 0,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 0,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "gladiator": {
+      "name": "Gladiator",
+      "style": {
+        "vpip": 0.28,
+        "pfr": 0.21,
+        "threebet": 0.06,
+        "limp": 0.25,
+        "aggression": 0.5,
+        "cbet": 0.8,
+        "bluff": 0.30000000000000004,
+        "stickiness": 0.99,
+        "size": 0.615,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 5,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 5,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "invokerv2": {
+      "name": "Invokerv2",
+      "style": {
+        "vpip": 0.93,
+        "pfr": 0.93,
+        "threebet": 0.02,
+        "limp": 0.2,
+        "aggression": 1.0,
+        "cbet": 0.9500000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.07,
+        "size": 0.33999999999999997,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 10,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 10,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "mac_projects_team_testing_bot_3": {
+      "name": "MAC Projects Team Testing Bot 3",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.06,
+        "limp": 0.15000000000000002,
+        "aggression": 0.15000000000000002,
+        "cbet": 0.8500000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.2,
+        "size": 0.365,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 16,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 16,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "raiseyouredge": {
+      "name": "RaiseYourEdge",
+      "style": {
+        "vpip": 0.15,
+        "pfr": 0.15,
+        "threebet": 0.05,
+        "limp": 0.15000000000000002,
+        "aggression": 0.35000000000000003,
+        "cbet": 0.2,
+        "bluff": 0.55,
+        "stickiness": 0.17,
+        "size": 0.365,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 21,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.37417033314704895,
+          -0.007825219072401524,
+          0.009057593531906605,
+          -0.3754027485847473
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 21,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "thanos": {
+      "name": "Thanos",
+      "style": {
+        "vpip": 0.19,
+        "pfr": 0.19,
+        "threebet": 0.07,
+        "limp": 0.05,
+        "aggression": 0.5,
+        "cbet": 0.2,
+        "bluff": 0.35000000000000003,
+        "stickiness": 0.87,
+        "size": 0.665,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 25,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 25,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "best_bot": {
+      "name": "best-bot",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.05,
+        "limp": 0.15000000000000002,
+        "aggression": 0.5,
+        "cbet": 0.6000000000000001,
+        "bluff": 0.9,
+        "stickiness": 0.9,
+        "size": 0.905,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 32,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 32,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "finian_sucks": {
+      "name": "finian sucks",
+      "style": {
+        "vpip": 0.03,
+        "pfr": 0.01,
+        "threebet": 0.01,
+        "limp": 0.8500000000000001,
+        "aggression": 0.65,
+        "cbet": 0.0,
+        "bluff": 0.25,
+        "stickiness": 0.18,
+        "size": 0.5449999999999999,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 41,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 41,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "idc": {
+      "name": "idc",
+      "style": {
+        "vpip": 0.15,
+        "pfr": 0.15,
+        "threebet": 0.02,
+        "limp": 0.15000000000000002,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.55,
+        "bluff": 0.5,
+        "stickiness": 0.53,
+        "size": 1.1,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 52,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 52,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "larp_larp_sahur": {
+      "name": "larp larp sahur",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.03,
+        "limp": 0.2,
+        "aggression": 0.5,
+        "cbet": 0.2,
+        "bluff": 0.5,
+        "stickiness": 0.06,
+        "size": 0.88,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 57,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 57,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "merch_where": {
+      "name": "merch where",
+      "style": {
+        "vpip": 0.1,
+        "pfr": 0.1,
+        "threebet": 0.1,
+        "limp": 0.30000000000000004,
+        "aggression": 0.15000000000000002,
+        "cbet": 0.0,
+        "bluff": 0.9,
+        "stickiness": 0.37,
+        "size": 1.5,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 64,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 64,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "pocket_nuts": {
+      "name": "pocket-nuts",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.06,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.4,
+        "bluff": 0.75,
+        "stickiness": 0.37,
+        "size": 0.54,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 68,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 68,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "radishv2": {
+      "name": "radishv2",
+      "style": {
+        "vpip": 0.38,
+        "pfr": 0.38,
+        "threebet": 0.02,
+        "limp": 0.2,
+        "aggression": 0.05,
+        "cbet": 0.35000000000000003,
+        "bluff": 0.35000000000000003,
+        "stickiness": 0.43,
+        "size": 0.7150000000000001,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 76,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 76,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "testq": {
+      "name": "testQ",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.03,
+        "limp": 0.0,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.30000000000000004,
+        "bluff": 0.65,
+        "stickiness": 0.14,
+        "size": 0.75,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 82,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 82,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "tripi_tropi": {
+      "name": "tripi tropi",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.6000000000000001,
+        "bluff": 0.25,
+        "stickiness": 0.87,
+        "size": 0.745,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 86,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 86,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "yep": {
+      "name": "yep",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.05,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.65,
+        "bluff": 0.35000000000000003,
+        "stickiness": 0.24,
+        "size": 0.76,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 90,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 90,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "allen_iverson_2_0": {
+      "name": "Allen Iverson 2.0",
+      "style": {
+        "vpip": 0.1,
+        "pfr": 0.1,
+        "threebet": 0.03,
+        "limp": 0.0,
+        "aggression": 0.5,
+        "cbet": 0.05,
+        "bluff": 0.30000000000000004,
+        "stickiness": 1.0,
+        "size": 0.375,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 1,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 1,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "gladiator_v3": {
+      "name": "Gladiator_v3",
+      "style": {
+        "vpip": 0.52,
+        "pfr": 0.49,
+        "threebet": 0.02,
+        "limp": 0.5,
+        "aggression": 0.5,
+        "cbet": 0.45,
+        "bluff": 1.0,
+        "stickiness": 0.41000000000000003,
+        "size": 1.2149999999999999,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 6,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 6,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "jason_idea": {
+      "name": "Jason_idea",
+      "style": {
+        "vpip": 1.0,
+        "pfr": 1.0,
+        "threebet": 0.91,
+        "limp": 0.35000000000000003,
+        "aggression": 0.5,
+        "cbet": 0.2,
+        "bluff": 0.0,
+        "stickiness": 0.9500000000000001,
+        "size": 0.395,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 11,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 11,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "mcsmart_meal": {
+      "name": "McSmart Meal",
+      "style": {
+        "vpip": 0.6,
+        "pfr": 0.6,
+        "threebet": 0.03,
+        "limp": 0.2,
+        "aggression": 0.5,
+        "cbet": 0.5,
+        "bluff": 0.1,
+        "stickiness": 0.26,
+        "size": 0.64,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 17,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 17,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "riverforge": {
+      "name": "RiverForge",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.2,
+        "cbet": 0.1,
+        "bluff": 0.25,
+        "stickiness": 0.45,
+        "size": 0.47,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 22,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 22,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "tilted_towers_2": {
+      "name": "Tilted_Towers_2",
+      "style": {
+        "vpip": 0.13,
+        "pfr": 0.13,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.0,
+        "bluff": 0.25,
+        "stickiness": 1.0,
+        "size": 0.375,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 26,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 26,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "catherine": {
+      "name": "catherine",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.03,
+        "limp": 0.15000000000000002,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.65,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.4,
+        "size": 1.185,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 35,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 35,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "fold_a2": {
+      "name": "fold-a2",
+      "style": {
+        "vpip": 0.0,
+        "pfr": 0.0,
+        "threebet": 0.0,
+        "limp": 0.05,
+        "aggression": 0.0,
+        "cbet": 0.65,
+        "bluff": 0.0,
+        "stickiness": 1.0,
+        "size": 0.66,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 42,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 42,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "jongwon": {
+      "name": "jongwon",
+      "style": {
+        "vpip": 0.36,
+        "pfr": 0.36,
+        "threebet": 0.06,
+        "limp": 0.30000000000000004,
+        "aggression": 0.35000000000000003,
+        "cbet": 0.0,
+        "bluff": 1.0,
+        "stickiness": 0.45,
+        "size": 0.895,
+        "adaptive": 1
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 53,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 53,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "let_it_go": {
+      "name": "let it go",
+      "style": {
+        "vpip": 0.06,
+        "pfr": 0.0,
+        "threebet": 0.0,
+        "limp": 0.05,
+        "aggression": 0.2,
+        "cbet": 0.0,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.02,
+        "size": 0.435,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 58,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 58,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "netanyahu": {
+      "name": "netanyahu",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.5,
+        "bluff": 0.9500000000000001,
+        "stickiness": 0.21,
+        "size": 0.36,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 65,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 65,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "poke_bowl": {
+      "name": "poke-bowl",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.03,
+        "limp": 0.2,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.25,
+        "bluff": 0.35000000000000003,
+        "stickiness": 0.02,
+        "size": 0.8150000000000001,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 69,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 69,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "regrets": {
+      "name": "regrets",
+      "style": {
+        "vpip": 0.38,
+        "pfr": 0.38,
+        "threebet": 0.03,
+        "limp": 0.15000000000000002,
+        "aggression": 0.0,
+        "cbet": 0.05,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.02,
+        "size": 0.645,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 77,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 77,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "the_goon": {
+      "name": "the GOON",
+      "style": {
+        "vpip": 0.62,
+        "pfr": 0.39,
+        "threebet": 0.02,
+        "limp": 0.15000000000000002,
+        "aggression": 0.2,
+        "cbet": 0.4,
+        "bluff": 1.0,
+        "stickiness": 0.15,
+        "size": 0.935,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 83,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 83,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "tungbot": {
+      "name": "tungbot",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.09,
+        "limp": 0.15000000000000002,
+        "aggression": 0.15000000000000002,
+        "cbet": 0.55,
+        "bluff": 1.0,
+        "stickiness": 0.27,
+        "size": 0.36,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 87,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 87,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "zinger_box": {
+      "name": "zinger box",
+      "style": {
+        "vpip": 0.38,
+        "pfr": 0.38,
+        "threebet": 0.03,
+        "limp": 0.15000000000000002,
+        "aggression": 0.5,
+        "cbet": 0.5,
+        "bluff": 0.05,
+        "stickiness": 0.43,
+        "size": 0.645,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 91,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 91,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "althaf_productions_v1": {
+      "name": "Althaf Productions v1",
+      "style": {
+        "vpip": 0.13,
+        "pfr": 0.13,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.8500000000000001,
+        "cbet": 0.8500000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.17,
+        "size": 0.355,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 2,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 2,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "gladiators": {
+      "name": "Gladiators",
+      "style": {
+        "vpip": 0.52,
+        "pfr": 0.52,
+        "threebet": 0.02,
+        "limp": 0.5,
+        "aggression": 0.8500000000000001,
+        "cbet": 0.7000000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.47000000000000003,
+        "size": 1.1600000000000001,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 7,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 7,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "mac_projects_team_testing_bot": {
+      "name": "MAC Projects Team Testing Bot",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.04,
+        "limp": 0.15000000000000002,
+        "aggression": 0.15000000000000002,
+        "cbet": 0.6000000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.09,
+        "size": 0.365,
+        "adaptive": 1
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 14,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 14,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "messi": {
+      "name": "Messi",
+      "style": {
+        "vpip": 0.1,
+        "pfr": 0.01,
+        "threebet": 0.0,
+        "limp": 0.9500000000000001,
+        "aggression": 0.0,
+        "cbet": 0.4,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.0,
+        "size": 0.435,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 18,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 18,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "sus_bot": {
+      "name": "Sus bot",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.03,
+        "limp": 0.05,
+        "aggression": 0.2,
+        "cbet": 0.5,
+        "bluff": 0.8,
+        "stickiness": 0.33,
+        "size": 0.75,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 23,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 23,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "versatile_devourer": {
+      "name": "Versatile Devourer",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.22,
+        "threebet": 0.06,
+        "limp": 0.2,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.4,
+        "bluff": 0.45,
+        "stickiness": 0.11,
+        "size": 0.6000000000000001,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 28,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 28,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "dan_negreanu_on_ket": {
+      "name": "dan_negreanu_on_ket",
+      "style": {
+        "vpip": 0.26,
+        "pfr": 0.26,
+        "threebet": 0.07,
+        "limp": 0.1,
+        "aggression": 0.30000000000000004,
+        "cbet": 0.35000000000000003,
+        "bluff": 0.45,
+        "stickiness": 0.44,
+        "size": 0.605,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 36,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 36,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "fullhouse": {
+      "name": "fullhouse",
+      "style": {
+        "vpip": 0.11,
+        "pfr": 0.11,
+        "threebet": 0.03,
+        "limp": 0.65,
+        "aggression": 0.2,
+        "cbet": 0.7000000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.39,
+        "size": 1.375,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 44,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 44,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "krestrel": {
+      "name": "krestrel",
+      "style": {
+        "vpip": 0.39,
+        "pfr": 0.39,
+        "threebet": 0.07,
+        "limp": 0.4,
+        "aggression": 0.6000000000000001,
+        "cbet": 0.7000000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.02,
+        "size": 1.045,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 55,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 55,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "love_of_da_game": {
+      "name": "love-of-da-game",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.03,
+        "limp": 0.05,
+        "aggression": 0.05,
+        "cbet": 0.25,
+        "bluff": 0.75,
+        "stickiness": 0.19,
+        "size": 0.89,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 62,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 62,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "orcabot": {
+      "name": "orcabot",
+      "style": {
+        "vpip": 0.36,
+        "pfr": 0.33,
+        "threebet": 0.06,
+        "limp": 0.5,
+        "aggression": 0.5,
+        "cbet": 0.6000000000000001,
+        "bluff": 0.55,
+        "stickiness": 0.44,
+        "size": 1.46,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 66,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 66,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "polygamous_lavender_marriage": {
+      "name": "polygamous lavender marriage",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.2,
+        "cbet": 0.8,
+        "bluff": 0.8500000000000001,
+        "stickiness": 0.0,
+        "size": 0.5449999999999999,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 71,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 71,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "renbot": {
+      "name": "renbot",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 1.0,
+        "cbet": 1.0,
+        "bluff": 1.0,
+        "stickiness": 0.41000000000000003,
+        "size": 1.17,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 78,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 78,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "the_big_dog": {
+      "name": "the big dog",
+      "style": {
+        "vpip": 0.17,
+        "pfr": 0.17,
+        "threebet": 0.03,
+        "limp": 0.2,
+        "aggression": 0.5,
+        "cbet": 0.55,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.71,
+        "size": 0.745,
+        "adaptive": 1
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 84,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 84,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "tutududu": {
+      "name": "tutududu",
+      "style": {
+        "vpip": 0.18,
+        "pfr": 0.18,
+        "threebet": 0.04,
+        "limp": 0.0,
+        "aggression": 0.65,
+        "cbet": 0.7000000000000001,
+        "bluff": 0.4,
+        "stickiness": 1.0,
+        "size": 0.45,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 88,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 88,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "bigballer": {
+      "name": "BigBaller",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.07,
+        "limp": 0.1,
+        "aggression": 0.2,
+        "cbet": 0.0,
+        "bluff": 0.5,
+        "stickiness": 0.8,
+        "size": 0.605,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 4,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 4,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "halliday": {
+      "name": "Halliday",
+      "style": {
+        "vpip": 1.0,
+        "pfr": 0.39,
+        "threebet": 0.03,
+        "limp": 0.30000000000000004,
+        "aggression": 0.25,
+        "cbet": 0.75,
+        "bluff": 0.5,
+        "stickiness": 1.0,
+        "size": 0.93,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 8,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 8,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "mac_projects_team_testing_bot_2": {
+      "name": "MAC Projects Team Testing Bot 2",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.06,
+        "limp": 0.15000000000000002,
+        "aggression": 0.30000000000000004,
+        "cbet": 0.7000000000000001,
+        "bluff": 1.0,
+        "stickiness": 0.0,
+        "size": 0.36,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 15,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 15,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "phil_ivey_goat": {
+      "name": "Phil_Ivey_GOAT",
+      "style": {
+        "vpip": 0.07,
+        "pfr": 0.07,
+        "threebet": 0.01,
+        "limp": 0.05,
+        "aggression": 0.5,
+        "cbet": 0.0,
+        "bluff": 0.75,
+        "stickiness": 0.28,
+        "size": 0.7,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 20,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 20,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "tester67": {
+      "name": "Tester67",
+      "style": {
+        "vpip": 0.18,
+        "pfr": 0.18,
+        "threebet": 0.05,
+        "limp": 0.1,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.4,
+        "bluff": 0.35000000000000003,
+        "stickiness": 0.93,
+        "size": 0.645,
+        "adaptive": 1
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 24,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 24,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "axiom": {
+      "name": "axiom",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.06,
+        "limp": 0.2,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.1,
+        "bluff": 0.15000000000000002,
+        "stickiness": 0.31,
+        "size": 0.925,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 31,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 31,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "data": {
+      "name": "data",
+      "style": {
+        "vpip": 0.6,
+        "pfr": 0.6,
+        "threebet": 0.08,
+        "limp": 0.45,
+        "aggression": 0.65,
+        "cbet": 0.7000000000000001,
+        "bluff": 0.65,
+        "stickiness": 0.31,
+        "size": 0.54,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 37,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 37,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "guaguanco_5": {
+      "name": "guaguanco 5",
+      "style": {
+        "vpip": 0.36,
+        "pfr": 0.36,
+        "threebet": 0.02,
+        "limp": 0.25,
+        "aggression": 0.5,
+        "cbet": 0.0,
+        "bluff": 0.6000000000000001,
+        "stickiness": 0.07,
+        "size": 0.875,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 50,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 50,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "kurimanju": {
+      "name": "kurimanju",
+      "style": {
+        "vpip": 0.35000000000000003,
+        "pfr": 0.35000000000000003,
+        "threebet": 0.02,
+        "limp": 0.2,
+        "aggression": 0.2,
+        "cbet": 0.45,
+        "bluff": 0.2,
+        "stickiness": 0.33,
+        "size": 0.71,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 56,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 56,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "luck_is_all_u_need": {
+      "name": "luck is all u need",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.09,
+        "limp": 0.15000000000000002,
+        "aggression": 0.15000000000000002,
+        "cbet": 0.30000000000000004,
+        "bluff": 0.9,
+        "stickiness": 0.31,
+        "size": 0.355,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 63,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 63,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "percy_perc_filet": {
+      "name": "percy-perc-filet",
+      "style": {
+        "vpip": 0.45,
+        "pfr": 0.45,
+        "threebet": 0.11,
+        "limp": 0.15000000000000002,
+        "aggression": 0.25,
+        "cbet": 0.05,
+        "bluff": 0.5,
+        "stickiness": 0.9400000000000001,
+        "size": 0.605,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 67,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 67,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "preflop_warrior": {
+      "name": "preflop-warrior",
+      "style": {
+        "vpip": 0.23,
+        "pfr": 0.23,
+        "threebet": 0.03,
+        "limp": 0.1,
+        "aggression": 0.5,
+        "cbet": 0.15000000000000002,
+        "bluff": 0.2,
+        "stickiness": 0.27,
+        "size": 0.595,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 72,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 72,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "samith_pai_is_lowkey_leng": {
+      "name": "samith pai is lowkey leng",
+      "style": {
+        "vpip": 0.22,
+        "pfr": 0.22,
+        "threebet": 0.04,
+        "limp": 0.2,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.8500000000000001,
+        "bluff": 0.25,
+        "stickiness": 0.88,
+        "size": 0.745,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 79,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 79,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "the_notorious": {
+      "name": "the notorious",
+      "style": {
+        "vpip": 0.14,
+        "pfr": 0.14,
+        "threebet": 0.07,
+        "limp": 0.0,
+        "aggression": 0.05,
+        "cbet": 0.45,
+        "bluff": 0.30000000000000004,
+        "stickiness": 0.24,
+        "size": 1.1800000000000002,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 85,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 85,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    },
+    "wicked_wings_combo": {
+      "name": "wicked wings combo",
+      "style": {
+        "vpip": 0.62,
+        "pfr": 0.62,
+        "threebet": 0.03,
+        "limp": 0.15000000000000002,
+        "aggression": 0.7000000000000001,
+        "cbet": 0.6000000000000001,
+        "bluff": 0.1,
+        "stickiness": 0.31,
+        "size": 0.65,
+        "adaptive": 0
+      },
+      "policy": {
+        "file": "runtime-static.npz",
+        "bot": 89,
+        "epoch": 0,
+        "weight": 1
+      },
+      "patterns": {
+        "preflop_progress": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "sizing_policy": {
+          "file": "runtime-history.npz",
+          "bot": 89,
+          "epoch": 0,
+          "weight": 0.75
+        }
+      }
+    }
+  }
+}

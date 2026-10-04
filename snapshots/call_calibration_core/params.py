@@ -146,6 +146,3 @@ DEFAULT_PARAMS = MappingProxyType({
 def margin(params, name, ranged):
     """The range-mode version of a margin when equity came from tracked ranges."""
     return params.get("range_" + name, params[name]) if ranged else params[name]
-
-# Predeclared pilot: four percentage points more river call margin.
-DEFAULT_PARAMS = MappingProxyType(dict(DEFAULT_PARAMS, range_call_margin_river=0.06))

@@ -104,25 +104,6 @@ def pot_odds(state):
     return state.to_call / max(1, state.pot + state.to_call - excess)
 
 
-def terminal_call(state):
-    """Whether calling closes betting now and leaves no later betting round.
-
-    Reconstruct closure from public actions; an all-in hero alone is not
-    enough when opponents can still raise or owe a response.
-    """
-    if state.to_call <= 0:
-        return False
-    opponents = [s for s, folded in enumerate(state.folded)
-                 if s != state.seat and not folded]
-    current = max(state.street_bets)
-    acted = {a[1] for a in state.history if a[0] == state.street}
-    closes = all(state.stacks[s] == 0 or
-                 (state.street_bets[s] == current and s in acted) for s in opponents)
-    remaining = sum(state.stacks[s] > 0 for s in opponents)
-    remaining += state.my_stack > state.to_call
-    return closes and (len(state.board) == 5 or remaining <= 1)
-
-
 def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
     """Return (kind, desired raise-to) for the legal-action wrapper."""
     hand, pos = hand_class(state.hole), position(state)
@@ -144,14 +125,6 @@ def preflop_plan(state, equity, params, opp_profiles=None, ranged=False):
         if hand == "AA":
             return "raise", state.max_raise_to
         price = pot_odds(state)
-        # With tracked ranges and no future betting, the measured price can
-        # justify hands outside the default large-bet whitelist (e.g. JJ
-        # after a shove and two callers). Random-card estimates retain the
-        # original whitelist/shover safeguards.
-        if (params["terminal_range_calls"] and ranged and terminal_call(state)
-                and equity is not None
-                and equity >= price + margin(params, "preflop_call_margin", ranged)):
-            return "call", 0
         if hand in LARGE_CALL and equity is not None and equity >= price + margin(params, "preflop_call_margin", ranged):
             return "call", 0
         # A proven shover's all-in is close to random cards, which is what

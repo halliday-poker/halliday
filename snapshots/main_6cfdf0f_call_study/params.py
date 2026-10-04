@@ -16,7 +16,6 @@ DEFAULT_PARAMS = MappingProxyType({
     "max_threebet_call_bb": 16,
     "large_bet_bb": 15,
     "preflop_call_margin": 0.06,
-    "terminal_range_calls": True,
     "value_threshold": 0.64,
     "multiway_value_margin": 0.04,
     "raise_threshold": 0.85,
@@ -72,9 +71,6 @@ DEFAULT_PARAMS = MappingProxyType({
     "equity_iters": 768,
     "equity_budget_ms": 35,
     "equity_min_samples": 128,
-    "partial_terminal_equity": True,
-    "partial_min_samples": 32,
-    "partial_equity_alpha": 0.01,
     "low_clock_ms": 5000,
     "low_clock_iters": 192,
     "low_clock_budget_ms": 10,
@@ -146,6 +142,3 @@ DEFAULT_PARAMS = MappingProxyType({
 def margin(params, name, ranged):
     """The range-mode version of a margin when equity came from tracked ranges."""
     return params.get("range_" + name, params[name]) if ranged else params[name]
-
-# Predeclared pilot: four percentage points more river call margin.
-DEFAULT_PARAMS = MappingProxyType(dict(DEFAULT_PARAMS, range_call_margin_river=0.06))

@@ -17,7 +17,8 @@ With a single candidate, `run` is a gate: the last K promoted league versions
 become baselines (and opponents), and the candidate must be significantly
 better than each of them. Inconclusive gates extend automatically.
 
-A bot spec is a .py file, a directory containing main.py, house:<name>, or
+A bot spec is a .py file, a directory containing main.py, house:<name>,
+fitted:<catalogue.json>@<id>, or
 param:<archetype>[@seed] (see sparring/param.py). In a pool file,
 param:random draws a jittered random archetype for every seat it fills.
 """
@@ -28,7 +29,9 @@ import argparse
 import csv
 import datetime as dt
 import hashlib
+import gzip
 import importlib.util
+import inspect
 import json
 import math
 import multiprocessing as mp
@@ -41,6 +44,7 @@ import time
 import traceback
 import zipfile
 from collections import defaultdict
+from functools import partial
 from pathlib import Path
 from statistics import NormalDist
 
@@ -50,6 +54,9 @@ RESULTS = HARNESS / "results"
 LEAGUE = HARNESS / "league.json"
 DEFAULT_POOL = HARNESS / "pools" / "default.txt"
 PARAM_BOT = ROOT / "sparring" / "param.py"
+FITTED_BOT = ROOT / "sparring" / "competitors" / "competitor_base.py"
+if str(ROOT) not in sys.path:
+    sys.path.insert(0,str(ROOT))
 
 from macpoker.bots import BUILTINS  # noqa: E402
 from macpoker.match import VERDICT_OK, MatchConfig, MatchRunner  # noqa: E402
@@ -70,6 +77,24 @@ from macpoker.transport import BotDied, InProcessTransport, ProtocolError  # noq
 _bot_dirs: set[Path] = set()
 _loaded: dict[str, tuple] = {}
 _load_count = 0
+_gpu_evaluator = None
+_worker_init_error = None
+
+
+def gpu_module():
+    if __package__:
+        from . import gpu_equity
+    else:
+        import gpu_equity
+    return gpu_equity
+
+
+def supports_gpu(module):
+    function = getattr(module, "estimate_equity", None)
+    try:
+        return callable(function) and "_evaluate_batch" in inspect.signature(function).parameters
+    except (TypeError, ValueError):
+        return False
 
 
 def resolve_path(spec: str) -> Path:
@@ -96,14 +121,24 @@ def _load_module(path: Path):
     d = path.parent
     _bot_dirs.add(d)
     _evict_bot_modules()
+    # The SDK may have loaded a bot before the harness saw its directory.
+    # Its top-level sibling imports must not silently replace this bot's
+    # params/strategy modules. Restore unrelated callers' aliases afterward.
+    sibling_names = {p.stem for p in d.glob('*.py')}
+    shadowed = {name:sys.modules.pop(name) for name in sibling_names if name in sys.modules}
     sys.path.insert(0, str(d))
     try:
         spec = importlib.util.spec_from_file_location(f"_harness_bot_{_load_count}", path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
+        if _gpu_evaluator is not None and supports_gpu(module):
+            module.estimate_equity = partial(module.estimate_equity,
+                                            _evaluate_batch=_gpu_evaluator.evaluate,
+                                            _batch_size=_gpu_evaluator.batch_size)
     finally:
         sys.path.remove(str(d))
         _evict_bot_modules()
+        sys.modules.update(shadowed)
     candidate = getattr(module, "bot", None)
     if isinstance(candidate, Bot):
         return module, type(candidate)
@@ -126,10 +161,32 @@ def param_module():
     return _cached_module(PARAM_BOT)[0]
 
 
+def fitted_entry(spec):
+    """Resolve a data catalogue and stable identity; no Python per opponent."""
+    path, separator, identity = spec.removeprefix('fitted:').rpartition('@')
+    if not separator or not path or not identity:
+        raise ValueError('Expected fitted:<catalogue.json>@<id>')
+    return resolve_path(path), identity
+
+
+def catalog_spec(spec):
+    """Keep archived pools usable after removing generated Python wrappers."""
+    if spec.startswith(('fitted:', 'house:', 'param:')):
+        return spec
+    path = Path(spec)
+    if not path.is_absolute():
+        path = ROOT/path if (ROOT/path.parent).exists() else Path.cwd()/path
+    catalog = path.parent/'bots.json'
+    if path.suffix == '.py' and not path.exists() and catalog.is_file():
+        return f'fitted:{catalog}@{path.stem}'
+    return spec
+
+
 def make_bot(spec: str, seed: str) -> Bot:
     """A fresh bot instance for one game. Our bots' modules are imported once
     per worker; each game gets a new instance, as the tournament's fresh
     process would give it fresh state on self."""
+    spec = catalog_spec(spec)
     if spec.startswith("house:"):
         cls = BUILTINS[spec.split(":", 1)[1]]
         try:
@@ -139,8 +196,19 @@ def make_bot(spec: str, seed: str) -> Bot:
     if spec.startswith("param:"):
         module, cls = _cached_module(PARAM_BOT)
         return cls(style=module.style_for(spec.split(":", 1)[1]), seed=seed)
+    if spec.startswith('fitted:'):
+        path, identity = fitted_entry(spec)
+        return _cached_module(FITTED_BOT)[0].make_from_catalog(path, identity, seed)
     path = resolve_path(spec)
     module, cls = _cached_module(path)
+    # Optional factory for stochastic file bots: keep their private RNG tied
+    # to the seat seed, independent of other bots' constructor side effects.
+    factory = getattr(module, "make_seeded_bot", None)
+    if factory is not None:
+        bot = factory(seed)
+        if not isinstance(bot, Bot):
+            raise TypeError(f"{path}: make_seeded_bot must return a Bot")
+        return bot
     try:
         return cls()
     except TypeError:
@@ -150,9 +218,25 @@ def make_bot(spec: str, seed: str) -> Bot:
 
 def bot_hash(spec: str) -> str:
     """Short content hash of a bot's directory, to identify uncommitted versions."""
+    spec = catalog_spec(spec)
     if spec.startswith(("house:", "param:")):
         return spec.split(":", 1)[0]
     h = hashlib.sha1()
+    if spec.startswith('fitted:'):
+        path, identity = fitted_entry(spec)
+        record = _cached_module(FITTED_BOT)[0].load_record(path, identity)
+        h.update(json.dumps(record, sort_keys=True).encode())
+        sources = [FITTED_BOT, PARAM_BOT, FITTED_BOT.parent/'catalog.py', FITTED_BOT.parent/'policy.py']
+        if record.get('policy'):
+            sources.append(path.parent/record['policy']['file'])
+        if record.get('patterns'):
+            sources.append(FITTED_BOT.parent/'patterns.py')
+            if record['patterns'].get('sizing_policy'):
+                sources.append(path.parent/record['patterns']['sizing_policy']['file'])
+        for source in sources:
+            h.update(source.name.encode())
+            h.update(source.read_bytes())
+        return h.hexdigest()[:8]
     d = resolve_path(spec).parent
     for f in sorted(d.rglob("*")):
         if f.is_file() and "__pycache__" not in f.parts and f.suffix not in (".md", ".pyc"):
@@ -195,11 +279,16 @@ def copy_snapshot(source: str, name: str) -> Path:
 class TimedTransport(InProcessTransport):
     """In-process transport that also records think time and the first crash."""
 
-    def __init__(self, bot, name):
+    def __init__(self, bot, name, trace=False):
         super().__init__(bot, name)
         self.max_ms = 0.0
         self.total_ms = 0.0
         self.error: str | None = None
+        self.player = None
+        self.action_counts = defaultdict(lambda: defaultdict(int))
+        self.vpip_hands = set()
+        self.pfr_hands = set()
+        self.trace = [] if trace else None
 
     def _record(self, exc: BaseException) -> None:
         if self.error is None:
@@ -207,6 +296,13 @@ class TimedTransport(InProcessTransport):
             self.error = "".join(traceback.format_exception(cause))[-2000:]
 
     def send(self, msg):
+        if msg.get('type')=='hello':
+            self.player=msg['player']
+        if msg.get('type')=='action' and msg['players'][msg['seat']]==self.player:
+            self.action_counts[msg['street']][msg['action']]+=1
+            if msg['street']=='preflop':
+                if msg['action'] in ('call','raise'):self.vpip_hands.add(msg['hand'])
+                if msg['action']=='raise':self.pfr_hands.add(msg['hand'])
         try:
             super().send(msg)
         except BotDied as exc:
@@ -221,15 +317,110 @@ class TimedTransport(InProcessTransport):
             raise
         self.max_ms = max(self.max_ms, ms)
         self.total_ms += ms
+        if self.trace is not None:
+            bot=self.session.bot
+            estimate=getattr(bot,'last_estimate',None)
+            self.trace.append(dict(view=dict(view),elapsed_ms=ms,
+                equity=getattr(bot,'last_equity',None),ranged=getattr(bot,'last_ranged',None),
+                estimate=None if estimate is None else {key:getattr(estimate,key,None) for key in
+                    ('equity','samples','attempts','method','stop_reason','standard_error')}))
         return action, ms
 
 
-def _worker_init() -> None:
+def _worker_init(device_queue=None, ready_queue=None, batch_size=128) -> None:
     # Bots print freely; keep worker output off the console. Workers import
     # the same bots at once, so leave bytecode caching to the main process.
     sys.stdout = open(os.devnull, "w")
     sys.stderr = open(os.devnull, "w")
     sys.dont_write_bytecode = True
+    if device_queue is not None:
+        global _gpu_evaluator, _worker_init_error
+        try:
+            device = device_queue.get(timeout=5)
+            _gpu_evaluator = gpu_module().CudaEvaluator(device, batch_size)
+            ready_queue.put(_gpu_evaluator.metadata())
+        except Exception as exc:
+            # Report once rather than letting Pool endlessly respawn failures.
+            _worker_init_error = f"{type(exc).__name__}: {exc}"
+            ready_queue.put(dict(error=_worker_init_error))
+
+
+def compute_plan(args, *, gating=False, compatible=True):
+    """Detect optional CUDA support without creating a context in the parent."""
+    mode = args.device
+    if args.workers < 1 or args.gpu_workers is not None and args.gpu_workers < 1:
+        raise ValueError("Worker counts must be positive")
+    if not 1 <= args.gpu_batch_size <= 4096:
+        raise ValueError("GPU batch size must be between 1 and 4096")
+    cpu = dict(requested=mode, device="cpu", workers=args.workers, devices=[])
+    if mode == "cpu":
+        return cpu
+    if gating:
+        if mode == "cuda":
+            raise ValueError("GPU runs cannot validate tournament clocks; use --no-league for GPU exploration or --device cpu for a promotion gate")
+        return dict(cpu, fallback_reason="promotion gates use CPU tournament timings")
+    if not compatible:
+        reason = "no bot in this field exposes a compatible batched equity engine"
+        if mode == "cuda":
+            raise ValueError(reason)
+        return dict(cpu, fallback_reason=reason)
+    try:
+        backend = gpu_module()
+        backend.find_nvcc()
+        devices = backend.Driver().devices()
+        if not devices:
+            raise RuntimeError("no CUDA devices available")
+    except (OSError, RuntimeError, AttributeError) as exc:
+        if mode == "cuda":
+            raise RuntimeError(f"CUDA requested but unavailable: {exc}") from exc
+        return dict(cpu, fallback_reason=str(exc))
+    if args.gpu_devices:
+        selected = [int(d) for d in args.gpu_devices.split(",")]
+        available = {d["index"]: d for d in devices}
+        if len(selected) != len(set(selected)) or any(d not in available for d in selected):
+            raise ValueError("--gpu-devices must list distinct available CUDA indices")
+        devices = [available[d] for d in selected]
+    if args.gpu_workers is not None:
+        devices = devices[:args.gpu_workers]
+    return dict(requested=mode, device="cuda", workers=args.gpu_workers or len(devices), devices=devices,
+                batch_size=args.gpu_batch_size)
+
+
+def worker_pool(plan, args):
+    """Warm every GPU before play; auto mode can fall back before games start."""
+    if plan["device"] == "cuda":
+        context = mp.get_context("spawn")
+        devices, ready = context.Queue(), context.Queue()
+        for index in range(plan['workers']):
+            devices.put(plan['devices'][index%len(plan['devices'])]['index'])
+        pool = None
+        try:
+            pool = context.Pool(plan["workers"], initializer=_worker_init,
+                                initargs=(devices, ready, plan["batch_size"]))
+            started = time.monotonic()
+            info = [ready.get(timeout=max(1, 120 - (time.monotonic() - started)))
+                    for _ in range(plan['workers'])]
+            errors = [item["error"] for item in info if "error" in item]
+            if errors:
+                raise RuntimeError("; ".join(errors))
+            plan["worker_startup"] = sorted(info, key=lambda d: d["device"])
+            return pool, plan
+        except BaseException as exc:
+            if pool is not None:
+                pool.terminate()
+                pool.join()
+            if not isinstance(exc, Exception):
+                raise
+            if plan["requested"] == "cuda":
+                raise RuntimeError(f"GPU worker initialization failed: {exc}") from exc
+            plan = dict(requested="auto", device="cpu", workers=args.workers,
+                        devices=[], fallback_reason=f"GPU worker initialization failed: {exc}")
+        finally:
+            devices.close()
+            ready.close()
+    if plan["workers"] <= 1:
+        return None, plan
+    return mp.Pool(plan["workers"], initializer=_worker_init), plan
 
 
 def play_game(job: dict) -> dict:
@@ -245,6 +436,20 @@ def play_game(job: dict) -> dict:
 
 def _play_game(job: dict) -> dict:
     """Play game k of one table's duplicate set with one candidate seated."""
+    if _worker_init_error:
+        raise RuntimeError(_worker_init_error)
+    trace_path=None
+    identity={k:v for k,v in job.items() if k not in ('trace_dir','resume')}
+    if job.get('trace_dir'):
+        trace_path=Path(job['trace_dir'])/f"t{job['table']:06d}-g{job['game']}-c{job['cand_idx']}.json.gz"
+        if trace_path.exists():
+            if not job.get('resume'):
+                raise FileExistsError(f'{trace_path}: use --resume to reuse completed games')
+            with gzip.open(trace_path,'rt') as stream:previous=json.load(stream)
+            if previous['identity']!=identity:
+                raise ValueError(f'{trace_path}: source, opponent or game settings changed')
+            return previous['result']
+    before = _gpu_evaluator.metadata() if _gpu_evaluator else None
     specs = [job["candidate"]] + job["opponents"]
     game_seed = f"{job['seed']}:{job['table']}:{job['game']}"
     random.seed(game_seed)
@@ -253,7 +458,7 @@ def _play_game(job: dict) -> dict:
         np.random.seed(int(hashlib.md5(game_seed.encode()).hexdigest()[:8], 16))
     except ImportError:
         pass
-    transports = [TimedTransport(make_bot(s, f"{game_seed}:{i}"), s) for i, s in enumerate(specs)]
+    transports = [TimedTransport(make_bot(s, f"{game_seed}:{i}"), s,trace=trace_path is not None and i==0) for i, s in enumerate(specs)]
     cfg = MatchConfig(
         seats=len(specs),
         deals=job["deals"],
@@ -264,7 +469,13 @@ def _play_game(job: dict) -> dict:
     )
     t0 = time.perf_counter()
     result = MatchRunner(cfg, transports).run()
-    return {
+    compute = dict(device="cpu")
+    if before is not None:
+        compute = _gpu_evaluator.metadata()
+        compute['worker_pid']=os.getpid()
+        for key in ("batches", "ranked_hands", "gpu_seconds"):
+            compute[key] -= before[key]
+    row = {
         **{k: job[k] for k in ("cand_idx", "table", "game")},
         "chips": result.chips,
         "verdicts": result.verdicts,
@@ -272,7 +483,16 @@ def _play_game(job: dict) -> dict:
         "think_ms": [round(t.total_ms, 1) for t in transports],
         "errors": [t.error for t in transports],
         "wall_s": round(time.perf_counter() - t0, 3),
+        "compute": compute,
+        "behavior": [dict(actions={street:dict(counts) for street,counts in t.action_counts.items()},
+                          vpip_hands=len(t.vpip_hands),pfr_hands=len(t.pfr_hands)) for t in transports],
     }
+    if trace_path is not None:
+        temporary=trace_path.with_name(trace_path.name+f'.{os.getpid()}.tmp')
+        with gzip.open(temporary,'wt',compresslevel=1) as stream:
+            json.dump(dict(identity=identity,result=row,hands=result.hands,decisions=transports[0].trace),stream,separators=(',',':'))
+        os.replace(temporary,trace_path)
+    return row
 
 
 # --------------------------------------------------------------------------
@@ -290,16 +510,28 @@ def read_pool(path: Path, extra: list[str]) -> list[tuple[str, float]]:
     return pool
 
 
-def draw_tables(pool, n_tables: int, sizes: list[int], seed: str) -> list[list[str]]:
+def draw_tables(pool, n_tables: int, sizes: list[int], seed: str, game_budget=None) -> list[list[str]]:
     """Each table: a seat count drawn from `sizes`, then opponents drawn by
     weight without replacement (with replacement once the pool runs out).
     param:random can fill any number of seats; each becomes a concrete
     param:<archetype>@<seed>, so every candidate meets the same opponent."""
     archetypes = sorted(param_module().ARCHETYPES) if any(s == "param:random" for s, _ in pool) else []
     tables = []
-    for t in range(n_tables):
+    if not sizes or any(type(n)!=int or not 2<=n<=9 for n in sizes):
+        raise ValueError('Table sizes must be integers from 2 to 9')
+    remaining_games=game_budget
+    reachable=None
+    if game_budget is not None:
+        if type(game_budget)!=int or game_budget<=0:raise ValueError('Game budget must be positive')
+        reachable=[True]+[False]*game_budget
+        for amount in range(1,game_budget+1):
+            reachable[amount]=any(amount>=n and reachable[amount-n] for n in set(sizes))
+        if not reachable[-1]:raise ValueError('Game budget cannot contain complete duplicate sets')
+    t=0
+    while (t<n_tables if game_budget is None else remaining_games>0):
         rng = random.Random(f"{seed}:table:{t}")
-        n_opp = rng.choice(sizes) - 1
+        choices=sizes if game_budget is None else [n for n in sizes if n<=remaining_games and reachable[remaining_games-n]]
+        n_opp = rng.choice(choices) - 1
         remaining = list(pool)
         opps = []
         for _ in range(n_opp):
@@ -313,6 +545,8 @@ def draw_tables(pool, n_tables: int, sizes: list[int], seed: str) -> list[list[s
                 opps.append(specs[pick])
                 remaining.pop(pick)
         tables.append(opps)
+        t+=1
+        if game_budget is not None:remaining_games-=n_opp+1
     return tables
 
 
@@ -408,11 +642,23 @@ def fmt(m: float, ci: float, digits=1) -> str:
     return f"{m:+.{digits}f} +-{ci:.{digits}f}"
 
 
-def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate: int = 0) -> dict:
+def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate: int = 0,
+             plan=None) -> dict:
     """Play every candidate over the same tables, print the report and save it.
     With n_gate > 0, the last candidate is gated against the first n_gate."""
     sizes = [int(s) for s in args.sizes.split(",")]
-    tables = draw_tables(pool, n_tables, sizes, seed)
+    if getattr(args,'tables_json',None):
+        tables=json.loads(Path(args.tables_json).read_text())
+        if not isinstance(tables,list) or not tables or any(not isinstance(t,list) or not 1<=len(t)<=8 for t in tables):
+            raise ValueError('tables-json must contain a nonempty list of opponent-spec lists (1–8 opponents)')
+        for table in tables:
+            if len(set(table))!=len(table):
+                raise ValueError('Duplicate opponent identity in predefined table')
+            for spec in table:
+                make_bot(spec,'predefined-table-check')
+    else:
+        tables = draw_tables(pool, n_tables, sizes, seed,game_budget=getattr(args,'games',None))
+    n_tables=len(tables)
     budget_ms = args.time_ms + args.increment_ms * args.deals
 
     jobs = [
@@ -423,26 +669,58 @@ def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate
         for k in range(len(opps) + 1)
         for ci, cand in enumerate(candidates)
     ]
+    if getattr(args,'trace_dir',None):
+        trace_dir=Path(args.trace_dir).resolve();trace_dir.mkdir(parents=True,exist_ok=True)
+        hashes={spec:bot_hash(spec) for spec in set(candidates)|{s for t in tables for s in t}}
+        for job in jobs:
+            job.update(trace_dir=str(trace_dir),resume=getattr(args,'resume',False),
+                       harness_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+                       source_hashes={s:hashes[s] for s in [job['candidate']]+job['opponents']})
+    if plan is None:
+        plan = dict(requested="cpu", device="cpu", workers=args.workers, devices=[])
+    procs, plan = worker_pool(dict(plan), args)
     print(f"{len(candidates)} candidate(s) x {len(tables)} tables -> {len(jobs)} games "
-          f"of {args.deals} hands on {args.workers} workers, seed {seed}")
+          f"of {args.deals} hands on {plan['workers']} {plan['device']} workers, seed {seed}")
+    if plan.get("fallback_reason"):
+        print(f"CPU selection: {plan['fallback_reason']}")
+    if plan["device"] == "cuda":
+        print("CUDA workers: " + ", ".join(d["device"] for d in plan["worker_startup"]))
 
     t0 = time.perf_counter()
     rows = []
-    if args.workers <= 1:
+    if procs is None:
         it = map(play_game, jobs)
     else:
-        procs = mp.Pool(args.workers, initializer=_worker_init)
         it = procs.imap_unordered(play_game, jobs, chunksize=1)
     step = max(1, len(jobs) // 20)
-    for i, row in enumerate(it, 1):
-        rows.append(row)
-        if i % step == 0 or i == len(jobs):
-            el = time.perf_counter() - t0
-            print(f"\r  {i}/{len(jobs)} games  {el:.0f}s elapsed, ~{el / i * (len(jobs) - i):.0f}s left ",
-                  end="", flush=True)
+    try:
+        for i, row in enumerate(it, 1):
+            rows.append(row)
+            if i % step == 0 or i == len(jobs):
+                el = time.perf_counter() - t0
+                print(f"\r  {i}/{len(jobs)} games  {el:.0f}s elapsed, ~{el / i * (len(jobs) - i):.0f}s left ",
+                      end="", flush=True)
+    except BaseException:
+        if procs:
+            procs.terminate()
+        raise
+    finally:
+        if procs:
+            procs.close()
+            procs.join()
     print()
-    if args.workers > 1:
-        procs.close()
+    usage = {}
+    for row in rows:
+        compute = row["compute"]
+        if compute["device"] != "cpu":
+            total = usage.setdefault(compute["device"], dict(games=0, batches=0, ranked_hands=0, gpu_seconds=0.0))
+            total["games"] += 1
+            for key in ("batches", "ranked_hands", "gpu_seconds"):
+                total[key] += compute[key]
+    plan["gpu_usage"] = usage
+    if usage:
+        print("CUDA work: " + ", ".join(f"{device}: {v['ranked_hands']:,} ranked hands / {v['batches']:,} batches"
+                                       for device, v in sorted(usage.items())))
 
     # group into duplicate sets per (candidate, table)
     sets = defaultdict(list)
@@ -506,7 +784,8 @@ def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate
             verdict, why = "INCONCLUSIVE", "not yet separated from every league version"
         print(f"  GATE {verdict}: {why}")
         gate = {"candidate": candidates[x], "hash": me["hash"], "baselines": candidates[:n_gate],
-                "verdict": verdict, "reason": why, "rows": gate_rows, "tables": n_tables, "seed": seed}
+                "verdict": verdict, "reason": why, "rows": gate_rows, "tables": n_tables, "seed": seed,
+                "promotion_eligible": plan["device"] == "cpu"}
     elif len(candidates) > 1:
         print(f"\npaired vs baseline {names[0]} (same tables, same cards):")
         for ci in range(1, len(candidates)):
@@ -554,7 +833,7 @@ def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate
         "args": {k: v for k, v in vars(args).items() if k != "func"},
         "seed": seed, "commit": commit, "tables": tables, "summary": per_cand, "gate": gate,
         "param_styles": {s: param_module().style_for(s.split(":", 1)[1]) for s in params},
-        "games": rows,
+        "games": rows, "compute": plan,
     }))
     log = RESULTS / "log.csv"
     new = not log.exists()
@@ -581,6 +860,10 @@ def evaluate(candidates: list[str], pool, n_tables: int, seed: str, args, n_gate
 
 
 def cmd_run(args) -> int:
+    if args.resume and not args.trace_dir:
+        raise ValueError('--resume requires --trace-dir')
+    if args.games is not None and args.tables_json:
+        raise ValueError('--games and --tables-json cannot be combined')
     league = [] if args.no_league else league_specs(args.league)
     for spec in league:
         resolve_path(spec)  # a promoted snapshot must exist
@@ -592,14 +875,17 @@ def cmd_run(args) -> int:
     for spec, _ in pool:
         if spec != "param:random":
             make_bot(spec, "check")  # a typo in the pool should fail here, not in a worker
+    plan = compute_plan(args, gating=gating,
+                        compatible=any(supports_gpu(module) for module, _ in _loaded.values()))
     n_tables = args.tables or (400 if gating else 200)
     base_seed = args.seed or (f"gate-{dt.datetime.now():%m%d%H%M%S}" if gating else "eval")
     seed = base_seed
 
     while True:
-        report = evaluate(candidates, pool, n_tables, seed, args, n_gate=len(league) if gating else 0)
+        report = evaluate(candidates, pool, n_tables, seed, args,
+                          n_gate=len(league) if gating else 0, plan=plan)
         gate = report["gate"]
-        if not gate or gate["verdict"] != "INCONCLUSIVE" or args.no_extend \
+        if not gate or gate["verdict"] != "INCONCLUSIVE" or args.no_extend or getattr(args,'tables_json',None) or getattr(args,'games',None) \
                 or n_tables * 2 > args.max_tables:
             break
         n_tables *= 2
@@ -630,6 +916,8 @@ def cmd_promote(args) -> int:
         problem = f"no gate run found for {args.source} as it is now (hash {h}); run `eval.py run {args.source}`"
     elif evidence[1]["verdict"] != "PASS":
         problem = f"latest gate for hash {h} was {evidence[1]['verdict']} ({evidence[0].name})"
+    elif not evidence[1].get("promotion_eligible", True):
+        problem = "GPU timings cannot qualify a promotion; rerun the gate with --device cpu"
     elif evidence[1]["baselines"] != current:
         problem = "the league changed since that gate run; run it again"
     else:
@@ -709,14 +997,24 @@ def main(argv=None) -> int:
     r.add_argument("bots", nargs="+", help="candidates: bot dir, .py file, house:<name> or param:<archetype>")
     r.add_argument("--tables", type=int, default=None,
                    help="tables (duplicate sets) per candidate (default 400 gate, 200 A/B)")
+    r.add_argument('--games',type=int,help='Exact games per candidate, preserving full duplicate sets; overrides --tables')
+    r.add_argument('--trace-dir',help='Write compressed spectator records and candidate decision diagnostics for every game')
+    r.add_argument('--resume',action='store_true',help='Reuse completed traces only when all source hashes and game settings match')
     r.add_argument("--seed", default=None, help="seed for table draws and decks (default: fresh for gates)")
     r.add_argument("--pool", default=str(DEFAULT_POOL), help="opponent pool file")
     r.add_argument("--add", nargs="*", default=[], help="extra opponents added to the pool")
     r.add_argument("--sizes", default="4,5,5,6", help="seat counts to draw from (repeat to weight)")
+    r.add_argument('--tables-json',help='Explicit ordered opponent tables, for matching observed field composition; overrides --tables and --sizes')
     r.add_argument("--deals", type=int, default=100, help="hands per game")
     r.add_argument("--time-ms", type=int, default=30_000, dest="time_ms")
     r.add_argument("--increment-ms", type=int, default=100, dest="increment_ms")
     r.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2) - 1))
+    r.add_argument("--device", choices=("auto", "cpu", "cuda"), default="auto",
+                   help="auto uses available CUDA workers for field/A-B runs; promotion gates stay on CPU")
+    r.add_argument("--gpu-devices", help="comma-separated CUDA indices, e.g. 0,1,2,3; default all available")
+    r.add_argument("--gpu-workers", type=int, help="GPU worker processes; default one per device, larger counts share devices round-robin and need additional CUDA-context memory")
+    r.add_argument("--gpu-batch-size", type=int, default=128,
+                   help="equity deals per CUDA batch (1-4096); default 128")
     r.add_argument("--league", type=int, default=3, help="league versions used as gate baselines and opponents")
     r.add_argument("--no-league", action="store_true", help="no league baselines or opponents")
     r.add_argument("--max-tables", type=int, default=1600, help="largest run an inconclusive gate extends to")
