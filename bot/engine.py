@@ -232,7 +232,7 @@ def equity(hole, board, opp_ranges, n_iters=1000, time_budget_ms=25.0) -> float:
 
 
 def estimate_equity(hole, board, opp_ranges, n_iters=1000, time_budget_ms=25.0,
-                    *, seed=None) -> EquityEstimate:
+                    *, seed=None, _evaluate_batch=None, _batch_size=128) -> EquityEstimate:
     """Same engine plus diagnostics and each player's final hand distribution.
 
     n_iters limits completed Monte Carlo deals. Timed calls check a deadline
@@ -240,12 +240,16 @@ def estimate_equity(hole, board, opp_ranges, n_iters=1000, time_budget_ms=25.0,
     includes only completed deals. No samples means EquityTimeout, not 0/0.5.
     time_budget_ms=None allows reproducible offline sampling with seed, and
     exact enumeration for small outcome spaces (at most min(n_iters, 2000)).
+    The offline harness may supply a batched made-hand evaluator. Sampling,
+    range weights and aggregation stay here; the default has no GPU dependency.
     """
     started = perf_counter()
     if type(n_iters) is not int or n_iters < 1:
         raise ValueError("n_iters must be a positive integer")
     if seed is not None and type(seed) is not int:
         raise ValueError("seed must be an integer or None")
+    if _evaluate_batch is not None and (type(_batch_size) is not int or _batch_size < 1):
+        raise ValueError("_batch_size must be a positive integer")
     if time_budget_ms is not None and (
         isinstance(time_budget_ms, (bool, str, bytes))
         or not isinstance(time_budget_ms, (int, float))
@@ -284,12 +288,10 @@ def estimate_equity(hole, board, opp_ranges, n_iters=1000, time_budget_ms=25.0,
     wins, ties, shares = ([0.0] * n for _ in range(3))
     categories = [[0.0] * 10 for _ in range(n)]
     weight_total, hero_sq, samples, attempts = 0.0, 0.0, 0, 0
+    pending = []
 
-    def record(holes, runout, weight=1.0):
+    def record_values(values, weight):
         nonlocal weight_total, hero_sq, samples
-        final_board = board + tuple(runout)
-        values = [_evaluate(hole + final_board)]
-        values.extend(_evaluate(h + final_board) for h in holes)
         best = max(values)
         winners = [i for i, v in enumerate(values) if v == best]
         share = 1 / len(winners)
@@ -302,6 +304,27 @@ def estimate_equity(hole, board, opp_ranges, n_iters=1000, time_budget_ms=25.0,
         hero_sq += weight * (share * share if 0 in winners else 0)
         weight_total += weight
         samples += 1
+
+    def flush():
+        if not pending:
+            return
+        hands = [hand for deal, _ in pending for hand in deal]
+        values = _evaluate_batch(hands)
+        if len(values) != len(hands):
+            raise RuntimeError("Batch evaluator returned the wrong number of hands")
+        for i, (_, weight) in enumerate(pending):
+            record_values(values[i * n:(i + 1) * n], weight)
+        pending.clear()
+
+    def record(holes, runout, weight=1.0):
+        final_board = board + tuple(runout)
+        deal = [hole + final_board] + [h + final_board for h in holes]
+        if _evaluate_batch is None:
+            record_values([_evaluate(hand) for hand in deal], weight)
+        else:
+            pending.append((deal, weight))
+            if len(pending) >= _batch_size:
+                flush()
 
     # No timed enumeration prefixes: an unfinished weighted enumeration would
     # bias the answer. Timed calls sample instead. A fully fixed river is tiny.
@@ -331,6 +354,7 @@ def estimate_equity(hole, board, opp_ranges, n_iters=1000, time_budget_ms=25.0,
                     enumerate_deals(depth + 1, used | mask, weight * w)
 
         enumerate_deals(0, known, 1.0)
+        flush()
         attempts, stop_reason = samples, "enumerated"
         if not weight_total:
             raise EquitySamplingError("Joint weights are too small for float precision")
@@ -338,16 +362,16 @@ def estimate_equity(hole, board, opp_ranges, n_iters=1000, time_budget_ms=25.0,
         rng = Random(seed)
         max_attempts = max(1000, n_iters * 100)
         stop_reason = "iteration_limit"
-        while samples < n_iters:
+        while samples + len(pending) < n_iters:
             try:
                 check_time()
             except EquityTimeout:
-                if not samples:
+                if not samples and not pending:
                     raise
                 stop_reason = "time_budget"
                 break
             if attempts >= max_attempts:
-                if not samples:
+                if not samples and not pending:
                     raise EquitySamplingError("No compatible deal within the attempt limit")
                 stop_reason = "attempt_limit"
                 break
@@ -367,6 +391,7 @@ def estimate_equity(hole, board, opp_ranges, n_iters=1000, time_budget_ms=25.0,
                 for j, i in enumerate(uniform):
                     holes[i] = tuple(draw[2 * j:2 * j + 2])
                 record(holes, draw[2 * len(uniform):])
+        flush()
 
     players = tuple(PlayerOdds(
         wins[i] / weight_total, ties[i] / weight_total,

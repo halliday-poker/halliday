@@ -59,6 +59,56 @@ python harness/eval.py run snapshots/v3 bot [more...]     # first = baseline, 95
 python harness/eval.py run A B --no-league                 # without league opponents
 ```
 
+## GPU workers
+
+Field evaluations and A/B runs default to `--device auto`: when a compatible bot,
+NVIDIA driver, CUDA toolkit (`nvcc`) and NumPy are available, the harness starts
+one spawned worker per visible GPU. Each worker batches the updated Halliday
+engine's seven-card hand rankings on its GPU. Range sampling, weighted aggregation,
+the game loop, and opponent decisions run on CPU. Older snapshots and opponents
+without the batch hook continue using their own evaluators.
+
+```sh
+# Automatically use available GPUs, or fall back to CPU workers.
+python harness/eval.py run bot --no-league --pool sparring/competitors/from_data/pool.txt
+
+# Require all four devices; startup failures are errors in explicit CUDA mode.
+python harness/eval.py run bot --no-league --pool sparring/competitors/from_data/pool.txt --device cuda --gpu-devices 0,1,2,3
+
+# Limit GPU use, or select the CPU reference path.
+python harness/eval.py run bot --no-league --gpu-workers 2 --gpu-batch-size 128
+python harness/eval.py run bot --no-league --device cpu --workers 8
+```
+
+`--gpu-devices` uses indices reported by the CUDA driver (respecting
+`CUDA_VISIBLE_DEVICES`). `--gpu-workers` limits the selected devices to the first
+N; at most one worker uses each device. `--workers` controls CPU execution and
+fallback. `--gpu-batch-size` accepts 1–4096 deals, default 128. At the default,
+each worker allocates 36 KiB of device input/output buffers plus CUDA context
+overhead; memory is independent of the number of tables. Workers are independent
+and do not pool GPU memory or require NVLink transfers.
+
+The CUDA kernel is compiled to a native binary for the device architecture and
+cached in `harness/results/cuda-cache/`. Find `nvcc` through PATH, `CUDA_PATH`, or
+`/usr/local/cuda`. No additional CUDA Python package is required. Every worker
+compiles/loads and checks its kernel before game clocks start. Auto mode falls
+back to CPU if detection or startup fails, with a reason in the output and saved
+JSON. Errors after play begins remain failures rather than silently changing
+the backend midway through a run.
+
+Output and the JSON `compute` field record selected devices, worker startup,
+and actual per-device batch and ranked-hand counts. `gpu_seconds` measures host
+elapsed time for transfers, kernel launch and synchronization, not pure kernel
+time. There is no guaranteed speedup for small batches or workloads dominated
+by game logic; see [local validation](GPU_VALIDATION.md).
+
+Promotion gates always use CPU in auto mode, and reject explicit CUDA. GPU timing
+does not establish that a submission meets tournament CPU clocks. Timed equity
+calls can complete different sample counts on different backends, and finish a
+pending batch when their cooperative deadline expires. Use a CPU gate and
+`smoke` before promotion or packaging. `--device cpu --workers 1` also preserves
+single-process debugging with bot print output.
+
 ## The opponent pool
 
 [pools/default.txt](pools/default.txt) lists bot specs with weights. A spec is a bot directory
@@ -79,6 +129,15 @@ stickiness, size`, plus an `adaptive` flag that adjusts to opponents' aggression
 - Preflop it plays hands by percentile rank (Chen formula, small pairs adjusted). Postflop it
   uses a fast made-hand plus draw heuristic, a few ms per decision.
 - Each run's JSON records the drawn styles under `param_styles`.
+
+### Fitted competitors
+
+`sparring/competitors/from_data/pool.txt` contains the latest fitted segments for 66
+external identities; the historical Halliday fit is also available separately.
+See [the competitor documentation](../sparring/competitors/README.md) for
+provenance, uncertainties, regeneration and the field evaluation command.
+File bots may expose `make_seeded_bot(seed)` to receive the harness's per-seat
+seed; otherwise the existing no-argument constructor behavior is unchanged.
 
 ## Reading the output
 
@@ -114,6 +173,6 @@ local to each machine.
   `bot/engine.py` can share a table). That only works for top-level imports.
 - Bots are loaded once per worker and get a fresh instance per game. Module-level mutable
   state therefore leaks between games here but not in the tournament. Keep state on `self`.
-- Workers discard bot `print()` output. Use `--workers 1` to see prints while debugging.
+- Workers discard bot `print()` output. Use `--device cpu --workers 1` to see prints while debugging.
 - A failing game raises `RuntimeError: game failed: candidate=... opponents=... table=...
   game=... seed=...` with the full traceback, so it can be replayed with `--seed`.
